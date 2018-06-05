@@ -1,9 +1,24 @@
+/**
+ A trie implementation for word based games
+*/
 public final class Hangman {
-  let root = Node()
+  /**
+   The root node of the actual trie structure
+  */
+  private let root = Node()
+  /**
+  Create a clean trie
+  */
   public init() {}
+  /**
+  Create a trie from a Sequence of Strings
+  */
   public init<Source>(_ sequence: Source) where Source: Sequence, Source.Element == String {
     sequence.forEach({insert($0)})
   }
+  /**
+  Inserts a word in the trie if not already present
+  */
   @discardableResult
   public func insert(_ word: String) -> (inserted: Bool, word: String) {
     var currentNode = root
@@ -22,6 +37,9 @@ public final class Hangman {
     currentNode.isWord = true
     return (true, word)
   }
+  /**
+  Remove a word from the trie if still present
+  */
   @discardableResult
   public func remove(_ word: String) -> (removed: Bool, word: String) {
     if word.isEmpty {
@@ -35,6 +53,9 @@ public final class Hangman {
     return (true, word)
   }
 
+  /**
+  Check if the trie contains a given word
+  */
   public func contains(_ word: String) -> Bool {
     return root.find(word: word) != nil
   }
