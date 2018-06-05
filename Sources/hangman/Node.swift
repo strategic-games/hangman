@@ -1,6 +1,7 @@
 final class Node {
   let letter: Character?
   let level: Int
+  var maxLevel: Int = 0
   var isWord = false
   weak var parent: Node?
   var children = [Character:Node](minimumCapacity: 30)
@@ -66,15 +67,19 @@ final class Node {
   }
   func search(_ prefix: String = "", range: CountableClosedRange<Int>) -> ContiguousArray<String> {
     var subtrieWords = ContiguousArray<String>()
+    guard level < range.upperBound else {
+      return subtrieWords
+    }
     for (key, child) in children {
+      guard range.lowerBound <= child.maxLevel else {
+        continue
+      }
       var previousLetters = prefix
       previousLetters.append(key)
       if child.isWord && child.level >= range.lowerBound {
         subtrieWords.append(previousLetters)
       }
-      if child.level < range.upperBound && !child.isLeaf {
-        subtrieWords += child.search(previousLetters, range: range)
-      }
+      subtrieWords += child.search(previousLetters, range: range)
     }
     return subtrieWords
   }
@@ -86,6 +91,9 @@ final class Node {
     switch char {
     case "?":
       for (key, child) in children {
+        guard pattern.count <= child.maxLevel else {
+          continue
+        }
         var previousLetters = prefix
         previousLetters.append(key)
         if child.isWord && child.level == pattern.count {
@@ -95,6 +103,9 @@ final class Node {
       }
     default:
       if let child = children[char] {
+        guard pattern.count <= child.maxLevel else {
+          break
+        }
         var previousLetters = prefix
         previousLetters.append(char)
         if child.isWord && child.level == pattern.count {
@@ -103,11 +114,6 @@ final class Node {
         subtrieWords += child.match(previousLetters, pattern: pattern)
       }
     }
-    /*
-     for child in children.values {
-     subtrieWords += child.search(previousLetters)
-     }
-     */
     return subtrieWords
   }
 }

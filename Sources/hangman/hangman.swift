@@ -7,8 +7,14 @@ public final class Hangman {
   @discardableResult
   public func insert(_ word: String) -> (inserted: Bool, word: String) {
     var currentNode = root
+    if word.count > currentNode.maxLevel {
+      currentNode.maxLevel = word.count
+    }
     for character in word {
       currentNode = currentNode.add(child: character).node
+      if word.count > currentNode.maxLevel {
+        currentNode.maxLevel = word.count
+      }
     }
     if currentNode.isWord {
       return (false, word)
