@@ -1,0 +1,152 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/HangMan/Node.swift",
+      "line": 1,
+      "symbol": "Node",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/HangMan/Node.swift",
+      "line": 2,
+      "symbol": "Node.letter",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/HangMan/Node.swift",
+      "line": 3,
+      "symbol": "Node.level",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/HangMan/Node.swift",
+      "line": 4,
+      "symbol": "Node.maxLevel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/HangMan/Node.swift",
+      "line": 5,
+      "symbol": "Node.isWord",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/HangMan/Node.swift",
+      "line": 6,
+      "symbol": "Node.parent",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/HangMan/Node.swift",
+      "line": 7,
+      "symbol": "Node.children",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/HangMan/Node.swift",
+      "line": 8,
+      "symbol": "Node.isLeaf",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/HangMan/Node.swift",
+      "line": 11,
+      "symbol": "Node.init(letter:level:parent:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/HangMan/Node.swift",
+      "line": 18,
+      "symbol": "Node.add(child:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/HangMan/Node.swift",
+      "line": 28,
+      "symbol": "Node.prune()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/HangMan/Node.swift",
+      "line": 36,
+      "symbol": "Node.find(prefix:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/HangMan/Node.swift",
+      "line": 49,
+      "symbol": "Node.find(word:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/HangMan/Node.swift",
+      "line": 56,
+      "symbol": "Node.search(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/HangMan/Node.swift",
+      "line": 68,
+      "symbol": "Node.search(_:range:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/HangMan/Node.swift",
+      "line": 86,
+      "symbol": "Node.match(_:pattern:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/HangMan/ScrabbleDict.swift",
+      "line": 11,
+      "symbol": "ScrabbleDict.Language.english",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/HangMan/ScrabbleDict.swift",
+      "line": 11,
+      "symbol": "ScrabbleDict.Language.german",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/HangMan/hangman.swift",
+      "line": 62,
+      "symbol": "Hangman.search(prefix:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/HangMan/hangman.swift",
+      "line": 73,
+      "symbol": "Hangman.search(range:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/HangMan/hangman.swift",
+      "line": 76,
+      "symbol": "Hangman.match(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/tamaracook/Entwicklung/hangman"
+}
