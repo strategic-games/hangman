@@ -60,7 +60,7 @@ extension Dimensions: Comparable {
   /// Indicates if a grid size fits into another grid size
   /// At least one dimension of lhs must be smaller than that of rhs
   static func < (lhs: Dimensions, rhs: Dimensions) -> Bool {
-    guard lhs != rhs else {return false}
+    if lhs == rhs {return false}
     return lhs.m > rhs.m || lhs.n > rhs.n ? false : true
   }
 }

@@ -1,7 +1,10 @@
 import XCTest
 
-import hangmanTests
+import BoardGamesTests
+import HangManTests
 
 var tests = [XCTestCaseEntry]()
-tests += hangmanTests.allTests()
+tests += BoardGamesTests.__allTests()
+tests += HangManTests.__allTests()
+
 XCTMain(tests)

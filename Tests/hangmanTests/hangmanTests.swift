@@ -1,5 +1,5 @@
 import XCTest
-@testable import hangman
+@testable import HangMan
 
 final class hangmanTests: XCTestCase {
   let word = ""
