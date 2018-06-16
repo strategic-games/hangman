@@ -1,7 +1,7 @@
 /// A generic matrix type
 struct Matrix<T> {
   /// The type of the collection which is used internally for the matrix entries
-  typealias CollectionType = [T]
+  typealias CollectionType = ContiguousArray<T>
   /// A type which keeps track of matrix dimensions and 1D indices
   typealias Size = Dimensions
   // MARK: Stored properties
@@ -10,6 +10,7 @@ struct Matrix<T> {
   private var entries: CollectionType
   // MARK: Create matrices
   /// Create matrix from nested arrays
+  /// - precondition: Inner arrays must have same length
   init(_ entries: [[T]]) {
     let counts = entries.map {$0.count}
     let equalCounts = counts.allSatisfy {$0 == counts.last}
@@ -26,6 +27,7 @@ struct Matrix<T> {
     entries = CollectionType(repeating: repeating, count: size.count)
   }
   /// Create matrix from simple array and given size
+  /// - precondition: Array and size must have same count
   init(_ entries: CollectionType, size: Size) {
     precondition(entries.count == size.count, "expected exactly m*n entries")
     self.size = size
@@ -98,18 +100,18 @@ extension Matrix {
   /// Return a matrix slice with a given size and reference position
   subscript(_ start: Position, _ size: Size) -> [Slice<Matrix<T>>] {
     get {
-      let idx = size.index(start, size: size)
+      let idx = self.size.index(start, size: size)
       return idx.map({self[$0]})
     }
   }
   /// Return a matrix slice with given size and start position as array
   subscript(_ start: Position, _ size: Size) -> [T] {
     get {
-      let idx = size.index(start, size: size).joined()
+      let idx = self.size.index(start, size: size).joined()
     return idx.map {self[$0]}
     }
     set {
-      let idx = size.index(start, size: size).joined().enumerated()
+      let idx = self.size.index(start, size: size).joined().enumerated()
       idx.forEach {(offset, element) in self[element] = newValue[offset]}
     }
   }
@@ -117,7 +119,7 @@ extension Matrix {
   subscript(_ start: Position, _ size: Size) -> Matrix {
     get {
       let idx = size.index(start, size: size).joined()
-      return Matrix(idx.map {self[$0]}, size: size)
+      return Matrix(CollectionType(idx.map {self[$0]}), size: size)
     }
     set {
       let idx = size.index(start, size: size).joined().enumerated()
@@ -162,6 +164,7 @@ extension Matrix: CustomStringConvertible, LosslessStringConvertible where T: En
   /// A textual description of a game board
   var description: String {
     var result: String = ""
+    result.reserveCapacity(size.count+size.m)
     for i in 0..<size.m {
       let row = self[row: i].map {$0.symbol}
       result.append(row+"\n")
@@ -177,7 +180,7 @@ extension Matrix: CustomStringConvertible, LosslessStringConvertible where T: En
     let rows: Int, cols: Int
     rows = counts.count
     cols = counts.first ?? 0
-    size = Size(cols, rows)
-    entries = lines.joined().map {T(from: $0)}
+    size = Size(rows, cols)
+    entries = CollectionType(lines.joined().map {T(from: $0)})
   }
 }

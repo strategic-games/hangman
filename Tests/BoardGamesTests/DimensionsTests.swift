@@ -15,9 +15,9 @@ class DimensionsTests: XCTestCase {
   }
 
   func testCount() {
-    XCTAssert(sizes[0].count == 30)
-    XCTAssert(sizes[1].count == 64)
-    XCTAssert(sizes[2].count == 40)
+    XCTAssertEqual(sizes[0].count, 30)
+    XCTAssertEqual(sizes[1].count, 64)
+    XCTAssertEqual(sizes[2].count, 40)
   }
   func testContains() {
     let p = Position(4, 5)
@@ -27,22 +27,22 @@ class DimensionsTests: XCTestCase {
   }
   func testIndex() {
     let p = Position(3, 3)
-    XCTAssert(sizes[0].index(p) == 21)
-    XCTAssert(sizes[1].index(p) == 27)
-    XCTAssert(sizes[2].index(p) == 15)
+    XCTAssertEqual(sizes[0].index(p), 21)
+    XCTAssertEqual(sizes[1].index(p), 27)
+    XCTAssertEqual(sizes[2].index(p), 15)
   }
   func testComparation() {
-    XCTAssert(sizes[0] < sizes[1])
+    XCTAssertLessThan(sizes[0], sizes[1])
     XCTAssertFalse(sizes[0] < sizes[2])
     XCTAssertFalse(sizes[2] < sizes[1])
   }
   func testAddition() {
-    XCTAssert(sizes[0]+sizes[1] == Dimensions(13, 14))
-    XCTAssert(sizes[1]+sizes[2] == Dimensions(18, 12))
-    XCTAssert(sizes[2]+3 == Dimensions(13, 7))
+    XCTAssertEqual(sizes[0]+sizes[1], Dimensions(13, 14))
+    XCTAssertEqual(sizes[1]+sizes[2], Dimensions(18, 12))
+    XCTAssertEqual(sizes[2]+3, Dimensions(13, 7))
   }
   func testSubtraction() {
-    XCTAssert(sizes[1]-sizes[0] == Dimensions(3, 2))
+    XCTAssertEqual(sizes[1]-sizes[0], Dimensions(3, 2))
   }
 
 }
