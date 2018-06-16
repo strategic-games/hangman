@@ -47,6 +47,16 @@ class MatrixTests: XCTestCase {
     let res: [Character?] = ["z", "h", "z", "h"]
     XCTAssertEqual(partial, res)
   }
-
-
+  func testConv2() {
+    let nums: Matrix<Double> = Matrix(matrix!.map({$0.isFilled ? 1 : 0}), size: matrix!.size)
+    let kernel = Matrix<Double>(repeating: 1, size: Dimensions(2))
+    XCTAssertEqual(kernel.size.m, 2)
+    XCTAssertEqual(kernel.sum(), 4)
+    let res = nums.conv2(kernel)
+    let ext = nums.conv2(kernel, extend: true)
+    XCTAssertEqual(res.size, Dimensions(3, 7))
+    XCTAssertEqual(ext.size, Dimensions(4, 8))
+    XCTAssertEqual(res[row: 0].map({$0}), [0, 0, 2, 4, 2, 0, 0])
+    XCTAssertEqual(ext[row: 0].map({$0}), [0, 0, 0, 1, 1, 0, 0, 0])
+  }
 }

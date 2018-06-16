@@ -28,10 +28,10 @@ struct Matrix<T> {
   }
   /// Create matrix from simple array and given size
   /// - precondition: Array and size must have same count
-  init(_ entries: CollectionType, size: Size) {
+  init(_ entries: [T], size: Size) {
     precondition(entries.count == size.count, "expected exactly m*n entries")
     self.size = size
-    self.entries = entries
+    self.entries = CollectionType(entries)
   }
 }
 
@@ -118,11 +118,11 @@ extension Matrix {
   /// Return a matrix slice with given size and start position as matrix
   subscript(_ start: Position, _ size: Size) -> Matrix {
     get {
-      let idx = size.index(start, size: size).joined()
-      return Matrix(CollectionType(idx.map {self[$0]}), size: size)
+      let idx = self.size.index(start, size: size).joined()
+      return Matrix(idx.map {self[$0]}, size: size)
     }
     set {
-      let idx = size.index(start, size: size).joined().enumerated()
+      let idx = self.size.index(start, size: size).joined().enumerated()
       idx.forEach {(offset, element) in self[element] = newValue[offset]}
     }
   }
