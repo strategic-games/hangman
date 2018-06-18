@@ -3,7 +3,26 @@ import XCTest
 extension BoardGamesTests {
     static let __allTests = [
         ("testExample", testExample),
-        ("testPerformanceExample", testPerformanceExample),
+    ]
+}
+
+extension DimensionsTests {
+    static let __allTests = [
+        ("testAddition", testAddition),
+        ("testComparation", testComparation),
+        ("testContains", testContains),
+        ("testCount", testCount),
+        ("testIndex", testIndex),
+        ("testSubtraction", testSubtraction),
+    ]
+}
+
+extension MatrixTests {
+    static let __allTests = [
+        ("testConv2", testConv2),
+        ("testInitArrays", testInitArrays),
+        ("testInitString", testInitString),
+        ("testSubscript", testSubscript),
     ]
 }
 
@@ -11,6 +30,8 @@ extension BoardGamesTests {
 public func __allTests() -> [XCTestCaseEntry] {
     return [
         testCase(BoardGamesTests.__allTests),
+        testCase(DimensionsTests.__allTests),
+        testCase(MatrixTests.__allTests),
     ]
 }
 #endif
