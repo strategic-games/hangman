@@ -1,5 +1,5 @@
 /// A generic matrix type
-struct Matrix<T> {
+struct Matrix<T: Hashable>: Hashable {
   /// The type of the collection which is used internally for the matrix entries
   typealias CollectionType = ContiguousArray<T>
   /// A type which keeps track of matrix dimensions and 1D indices
@@ -46,7 +46,7 @@ extension Matrix: MutableCollection, RandomAccessCollection {
   /// The last 1D index
   var endIndex: Index {return entries.endIndex}
   /// Access a matrix element at a given 1D index
-  subscript(index: Index) -> Iterator.Element {
+  subscript(index: Index) -> Element {
     get {return entries[index]}
     set {entries[index] = newValue}
   }
@@ -125,6 +125,10 @@ extension Matrix {
       let idx = self.size.index(start, size: size).joined().enumerated()
       idx.forEach {(offset, element) in self[element] = newValue[offset]}
     }
+  }
+  func map2<T>(_ transform: (Element) -> T) -> Matrix<T> {
+    let items = self.map(transform)
+    return Matrix<T>(items, size: self.size)
   }
 }
 
