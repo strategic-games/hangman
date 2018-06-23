@@ -30,15 +30,14 @@ final class hangmanTests: XCTestCase {
       _ = hangman?.match(str)
     }
   }
- */
+   */
   func testMatch() {
-    /*
     measure{
-      _ = hangman?.search(range: 10...10)
+      _ = hangman?.match(pattern)
     }
- */
-    let result = hangman?.search(range: 10...10)
+    let result = hangman?.match(pattern)
     print(result?.count)
+    
   }
 
     static var allTests = [
@@ -46,7 +45,7 @@ final class hangmanTests: XCTestCase {
       ("Test Prefix", testPrefix),
         ("Test Range", testRange),
         ("Test worst case", testWorstCase),
- */
-      ("Test Match", testMatch),
+       */
+       ("Test Match", testMatch),
     ]
 }

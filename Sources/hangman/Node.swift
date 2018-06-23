@@ -1,4 +1,5 @@
 final class Node {
+  typealias T = StringProtocol&RangeReplaceableCollection
   let letter: Character?
   let level: Int
   var maxLevel: Int = 0
@@ -33,7 +34,7 @@ final class Node {
     }
     return last
   }
-  func find(prefix: String) -> Node? {
+  func find<S>(prefix: S) -> Node? where S: T {
     if isLeaf {
       return nil
     }
@@ -46,7 +47,7 @@ final class Node {
     }
     return current
   }
-  func find(word: String) -> Node? {
+  func find<S>(word: S) -> Node? where S: T {
     guard let node = find(prefix: word) else {
       return nil
     }
@@ -65,8 +66,8 @@ final class Node {
     }
     return subtrieWords
   }
-  func search(_ prefix: String = "", range: CountableClosedRange<Int>) -> ContiguousArray<String> {
-    var subtrieWords = ContiguousArray<String>()
+  func search(_ prefix: String = "", range: CountableClosedRange<Int>) -> [String] {
+    var subtrieWords = [String]()
     guard level < range.upperBound else {
       return subtrieWords
     }
@@ -83,7 +84,7 @@ final class Node {
     }
     return subtrieWords
   }
-  func match(_ prefix: String = "", pattern: String) -> [String] {
+  func match<S: T>(_ prefix: String = "", pattern: S) -> [String] {
     var subtrieWords = [String]()
     guard level < pattern.count, let char = pattern.prefix(level+1).last else {
       return subtrieWords

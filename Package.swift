@@ -11,7 +11,6 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-      .package(url: "https://github.com/attaswift/BTree", from: Version("4.0.0"))
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -22,9 +21,15 @@ let package = Package(
         .target(
             name: "HangMan",
             dependencies: []),
+        .target(
+          name: "RadixTree",
+          dependencies: []),
         .testTarget(
             name: "HangManTests",
             dependencies: ["HangMan"]),
+            .testTarget(
+        name: "RadixTreeTests",
+      dependencies: ["RadixTree"]),
         .testTarget(
           name: "BoardGamesTests",
           dependencies: ["BoardGames"]),

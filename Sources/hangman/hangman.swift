@@ -2,6 +2,7 @@
  A trie implementation for word based games
 */
 public final class Hangman {
+  public typealias T = StringProtocol&RangeReplaceableCollection
   /**
    The root node of the actual trie structure
   */
@@ -14,13 +15,13 @@ public final class Hangman {
   Create a trie from a Sequence of Strings
   */
   public init<Source>(_ sequence: Source) where Source: Sequence, Source.Element == String {
-    sequence.forEach({insert($0)})
+    sequence.forEach {insert($0)}
   }
   /**
   Inserts a word in the trie if not already present
   */
   @discardableResult
-  public func insert(_ word: String) -> (inserted: Bool, word: String) {
+  public func insert<S: T>(_ word: S) -> (inserted: Bool, word: S) {
     var currentNode = root
     if word.count > currentNode.maxLevel {
       currentNode.maxLevel = word.count
@@ -70,10 +71,10 @@ public final class Hangman {
     words += node.search(prefix)
     return words
   }
-  public func search(range: CountableClosedRange<Int>) -> ContiguousArray<String> {
+  public func search(range: CountableClosedRange<Int>) -> [String] {
     return root.search(range: range)
   }
-  public func match(_ pattern: String) -> [String] {
+  public func match<S: T>(_ pattern: S) -> [String] {
     return root.match(pattern: pattern)
   }
 }
