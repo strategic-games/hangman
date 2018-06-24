@@ -1,5 +1,5 @@
 public final class Radix {
-  let root = Root()
+  let root = Node()
   public init() {}
   public func insert(_ word: String) {
     root.insert(search: word)

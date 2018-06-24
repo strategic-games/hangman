@@ -1,41 +1,41 @@
 /// A radix tree root node
-class Root {
-  private var children = [Edge]()
-  weak var parent: Root?
+class Node {
+  private var children = [Child]()
+  weak var parent: Node?
   /// Does this node have any child nodes?
   var isLeaf: Bool {
     return children.isEmpty
   }
-  init(_ parent: Root? = nil) {
+  init(_ parent: Node? = nil) {
     self.parent = parent
   }
-  func append(_ edge: Edge) {
+  func append(_ edge: Child) {
     edge.parent = self
     children.append(edge)
   }
-  func diverge(child: Int, prefix: Substring, suffix: Substring, searchSuffix: Substring) -> Edge {
+  func diverge(child: Int, prefix: Substring, suffix: Substring, searchSuffix: Substring) -> Child {
     let oldChild = children[child]
-    let newChild = Edge(String(prefix), parent: self, isWord: false)
-    let x = Edge(String(suffix), parent: newChild, isWord: oldChild.isWord)
+    let newChild = Child(String(prefix), parent: self, isWord: false)
+    let x = Child(String(suffix), parent: newChild, isWord: oldChild.isWord)
     x.children = oldChild.children
-    let y = Edge(String(searchSuffix), parent: newChild, isWord: true)
+    let y = Child(String(searchSuffix), parent: newChild, isWord: true)
     newChild.children = [x, y]
     children[child] = newChild
     return newChild
   }
-    func split(child: Int, prefix: String, keySuffix: String) -> Edge {
+    func split(child: Int, prefix: String, keySuffix: String) -> Child {
         let oldChild = children[child]
-        let newChild = Edge(prefix, parent: self, isWord: true)
-        let x = Edge(keySuffix, parent: newChild, isWord: oldChild.isWord)
+        let newChild = Child(prefix, parent: self, isWord: true)
+        let x = Child(keySuffix, parent: newChild, isWord: oldChild.isWord)
         x.children = oldChild.children
         newChild.children.append(x)
         children[child] = newChild
         return newChild
     }
   @discardableResult
-  func insert(search: String) -> (added: Bool, edge: Edge) {
+  func insert(search: String) -> (added: Bool, edge: Child) {
     if isLeaf {
-        let child = Edge(search, parent: self, isWord: true)
+        let child = Child(search, parent: self, isWord: true)
       children.append(child)
       return (true, child)
     }
@@ -55,11 +55,11 @@ class Root {
       case .empty: continue
       }
     }
-    let child = Edge(search, parent: self, isWord: true)
+    let child = Child(search, parent: self, isWord: true)
     children.append(child)
     return (true, child)
   }
-  func find(prefix: String) -> Edge? {
+  func find(prefix: String) -> Child? {
     guard !isLeaf else {return nil}
     for child in children {
         switch child.test(for: prefix) {
@@ -70,7 +70,7 @@ class Root {
     }
     return nil
   }
-  func find(word: String) -> Edge? {
+  func find(word: String) -> Child? {
     guard !isLeaf else {return nil}
     for child in children {
         switch child.test(for: word) {

@@ -1,4 +1,4 @@
-class Edge: Root {
+class Child: Node {
   /// Possible relations between a search string and a node key
   enum PrefixTest {
     /// No common prefix, continue searching
@@ -15,12 +15,12 @@ class Edge: Root {
   var isWord: Bool = false
   var level: Int {
     var i = 0
-    for _ in sequence(first: parent, next: {(node: Root?) -> Root? in node?.parent}) {
+    for _ in sequence(first: parent, next: {(node: Node?) -> Node? in node?.parent}) {
       i += 1
     }
     return i
   }
-  init(_ key: String, parent: Root? = nil, isWord: Bool = false) {
+  init(_ key: String, parent: Node? = nil, isWord: Bool = false) {
     self.key = key
     self.isWord = isWord
     super.init(parent)
@@ -36,8 +36,8 @@ class Edge: Root {
   }
 }
 
-extension Edge: Equatable, Hashable {
-  static func ==(lhs: Edge, rhs: Edge) -> Bool {
+extension Child: Equatable, Hashable {
+  static func ==(lhs: Child, rhs: Child) -> Bool {
     return lhs.key == rhs.key
   }
   func hash(into hasher: inout Hasher) {
