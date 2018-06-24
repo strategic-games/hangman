@@ -1,4 +1,4 @@
-/// A radix tree root node
+/// A radix tree node
 final class Node {
   /// Possible relations between a search string and a node key
   enum PrefixTest {
@@ -14,16 +14,10 @@ final class Node {
     case partlyEqual(prefix: Substring, keySuffix: Substring, searchSuffix: Substring)
   }
   let key: String
+  let level: Int
   var isWord: Bool = false
   private var children = [Node]()
   weak var parent: Node?
-  var level: Int {
-    var i = 0
-    for _ in sequence(first: parent, next: {(node: Node?) -> Node? in node?.parent}) {
-      i += 1
-    }
-    return i
-  }
   var isLeaf: Bool {
     return children.isEmpty
   }
@@ -31,6 +25,8 @@ final class Node {
     self.key = key
     self.parent = parent
     self.isWord = isWord
+    let parentLevel = parent?.level ?? 0
+    level = parentLevel + 1
   }
   /// Test relation between key and a search term
   func test(for search: String) -> PrefixTest {
@@ -40,10 +36,6 @@ final class Node {
     if ks.isEmpty {return .equalToKey(searchSuffix: os)}
     if os.isEmpty {return .equalToSearch(keySuffix: ks)}
     return .partlyEqual(prefix: p, keySuffix: ks, searchSuffix: os)
-  }
-  func append(_ node: Node) {
-    node.parent = self
-    children.append(node)
   }
   func diverge(child: Int, prefix: Substring, suffix: Substring, searchSuffix: Substring) -> Node {
     let oldChild = children[child]
