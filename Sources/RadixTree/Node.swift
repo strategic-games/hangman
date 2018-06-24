@@ -1,41 +1,73 @@
 /// A radix tree root node
-class Node {
-  private var children = [Child]()
+final class Node {
+  /// Possible relations between a search string and a node key
+  enum PrefixTest {
+    /// No common prefix, continue searching
+    case empty
+    /// key is equal to search
+    case keyEqualsSearch
+    /// Key contains the search string
+    case equalToSearch(keySuffix: Substring)
+    /// Key contains a prefix of the search string, continue searching for remaining suffix in the children of this node
+    case equalToKey(searchSuffix: Substring)
+    /// Key and search string diverge, continue searching
+    case partlyEqual(prefix: Substring, keySuffix: Substring, searchSuffix: Substring)
+  }
+  let key: String
+  var isWord: Bool = false
+  private var children = [Node]()
   weak var parent: Node?
-  /// Does this node have any child nodes?
+  var level: Int {
+    var i = 0
+    for _ in sequence(first: parent, next: {(node: Node?) -> Node? in node?.parent}) {
+      i += 1
+    }
+    return i
+  }
   var isLeaf: Bool {
     return children.isEmpty
   }
-  init(_ parent: Node? = nil) {
+  init(_ key: String = "", parent: Node? = nil, isWord: Bool = false) {
+    self.key = key
     self.parent = parent
+    self.isWord = isWord
   }
-  func append(_ edge: Child) {
-    edge.parent = self
-    children.append(edge)
+  /// Test relation between key and a search term
+  func test(for search: String) -> PrefixTest {
+    let (p, ks, os) = key.branch(with: search)
+    if p.isEmpty {return .empty}
+    if os.isEmpty && ks.isEmpty {return .keyEqualsSearch}
+    if ks.isEmpty {return .equalToKey(searchSuffix: os)}
+    if os.isEmpty {return .equalToSearch(keySuffix: ks)}
+    return .partlyEqual(prefix: p, keySuffix: ks, searchSuffix: os)
   }
-  func diverge(child: Int, prefix: Substring, suffix: Substring, searchSuffix: Substring) -> Child {
+  func append(_ node: Node) {
+    node.parent = self
+    children.append(node)
+  }
+  func diverge(child: Int, prefix: Substring, suffix: Substring, searchSuffix: Substring) -> Node {
     let oldChild = children[child]
-    let newChild = Child(String(prefix), parent: self, isWord: false)
-    let x = Child(String(suffix), parent: newChild, isWord: oldChild.isWord)
+    let newChild = Node(String(prefix), parent: self, isWord: false)
+    let x = Node(String(suffix), parent: newChild, isWord: oldChild.isWord)
     x.children = oldChild.children
-    let y = Child(String(searchSuffix), parent: newChild, isWord: true)
+    let y = Node(String(searchSuffix), parent: newChild, isWord: true)
     newChild.children = [x, y]
     children[child] = newChild
     return newChild
   }
-    func split(child: Int, prefix: String, keySuffix: String) -> Child {
+    func split(child: Int, prefix: String, keySuffix: String) -> Node {
         let oldChild = children[child]
-        let newChild = Child(prefix, parent: self, isWord: true)
-        let x = Child(keySuffix, parent: newChild, isWord: oldChild.isWord)
+        let newChild = Node(prefix, parent: self, isWord: true)
+        let x = Node(keySuffix, parent: newChild, isWord: oldChild.isWord)
         x.children = oldChild.children
         newChild.children.append(x)
         children[child] = newChild
         return newChild
     }
   @discardableResult
-  func insert(search: String) -> (added: Bool, edge: Child) {
+  func insert(search: String) -> (added: Bool, node: Node) {
     if isLeaf {
-        let child = Child(search, parent: self, isWord: true)
+        let child = Node(search, parent: self, isWord: true)
       children.append(child)
       return (true, child)
     }
@@ -55,11 +87,11 @@ class Node {
       case .empty: continue
       }
     }
-    let child = Child(search, parent: self, isWord: true)
+    let child = Node(search, parent: self, isWord: true)
     children.append(child)
     return (true, child)
   }
-  func find(prefix: String) -> Child? {
+  func find(prefix: String) -> Node? {
     guard !isLeaf else {return nil}
     for child in children {
         switch child.test(for: prefix) {
@@ -70,7 +102,7 @@ class Node {
     }
     return nil
   }
-  func find(word: String) -> Child? {
+  func find(word: String) -> Node? {
     guard !isLeaf else {return nil}
     for child in children {
         switch child.test(for: word) {
@@ -95,3 +127,12 @@ class Node {
   }
 }
 
+extension Node: Equatable, Hashable {
+  static func ==(lhs: Node, rhs: Node) -> Bool {
+    return lhs.key == rhs.key
+  }
+  func hash(into hasher: inout Hasher) {
+    hasher.combine(key)
+    hasher.combine(isWord)
+  }
+}
