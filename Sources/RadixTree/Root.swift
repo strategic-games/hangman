@@ -15,64 +15,71 @@ class Root {
   }
   func diverge(child: Int, prefix: Substring, suffix: Substring, searchSuffix: Substring) -> Edge {
     let oldChild = children[child]
-    let newChild = Edge(String(prefix), self, false)
-    let x = Edge(String(suffix), newChild, oldChild.isWord)
+    let newChild = Edge(String(prefix), parent: self, isWord: false)
+    let x = Edge(String(suffix), parent: newChild, isWord: oldChild.isWord)
     x.children = oldChild.children
-    let y = Edge(String(searchSuffix), newChild, true)
+    let y = Edge(String(searchSuffix), parent: newChild, isWord: true)
     newChild.children = [x, y]
     children[child] = newChild
     return newChild
   }
+    func split(child: Int, prefix: String, keySuffix: String) -> Edge {
+        let oldChild = children[child]
+        let newChild = Edge(prefix, parent: self, isWord: true)
+        let x = Edge(keySuffix, parent: newChild, isWord: oldChild.isWord)
+        x.children = oldChild.children
+        newChild.children.append(x)
+        children[child] = newChild
+        return newChild
+    }
   @discardableResult
   func insert(search: String) -> (added: Bool, edge: Edge) {
     if isLeaf {
-      let child = Edge(search, self, true)
+        let child = Edge(search, parent: self, isWord: true)
       children.append(child)
       return (true, child)
     }
     for (n, child) in children.enumerated() {
-      /*
-      if child.key == search || child.key.starts(with: search) {return (false, child)}
-      let (prefix, suffix, searchSuffix) = child.key.branch(with: search)
-      if prefix.isEmpty {continue}
-      if search.starts(with: child.key) {
-        return child.insert(search: String(searchSuffix))
-      }
-      if prefix != child.key {
-        let newChild = diverge(child: n, prefix: prefix, suffix: suffix, searchSuffix: searchSuffix)
-        return (true, newChild)
-      }
- */
       switch child.test(for: search) {
-      case .equalToSearch:
+      case .keyEqualsSearch:
         child.isWord = true
         return (false, child)
-      case .equalToKey(_, _, let suffix):
+      case .equalToSearch(let keySuffix):
+        let newChild = split(child: n, prefix: String(search), keySuffix: String(keySuffix))
+        return (true, newChild)
+      case .equalToKey(let suffix):
         return child.insert(search: String(suffix))
-      case .notEqualToKey(let prefix, let suffix, let searchSuffix):
-        let newChild = diverge(child: n, prefix: prefix, suffix: suffix, searchSuffix: searchSuffix)
+      case .partlyEqual(let prefix, let keySuffix, let searchSuffix):
+        let newChild = diverge(child: n, prefix: prefix, suffix: keySuffix, searchSuffix: searchSuffix)
         return (true, newChild)
       case .empty: continue
       }
     }
-    let child = Edge(search, self, true)
+    let child = Edge(search, parent: self, isWord: true)
     children.append(child)
     return (true, child)
   }
   func find(prefix: String) -> Edge? {
     guard !isLeaf else {return nil}
     for child in children {
-      switch child.test(for: prefix) {
-      case .equalToSearch: return child
-      case .equalToKey(_, _, let suffix): return child.find(prefix: String(suffix))
+        switch child.test(for: prefix) {
+      case .keyEqualsSearch: return child
+      case .equalToKey(let suffix): return child.find(prefix: String(suffix))
       default: continue
       }
     }
     return nil
   }
   func find(word: String) -> Edge? {
-    guard let node = find(prefix: word) else {return nil}
-    return node.isWord ? node : nil
+    guard !isLeaf else {return nil}
+    for child in children {
+        switch child.test(for: word) {
+        case .keyEqualsSearch: return child.isWord ? child : nil
+        case .equalToKey(let suffix): return child.find(word: String(suffix))
+        default: continue
+        }
+    }
+    return nil
   }
   func search(_ prefix: String) -> [String] {
   var subtreeWords = [String]()

@@ -25,16 +25,32 @@ final class RadixTests: XCTestCase {
   }
   func testDict() {
   guard let radix = self.radix, let dict = self.dict else {return}
-  let words = dict.prefix(5)
+    let words = dict.prefix(50000)
     measure {
       for w in words {
         if !radix.contains(w) {
           print(w)
-          XCTAssert(false)
+            XCTAssert(false)
+            break
         }
       }
     }
   }
+    func testAnagramm() {
+        guard let radix = self.radix, let dict = self.dict else {return}
+        let words = dict.map {String($0.reversed())}
+        var counter: Int = 0
+        measure {
+            for w in words {
+                if radix.contains(w) {
+                    print(w)
+                    XCTAssert(counter < 1000)
+                    counter += 1
+                }
+            }
+        }
+        print(counter)
+    }
   func testDescending() {
     let radix = Radix()
     radix.insert("hallo")
@@ -42,6 +58,11 @@ final class RadixTests: XCTestCase {
     XCTAssert(radix.contains("hall"))
     XCTAssert(radix.contains("hallo"))
   }
+    func testAtomar() {
+        let radix = Radix()
+        radix.insert("hallo")
+        XCTAssertFalse(radix.contains("hall"))
+    }
   func insertHelper(words: [String]) {
     let radix = Radix()
     for w in words {

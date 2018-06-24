@@ -3,12 +3,13 @@ class Edge: Root {
   enum PrefixTest {
     /// No common prefix, continue searching
     case empty
-    /// Key contains the search string, found
-    case equalToSearch(Substring, Substring, Substring)
+    /// Key contains the search string
+    case equalToSearch(keySuffix: Substring)
+    case keyEqualsSearch
     /// Key contains a prefix of the search string, continue searching for remaining suffix in the children of this node
-    case equalToKey(Substring, Substring, Substring)
+    case equalToKey(searchSuffix: Substring)
     /// Key and search string diverge, continue searching
-    case notEqualToKey(Substring, Substring, Substring)
+    case partlyEqual(prefix: Substring, keySuffix: Substring, searchSuffix: Substring)
   }
   let key: String
   var isWord: Bool = false
@@ -19,7 +20,7 @@ class Edge: Root {
     }
     return i
   }
-  init(_ key: String, _ parent: Root? = nil, _ isWord: Bool = false) {
+  init(_ key: String, parent: Root? = nil, isWord: Bool = false) {
     self.key = key
     self.isWord = isWord
     super.init(parent)
@@ -28,9 +29,10 @@ class Edge: Root {
   func test(for search: String) -> PrefixTest {
     let (p, ks, os) = key.branch(with: search)
     if p.isEmpty {return .empty}
-    if p == search {return .equalToSearch(p, ks, os)}
-    if p == key {return .equalToKey(p, ks, os)}
-    return .notEqualToKey(p, ks, os)
+    if os.isEmpty && ks.isEmpty {return .keyEqualsSearch}
+    if ks.isEmpty {return .equalToKey(searchSuffix: os)}
+    if os.isEmpty {return .equalToSearch(keySuffix: ks)}
+    return .partlyEqual(prefix: p, keySuffix: ks, searchSuffix: os)
   }
 }
 
