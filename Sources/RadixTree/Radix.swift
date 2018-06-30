@@ -1,19 +1,31 @@
+/// A radix tree that stores strings
 public final class Radix {
-  let root = Node()
+  /// The root node of the tree
+  private let root = Node()
+  /// Create an empty tree
   public init() {}
-  public func insert(_ word: String) {
-    root.insert(search: word)
+  /// Insert a string into the tree
+  public func insert(_ key: String) {
+    root.insert(key)
   }
+  /// Insert the elements of a given sequence into the tree
   public func insert<S: Sequence>(_ s: S) where S.Element == String {
-    for x in s {
-      root.insert(search: x)
-    }
+    s.forEach {root.insert($0)}
   }
-  public func contains(_ word: String) -> Bool {
-    let node = root.find(word: word)
-    return node != nil ? true : false
+  /// Remove a given string from this tree if present
+  public func remove(_ key: String) {
+    root.remove(key)
   }
+  /// Indicate if a given string is present in the tree
+  public func contains(_ key: String) -> Bool {
+    return root.find(key) != nil
+  }
+  /// Return a new array with the strings in this tree
   public func search() -> [String] {
     return root.search("")
+  }
+  /// Return a new array with the strings in this tree that satisfy the given pattern
+  public func match(_ pattern: String) -> [String] {
+    return root.match("", pattern: pattern)
   }
 }

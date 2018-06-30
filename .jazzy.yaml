@@ -4,10 +4,12 @@ github_url: https:://github.com/strategyc-games/hangman
 # output: docs/BoardGames
 # module: HangMan
 # output: docs/HangMan
+module: RadixTree
+output: docs/RadixTree
 sdk: macosx
 swift_version: 4.2
 min_acl: internal
-clean: true
+# clean: true
 xcodebuild_arguments:
   - "-scheme"
   - "hangman-Package"

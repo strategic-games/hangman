@@ -1,130 +1,159 @@
 /// A radix tree node
 final class Node {
-  /// Possible relations between a search string and a node key
-  enum PrefixTest {
-    /// No common prefix, continue searching
-    case empty
-    /// key is equal to search
-    case keyEqualsSearch
-    /// Key contains the search string
-    case equalToSearch(keySuffix: Substring)
-    /// Key contains a prefix of the search string, continue searching for remaining suffix in the children of this node
-    case equalToKey(searchSuffix: Substring)
-    /// Key and search string diverge, continue searching
-    case partlyEqual(prefix: Substring, keySuffix: Substring, searchSuffix: Substring)
-  }
-  let key: String
+  /// The type of the child nodes collection
+  typealias ChildrenType = SortedSet<Node>
+  /// The prefix of this node
+  let label: String
+  /// The tree depth of this node
   let level: Int
-  var isWord: Bool = false
-  private var children = [Node]()
-  weak var parent: Node?
+  /// Indicates if this node contains the suffix of an inserted string
+  var isTerminal: Bool = false
+  /// A collection that contains the node's child nodes
+  private var children = ChildrenType()
+  ///////////// Indicates if the node contains any child nodes
   var isLeaf: Bool {
     return children.isEmpty
   }
-  init(_ key: String = "", parent: Node? = nil, isWord: Bool = false) {
-    self.key = key
-    self.parent = parent
-    self.isWord = isWord
-    let parentLevel = parent?.level ?? 0
-    level = parentLevel + 1
+  /// Create a node
+  init(_ label: String = "", level: Int = 0, isTerminal: Bool = false) {
+    self.label = label
+    self.level = level
+    self.isTerminal = isTerminal
   }
-  /// Test relation between key and a search term
-  func test(for search: String) -> PrefixTest {
-    let (p, ks, os) = key.branch(with: search)
-    if p.isEmpty {return .empty}
-    if os.isEmpty && ks.isEmpty {return .keyEqualsSearch}
-    if ks.isEmpty {return .equalToKey(searchSuffix: os)}
-    if os.isEmpty {return .equalToSearch(keySuffix: ks)}
-    return .partlyEqual(prefix: p, keySuffix: ks, searchSuffix: os)
+  /// Add a child node with given prefix
+  func add(prefix: String) -> Node {
+    let child = Node(prefix, level: level+1, isTerminal: true)
+    children.insert(child)
+    return child
   }
-  func diverge(child: Int, prefix: Substring, suffix: Substring, searchSuffix: Substring) -> Node {
-    let oldChild = children[child]
-    let newChild = Node(String(prefix), parent: self, isWord: false)
-    let x = Node(String(suffix), parent: newChild, isWord: oldChild.isWord)
-    x.children = oldChild.children
-    let y = Node(String(searchSuffix), parent: newChild, isWord: true)
-    newChild.children = [x, y]
-    children[child] = newChild
+  /// Extract a suffix into a new child node and mark this as terminal
+  func split(prefix: String, keySuffix: String) -> Node {
+    let newChild = Node(prefix, level: self.level, isTerminal: true)
+    let x = Node(keySuffix, level: newChild.level+1, isTerminal: self.isTerminal)
+    x.children = self.children
+    newChild.children.insert(x)
     return newChild
   }
-    func split(child: Int, prefix: String, keySuffix: String) -> Node {
-        let oldChild = children[child]
-        let newChild = Node(prefix, parent: self, isWord: true)
-        let x = Node(keySuffix, parent: newChild, isWord: oldChild.isWord)
-        x.children = oldChild.children
-        newChild.children.append(x)
-        children[child] = newChild
-        return newChild
-    }
+  /// Extract a suffix into a new child node and add another suffix as child node
+  func diverge(prefix: String, keySuffix: String, searchSuffix: String) -> Node {
+    let newChild = Node(prefix, level: self.level, isTerminal: false)
+    let x = Node(keySuffix, level: newChild.level+1, isTerminal: self.isTerminal)
+    x.children = self.children
+    let y = Node(searchSuffix, level: newChild.level+1, isTerminal: true)
+    newChild.children.formUnion([x, y])
+    return newChild
+  }
+  /// Insert a new string into this node
   @discardableResult
-  func insert(search: String) -> (added: Bool, node: Node) {
-    if isLeaf {
-        let child = Node(search, parent: self, isWord: true)
-      children.append(child)
-      return (true, child)
+  func insert(_ key: String) -> (added: Bool, node: Node) {
+    guard !children.isEmpty else {return (true, add(prefix: key))}
+    if children.count > 3, let max = children.last {
+      let (prefix, _, _) = max.label/key
+      if prefix.isEmpty && max.label < key {return (true, add(prefix: key))}
     }
-    for (n, child) in children.enumerated() {
-      switch child.test(for: search) {
-      case .keyEqualsSearch:
-        child.isWord = true
+    for child in children {
+      switch child.label%key {
+      case .none:
+        child.isTerminal = true
         return (false, child)
-      case .equalToSearch(let keySuffix):
-        let newChild = split(child: n, prefix: String(search), keySuffix: String(keySuffix))
+      case .left(let leftSuffix):
+        let newChild = child.split(prefix: key, keySuffix: String(leftSuffix))
+        children.remove(child)
+        children.insert(newChild)
         return (true, newChild)
-      case .equalToKey(let suffix):
-        return child.insert(search: String(suffix))
-      case .partlyEqual(let prefix, let keySuffix, let searchSuffix):
-        let newChild = diverge(child: n, prefix: prefix, suffix: keySuffix, searchSuffix: searchSuffix)
+      case .right(let rightSuffix):
+        return child.insert(String(rightSuffix))
+      case .partly(let prefix, let leftSuffix, let rightSuffix):
+        let newChild = child.diverge(prefix: String(prefix), keySuffix: String(leftSuffix), searchSuffix: String(rightSuffix))
+        children.remove(child)
+        children.insert(newChild)
         return (true, newChild)
-      case .empty: continue
-      }
-    }
-    let child = Node(search, parent: self, isWord: true)
-    children.append(child)
-    return (true, child)
-  }
-  func find(prefix: String) -> Node? {
-    guard !isLeaf else {return nil}
-    for child in children {
-        switch child.test(for: prefix) {
-      case .keyEqualsSearch: return child
-      case .equalToKey(let suffix): return child.find(prefix: String(suffix))
-      default: continue
-      }
-    }
-    return nil
-  }
-  func find(word: String) -> Node? {
-    guard !isLeaf else {return nil}
-    for child in children {
-        switch child.test(for: word) {
-        case .keyEqualsSearch: return child.isWord ? child : nil
-        case .equalToKey(let suffix): return child.find(word: String(suffix))
-        default: continue
+      case .full:
+        if child.label > key {
+          break
+        } else {
+          continue
         }
+      }
     }
-    return nil
+    return (true, add(prefix: key))
   }
+  /// Remove a string from this node if present, and prune leaf nodes if present
+  func remove(_ key: String) {
+    guard !children.isEmpty else {return}
+    guard let child = index(of: key) else {return}
+    if child.label == key {
+      child.isTerminal = false
+    } else {
+      child.remove(String(key[child.label.endIndex...]))
+    }
+    if !child.isTerminal && child.children.isEmpty {
+      children.remove(child)
+    }
+  }
+  /// Return the node which marks the end of a given string if present
+  func find(_ key: String) -> Node? {
+    guard !children.isEmpty else {return nil}
+    guard let child = index(of: key) else {return nil}
+    if child.label == key && child.isTerminal {return child}
+    return child.find(String(key[child.label.endIndex...]))
+  }
+  /// Return an array with every inserted string in this node, the given prefix prepended
   func search(_ prefix: String) -> [String] {
   var subtreeWords = [String]()
     for child in children {
       var prev = prefix
-      prev += child.key
-      if child.isWord {
+      prev += child.label
+      if child.isTerminal {
         subtreeWords.append(prev)
       }
       subtreeWords += child.search(prev)
     }
   return subtreeWords
   }
+  /// Return an array with every inserted string in this node that match the given pattern, the given prefix prepended
+  func match(_ prefix: String, pattern: String) -> [String] {
+    var subtreeWords = [String]()
+    for child in children {
+      var prev = prefix
+      prev += child.label
+      guard prev.matches(pattern) else {continue}
+      if prev.count == pattern.count && child.isTerminal {
+        subtreeWords.append(prev)
+      }
+      subtreeWords += child.match(prev, pattern: pattern)
+    }
+    return subtreeWords
+  }
+  /// Return the child node whose label is the prefix of or equal to the given string if present
+  private func index(of prefix: String) -> Node? {
+    return index(of: prefix, range: children.startIndex..<children.endIndex)
+  }
+  private func index(of prefix: String, range: Range<ChildrenType.Index>) -> Node? {
+    let mid = range.count/2 + range.lowerBound
+    let child = children[mid]
+    if prefix.hasPrefix(child.label) {return child}
+    let left = range[..<mid]
+    let right = range[children.index(after: mid)...]
+    let selected = prefix > child.label ? right : left
+    if selected.isEmpty {return nil}
+    return index(of: prefix, range: selected)
+  }
 }
 
-extension Node: Equatable, Hashable {
+extension Node: Equatable, Hashable, Comparable {
+  /// Test equality of two nodes, respecting only the label
   static func ==(lhs: Node, rhs: Node) -> Bool {
-    return lhs.key == rhs.key
+    return lhs.label == rhs.label
   }
+  /// Test order of two nodes, respecting only the label
+  static func <(lhs: Node, rhs: Node) -> Bool {
+    return lhs.label < rhs.label
+  }
+  /// Hash this node, respecting only its label
   func hash(into hasher: inout Hasher) {
-    hasher.combine(key)
-    hasher.combine(isWord)
+    hasher.combine(label)
   }
 }
+
+extension Node: Codable {}

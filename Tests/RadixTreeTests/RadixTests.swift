@@ -8,14 +8,13 @@ final class RadixTests: XCTestCase {
   var dict: Set<String>?
   var radix: Radix?
   override func setUp() {
-    if let dict = ScrabbleDict(lang: .german) {
-      self.dict = dict.data
+    dict = DictHelper.loadData("german")
+    if let tmp = self.dict {
       let radix = Radix()
-      for x in dict.data {
+      for x in tmp {
         radix.insert(x)
       }
       self.radix = radix
-      print("built book")
     }
   }
   func testInsert() {
@@ -25,7 +24,7 @@ final class RadixTests: XCTestCase {
   }
   func testDict() {
   guard let radix = self.radix, let dict = self.dict else {return}
-    let words = dict.prefix(50000)
+    let words = dict
     measure {
       for w in words {
         if !radix.contains(w) {
@@ -43,8 +42,7 @@ final class RadixTests: XCTestCase {
         measure {
             for w in words {
                 if radix.contains(w) {
-                    print(w)
-                    XCTAssert(counter < 1000)
+                    XCTAssert(counter < 50000)
                     counter += 1
                 }
             }
@@ -55,14 +53,29 @@ final class RadixTests: XCTestCase {
     let radix = Radix()
     radix.insert("hallo")
     radix.insert("hall")
-    XCTAssert(radix.contains("hall"))
-    XCTAssert(radix.contains("hallo"))
+    XCTAssert(radix.contains("hall"), "hall not contained")
+    XCTAssert(radix.contains("hallo"), "hallo not contained")
   }
     func testAtomar() {
         let radix = Radix()
         radix.insert("hallo")
         XCTAssertFalse(radix.contains("hall"))
     }
+  func testRemove() {
+    guard let radix = self.radix, let dict = self.dict else {return}
+    for w in dict.prefix(10) {
+      XCTAssert(radix.contains(w))
+      radix.remove(w)
+      XCTAssertFalse(radix.contains(w))
+    }
+    _ = radix.contains("oktaviert")
+  }
+  func testMatch() {
+    guard let radix = self.radix else {return}
+    measure {
+      _ = radix.match("???zh???")
+    }
+  }
   func insertHelper(words: [String]) {
     let radix = Radix()
     for w in words {
