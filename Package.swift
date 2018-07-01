@@ -21,15 +21,9 @@ let package = Package(
         .target(
             name: "HangMan",
             dependencies: []),
-        .target(
-          name: "RadixTree",
-          dependencies: []),
         .testTarget(
             name: "HangManTests",
             dependencies: ["HangMan"]),
-            .testTarget(
-        name: "RadixTreeTests",
-      dependencies: ["RadixTree"]),
         .testTarget(
           name: "BoardGamesTests",
           dependencies: ["BoardGames"]),

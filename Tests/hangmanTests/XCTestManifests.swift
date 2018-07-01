@@ -1,15 +1,19 @@
 import XCTest
 
-extension hangmanTests {
+extension RadixTests {
     static let __allTests = [
-        ("testMatch", testMatch),
+        ("testAnagramm", testAnagramm),
+        ("testAtomar", testAtomar),
+        ("testDescending", testDescending),
+        ("testDict", testDict),
+        ("testInsert", testInsert),
     ]
 }
 
 #if !os(macOS)
 public func __allTests() -> [XCTestCaseEntry] {
     return [
-        testCase(hangmanTests.__allTests),
+        testCase(RadixTests.__allTests),
     ]
 }
 #endif
