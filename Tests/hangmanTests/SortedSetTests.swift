@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import RadixTree
+@testable import HangMan
 
 class SortedSetTests: XCTestCase {
 

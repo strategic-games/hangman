@@ -1,5 +1,5 @@
 import Foundation
-import RadixTree
+import HangMan
 
 class DictHelper {
   static func loadData(_ lang: String) -> Set<String>? {

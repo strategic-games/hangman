@@ -1,5 +1,5 @@
 import XCTest
-@testable import RadixTree
+@testable import HangMan
 
 final class RadixTests: XCTestCase {
   let word = ""
