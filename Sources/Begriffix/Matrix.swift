@@ -104,17 +104,6 @@ extension Matrix {
       return idx.map({self[$0]})
     }
   }
-  /// Return a matrix slice with given size and start position as array
-  subscript(_ start: Position, _ size: Size) -> [T] {
-    get {
-      let idx = self.size.index(start, size: size).joined()
-    return idx.map {self[$0]}
-    }
-    set {
-      let idx = self.size.index(start, size: size).joined().enumerated()
-      idx.forEach {(offset, element) in self[element] = newValue[offset]}
-    }
-  }
   /// Return a matrix slice with given size and start position as matrix
   subscript(_ start: Position, _ size: Size) -> Matrix<Element> {
     get {
@@ -124,6 +113,29 @@ extension Matrix {
     set {
       let idx = self.size.index(start, size: size).joined().enumerated()
       idx.forEach {(offset, element) in self[element] = newValue[offset]}
+    }
+  }
+  subscript(start: Position, direction: Direction, count: Int) -> [Element] {
+    get {
+      let idx = size.index(start)
+      switch direction {
+      case .Horizontal:
+        let idx2 = entries.index(idx, offsetBy: count)
+        return [Element](entries[idx..<idx2])
+      case .Vertical:
+        return stride(from: idx, to: count*size.n+idx, by: size.n).map {entries[$0]}
+      }
+    }
+    set {
+      let idx = size.index(start)
+      switch direction {
+      case .Horizontal:
+        let idx2 = entries.index(idx, offsetBy: count)
+        entries.replaceSubrange(idx..<idx2, with: newValue)
+      case .Vertical:
+        let s = stride(from: idx, to: count*size.n+idx, by: size.n)
+        zip(s, newValue).forEach {(n, x) in entries[n] = x}
+      }
     }
   }
   func map2<T>(_ transform: (Element) -> T) -> Matrix<T> {
@@ -141,22 +153,36 @@ extension Matrix where T: Numeric {
   /// 2D convolution with numeric elements
   /// - params:
   ///   - extend: if true, return matrix with same size as original
-  func conv2(_ kernel: Matrix, extend: Bool = false) -> Matrix {
+  func conv2(_ kernel: Matrix) -> Matrix {
     var result = Matrix(repeating: 0, size: size-kernel.size+1)
     result.size.enumerate { start in
       let idx = size.index(start, size: kernel.size)
       let slices = idx.map({self[$0]}).joined()
       result[start] = zip(slices, kernel).map(*).sum()
     }
-    if extend == false {return result}
+    return result
+  }
+  func extend(_ kernel: Matrix) -> Matrix<Element> {
     let kernSum = kernel.sum()
-    var extended = Matrix(repeating: 0, size: size)
-    for (offset, element) in result.enumerated() {
+    var extended = Matrix(repeating: 0, size: size+kernel.size-1)
+    for (offset, element) in self.enumerated() {
       if element != kernSum {continue}
-      let start = result.size.position(offset)
+      let start = self.size.position(offset)
       extended[start, kernel.size] = kernel
     }
     return extended
+  }
+  func dilate(_ kernel: Matrix) -> Matrix<Element> {
+    var dilated = Matrix(repeating: 0, size: size+kernel.size-1)
+    for (offset, element) in self.enumerated() {
+      if element == 0 {continue}
+      let start = self.size.position(offset)
+      dilated[start, kernel.size] = kernel
+    }
+    return dilated
+  }
+  func invert(max: Element = 1) -> Matrix<Element> {
+    return self.map2 {max - $0}
   }
 }
 

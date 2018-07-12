@@ -16,6 +16,16 @@ struct Dimensions: Hashable, Equatable {
     m = sideLength
     n = sideLength
   }
+  init(_ direction: Direction, _ count: Int) {
+    switch direction {
+    case .Horizontal:
+      m = 1
+      n = count
+    case .Vertical:
+      m = count
+      n = 1
+    }
+  }
   /// Indicates if the given position is in the matrix bounds
   func contains(_ position: Position) -> Bool {
     return m > position.i && n > position.j
@@ -77,6 +87,9 @@ extension Dimensions {
   /// Add a dimension and a scalar
   static func +(lhs: Dimensions, rhs: Int) -> Dimensions {
     return Dimensions(lhs.m+rhs, lhs.n+rhs)
+  }
+  static func -(lhs: Dimensions, rhs: Int) -> Dimensions {
+    return Dimensions(lhs.m-rhs, lhs.n-rhs)
   }
 }
 
