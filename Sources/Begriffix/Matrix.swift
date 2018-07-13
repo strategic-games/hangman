@@ -151,8 +151,6 @@ extension Matrix where T: Numeric {
     return Matrix(zip(lhs.entries, rhs.entries).map(*), size: lhs.size)
   }
   /// 2D convolution with numeric elements
-  /// - params:
-  ///   - extend: if true, return matrix with same size as original
   func conv2(_ kernel: Matrix) -> Matrix {
     var result = Matrix(repeating: 0, size: size-kernel.size+1)
     result.size.enumerate { start in
@@ -162,6 +160,7 @@ extension Matrix where T: Numeric {
     }
     return result
   }
+  /// Extend conv2 matrix with a given kernel
   func extend(_ kernel: Matrix) -> Matrix<Element> {
     let kernSum = kernel.sum()
     var extended = Matrix(repeating: 0, size: size+kernel.size-1)
@@ -172,6 +171,7 @@ extension Matrix where T: Numeric {
     }
     return extended
   }
+  /// Extend and dilate conv2 matrix with a given kernel
   func dilate(_ kernel: Matrix) -> Matrix<Element> {
     var dilated = Matrix(repeating: 0, size: size+kernel.size-1)
     for (offset, element) in self.enumerated() {
@@ -181,6 +181,7 @@ extension Matrix where T: Numeric {
     }
     return dilated
   }
+  /// Recode the matrix values by subtracting them from a given maximum value
   func invert(max: Element = 1) -> Matrix<Element> {
     return self.map2 {max - $0}
   }
