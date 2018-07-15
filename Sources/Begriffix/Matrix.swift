@@ -1,7 +1,7 @@
 /// A generic matrix type
-struct Matrix<T: Hashable>: Hashable {
+struct Matrix<Element: Hashable>: Hashable {
   /// The type of the collection which is used internally for the matrix entries
-  typealias CollectionType = Array<T>
+  typealias CollectionType = Array<Element>
   /// A type which keeps track of matrix dimensions and 1D indices
   typealias Size = Dimensions
   // MARK: Stored properties
@@ -11,7 +11,7 @@ struct Matrix<T: Hashable>: Hashable {
   // MARK: Create matrices
   /// Create matrix from nested arrays
   /// - precondition: Inner arrays must have same length
-  init(_ entries: [[T]]) {
+  init(_ entries: [[Element]]) {
     let counts = entries.map {$0.count}
     let equalCounts = counts.allSatisfy {$0 == counts.last}
     precondition(equalCounts, "expected row counts to be equal")
@@ -22,13 +22,13 @@ struct Matrix<T: Hashable>: Hashable {
     self.entries = CollectionType(entries.joined())
   }
   /// Create matrix with given size and prefill with repeating value
-  init(repeating: T, size: Size) {
+  init(repeating: Element, size: Size) {
     self.size = size
     entries = CollectionType(repeating: repeating, count: size.count)
   }
   /// Create matrix from simple array and given size
   /// - precondition: Array and size must have same count
-  init(_ entries: [T], size: Size) {
+  init(_ entries: [Element], size: Size) {
     precondition(entries.count == size.count, "expected exactly m*n entries")
     self.size = size
     self.entries = CollectionType(entries)
@@ -39,8 +39,6 @@ struct Matrix<T: Hashable>: Hashable {
 extension Matrix: MutableCollection, RandomAccessCollection {
   /// The collection index type
   typealias Index = CollectionType.Index
-  /// The type of collection elements
-  typealias Element = CollectionType.Element
   /// The first 1D index
   var startIndex: Index {return entries.startIndex}
   /// The last 1D index
@@ -72,7 +70,7 @@ extension Matrix {
   }
   /// Return the elements in a given matrix row as slice
   /// - precondition: Row must not exceed dimensions
-  subscript(row i: Int) -> Slice<Matrix<T>> {
+  subscript(row i: Int) -> Slice<Matrix<Element>> {
     get {
       precondition(i < size.m, "row out of bounds")
       let idx: Range<Int> = size.index(row: i)
@@ -86,7 +84,7 @@ extension Matrix {
   }
   /// Return the elements at a given column index as array
   /// - precondition: column must not exceed dimensions
-  subscript(column j: Int) -> [T] {
+  subscript(column j: Int) -> [Element] {
     get {
       precondition(j < size.n, "column out of bounds")
       let idx: StrideTo<Int> = size.index(column: j)
@@ -98,7 +96,7 @@ extension Matrix {
     }
   }
   /// Return a matrix slice with a given size and reference position
-  subscript(_ start: Position, _ size: Size) -> [Slice<Matrix<T>>] {
+  subscript(_ start: Position, _ size: Size) -> [Slice<Matrix<Element>>] {
     get {
       let idx = self.size.index(start, size: size)
       return idx.map({self[$0]})
@@ -145,7 +143,7 @@ extension Matrix {
 }
 
 // MARK: Number specific stuff
-extension Matrix where T: Numeric {
+extension Matrix where Element: Numeric {
   /// Elementwise matrix multiplication
   static func *(lhs: Matrix, rhs: Matrix) -> Matrix {
     return Matrix(zip(lhs.entries, rhs.entries).map(*), size: lhs.size)
@@ -188,7 +186,7 @@ extension Matrix where T: Numeric {
 }
 
 // MARK: Text input and output for matrices containing game entities
-extension Matrix: CustomStringConvertible, LosslessStringConvertible where T == Character? {
+extension Matrix: CustomStringConvertible, LosslessStringConvertible where Element == Character? {
   /// A textual description of a game board
   var description: String {
     var result: String = ""
