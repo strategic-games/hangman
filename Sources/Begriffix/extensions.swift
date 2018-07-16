@@ -29,7 +29,7 @@ extension RandomAccessCollection where Element == Character? {
     while end < endIndex {
       let next = index(after: end)
       if self[next] == nil {break}
-      start = next
+      end = next
     }
     let letters = self[start..<end]
     if letters.count <= 2 {return nil}
