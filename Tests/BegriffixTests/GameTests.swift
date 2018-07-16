@@ -12,8 +12,12 @@ class GameTests: XCTestCase {
     }
 
     func testExample() {
-      var game = Game()
-      game.play()
+      let game = Game()
+      for (state, move) in game {
+        print(state.board)
+        print(state.turn)
+        print(move.sum)
+      }
     }
 
 }
