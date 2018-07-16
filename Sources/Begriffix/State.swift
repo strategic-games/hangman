@@ -82,25 +82,36 @@ struct State {
     player = !base.player
     turn = player ? base.turn+1 : base.turn
     var board = base.board
-    move.write(on: &board)
+    board[move.start, move.direction, move.count] = [Character](move.word)
     self.board = board
   }
   /// Create a new state from a given base state and a player action
   static func +(state: State, move: Move) -> State {
     return State(base: state, move: move)
   }
-  func scan(for move: Move) -> [Position] {
-    let k2 = move.direction.kernel(2)
-    let k3 = move.direction.kernel(3)
-    let f2 = numericalBoard.conv2(k2, extend: true)
-    let f3 = numericalBoard.conv2(k3, extend: true)
-    let w = move.kernel()
+  func scan(direction: Direction, count: Int) -> [Position] {
+    let k2 = direction.kernel(2)
+    let k3 = direction.kernel(3)
+    let f2 = numericalBoard.conv2(k2).extend(k2)
+    let f3 = numericalBoard.conv2(k3).extend(k3).conv2(k2).dilate(k2)
+    let w = direction.kernel(count)
     let w2 = f2.conv2(w)
     let w3 = f3.conv2(w)
     let size = w2.size
     let w2_inv = w2.map {$0 >= 2 ? 1 : 0}
     let w3_inv = w3.map {$0 == 0 ? 1 : 0}
     let allowed = w2_inv*w3_inv
-    return allowed.enumerated().filter({$1 == 1}).map {(n, x) in size.position(n)}
+    return allowed.enumerated().filter({$1 == 1}).map {(n, _) in size.position(n)}
+  }
+  /// Return the words written on the board
+  func words(_ dir: Direction, lines: Range<Int>? = nil) -> [[String]] {
+    switch dir {
+    case .Horizontal:
+      let lines = lines ?? 0..<board.size.m
+      return lines.map({board[row: $0].words()})
+    case .Vertical:
+      let lines = lines ?? 0..<board.size.n
+      return lines.map({board[column: $0].words()})
+    }
   }
 }
