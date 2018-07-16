@@ -10,3 +10,9 @@ extension Sequence where Element: Numeric {
     return zip(lhs, rhs).map(*).sum()
   }
 }
+
+extension Sequence where Element == Character? {
+  func words() -> [String] {
+    return self.split(separator: nil).map({w in String(w.compactMap({$0}))}).filter {$0.count > 2}
+  }
+}
