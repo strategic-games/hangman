@@ -82,7 +82,7 @@ public struct State {
     player = !base.player
     turn = player ? base.turn+1 : base.turn
     var board = base.board
-    board[move.start, move.direction, move.count] = [Character](move.word)
+    board[move.place] = [Character](move.word)
     self.board = board
   }
   /// Create a new state from a given base state and a player action
@@ -119,15 +119,10 @@ public struct State {
     }
     return true
   }
-  /// Return the words written on the board
-  func words(_ dir: Direction, lines: Range<Int>? = nil) -> [[String]] {
-    switch dir {
-    case .Horizontal:
-      let lines = lines ?? 0..<board.size.m
-      return lines.map({board[row: $0].words()})
-    case .Vertical:
-      let lines = lines ?? 0..<board.size.n
-      return lines.map({board[column: $0].words()})
-    }
+  func words(orthogonalTo place: Place, word: String) -> [String] {
+    var board = self.board
+    board[place] = [Character](word)
+    let (lines, around) = place.lines()
+    return board.words(place.direction.toggled(), lines: lines, around: around)
   }
 }

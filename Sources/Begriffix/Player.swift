@@ -2,11 +2,6 @@ import Foundation
 import HangMan
 
 class Player {
-  struct Place {
-    let start: Position
-    let direction: Direction
-    let words: [String]
-  }
   static let dict: Set<String> = loadDict("german") ?? Set()
   static let radix: Radix = createRadix()
   static func loadDict(_ lang: String) -> Set<String>? {
@@ -30,49 +25,47 @@ class Player {
     }
   }
   func dealRestricted(with state: State) -> Move? {
-    var places = [Place]()
+    var places = [Place:[String]]()
     let dir: Direction = state.player ? .Horizontal : .Vertical
     for count in stride(from: 8, through: 4, by: -1) {
       let p = state.scan(direction: dir, count: count)
       if p.isEmpty {continue}
       for s in p {
-        let pattern = state.board[s, dir, count].map {$0 ?? "?"}
-        let matches = Player.radix.match(String(pattern))
+        let place = Place(start: s, direction: dir, count: count)
+        let matches = match(state, place: place)
         if matches.isEmpty {continue}
-        places.append(Place(start: s, direction: dir, words: matches))
+        places[place] = matches
       }
     }
     return select(from: places)
   }
   func dealLiberal(with state: State) -> Move? {
-    var places = [Place]()
+    var places = [Place:[String]]()
     for dir in Direction.allCases {
       for count in stride(from: 8, through: 3, by: -1) {
         let p = state.scan(direction: dir, count: count)
         if p.isEmpty {continue}
         for s in p {
-          let matches = match(state: state, start: s, dir: dir, count: count)
+          let place = Place(start: s, direction: dir, count: count)
+          let matches = match(state, place: place)
           if matches.isEmpty {continue}
-          places.append(Place(start: s, direction: dir, words: matches))
+          places[place] = matches
         }
       }
     }
     return select(from: places)
   }
-  func match(state: State, start: Position, dir: Direction, count: Int) -> [String] {
-    let pattern = state.board[start, dir, count].map {$0 ?? "?"}
-    let matches = Player.radix.match(String(pattern)).filter {validate(state, with: Move(start: start, direction: dir, word: $0, sum: 0))}
-    return matches
+  func match(_ state: State, place: Place) -> [String] {
+    let pattern = state.board[place].map {$0 ?? "?"}
+    return Player.radix.match(String(pattern)).filter { word in
+      let words = state.words(orthogonalTo: place, word: word)
+      return words.allSatisfy {Player.radix.contains($0)}
+    }
   }
-  func validate(_ state: State, with move: Move) -> Bool {
-    let newState = state + move
-    let words = newState.words(move.direction.toggled(), lines: move.lines())
-    return words.joined().allSatisfy {Player.radix.contains($0)}
-  }
-  func select(from places: [Place]) -> Move? {
-    guard let place = places.randomElement() else {return nil}
-    guard let word = place.words.randomElement() else {return nil}
-    let wordSum = places.map({$0.words.count}).sum()
-    return Move(start: place.start, direction: place.direction, word: word, sum: wordSum)
+  func select(from places: [Place:[String]]) -> Move? {
+    guard let (place, words) = places.randomElement() else {return nil}
+    guard let word = words.randomElement() else {return nil}
+    let wordSum = places.map({(_, words) in words.count}).sum()
+    return Move(place: place, word: word, sum: wordSum)
   }
   }

@@ -34,6 +34,18 @@ dröhntet
     let state = State(turn: 4, player: true, board: board)
     var game = Game()
     game.state = state
+    guard let (_, move) = game.next() else {return}
+  }
+  func testLinePerformance() {
+    print(Player.radix.contains("hallo"))
+    let game = Game()
+    measure {
+      for (_, _) in game {}
+    }
+  }
+  func testCollectionWord() {
+    let x: [Character?] = [nil, "x", "y", "z", nil]
+    XCTAssertEqual(x.word(around: 2), "xyz")
   }
 
 }

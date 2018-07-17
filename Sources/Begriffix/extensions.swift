@@ -17,22 +17,23 @@ extension Sequence where Element == Character? {
   }
 }
 
-extension RandomAccessCollection where Element == Character? {
+extension RandomAccessCollection where Element == Character?, Index == Int {
   func word(around i: Index) -> String? {
+    precondition(indices.contains(i), "i out of bounds")
     var start = i
     var end = i
-    while end > startIndex {
+    while start > startIndex {
       let next = index(before: start)
       if self[next] == nil {break}
       start = next
     }
     while end < endIndex {
-      let next = index(after: end)
-      if self[next] == nil {break}
-      end = next
+      formIndex(after: &end)
+      if end == endIndex || self[end] == nil {break}
     }
-    let letters = self[start..<end]
-    if letters.count <= 2 {return nil}
+    let r = start..<end
+    if r.count <= 2 {return nil}
+    let letters = self[r]
     return String(letters.compactMap {$0})
   }
 }

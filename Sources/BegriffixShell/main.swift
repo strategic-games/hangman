@@ -1,8 +1,8 @@
 import Begriffix
 
 var results = [State]()
+let game = Game()
 func play() {
-  let game = Game()
   guard let l = game.map({$0.0}).last else {return}
   results.append(l)
 }

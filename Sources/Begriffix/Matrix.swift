@@ -113,25 +113,25 @@ extension Matrix {
       idx.forEach {(offset, element) in self[element] = newValue[offset]}
     }
   }
-  subscript(start: Position, direction: Direction, count: Int) -> [Element] {
+  subscript(place: Place) -> [Element] {
     get {
-      let idx = size.index(start)
-      switch direction {
+      let idx = size.index(place.start)
+      switch place.direction {
       case .Horizontal:
-        let idx2 = entries.index(idx, offsetBy: count)
+        let idx2 = entries.index(idx, offsetBy: place.count)
         return [Element](entries[idx..<idx2])
       case .Vertical:
-        return stride(from: idx, to: count*size.n+idx, by: size.n).map {entries[$0]}
+        return stride(from: idx, to: place.count*size.n+idx, by: size.n).map {entries[$0]}
       }
     }
     set {
-      let idx = size.index(start)
-      switch direction {
+      let idx = size.index(place.start)
+      switch place.direction {
       case .Horizontal:
-        let idx2 = entries.index(idx, offsetBy: count)
+        let idx2 = entries.index(idx, offsetBy: place.count)
         entries.replaceSubrange(idx..<idx2, with: newValue)
       case .Vertical:
-        let s = stride(from: idx, to: count*size.n+idx, by: size.n)
+        let s = stride(from: idx, to: place.count*size.n+idx, by: size.n)
         zip(s, newValue).forEach {(n, x) in entries[n] = x}
       }
     }
@@ -208,5 +208,39 @@ extension Matrix: CustomStringConvertible, LosslessStringConvertible where Eleme
     cols = counts.first ?? 0
     size = Size(rows, cols)
     entries = CollectionType(lines.joined().map {$0 == "." ? nil : $0})
+  }
+  /// Return the words written on the board
+  func words(_ dir: Direction, lines: Range<Int>? = nil) -> [[String]] {
+    switch dir {
+    case .Horizontal:
+      let lines = lines ?? 0..<size.m
+      return lines.map({self[row: $0].words()})
+    case .Vertical:
+      let lines = lines ?? 0..<size.n
+      return lines.map({self[column: $0].words()})
+    }
+  }
+  /// Return the words written on the board
+  func words(_ dir: Direction, lines: Range<Int>? = nil, around: Int? = nil) -> [String] {
+    var words = [String]()
+    switch dir {
+    case .Horizontal:
+      let lines = lines ?? 0..<size.m
+      let around = around ?? size.n/2
+      for line in lines {
+        let row = Array(self[row: line])
+        if let word = row.word(around: around) {words.append(word)}
+      }
+    //return lines.map({board[row: $0].word(around: around)}).compactMap {$0}
+    case .Vertical:
+      let lines = lines ?? 0..<size.n
+      let around = around ?? size.m/2
+      for line in lines {
+        let column = self[column: line]
+        if let word = column.word(around: around) {words.append(word)}
+      }
+      //return lines.map({board[column: $0].word(around: around)}).compactMap {$0}
+    }
+    return words
   }
 }

@@ -57,8 +57,9 @@ class MatrixTests: XCTestCase {
     let start = Position(3, 0)
     let dir = Direction.Horizontal
     let count: Int = 8
-    board[start, dir, count] = [Character]("herzhaft")
-    board[Position(0, 3), .Vertical, 7] = [Character]("reizend")
+    let place = Place(start: start, direction: dir, count: count)
+    board[place] = [Character]("herzhaft")
+    board[Place(start: Position(0, 3), direction: .Vertical, count: 7)] = [Character]("reizend")
     print(board)
   }
 }
