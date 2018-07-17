@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Direction Enumeration Reference</title>
+    <title>Place Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Enum/Direction" class="dashAnchor"></a>
-    <a title="Direction Enumeration Reference"></a>
+    <a name="//apple_ref/swift/Struct/Place" class="dashAnchor"></a>
+    <a title="Place Structure Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">Begriffix Docs</a> (65% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">Begriffix Reference</a>
         <img id="carat" src="../img/carat.png" />
-        Direction Enumeration Reference
+        Place Structure Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -92,10 +92,10 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Direction</h1>
+            <h1>Place</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Direction</span> <span class="p">:</span> <span class="kt">CaseIterable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Place</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
 
                 </div>
               </div>
@@ -108,9 +108,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Begriffix9DirectionO10HorizontalyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/Horizontal" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Begriffix9DirectionO10HorizontalyA2CmF">Horizontal</a>
+                    <a name="/s:9Begriffix5PlaceV5startAA8PositionVvp"></a>
+                    <a name="//apple_ref/swift/Property/start" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Begriffix5PlaceV5startAA8PositionVvp">start</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -125,7 +125,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">Horizontal</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">start</span><span class="p">:</span> <span class="kt"><a href="../Structs/Position.html">Position</a></span></code></pre>
 
                         </div>
                       </div>
@@ -135,9 +135,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Begriffix9DirectionO8VerticalyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/Vertical" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Begriffix9DirectionO8VerticalyA2CmF">Vertical</a>
+                    <a name="/s:9Begriffix5PlaceV9directionAA9DirectionOvp"></a>
+                    <a name="//apple_ref/swift/Property/direction" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Begriffix5PlaceV9directionAA9DirectionOvp">direction</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -152,7 +152,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">Vertical</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">direction</span><span class="p">:</span> <span class="kt"><a href="../Enums/Direction.html">Direction</a></span></code></pre>
 
                         </div>
                       </div>
@@ -162,9 +162,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Begriffix9DirectionO6kernelyAA6MatrixVySiGSiF"></a>
-                    <a name="//apple_ref/swift/Method/kernel(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Begriffix9DirectionO6kernelyAA6MatrixVySiGSiF">kernel(_:)</a>
+                    <a name="/s:9Begriffix5PlaceV5countSivp"></a>
+                    <a name="//apple_ref/swift/Property/count" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Begriffix5PlaceV5countSivp">count</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -179,7 +179,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">kernel</span><span class="p">(</span><span class="n">_</span> <span class="nv">count</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Matrix.html">Matrix</a></span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">count</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -189,9 +189,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Begriffix9DirectionO7toggledACyF"></a>
-                    <a name="//apple_ref/swift/Method/toggled()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Begriffix9DirectionO7toggledACyF">toggled()</a>
+                    <a name="/s:9Begriffix5PlaceV9positionsSayAA8PositionVGyF"></a>
+                    <a name="//apple_ref/swift/Method/positions()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Begriffix5PlaceV9positionsSayAA8PositionVGyF">positions()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -206,7 +206,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">toggled</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Direction</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">positions</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Structs/Position.html">Position</a></span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -216,9 +216,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Begriffix9DirectionO6toggleyyF"></a>
-                    <a name="//apple_ref/swift/Method/toggle()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Begriffix9DirectionO6toggleyyF">toggle()</a>
+                    <a name="/s:9Begriffix5PlaceV6kernelAA6MatrixVySiGyF"></a>
+                    <a name="//apple_ref/swift/Method/kernel()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Begriffix5PlaceV6kernelAA6MatrixVySiGyF">kernel()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -233,7 +233,34 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">mutating</span> <span class="kd">func</span> <span class="nf">toggle</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">kernel</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Matrix.html">Matrix</a></span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Begriffix5PlaceV5linesSnySiG_SityF"></a>
+                    <a name="//apple_ref/swift/Method/lines()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Begriffix5PlaceV5linesSnySiG_SityF">lines()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Return the range of lines that would be crossed by this place</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">lines</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">,</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>

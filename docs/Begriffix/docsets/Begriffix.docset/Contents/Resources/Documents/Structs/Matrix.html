@@ -34,9 +34,6 @@
               <li class="nav-group-task">
                 <a href="../Classes/Player.html">Player</a>
               </li>
-              <li class="nav-group-task">
-                <a href="../Classes/Player/Place.html">– Place</a>
-              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -72,6 +69,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Move.html">Move</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Place.html">Place</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Position.html">Position</a>
@@ -636,9 +636,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Begriffix6MatrixVySayxGAA8PositionV_AA9DirectionOSitcip"></a>
-                    <a name="//apple_ref/swift/Method/subscript(_:_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Begriffix6MatrixVySayxGAA8PositionV_AA9DirectionOSitcip">subscript(_:_:_:)</a>
+                    <a name="/s:9Begriffix6MatrixVySayxGAA5PlaceVcip"></a>
+                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Begriffix6MatrixVySayxGAA5PlaceVcip">subscript(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -653,7 +653,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="nf">subscript</span><span class="p">(</span><span class="nv">start</span><span class="p">:</span> <span class="kt"><a href="../Structs/Position.html">Position</a></span><span class="p">,</span> <span class="nv">direction</span><span class="p">:</span> <span class="kt"><a href="../Enums/Direction.html">Direction</a></span><span class="p">,</span> <span class="nv">count</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Element</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="nf">subscript</span><span class="p">(</span><span class="nv">place</span><span class="p">:</span> <span class="kt"><a href="../Structs/Place.html">Place</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Element</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -892,6 +892,60 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="n">_</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Begriffix6MatrixVAASJSgRszrlE5words_5linesSaySaySSGGAA9DirectionO_SnySiGSgtF"></a>
+                    <a name="//apple_ref/swift/Method/words(_:lines:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Begriffix6MatrixVAASJSgRszrlE5words_5linesSaySaySSGGAA9DirectionO_SnySiGSgtF">words(_:lines:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Return the words written on the board</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">words</span><span class="p">(</span><span class="n">_</span> <span class="nv">dir</span><span class="p">:</span> <span class="kt"><a href="../Enums/Direction.html">Direction</a></span><span class="p">,</span> <span class="nv">lines</span><span class="p">:</span> <span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[[</span><span class="kt">String</span><span class="p">]]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Begriffix6MatrixVAASJSgRszrlE5words_5lines6aroundSaySSGAA9DirectionO_SnySiGSgSiSgtF"></a>
+                    <a name="//apple_ref/swift/Method/words(_:lines:around:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Begriffix6MatrixVAASJSgRszrlE5words_5lines6aroundSaySSGAA9DirectionO_SnySiGSgSiSgtF">words(_:lines:around:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Return the words written on the board</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">words</span><span class="p">(</span><span class="n">_</span> <span class="nv">dir</span><span class="p">:</span> <span class="kt"><a href="../Enums/Direction.html">Direction</a></span><span class="p">,</span> <span class="nv">lines</span><span class="p">:</span> <span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">around</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
