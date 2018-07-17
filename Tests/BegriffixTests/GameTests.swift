@@ -19,5 +19,21 @@ class GameTests: XCTestCase {
         print(move.sum)
       }
     }
+  func testColision() {
+    let values = """
+bravsten
+s..et.a.
+u..rö.b.
+nutzholz
+duzenden
+e..ie.g.
+dröhntet
+...td...
+"""
+    guard let board = Matrix(values) else {return}
+    let state = State(turn: 4, player: true, board: board)
+    var game = Game()
+    game.state = state
+  }
 
 }
