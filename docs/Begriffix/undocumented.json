@@ -1,0 +1,327 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Dimension.swift",
+      "line": 19,
+      "symbol": "Dimensions.init(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Dimension.swift",
+      "line": 91,
+      "symbol": "Dimensions.-(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Direction.swift",
+      "line": 1,
+      "symbol": "Direction",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Direction.swift",
+      "line": 2,
+      "symbol": "Direction.Horizontal",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Direction.swift",
+      "line": 2,
+      "symbol": "Direction.Vertical",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Direction.swift",
+      "line": 3,
+      "symbol": "Direction.kernel(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Direction.swift",
+      "line": 11,
+      "symbol": "Direction.toggled()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Direction.swift",
+      "line": 17,
+      "symbol": "Direction.toggle()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Game.swift",
+      "line": 1,
+      "symbol": "Game",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Game.swift",
+      "line": 3,
+      "symbol": "Game.starter",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Game.swift",
+      "line": 4,
+      "symbol": "Game.opponent",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Game.swift",
+      "line": 5,
+      "symbol": "Game.state",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Game.swift",
+      "line": 6,
+      "symbol": "Game.ended",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Game.swift",
+      "line": 7,
+      "symbol": "Game.player",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Game.swift",
+      "line": 10,
+      "symbol": "Game.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Matrix.swift",
+      "line": 116,
+      "symbol": "Matrix.subscript(_:_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Matrix.swift",
+      "line": 139,
+      "symbol": "Matrix.map2(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Move.swift",
+      "line": 1,
+      "symbol": "Move",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Move.swift",
+      "line": 2,
+      "symbol": "Move.start",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Move.swift",
+      "line": 3,
+      "symbol": "Move.direction",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Move.swift",
+      "line": 4,
+      "symbol": "Move.word",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Move.swift",
+      "line": 5,
+      "symbol": "Move.sum",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Move.swift",
+      "line": 6,
+      "symbol": "Move.count",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Move.swift",
+      "line": 7,
+      "symbol": "Move.positions()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Move.swift",
+      "line": 16,
+      "symbol": "Move.kernel()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Player.swift",
+      "line": 4,
+      "symbol": "Player",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Player.swift",
+      "line": 5,
+      "symbol": "Player.Place",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Player.swift",
+      "line": 6,
+      "symbol": "Player.Place.start",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Player.swift",
+      "line": 7,
+      "symbol": "Player.Place.direction",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Player.swift",
+      "line": 8,
+      "symbol": "Player.Place.words",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Player.swift",
+      "line": 10,
+      "symbol": "Player.dict",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Player.swift",
+      "line": 11,
+      "symbol": "Player.radix",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Player.swift",
+      "line": 12,
+      "symbol": "Player.loadDict(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Player.swift",
+      "line": 20,
+      "symbol": "Player.createRadix()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Player.swift",
+      "line": 25,
+      "symbol": "Player.deal(with:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Player.swift",
+      "line": 32,
+      "symbol": "Player.dealRestricted(with:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Player.swift",
+      "line": 47,
+      "symbol": "Player.dealLiberal(with:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Player.swift",
+      "line": 62,
+      "symbol": "Player.match(state:start:dir:count:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Player.swift",
+      "line": 67,
+      "symbol": "Player.validate(_:with:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/Player.swift",
+      "line": 72,
+      "symbol": "Player.select(from:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/State.swift",
+      "line": 92,
+      "symbol": "State.scan(direction:count:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/State.swift",
+      "line": 107,
+      "symbol": "State.noCollisions(p:dir:count:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/extensions.swift",
+      "line": 6,
+      "symbol": "Sequence.*(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/extensions.swift",
+      "line": 9,
+      "symbol": "Sequence.prodSum(lhs:rhs:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/extensions.swift",
+      "line": 15,
+      "symbol": "Sequence.words()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Dropbox/hangman/Sources/Begriffix/extensions.swift",
+      "line": 21,
+      "symbol": "RandomAccessCollection.word(around:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/tamaracook/Dropbox/hangman"
+}
