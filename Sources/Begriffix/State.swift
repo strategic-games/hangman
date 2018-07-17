@@ -1,11 +1,11 @@
 /// The state of a Begriffix game
-struct State {
+public struct State {
   /// The value type that the board accepts
-  typealias Entity = Character?
+  public typealias Entity = Character?
   /// The type of the board container that holds the entered values
-  typealias Board = Matrix<Entity>
+  public typealias Board = Matrix<Entity>
   /// game phases depending on the progress
-  enum Phase {
+  public enum Phase {
     /// Players must write words with at least four characters, player 0 must write horizontally, and player 1 must write vertically
     case Restricted
     /// Any words and directions are allowed
@@ -34,15 +34,15 @@ struct State {
     return board
   }
   /// The board holding the written letters
-  let board: Board
+  public let board: Board
   /// The board as numeric representation (filled = 1, empty = 0)
   var numericalBoard: Matrix<Int> {
     return board.map2 {$0 != nil ? 1 : 0}
   }
   /// The turn counter
-  let turn: Int
+  public let turn: Int
   /// The current player who has to deal with this state
-  let player: Bool
+  public let player: Bool
   /// Is this an untouched game state?
   var isPristine: Bool {
     return turn == 0 && player == true
@@ -101,7 +101,23 @@ struct State {
     let w2_inv = w2.map {$0 >= 2 ? 1 : 0}
     let w3_inv = w3.map {$0 == 0 ? 1 : 0}
     let allowed = w2_inv*w3_inv
-    return allowed.enumerated().filter({$1 == 1}).map {(n, _) in size.position(n)}
+    let p = allowed.enumerated().filter({$1 == 1}).map {(n, _) in size.position(n)}
+    return p.filter {noCollisions(p: $0, dir: direction, count: count)}
+  }
+  func noCollisions(p: Position, dir: Direction, count: Int) -> Bool {
+    switch dir {
+    case .Horizontal:
+      if count == board.size.n {return true}
+      if p.j > 0 && board[Position(p.i, p.j-1)] != nil {return false}
+      let end = p.j+count
+      if end < board.size.n && board[Position(p.i, end)] != nil {return false}
+    case .Vertical:
+      if count == board.size.m {return true}
+      if p.i > 0 && board[Position(p.i-1, p.j)] != nil {return false}
+      let end = p.i+count
+      if end < board.size.m && board[Position(end, p.j)] != nil {return false}
+    }
+    return true
   }
   /// Return the words written on the board
   func words(_ dir: Direction, lines: Range<Int>? = nil) -> [[String]] {
