@@ -1,4 +1,4 @@
-enum Direction: CaseIterable {
+public enum Direction: CaseIterable {
   case Horizontal, Vertical
   func kernel(_ count: Int) -> Matrix<Int> {
     let size: Dimensions

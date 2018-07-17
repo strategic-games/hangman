@@ -1,4 +1,4 @@
-struct Move {
+public struct Move {
   let start: Position
   let direction: Direction
   let word: String

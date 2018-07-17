@@ -1,5 +1,5 @@
-struct Game: Sequence, IteratorProtocol {
-  typealias Element = (State, Move)
+public struct Game: Sequence, IteratorProtocol {
+  public typealias Element = (State, Move)
   let starter = Player()
   let opponent = Player()
   var state = State()
@@ -7,7 +7,8 @@ struct Game: Sequence, IteratorProtocol {
   var player: Player {
     return state.player ? starter : opponent
   }
-  mutating func next() -> (State, Move)? {
+  public init() {}
+  public mutating func next() -> (State, Move)? {
     if let move = player.deal(with: state) {
         state = state + move
       return (state, move)

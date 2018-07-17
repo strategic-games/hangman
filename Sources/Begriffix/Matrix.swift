@@ -1,7 +1,7 @@
 /// A generic matrix type
-struct Matrix<Element: Hashable>: Hashable {
+public struct Matrix<Element: Hashable>: Hashable {
   /// The type of the collection which is used internally for the matrix entries
-  typealias CollectionType = Array<Element>
+  public typealias CollectionType = Array<Element>
   /// A type which keeps track of matrix dimensions and 1D indices
   typealias Size = Dimensions
   // MARK: Stored properties
@@ -38,20 +38,20 @@ struct Matrix<Element: Hashable>: Hashable {
 // MARK: Adopt protocols
 extension Matrix: MutableCollection, RandomAccessCollection {
   /// The collection index type
-  typealias Index = CollectionType.Index
+  public typealias Index = CollectionType.Index
   /// The first 1D index
-  var startIndex: Index {return entries.startIndex}
+  public var startIndex: Index {return entries.startIndex}
   /// The last 1D index
-  var endIndex: Index {return entries.endIndex}
+  public var endIndex: Index {return entries.endIndex}
   /// Access a matrix element at a given 1D index
-  subscript(index: Index) -> Element {
+  public subscript(index: Index) -> Element {
     get {return entries[index]}
     set {entries[index] = newValue}
   }
   /// Return the 1D index after a given 1D index
-  func index(after i: Index) -> Index {return entries.index(after: i)}
+  public func index(after i: Index) -> Index {return entries.index(after: i)}
   /// Return the 1D index before a given 1D index
-  func index(before i: Index) -> Index {return entries.index(before: i)}
+  public func index(before i: Index) -> Index {return entries.index(before: i)}
 }
 
 // MARK: Matrix subscripts
@@ -188,7 +188,7 @@ extension Matrix where Element: Numeric {
 // MARK: Text input and output for matrices containing game entities
 extension Matrix: CustomStringConvertible, LosslessStringConvertible where Element == Character? {
   /// A textual description of a game board
-  var description: String {
+  public var description: String {
     var result: String = ""
     result.reserveCapacity(size.count+size.m)
     for i in 0..<size.m {
@@ -198,7 +198,7 @@ extension Matrix: CustomStringConvertible, LosslessStringConvertible where Eleme
     return result
   }
   /// Create a game matrix from a string
-  init?(_ description: String) {
+  public init?(_ description: String) {
     let lines = description.split(separator: "\n")
     let counts = lines.map {$0.count}
     let equalCounts = counts.allSatisfy {$0 == counts.last}
