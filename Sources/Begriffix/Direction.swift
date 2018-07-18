@@ -1,5 +1,10 @@
+/// The direction on a right-angled grid
 public enum Direction: CaseIterable {
-  case Horizontal, Vertical
+  /// From left to right
+  case Horizontal
+  /// from top to bottom
+  case Vertical
+  /// Return a kernel according to this direction and a given length
   func kernel(_ count: Int) -> Matrix<Int> {
     let size: Dimensions
     switch self {
@@ -8,12 +13,14 @@ public enum Direction: CaseIterable {
     }
     return Matrix(repeating: 1, size: size)
   }
+  /// The opposite of this direction
   func toggled() -> Direction {
     switch self {
     case .Horizontal: return .Vertical
     case .Vertical: return .Horizontal
     }
   }
+  /// Set this direction to its opposite
   mutating func toggle() {
     self = toggled()
   }

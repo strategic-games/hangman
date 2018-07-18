@@ -113,6 +113,7 @@ extension Matrix {
       idx.forEach {(offset, element) in self[element] = newValue[offset]}
     }
   }
+  /// Subscript a matrix with given place
   subscript(place: Place) -> [Element] {
     get {
       let idx = size.index(place.start)
@@ -136,6 +137,7 @@ extension Matrix {
       }
     }
   }
+  /// Transform the matrix element with a given closure and return them as new matrix
   func map2<T>(_ transform: (Element) -> T) -> Matrix<T> {
     let items = self.map(transform)
     return Matrix<T>(items, size: self.size)
@@ -231,7 +233,6 @@ extension Matrix: CustomStringConvertible, LosslessStringConvertible where Eleme
         let row = Array(self[row: line])
         if let word = row.word(around: around) {words.append(word)}
       }
-    //return lines.map({board[row: $0].word(around: around)}).compactMap {$0}
     case .Vertical:
       let lines = lines ?? 0..<size.n
       let around = around ?? size.m/2
@@ -239,7 +240,6 @@ extension Matrix: CustomStringConvertible, LosslessStringConvertible where Eleme
         let column = self[column: line]
         if let word = column.word(around: around) {words.append(word)}
       }
-      //return lines.map({board[column: $0].word(around: around)}).compactMap {$0}
     }
     return words
   }

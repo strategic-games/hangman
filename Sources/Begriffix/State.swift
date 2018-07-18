@@ -89,6 +89,7 @@ public struct State {
   static func +(state: State, move: Move) -> State {
     return State(base: state, move: move)
   }
+  /// Return every position where words with given direction and length could be inserted
   func scan(direction: Direction, count: Int) -> [Position] {
     let k2 = direction.kernel(2)
     let k3 = direction.kernel(3)
@@ -101,24 +102,23 @@ public struct State {
     let w2_inv = w2.map {$0 >= 2 ? 1 : 0}
     let w3_inv = w3.map {$0 == 0 ? 1 : 0}
     let allowed = w2_inv*w3_inv
-    let p = allowed.enumerated().filter({$1 == 1}).map {(n, _) in size.position(n)}
-    return p.filter {noCollisions(p: $0, dir: direction, count: count)}
-  }
-  func noCollisions(p: Position, dir: Direction, count: Int) -> Bool {
-    switch dir {
-    case .Horizontal:
-      if count == board.size.n {return true}
-      if p.j > 0 && board[Position(p.i, p.j-1)] != nil {return false}
-      let end = p.j+count
-      if end < board.size.n && board[Position(p.i, end)] != nil {return false}
-    case .Vertical:
-      if count == board.size.m {return true}
-      if p.i > 0 && board[Position(p.i-1, p.j)] != nil {return false}
-      let end = p.i+count
-      if end < board.size.m && board[Position(end, p.j)] != nil {return false}
+    let positions = allowed.enumerated().filter({$1 == 1}).map({(n, _) in size.position(n)})
+    if size.count == count {return positions}
+    return positions.filter { p in
+      switch direction {
+      case .Horizontal:
+        if p.j > 0 && board[Position(p.i, p.j-1)] != nil {return false}
+        let end = p.j+count
+        if end < board.size.n && board[Position(p.i, end)] != nil {return false}
+      case .Vertical:
+        if p.i > 0 && board[Position(p.i-1, p.j)] != nil {return false}
+        let end = p.i+count
+        if end < board.size.m && board[Position(end, p.j)] != nil {return false}
+      }
+      return true
     }
-    return true
   }
+  /// Return the words crossing the given place after inserting a given word
   func words(orthogonalTo place: Place, word: String) -> [String] {
     var board = self.board
     board[place] = [Character](word)

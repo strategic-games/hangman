@@ -1,6 +1,7 @@
 import Foundation
 import HangMan
 
+/// A Begriffix player
 class Player {
   static let dict: Set<String> = loadDict("german") ?? Set()
   static let radix: Radix = createRadix()
@@ -17,6 +18,7 @@ class Player {
     radix.insert(Player.dict)
     return radix
   }
+  /// Return a move for a given game state
   func deal(with state: State) -> Move? {
     switch state.phase {
     case .Restricted: return dealRestricted(with: state)
@@ -24,7 +26,7 @@ class Player {
     case .KnockOut: return nil
     }
   }
-  func dealRestricted(with state: State) -> Move? {
+  private func dealRestricted(with state: State) -> Move? {
     var places = [Place:[String]]()
     let dir: Direction = state.player ? .Horizontal : .Vertical
     for count in stride(from: 8, through: 4, by: -1) {
@@ -39,7 +41,7 @@ class Player {
     }
     return select(from: places)
   }
-  func dealLiberal(with state: State) -> Move? {
+  private func dealLiberal(with state: State) -> Move? {
     var places = [Place:[String]]()
     for dir in Direction.allCases {
       for count in stride(from: 8, through: 3, by: -1) {
@@ -55,6 +57,7 @@ class Player {
     }
     return select(from: places)
   }
+  /// Find the words that could be inserted at the given place
   func match(_ state: State, place: Place) -> [String] {
     let pattern = state.board[place].map {$0 ?? "?"}
     return Player.radix.match(String(pattern)).filter { word in
@@ -62,6 +65,7 @@ class Player {
       return words.allSatisfy {Player.radix.contains($0)}
     }
   }
+  /// Select a move from valid places and their words
   func select(from places: [Place:[String]]) -> Move? {
     guard let (place, words) = places.randomElement() else {return nil}
     guard let word = words.randomElement() else {return nil}

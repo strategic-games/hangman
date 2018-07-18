@@ -1,7 +1,12 @@
+/// A place on a game board, where a word can be written
 public struct Place: Hashable {
+  /// The 2D position where the word starts
   let start: Position
+  /// The writing direction
   let direction: Direction
+  /// The word length
   let count: Int
+  /// Return all positions that this place would occupy on a board
   func positions() -> [Position] {
     let r = 0..<count
     switch direction {
@@ -11,6 +16,7 @@ public struct Place: Hashable {
       return r.map {Position(start.i+$0, start.j)}
     }
   }
+  /// Return a matrix according to this place in direction and length
   func kernel() -> Matrix<Int> {
     return direction.kernel(self.count)
   }

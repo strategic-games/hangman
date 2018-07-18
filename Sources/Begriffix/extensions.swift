@@ -3,21 +3,25 @@ extension Sequence where Element: Numeric {
   func sum() -> Element {
     return self.reduce(0, +)
   }
+  /// Multiply two sequences elementwise
   static func *(lhs: Self, rhs: Self) -> [Self.Element] {
     return zip(lhs, rhs).map(*)
   }
+  /// Multiply two sequences elementwise and sum up the products
   static func prodSum(lhs: Self, rhs: Self) -> Self.Element {
     return zip(lhs, rhs).map(*).sum()
   }
 }
 
 extension Sequence where Element == Character? {
+  /// Find the words in a sequence (at least 3 letters), separated by nil
   func words() -> [String] {
     return self.split(separator: nil).map({w in String(w.compactMap({$0}))}).filter {$0.count > 2}
   }
 }
 
 extension RandomAccessCollection where Element == Character?, Index == Int {
+  /// Find the word in a sequence around a given index (nil if less than 3 letters)
   func word(around i: Index) -> String? {
     precondition(indices.contains(i), "i out of bounds")
     var start = i

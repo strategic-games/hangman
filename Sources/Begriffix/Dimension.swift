@@ -16,6 +16,7 @@ struct Dimensions: Hashable, Equatable {
     m = sideLength
     n = sideLength
   }
+  /// Initialize a dimension from a direction and length
   init(_ direction: Direction, _ count: Int) {
     switch direction {
     case .Horizontal:
@@ -88,6 +89,7 @@ extension Dimensions {
   static func +(lhs: Dimensions, rhs: Int) -> Dimensions {
     return Dimensions(lhs.m+rhs, lhs.n+rhs)
   }
+  /// Subtract a scalar from a dimension
   static func -(lhs: Dimensions, rhs: Int) -> Dimensions {
     return Dimensions(lhs.m-rhs, lhs.n-rhs)
   }
