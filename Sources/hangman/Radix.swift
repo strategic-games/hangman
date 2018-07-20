@@ -1,9 +1,15 @@
 /// A radix tree that stores strings
-public final class Radix {
+public struct Radix: Codable {
   /// The root node of the tree
-  private let root = Node()
+  private let root: Node
+  /// Create a tree with a given root node
+  public init(_ root: Node) {
+    self.root = root
+  }
   /// Create an empty tree
-  public init() {}
+  public init() {
+    self.init(Node())
+  }
   /// Insert a string into the tree
   public func insert(_ key: String) {
     root.insert(key)
@@ -11,6 +17,12 @@ public final class Radix {
   /// Insert the elements of a given sequence into the tree
   public func insert<S: Sequence>(_ s: S) where S.Element == String {
     s.forEach {root.insert($0)}
+  }
+  /// Split a string by whitespace and insert the fragments into the tree
+  public func insert(text: String) {
+  var data = Set(text.lowercased().split(separator: "\n"))
+  data.remove("")
+  data.forEach {root.insert(String($0))}
   }
   /// Remove a given string from this tree if present
   public func remove(_ key: String) {
@@ -27,5 +39,12 @@ public final class Radix {
   /// Return a new array with the strings in this tree that satisfy the given pattern
   public func match(_ pattern: String) -> [String] {
     return root.match("", pattern: pattern)
+  }
+}
+
+extension Radix: CustomStringConvertible {
+  /// The textual representation of the root node
+  public var description: String {
+    return root.description
   }
 }
