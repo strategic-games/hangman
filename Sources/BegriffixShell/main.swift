@@ -1,10 +1,5 @@
-import Begriffix
+import SwiftCLI
 
-var results = [State]()
-let game = Game()
-func play() {
-  guard let l = game.map({$0.0}).last else {return}
-  results.append(l)
-}
-while results.count < 100 {play()}
-results.forEach {print($0.board)}
+let cli = CLI(name: "BegriffixShell", version: "0.0.1", description: "A cli for Begriffix")
+cli.commands = [RadixGroup(), PlayCommand(), TestCommand()]
+cli.goAndExit()

@@ -1,3 +1,4 @@
+import SwiftCLI
 import Begriffix
 
 class PlayCommand: Command {
