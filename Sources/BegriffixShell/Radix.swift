@@ -35,7 +35,7 @@ class RadixSearchCommand: Command {
   let input = Key<String>("-i", "--input", description: "Path to a json file containing a radix serialization")
   let type = Key<String>("-t", "--type", "The format of the input file")
   func execute() throws {
-    let type = self.type.value ?? "json"
+    let type = self.type.value ?? "txt"
     let file = URL(fileURLWithPath: input.value ?? "dictionaries/german.\(type)")
     let radix: Radix
     if type == "json" {
