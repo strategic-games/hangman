@@ -19,10 +19,12 @@ public struct Radix: Codable {
     s.forEach {root.insert($0)}
   }
   /// Split a string by whitespace and insert the fragments into the tree
-  public func insert(text: String) {
-  var data = Set(text.lowercased().split(separator: "\n"))
-  data.remove("")
-  data.forEach {root.insert(String($0))}
+  public func insert(text: String, separator: Character = "\n") {
+    text.split(separator: separator)
+      .lazy
+      .filter {!$0.isEmpty}
+      .map {$0.lowercased()}
+      .forEach {root.insert($0)}
   }
   /// Remove a given string from this tree if present
   public func remove(_ key: String) {
