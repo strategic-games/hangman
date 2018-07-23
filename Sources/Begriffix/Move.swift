@@ -5,4 +5,9 @@ public struct Move: Hashable {
   /// The word to write in this move
   let word: String
   let sum: Int
+  public init(place: Place, word: String, sum: Int) {
+    self.place = place
+    self.word = word
+    self.sum = sum
+  }
 }

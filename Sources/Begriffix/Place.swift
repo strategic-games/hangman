@@ -7,6 +7,11 @@ public struct Place: Hashable {
   /// The word length
   let count: Int
   /// Return all positions that this place would occupy on a board
+  public init(start: Position, direction: Direction, count: Int) {
+    self.start = start
+    self.direction = direction
+    self.count = count
+  }
   func positions() -> [Position] {
     let r = 0..<count
     switch direction {
