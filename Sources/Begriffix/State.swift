@@ -6,24 +6,12 @@ public struct State {
   public typealias Board = Matrix<Entity>
   /// game phases depending on the progress
   public enum Phase {
-    /// Players must write words with at least four characters, player 0 must write horizontally, and player 1 must write vertically
-    case Restricted
+    /// Players must write words with at least four characters, starting player must write horizontally, and opponent must write vertically
+    case Restricted(Direction)
     /// Any words and directions are allowed
     case Liberal
     /// not yet implemented
     case KnockOut
-  }
-  /// An option set that determines which words are acceptable
-  struct WriteOptions: OptionSet {
-    let rawValue: Int
-    /// Words may be written horizontally
-    static let horizontal = WriteOptions(rawValue: 1<<0)
-    /// Words may be written vertically
-    static let vertical = WriteOptions(rawValue: 1<<1)
-    /// Words may consist of at least three letters (four otherwise)
-    static let includeThree = WriteOptions(rawValue: 1<<2)
-    /// Any direction is allowed and words may be short (3 letters)
-    static let all: WriteOptions = [.horizontal, .vertical, .includeThree]
   }
   /// Letters that are written in the center of a board
   static let startLetters = Board([["z", "h"], ["e", "n"]])
@@ -49,21 +37,11 @@ public struct State {
   }
   /// The current game phase which is derived from turn
   var phase: Phase {
-    if turn == 0 {return .Restricted}
+    if turn == 0 {
+      return .Restricted(player ? .Horizontal : .Vertical)
+    }
     if turn <= 5 {return .Liberal}
     else {return .KnockOut}
-  }
-  /// The possible writing options, derived from phase and player
-  var options: WriteOptions {
-    switch phase {
-    case .Restricted:
-      if player == true {
-        return .horizontal
-      } else {
-        return .vertical
-      }
-    default: return .all
-    }
   }
   /// Initialize a pristine game state
   init() {
@@ -124,5 +102,9 @@ public struct State {
     board[place] = [Character](word)
     let (lines, around) = place.lines()
     return board.words(place.direction.toggled(), lines: lines, around: around)
+  }
+  /// Indicate if the given place is usable
+  public func contains(place: Place) -> Bool {
+    return scan(direction: place.direction, count: place.count).contains(place.start)
   }
 }
