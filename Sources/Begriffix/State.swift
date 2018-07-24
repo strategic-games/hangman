@@ -36,7 +36,7 @@ public struct State {
     return turn == 0 && player == true
   }
   /// The current game phase which is derived from turn
-  var phase: Phase {
+  public var phase: Phase {
     if turn == 0 {
       return .Restricted(player ? .Horizontal : .Vertical)
     }
