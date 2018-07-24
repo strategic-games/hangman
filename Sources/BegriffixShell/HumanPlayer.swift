@@ -23,7 +23,7 @@ struct HumanPlayer: Player {
       let place = Place(start: start, direction: dir, count: word.count)
       if state.contains(place: place) {
         WriteStream.stdout <<< "move will be applied"
-        return Move(place: place, word: word, sum: 0)
+        return Move(place: place, word: word)
       }
       WriteStream.stderr <<< "no valid move, please try again"
     }

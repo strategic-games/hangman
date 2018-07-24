@@ -22,7 +22,7 @@ public struct Game: Sequence, IteratorProtocol {
   }
   public init(vocabulary: Radix) {
     starter = RandomPlayer(vocabulary: vocabulary)
-    opponent = RandomPlayer(vocabulary: vocabulary)
+    opponent = starter
   }
   /// Advance the game for one move
   public mutating func next() -> (State, Move)? {

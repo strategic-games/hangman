@@ -1,6 +1,6 @@
 extension Sequence where Element: Numeric {
   /// Return the sum of all elements in a numeric sequence
-  func sum() -> Element {
+  public func sum() -> Element {
     return self.reduce(0, +)
   }
   /// Multiply two sequences elementwise

@@ -59,8 +59,7 @@ public struct RandomPlayer: Player {
   func select(from places: [Place:[String]]) -> Move? {
     guard let (place, words) = places.randomElement() else {return nil}
     guard let word = words.randomElement() else {return nil}
-    let wordSum = places.map({(_, words) in words.count}).sum()
-    return Move(place: place, word: word, sum: wordSum)
+    return Move(place: place, word: word, places: places)
   }
 }
 

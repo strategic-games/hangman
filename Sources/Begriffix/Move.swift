@@ -1,13 +1,13 @@
 /// A game move that is returned by a player
 public struct Move: Hashable {
   /// The place where the word should be written
-  let place: Place
+  public let place: Place
   /// The word to write in this move
-  let word: String
-  let sum: Int
-  public init(place: Place, word: String, sum: Int) {
+  public let word: String
+  public let places: [Place:[String]]?
+  public init(place: Place, word: String, places: [Place:[String]]? = nil) {
     self.place = place
     self.word = word
-    self.sum = sum
+    self.places = places
   }
 }
