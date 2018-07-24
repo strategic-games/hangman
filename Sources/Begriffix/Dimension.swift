@@ -95,3 +95,26 @@ extension Dimensions {
   }
 }
 
+extension Dimensions: LosslessStringConvertible, ExpressibleByArrayLiteral {
+  /// A textual representation as m:n
+  public var description: String {
+    return "\(m):\(n)"
+  }
+  /// Initialize from a description
+  public init?(_ description: String) {
+    let values = description.split(separator: ":")
+    guard values.count == 2, let m = Int(values[0]), let n = Int(values[1]) else {return nil}
+    self.m = m
+    self.n = n
+  }
+  /// Initialize from an array literal
+  public init(arrayLiteral: Int...) {
+    if arrayLiteral.count == 2 {
+      m = arrayLiteral[0]
+      n = arrayLiteral[1]
+    } else {
+      m = 1
+      n = 1
+    }
+  }
+}
