@@ -17,9 +17,10 @@ struct HumanPlayer: Player {
         dir = currentDir ? .Horizontal : .Vertical
       case .KnockOut: return nil
       }
-      let start: Position = Input.readObject(
+      let startValue = Input.readLine(
         prompt: "start"
       )
+      guard let start = Position(startValue) else {continue}
       let place = Place(start: start, direction: dir, count: word.count)
       if state.contains(place: place) {
         WriteStream.stdout <<< "move will be applied"

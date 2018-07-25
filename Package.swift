@@ -11,7 +11,6 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-      // .package(url: "https://github.com/apple/swift-package-manager.git", from: "0.0.0"),
       .package(url: "https://github.com/jakeheis/SwiftCLI", from: "5.0.0")
     ],
     targets: [
