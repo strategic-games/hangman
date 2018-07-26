@@ -19,12 +19,9 @@ public struct Radix: Codable {
     s.forEach {root.insert($0)}
   }
   /// Split a string by whitespace and insert the fragments into the tree
-  public func insert(text: String, separator: Character = "\n") {
-    text.split(separator: separator)
-      .lazy
-      .filter {!$0.isEmpty}
-      .map {$0.lowercased()}
-      .forEach {root.insert($0)}
+  public func insert(text: String, separator: Unicode.Scalar = "\n") {
+    text.lowercased().unicodeScalars.split(separator: separator)
+      .forEach {root.insert(String($0))}
   }
   /// Remove a given string from this tree if present
   public func remove(_ key: String) {
