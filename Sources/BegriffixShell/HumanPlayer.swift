@@ -17,10 +17,9 @@ struct HumanPlayer: Player {
         dir = currentDir ? .Horizontal : .Vertical
       case .KnockOut: return nil
       }
-      let startValue = Input.readLine(
+      let start: Position = Input.readObject(
         prompt: "start"
       )
-      guard let start = Position(startValue) else {continue}
       let place = Place(start: start, direction: dir, count: word.count)
       if state.contains(place: place) {
         WriteStream.stdout <<< "move will be applied"
@@ -30,3 +29,12 @@ struct HumanPlayer: Player {
     }
   }
 }
+
+extension ConvertibleFromString where Self: LosslessStringConvertible {
+  public static func convert(from: String) -> Self? {
+    return Self(from)
+  }
+}
+
+ extension Position: ConvertibleFromString {}
+
