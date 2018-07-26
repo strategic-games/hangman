@@ -1,6 +1,33 @@
 {
   "warnings": [
-
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/Hangman/Place.swift",
+      "line": 15,
+      "symbol": "Place.positions()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/Hangman/Player.swift",
+      "line": 1,
+      "symbol": "Player",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/Hangman/Player.swift",
+      "line": 2,
+      "symbol": "Player.deal(with:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/Hangman/RandomPlayer.swift",
+      "line": 9,
+      "symbol": "RandomPlayer.deal(with:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
   ],
   "source_directory": "/Users/tamaracook/Entwicklung/hangman"
 }

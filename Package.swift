@@ -17,19 +17,13 @@ let package = Package(
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
       .target(
-        name: "BegriffixShell",
-        dependencies: ["Begriffix", "SwiftCLI"]),
+        name: "HangmanCLI",
+        dependencies: ["Hangman", "SwiftCLI"]),
         .target(
-            name: "Begriffix",
-            dependencies: ["HangMan"]),
-        .target(
-            name: "HangMan",
+            name: "Hangman",
             dependencies: []),
         .testTarget(
-            name: "HangManTests",
-            dependencies: ["HangMan"]),
-        .testTarget(
-          name: "BegriffixTests",
-          dependencies: ["Begriffix"]),
+            name: "HangmanTests",
+            dependencies: ["Hangman"]),
     ]
 )
