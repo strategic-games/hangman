@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Direction Enumeration Reference</title>
+    <title>BoardGame Protocol Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Enum/Direction" class="dashAnchor"></a>
-    <a title="Direction Enumeration Reference"></a>
+    <a name="//apple_ref/swift/Protocol/BoardGame" class="dashAnchor"></a>
+    <a title="BoardGame Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">Begriffix Docs</a> (96% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">Begriffix Reference</a>
         <img id="carat" src="../img/carat.png" />
-        Direction Enumeration Reference
+        BoardGame Protocol Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -95,14 +95,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Direction</h1>
+            <h1>BoardGame</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Direction</span> <span class="p">:</span> <span class="kt">CaseIterable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">BoardGame</span> <span class="p">:</span> <span class="kt">IteratorProtocol</span><span class="p">,</span> <span class="kt">Sequence</span> <span class="k">where</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Element</span> <span class="o">==</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Element</span></code></pre>
 
                 </div>
               </div>
-            <p>The direction on a right-angled grid</p>
+            <p>A type that can act as a board game</p>
 
           </section>
           <section class="section task-group-section">
@@ -111,9 +111,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Begriffix9DirectionO10HorizontalyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/Horizontal" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Begriffix9DirectionO10HorizontalyA2CmF">Horizontal</a>
+                    <a name="/s:9Begriffix9BoardGameP0B0Qa"></a>
+                    <a name="//apple_ref/swift/Alias/Board" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Begriffix9BoardGameP0B0Qa">Board</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -121,14 +121,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>From left to right</p>
+                        <p>A type that can act as a game board</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">Horizontal</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">associatedtype</span> <span class="kt">Board</span> <span class="p">:</span> <span class="kt">Collection</span></code></pre>
 
                         </div>
                       </div>
@@ -138,9 +138,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Begriffix9DirectionO8VerticalyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/Vertical" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Begriffix9DirectionO8VerticalyA2CmF">Vertical</a>
+                    <a name="/s:9Begriffix9BoardGameP4MoveQa"></a>
+                    <a name="//apple_ref/swift/Alias/Move" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Begriffix9BoardGameP4MoveQa">Move</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -148,14 +148,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>from top to bottom</p>
+                        <p>The move type of a game</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">Vertical</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">associatedtype</span> <span class="kt">Move</span></code></pre>
 
                         </div>
                       </div>
@@ -165,9 +165,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Begriffix9DirectionO6kernelyAA6MatrixVySiGSiF"></a>
-                    <a name="//apple_ref/swift/Method/kernel(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Begriffix9DirectionO6kernelyAA6MatrixVySiGSiF">kernel(_:)</a>
+                    <a name="/s:9Begriffix9BoardGameP5board0B0Qzvp"></a>
+                    <a name="//apple_ref/swift/Property/board" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Begriffix9BoardGameP5board0B0Qzvp">board</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -175,14 +175,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Return a kernel according to this direction and a given length</p>
+                        <p>A game board where values can be entered</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">kernel</span><span class="p">(</span><span class="n">_</span> <span class="nv">count</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Matrix.html">Matrix</a></span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">board</span><span class="p">:</span> <span class="kt"><a href="../Protocols/BoardGame.html#/s:9Begriffix9BoardGameP0B0Qa">Board</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -192,9 +192,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Begriffix9DirectionO7toggledACyF"></a>
-                    <a name="//apple_ref/swift/Method/toggled()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Begriffix9DirectionO7toggledACyF">toggled()</a>
+                    <a name="/s:9Begriffix9BoardGameP4turnSivp"></a>
+                    <a name="//apple_ref/swift/Property/turn" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Begriffix9BoardGameP4turnSivp">turn</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -202,14 +202,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The opposite of this direction</p>
+                        <p>The turn counter</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">toggled</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Direction</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">turn</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -219,9 +219,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Begriffix9DirectionO6toggleyyF"></a>
-                    <a name="//apple_ref/swift/Method/toggle()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Begriffix9DirectionO6toggleyyF">toggle()</a>
+                    <a name="/s:9Begriffix9BoardGameP6playerAA6Player_pvp"></a>
+                    <a name="//apple_ref/swift/Property/player" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Begriffix9BoardGameP6playerAA6Player_pvp">player</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -229,14 +229,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Set this direction to its opposite</p>
+                        <p>The current player</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">mutating</span> <span class="kd">func</span> <span class="nf">toggle</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">player</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Player.html">Player</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>

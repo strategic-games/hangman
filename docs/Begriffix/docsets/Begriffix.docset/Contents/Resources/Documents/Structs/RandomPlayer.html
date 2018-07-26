@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Direction Enumeration Reference</title>
+    <title>RandomPlayer Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Enum/Direction" class="dashAnchor"></a>
-    <a title="Direction Enumeration Reference"></a>
+    <a name="//apple_ref/swift/Struct/RandomPlayer" class="dashAnchor"></a>
+    <a title="RandomPlayer Structure Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">Begriffix Docs</a> (96% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">Begriffix Reference</a>
         <img id="carat" src="../img/carat.png" />
-        Direction Enumeration Reference
+        RandomPlayer Structure Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -95,14 +95,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Direction</h1>
+            <h1>RandomPlayer</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Direction</span> <span class="p">:</span> <span class="kt">CaseIterable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">RandomPlayer</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Player.html">Player</a></span></code></pre>
 
                 </div>
               </div>
-            <p>The direction on a right-angled grid</p>
+            <p>A Begriffix player</p>
 
           </section>
           <section class="section task-group-section">
@@ -111,9 +111,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Begriffix9DirectionO10HorizontalyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/Horizontal" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Begriffix9DirectionO10HorizontalyA2CmF">Horizontal</a>
+                    <a name="/s:9Begriffix12RandomPlayerV10vocabulary7HangMan5RadixVvp"></a>
+                    <a name="//apple_ref/swift/Property/vocabulary" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Begriffix12RandomPlayerV10vocabulary7HangMan5RadixVvp">vocabulary</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -121,14 +121,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>From left to right</p>
+                        <p>The player&rsquo;s vocabulary</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">Horizontal</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">vocabulary</span><span class="p">:</span> <span class="kt">Radix</span></code></pre>
 
                         </div>
                       </div>
@@ -138,9 +138,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Begriffix9DirectionO8VerticalyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/Vertical" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Begriffix9DirectionO8VerticalyA2CmF">Vertical</a>
+                    <a name="/s:9Begriffix12RandomPlayerV10vocabularyAC7HangMan5RadixV_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(vocabulary:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Begriffix12RandomPlayerV10vocabularyAC7HangMan5RadixV_tcfc">init(vocabulary:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -148,14 +148,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>from top to bottom</p>
+                        <p>Initialize a new player with a given vocabulary</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">Vertical</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">vocabulary</span><span class="p">:</span> <span class="kt">Radix</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -165,9 +165,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Begriffix9DirectionO6kernelyAA6MatrixVySiGSiF"></a>
-                    <a name="//apple_ref/swift/Method/kernel(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Begriffix9DirectionO6kernelyAA6MatrixVySiGSiF">kernel(_:)</a>
+                    <a name="/s:9Begriffix12RandomPlayerV4deal4withA2AV4MoveVSgAF_tF"></a>
+                    <a name="//apple_ref/swift/Method/deal(with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Begriffix12RandomPlayerV4deal4withA2AV4MoveVSgAF_tF">deal(with:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -175,14 +175,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Return a kernel according to this direction and a given length</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">kernel</span><span class="p">(</span><span class="n">_</span> <span class="nv">count</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Matrix.html">Matrix</a></span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">deal</span><span class="p">(</span><span class="n">with</span> <span class="nv">game</span><span class="p">:</span> <span class="kt"><a href="../Structs/Begriffix.html">Begriffix</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Begriffix.html">Begriffix</a></span><span class="o">.</span><span class="kt">Move</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -192,9 +192,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Begriffix9DirectionO7toggledACyF"></a>
-                    <a name="//apple_ref/swift/Method/toggled()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Begriffix9DirectionO7toggledACyF">toggled()</a>
+                    <a name="/s:9Begriffix12RandomPlayerV5match_5placeSaySSGA2AV_AA5PlaceVtF"></a>
+                    <a name="//apple_ref/swift/Method/match(_:place:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Begriffix12RandomPlayerV5match_5placeSaySSGA2AV_AA5PlaceVtF">match(_:place:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -202,14 +202,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The opposite of this direction</p>
+                        <p>Find the words that could be inserted at the given place</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">toggled</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Direction</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">match</span><span class="p">(</span><span class="n">_</span> <span class="nv">game</span><span class="p">:</span> <span class="kt"><a href="../Structs/Begriffix.html">Begriffix</a></span><span class="p">,</span> <span class="nv">place</span><span class="p">:</span> <span class="kt"><a href="../Structs/Place.html">Place</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -219,9 +219,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Begriffix9DirectionO6toggleyyF"></a>
-                    <a name="//apple_ref/swift/Method/toggle()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Begriffix9DirectionO6toggleyyF">toggle()</a>
+                    <a name="/s:9Begriffix12RandomPlayerV6select4fromA2AV4MoveVSgSDyAA5PlaceVSaySSGG_tF"></a>
+                    <a name="//apple_ref/swift/Method/select(from:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Begriffix12RandomPlayerV6select4fromA2AV4MoveVSgSDyAA5PlaceVSaySSGG_tF">select(from:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -229,14 +229,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Set this direction to its opposite</p>
+                        <p>Select a move from valid places and their words</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">mutating</span> <span class="kd">func</span> <span class="nf">toggle</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">select</span><span class="p">(</span><span class="n">from</span> <span class="nv">places</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Place.html">Place</a></span> <span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Begriffix.html">Begriffix</a></span><span class="o">.</span><span class="kt">Move</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
