@@ -1,19 +1,19 @@
-extension String {
   /// Possible degrees of divergence
-  enum Divergence {
+  enum Divergence<T: Collection> {
     /// No common prefix
     case full
     /// strings are completely equal
     case none
     /// The right string is a prefix of the left
-    case left(suffix: Substring)
+    case left(suffix: T.SubSequence)
     /// The left string is a prefix of the right
-    case right(suffix: Substring)
+    case right(suffix: T.SubSequence)
     /// Left and right string have a common prefix
-    case partly(prefix: Substring, leftSuffix: Substring, rightSuffix: Substring)
+    case partly(prefix: T.SubSequence, leftSuffix: T.SubSequence, rightSuffix: T.SubSequence)
   }
+  extension Collection where Element: Equatable {
   /// Return the degree of divergence of two given strings
-  static func %(left: String, right: String) -> Divergence {
+  static func %(left: Self, right: Self) -> Divergence<Self> {
     let (prefix, ls, rs) = left/right
     if prefix.isEmpty {return .full}
     if rs.isEmpty && ls.isEmpty {return .none}
@@ -22,7 +22,7 @@ extension String {
     return .partly(prefix: prefix, leftSuffix: ls, rightSuffix: rs)
   }
   /// Return the common prefix of two strings and their diverging suffixes
-  static func /(left: String, right: String) -> (Substring, Substring, Substring) {
+  static func /(left: Self, right: Self) -> (SubSequence, SubSequence, SubSequence) {
     let shorter = left.count < right.count ? left : right
     var i = shorter.startIndex
     while i < shorter.endIndex {
@@ -35,13 +35,16 @@ extension String {
     return (prefix, leftSuffix, rightSuffix)
   }
   /// Indicate if the string matches a given pattern
-  func matches(_ pattern: String) -> Bool {
-    if pattern.count < self.count {return false}
-    return zip(self, pattern).allSatisfy {(x: Character, p: Character) in p == "?" ? true : (x == p)}
-  }
 }
 
-extension Sequence where Element: Numeric {
+  extension Collection where Element: ExpressibleByUnicodeScalarLiteral&Equatable {
+    func matches(_ pattern: Self) -> Bool {
+      if pattern.count < self.count {return false}
+      return zip(self, pattern).allSatisfy {(x: Element, p: Element) in p == "?" ? true : (x == p)}
+    }
+  }
+
+  extension Sequence where Element: Numeric {
   /// Return the sum of all elements in a numeric sequence
   public func sum() -> Element {
     return self.reduce(0, +)
@@ -84,3 +87,10 @@ extension RandomAccessCollection where Element == Character?, Index == Int {
     return String(letters.compactMap {$0})
   }
 }
+
+  extension Sequence where Element == Unicode.Scalar {
+    /// Create a string from a sequence of unicode scalars
+    var string: String {
+      return String.UnicodeScalarView(self).description
+    }
+  }

@@ -12,32 +12,33 @@ public struct Radix: Codable {
   }
   /// Insert a string into the tree
   public func insert(_ key: String) {
-    root.insert(key)
+    root.insert(Node.Label(key.unicodeScalars))
   }
   /// Insert the elements of a given sequence into the tree
   public func insert<S: Sequence>(_ s: S) where S.Element == String {
-    s.forEach {root.insert($0)}
+    s.forEach {insert($0)}
   }
   /// Split a string by whitespace and insert the fragments into the tree
   public func insert(text: String, separator: Unicode.Scalar = "\n") {
     text.lowercased().unicodeScalars.split(separator: separator)
-      .forEach {root.insert(String($0))}
+      .forEach {root.insert(Node.Label($0))}
   }
   /// Remove a given string from this tree if present
   public func remove(_ key: String) {
-    root.remove(key)
+    root.remove(Node.Label(key.unicodeScalars))
   }
   /// Indicate if a given string is present in the tree
   public func contains(_ key: String) -> Bool {
-    return root.find(key) != nil
+    return root.find(Node.Label(key.unicodeScalars)) != nil
   }
   /// Return a new array with the strings in this tree
   public func search() -> [String] {
-    return root.search("")
+    return root.search(Node.Label()).map {$0.string}
   }
   /// Return a new array with the strings in this tree that satisfy the given pattern
   public func match(_ pattern: String) -> [String] {
-    return root.match("", pattern: pattern)
+    return root.match(Node.Label(), pattern: Node.Label(pattern.unicodeScalars))
+      .map {$0.string}
   }
 }
 
