@@ -244,3 +244,18 @@ extension Matrix: CustomStringConvertible, LosslessStringConvertible where Eleme
     return words
   }
 }
+
+extension Sequence where Element: Numeric {
+  /// Return the sum of all elements in a numeric sequence
+  public func sum() -> Element {
+    return self.reduce(0, +)
+  }
+  /// Multiply two sequences elementwise
+  static func *(lhs: Self, rhs: Self) -> [Self.Element] {
+    return zip(lhs, rhs).map(*)
+  }
+  /// Multiply two sequences elementwise and sum up the products
+  static func prodSum(lhs: Self, rhs: Self) -> Self.Element {
+    return zip(lhs, rhs).map(*).sum()
+  }
+}

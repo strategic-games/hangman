@@ -1,7 +1,11 @@
 /// A radix tree that stores strings
-public struct Radix: Codable {
+public struct Radix: CustomStringConvertible, Codable {
   /// The root node of the tree
   private let root: Node
+  /// The textual representation of the root node
+  public var description: String {
+    return root.description
+  }
   /// Create a tree with a given root node
   public init(_ root: Node) {
     self.root = root
@@ -29,22 +33,22 @@ public struct Radix: Codable {
   }
   /// Indicate if a given string is present in the tree
   public func contains(_ key: String) -> Bool {
-    return root.find(Node.Label(key.unicodeScalars)) != nil
+    return root.contains(Node.Label(key.unicodeScalars))
   }
   /// Return a new array with the strings in this tree
   public func search() -> [String] {
-    return root.search(Node.Label()).map {$0.string}
+    return root.search().map {$0.string}
   }
   /// Return a new array with the strings in this tree that satisfy the given pattern
   public func match(_ pattern: String) -> [String] {
-    return root.match(Node.Label(), pattern: Node.Label(pattern.unicodeScalars))
+    return root.search(pattern: pattern.unicodeScalars.map {return $0 == "?" ? nil : $0})
       .map {$0.string}
   }
 }
 
-extension Radix: CustomStringConvertible {
-  /// The textual representation of the root node
-  public var description: String {
-    return root.description
+extension Sequence where Element == Unicode.Scalar {
+  /// Create a string from a sequence of unicode scalars
+  var string: String {
+    return String.UnicodeScalarView(self).description
   }
 }

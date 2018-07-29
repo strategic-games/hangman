@@ -1,103 +1,85 @@
 /// A radix tree node
-public final class Node {
+public final class Node: CustomStringConvertible, Equatable, Hashable, Comparable, Codable {
   public typealias Label = [Unicode.Scalar]
-  //public typealias Label = String.UnicodeScalarView
   /// The type of the child nodes collection
   public typealias ChildrenType = SortedSet<Node>
+  // MARK: Comparison Operators
+  /// Test equality of two nodes, respecting only the label
+  public static func ==(lhs: Node, rhs: Node) -> Bool {
+    return lhs.label.elementsEqual(rhs.label)
+  }
+  /// Test order of two nodes, respecting only the label
+  public static func <(lhs: Node, rhs: Node) -> Bool {
+    return lhs.label.lexicographicallyPrecedes(rhs.label)
+  }
+  // MARK: Properties
   /// The prefix of this node
   public let label: Label
   /// The tree depth of this node
   public let level: Int
   /// Indicates if this node contains the suffix of an inserted string
-  public var isTerminal: Bool = false
+  public private(set) var isTerminal: Bool = false
   /// A collection that contains the node's child nodes
   private var children: ChildrenType
+  // MARK: Describing
   ///////////// Indicates if the node contains any child nodes
-  public var isLeaf: Bool {
-    return children.isEmpty
+  public var isLeaf: Bool {return children.isEmpty}
+  public var isRoot: Bool {return level == 0}
+  /// A textual representation of the node
+  public var description: String {return "\(level): \(label.string)"}
+  /// Hash this node, respecting only its label
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(label.map {$0})
   }
   // MARK: Initializers
   /// Create a node
-  public init(label: Label, level: Int, isTerminal: Bool, children: ChildrenType) {
+  public init(label: Label = [], level: Int = 0, isTerminal: Bool = false, children: ChildrenType = ChildrenType()) {
     self.label = label
     self.level = level
     self.isTerminal = isTerminal
     self.children = children
   }
-  /// Create a leaf node
-  public convenience init(_ label: Label, level: Int, isTerminal: Bool) {
-    self.init(label: label, level: level, isTerminal: isTerminal, children: ChildrenType())
-  }
-  /// Create a non-terminal leaf node
-  public convenience init(_ label: Label, level: Int) {
-    self.init(label: label, level: level, isTerminal: false, children: ChildrenType())
-  }
-  /// Create a root node
-  public convenience init() {
-    self.init(label: Label(), level: 0, isTerminal: false, children: ChildrenType())
-  }
-  /// Add a child node with given prefix
-  public func add(prefix: Label) -> Node {
-    let child = Node(prefix, level: level+1, isTerminal: true)
-    children.insert(child)
-    return child
-  }
-  /// Extract a suffix into a new child node and mark this as terminal
-  func split(prefix: Label, keySuffix: Label) -> Node {
-    let newChild = Node(prefix, level: self.level, isTerminal: true)
-    let x = Node(keySuffix, level: newChild.level+1, isTerminal: self.isTerminal)
-    x.children = self.children
-    newChild.children.insert(x)
-    return newChild
-  }
-  /// Extract a suffix into a new child node and add another suffix as child node
-  func diverge(prefix: Label, keySuffix: Label, searchSuffix: Label) -> Node {
-    let newChild = Node(prefix, level: self.level, isTerminal: false)
-    let x = Node(keySuffix, level: newChild.level+1, isTerminal: self.isTerminal)
-    x.children = self.children
-    let y = Node(searchSuffix, level: newChild.level+1, isTerminal: true)
-    newChild.children.formUnion([x, y])
-    return newChild
-  }
   /// Insert a new string into this node
   @discardableResult
   public func insert(_ key: Label) -> (added: Bool, node: Node) {
-    guard !children.isEmpty else {return (true, add(prefix: key))}
-    if children.count > 3, let max = children.last {
-      let (prefix, _, _) = max.label/key
-      if prefix.isEmpty && max.label.lexicographicallyPrecedes(key) {return (true, add(prefix: key))}
+    if children.isEmpty {return (true, add(key))}
+    if let max = children.last, children.count > 3 {
+      let i = max.label.index(diverging: key)
+      if i == max.label.startIndex && max.label.lexicographicallyPrecedes(key) {return (true, add(key))}
     }
     for child in children {
-      switch child.label%key {
-      case .none:
-        child.isTerminal = true
-        return (false, child)
-      case .left(let leftSuffix):
-        let newChild = child.split(prefix: key, keySuffix: Label(leftSuffix))
-        children.remove(child)
-        children.insert(newChild)
-        return (true, newChild)
-      case .right(let rightSuffix):
-        return child.insert(Label(rightSuffix))
-      case .partly(let prefix, let leftSuffix, let rightSuffix):
-        let newChild = child.diverge(prefix: Label(prefix), keySuffix: Label(leftSuffix), searchSuffix: Label(rightSuffix))
-        children.remove(child)
-        children.insert(newChild)
-        return (true, newChild)
-      case .full:
+      let i = child.label.index(diverging: key)
+      if i == child.label.startIndex {
         if key.lexicographicallyPrecedes(child.label) {
           break
-        } else {
+          } else {
           continue
-        }
+          }
+      } else if i == child.label.endIndex && i == key.endIndex {
+        child.isTerminal = true
+        return (false, child)
+      } else if i == child.label.endIndex {
+        return child.insert(Label(key[i...]))
+      } else if i == key.endIndex {
+        //let newChild = child.split(prefix: key, keySuffix: Label(child.label[i...]))
+        let newChild = child.split(at: i)
+        children.remove(child)
+        children.insert(newChild)
+        return (true, newChild)
+      } else {
+        //let newChild = child.diverge(prefix: Label(child.label[..<i]), keySuffix: Label(child.label[i...]), searchSuffix: Label(key[i...]))
+        let newChild = child.diverge(newMember: key, at: i)
+        children.remove(child)
+        children.insert(newChild)
+        return (true, newChild)
       }
     }
-    return (true, add(prefix: key))
+    return (true, add(key))
   }
   /// Remove a string from this node if present, and prune leaf nodes if present
   public func remove(_ key: Label) {
-    guard !children.isEmpty else {return}
-    guard let child = index(of: key) else {return}
+    if children.isEmpty {return}
+    guard let child = startNode(of: key) else {return}
     if child.label.elementsEqual(key) {
       child.isTerminal = false
     } else {
@@ -107,72 +89,99 @@ public final class Node {
       children.remove(child)
     }
   }
-  /// Return the node which marks the end of a given string if present
-  func find(_ key: Label) -> Node? {
-    guard !children.isEmpty else {return nil}
-    guard let child = index(of: key) else {return nil}
-    if child.label.elementsEqual(key) && child.isTerminal {return child}
-    return child.find(Label(key[child.label.endIndex...]))
+  // MARK: Testing for membership
+  public func contains(_ member: Label) -> Bool {
+    return endNode(member) != nil
   }
+  // MARK: Searching, filtering
   /// Return an array with every inserted string in this node, the given prefix prepended
-  func search(_ prefix: Label) -> [Label] {
-  var subtreeWords = [Label]()
+  func search(prefix: Label = []) -> [Label] {
+  var words = [Label]()
+    var prev: Label
     for child in children {
-      var prev = prefix
-      prev += child.label
+      prev = prefix + child.label
       if child.isTerminal {
-        subtreeWords.append(prev)
+        words.append(prev)
       }
-      subtreeWords += child.search(prev)
+      words += child.search(prefix: prev)
     }
-  return subtreeWords
+  return words
   }
   /// Return an array with every inserted string in this node that match the given pattern, the given prefix prepended
-  func match(_ prefix: Label, pattern: Label) -> [Label] {
-    var subtreeWords = [Label]()
+  func search(prefix: Label = [], pattern: [Label.Element?]) -> [Label] {
+    var words = [Label]()
+    var prev: Label
     for child in children {
-      var prev = prefix
-      prev += child.label
-      guard prev.matches(pattern) else {continue}
-      if prev.count == pattern.count && child.isTerminal {
-        subtreeWords.append(prev)
+      prev = prefix + child.label
+      let matches = zip(prev, pattern)
+        .allSatisfy {(x, p) in
+          if let p = p {
+            return x == p
+          } else {
+            return true
+          }
       }
-      subtreeWords += child.match(prev, pattern: pattern)
+      guard matches else {continue}
+      if prev.count == pattern.count && child.isTerminal {
+        words.append(prev)
+      } else if prev.count < pattern.count {
+        words += child.search(prefix: prev, pattern: pattern)
+      }
     }
-    return subtreeWords
+    return words
+  }
+  // MARK: Finding tree nodes
+  /// Return the node which marks the end of a given string if present
+  func endNode(_ member: Label) -> Node? {
+    if children.isEmpty {return nil}
+    guard let child = startNode(of: member) else {return nil}
+    if child.label.elementsEqual(member) && child.isTerminal {return child}
+    return child.endNode(Label(member[child.label.endIndex...]))
   }
   /// Return the child node whose label is the prefix of or equal to the given string if present
-  private func index(of prefix: Label) -> Node? {
-    return index(of: prefix, range: children.startIndex..<children.endIndex)
-  }
-  private func index(of prefix: Label, range: Range<ChildrenType.Index>) -> Node? {
+  private func startNode(of member: Label, range: Range<ChildrenType.Index>? = nil) -> Node? {
+    let range = range ?? children.startIndex..<children.endIndex
     let mid = range.count/2 + range.lowerBound
     let child = children[mid]
-    if prefix.starts(with: child.label) {return child}
+    if member.starts(with: child.label) {return child}
     let left = range[..<mid]
     let right = range[children.index(after: mid)...]
-    let selected = child.label.lexicographicallyPrecedes(prefix) ? right : left
+    let selected = child.label.lexicographicallyPrecedes(member) ? right : left
     if selected.isEmpty {return nil}
-    return index(of: prefix, range: selected)
+    return startNode(of: member, range: selected)
   }
-}
-
-extension Node: Equatable, Hashable, Comparable {
-  /// Test equality of two nodes, respecting only the label
-  public static func ==(lhs: Node, rhs: Node) -> Bool {
-    return lhs.label.elementsEqual(rhs.label)
+  // MARK: Adding and pruning tree nodes
+  /// Adds a terminal child node with given label
+  @discardableResult
+  private func add(_ label: Label) -> Node {
+    let child = Node(label: label, level: level+1, isTerminal: true)
+    children.insert(child)
+    return child
   }
-  /// Test order of two nodes, respecting only the label
-  public static func <(lhs: Node, rhs: Node) -> Bool {
-    return lhs.label.lexicographicallyPrecedes(rhs.label)
+  /// Extract a suffix into a new child node and mark this as terminal
+  private func split(at i: Label.Index) -> Node {
+    let prefix = Label(label[..<i])
+    let suffix = Label(label[i...])
+    let newChild = Node(label: prefix, level: self.level, isTerminal: true)
+    let x = Node(label: suffix, level: newChild.level+1, isTerminal: self.isTerminal)
+    x.children = self.children
+    newChild.children.insert(x)
+    return newChild
   }
-  /// Hash this node, respecting only its label
-  public func hash(into hasher: inout Hasher) {
-    hasher.combine(label.map {$0})
+  /// Extract a suffix into a new child node and add another suffix as child node
+  private func diverge(newMember: Label, at i: Label.Index) -> Node {
+    let prefix = Label(label[..<i])
+    let labelSuffix = Label(label[i...])
+    let newSuffix = Label(newMember[i...])
+    let newChild = Node(label: prefix, level: self.level, isTerminal: false)
+    let x = Node(label: labelSuffix, level: newChild.level+1, isTerminal: self.isTerminal)
+    x.children = self.children
+    let y = Node(label: newSuffix, level: newChild.level+1, isTerminal: true)
+    newChild.children.insert(x)
+    newChild.children.insert(y)
+    return newChild
   }
-}
-
-extension Node: Codable {
+  // MARK: Encoding and decoding
   /// The coding keys for serialization
   enum CodingKeys: String, CodingKey {
     /// The key for the label property
@@ -204,9 +213,15 @@ extension Node: Codable {
   }
 }
 
-extension Node: CustomStringConvertible {
-  /// A textual representation of the node
-  public var description: String {
-    return "\(level): \(label.string)"
+extension Collection where Element: Equatable {
+  /// Returns the index where a collection diverges from another one
+  func index(diverging from: Self) -> Self.Index {
+    let shorter = self.count < from.count ? self : from
+    var i = shorter.startIndex
+    while i < shorter.endIndex {
+      if self[i] != from[i] {break}
+      shorter.formIndex(after: &i)
+    }
+    return i
   }
 }

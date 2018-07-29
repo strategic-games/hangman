@@ -129,3 +129,29 @@ public struct Begriffix: DyadicGame {
     return scan(direction: place.direction, count: place.count).contains(place.start)
   }
 }
+
+extension RandomAccessCollection where Element == Character?, Index == Int {
+  /// Find the words in a sequence (at least 3 letters), separated by nil
+  func words() -> [String] {
+    return self.split(separator: nil).map({w in String(w.compactMap({$0}))}).filter {$0.count > 2}
+  }
+  /// Find the word in a sequence around a given index (nil if less than 3 letters)
+  func word(around i: Index) -> String? {
+    precondition(indices.contains(i), "i out of bounds")
+    var start = i
+    var end = i
+    while start > startIndex {
+      let next = index(before: start)
+      if self[next] == nil {break}
+      start = next
+    }
+    while end < endIndex {
+      formIndex(after: &end)
+      if end == endIndex || self[end] == nil {break}
+    }
+    let r = start..<end
+    if r.count <= 2 {return nil}
+    let letters = self[r]
+    return String(letters.compactMap {$0})
+  }
+}
