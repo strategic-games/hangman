@@ -1,6 +1,27 @@
 {
   "warnings": [
     {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/Hangman/Node.swift",
+      "line": 3,
+      "symbol": "Node.Label",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/Hangman/Node.swift",
+      "line": 27,
+      "symbol": "Node.isRoot",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/Hangman/Node.swift",
+      "line": 93,
+      "symbol": "Node.contains(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/tamaracook/Entwicklung/hangman/Sources/Hangman/Place.swift",
       "line": 15,
       "symbol": "Place.positions()",

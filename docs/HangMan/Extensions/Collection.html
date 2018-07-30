@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>RandomAccessCollection Extension Reference</title>
+    <title>Collection Extension Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Extension/RandomAccessCollection" class="dashAnchor"></a>
-    <a title="RandomAccessCollection Extension Reference"></a>
+    <a name="//apple_ref/swift/Extension/Collection" class="dashAnchor"></a>
+    <a title="Collection Extension Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">Hangman Docs</a> (96% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">Hangman Reference</a>
         <img id="carat" src="../img/carat.png" />
-        RandomAccessCollection Extension Reference
+        Collection Extension Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -115,10 +115,10 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>RandomAccessCollection</h1>
+            <h1>Collection</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">protocol</span> <span class="kt">RandomAccessCollection</span> <span class="p">:</span> <span class="kt">BidirectionalCollection</span> <span class="k">where</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Indices</span> <span class="p">:</span> <span class="kt">RandomAccessCollection</span><span class="p">,</span> <span class="k">Self</span><span class="o">.</span><span class="kt">SubSequence</span> <span class="p">:</span> <span class="kt">RandomAccessCollection</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">protocol</span> <span class="kt">Collection</span> <span class="p">:</span> <span class="kt">Sequence</span> <span class="k">where</span> <span class="k">Self</span><span class="o">.</span><span class="kt">SubSequence</span> <span class="p">:</span> <span class="kt">Collection</span></code></pre>
 
                 </div>
               </div>
@@ -130,9 +130,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:Sk7HangmanSJSg7ElementRtzSi5IndexRtzrlE5wordsSaySSGyF"></a>
-                    <a name="//apple_ref/swift/Method/words()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:Sk7HangmanSJSg7ElementRtzSi5IndexRtzrlE5wordsSaySSGyF">words()</a>
+                    <a name="/s:Sl7HangmanSQ7ElementRpzrlE5index9diverging5IndexQzx_tF"></a>
+                    <a name="//apple_ref/swift/Method/index(diverging:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Sl7HangmanSQ7ElementRpzrlE5index9diverging5IndexQzx_tF">index(diverging:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -140,41 +140,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Find the words in a sequence (at least 3 letters), separated by nil</p>
+                        <p>Returns the index where a collection diverges from another one</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">words</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:Sk7HangmanSJSg7ElementRtzSi5IndexRtzrlE4word6aroundSSSgSi_tF"></a>
-                    <a name="//apple_ref/swift/Method/word(around:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:Sk7HangmanSJSg7ElementRtzSi5IndexRtzrlE4word6aroundSSSgSi_tF">word(around:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Find the word in a sequence around a given index (nil if less than 3 letters)</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">word</span><span class="p">(</span><span class="n">around</span> <span class="nv">i</span><span class="p">:</span> <span class="kt">Index</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">index</span><span class="p">(</span><span class="n">diverging</span> <span class="nv">from</span><span class="p">:</span> <span class="k">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Index</span></code></pre>
 
                         </div>
                       </div>

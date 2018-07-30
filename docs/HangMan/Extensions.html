@@ -14,7 +14,7 @@
     <a title="Extensions  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">Hangman Docs</a> (98% documented)</p>
+        <p><a href="index.html">Hangman Docs</a> (96% documented)</p>
         <p class="header-right"><a href="https:://github.com/strategyc-games/hangman"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -51,16 +51,13 @@
             <a href="Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Extensions/Collection.html">Collection</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Extensions/RandomAccessCollection.html">RandomAccessCollection</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/Sequence.html">Sequence</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Extensions/String.html">String</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Extensions/String/Divergence.html">– Divergence</a>
               </li>
             </ul>
           </li>
@@ -128,9 +125,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:SS"></a>
-                    <a name="//apple_ref/swift/Extension/String" class="dashAnchor"></a>
-                    <a class="token" href="#/s:SS">String</a>
+                    <a name="/s:Sk"></a>
+                    <a name="//apple_ref/swift/Extension/RandomAccessCollection" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Sk">RandomAccessCollection</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -139,19 +136,30 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         
-                        <a href="Extensions/String.html" class="slightly-smaller">See more</a>
+                        <a href="Extensions/RandomAccessCollection.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">protocol</span> <span class="kt">RandomAccessCollection</span> <span class="p">:</span> <span class="kt">BidirectionalCollection</span> <span class="k">where</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Indices</span> <span class="p">:</span> <span class="kt">RandomAccessCollection</span><span class="p">,</span> <span class="k">Self</span><span class="o">.</span><span class="kt">SubSequence</span> <span class="p">:</span> <span class="kt">RandomAccessCollection</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Text%20input%20and%20output%20for%20matrices%20containing%20game%20entities"></a>
+                <a name="//apple_ref/swift/Section/Text input and output for matrices containing game entities" class="dashAnchor"></a>
+                <a href="#/Text%20input%20and%20output%20for%20matrices%20containing%20game%20entities">
+                  <h3 class="section-name">Text input and output for matrices containing game entities</h3>
+                </a>
+              </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -179,12 +187,16 @@
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:Sk"></a>
-                    <a name="//apple_ref/swift/Extension/RandomAccessCollection" class="dashAnchor"></a>
-                    <a class="token" href="#/s:Sk">RandomAccessCollection</a>
+                    <a name="/s:Sl"></a>
+                    <a name="//apple_ref/swift/Extension/Collection" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Sl">Collection</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -193,13 +205,13 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         
-                        <a href="Extensions/RandomAccessCollection.html" class="slightly-smaller">See more</a>
+                        <a href="Extensions/Collection.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">protocol</span> <span class="kt">RandomAccessCollection</span> <span class="p">:</span> <span class="kt">BidirectionalCollection</span> <span class="k">where</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Indices</span> <span class="p">:</span> <span class="kt">RandomAccessCollection</span><span class="p">,</span> <span class="k">Self</span><span class="o">.</span><span class="kt">SubSequence</span> <span class="p">:</span> <span class="kt">RandomAccessCollection</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">protocol</span> <span class="kt">Collection</span> <span class="p">:</span> <span class="kt">Sequence</span> <span class="k">where</span> <span class="k">Self</span><span class="o">.</span><span class="kt">SubSequence</span> <span class="p">:</span> <span class="kt">Collection</span></code></pre>
 
                         </div>
                       </div>
@@ -211,7 +223,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">Tamara Cook</a>. All rights reserved. (Last updated: 2018-07-26)</p>
+          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">Tamara Cook</a>. All rights reserved. (Last updated: 2018-07-29)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
