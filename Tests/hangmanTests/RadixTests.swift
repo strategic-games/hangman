@@ -1,5 +1,5 @@
 import XCTest
-@testable import HangMan
+@testable import Hangman
 
 final class RadixTests: XCTestCase {
   let word = ""
@@ -73,7 +73,7 @@ final class RadixTests: XCTestCase {
   func testMatch() {
     guard let radix = self.radix else {return}
     measure {
-      _ = radix.match("???zh???")
+      _ = radix.search(pattern: "???zh???")
     }
   }
   func insertHelper(words: [String]) {

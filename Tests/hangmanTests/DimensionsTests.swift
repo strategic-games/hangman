@@ -1,5 +1,5 @@
 import XCTest
-@testable import Begriffix
+@testable import Hangman
 
 class DimensionsTests: XCTestCase {
   var sizes = [Dimensions]()

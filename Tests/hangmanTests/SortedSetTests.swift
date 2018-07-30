@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import HangMan
+@testable import Hangman
 
 class SortedSetTests: XCTestCase {
 

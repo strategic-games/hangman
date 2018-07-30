@@ -1,5 +1,5 @@
 import XCTest
-@testable import Begriffix
+@testable import Hangman
 
 class MatrixTests: XCTestCase {
 
@@ -44,11 +44,11 @@ class MatrixTests: XCTestCase {
     let kh = Matrix(repeating: 1, size: Dimensions(1, 2))
     let mh = Matrix([1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1], size: Dimensions(3, 6))
     let rh = Matrix([1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1], size: Dimensions(3, 6))
-    XCTAssertEqual(mh.conv2(kh).dilate(kh), rh)
+    XCTAssert(mh.conv2(kh).dilate(kh).elementsEqual(rh))
     let kv = Matrix(repeating: 1, size: Dimensions(2, 1))
     let mv = Matrix([1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1], size: Dimensions(6, 3))
     let rv = Matrix([1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1], size: Dimensions(6, 3))
-    XCTAssertEqual(mv.conv2(kv).dilate(kv), rv)
+    XCTAssert(mv.conv2(kv).dilate(kv).elementsEqual(rv))
   }
   func testCharacter() {
     let startLetters = Matrix<Character?>([["z", "h"], ["e", "n"]])

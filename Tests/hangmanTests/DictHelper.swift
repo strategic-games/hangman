@@ -1,5 +1,5 @@
 import Foundation
-import HangMan
+import Hangman
 
 class DictHelper {
   static func loadData(_ lang: String) -> Set<String>? {

@@ -1,5 +1,5 @@
 import XCTest
-@testable import Begriffix
+@testable import Hangman
 
 class GameTests: XCTestCase {
 
@@ -11,15 +11,19 @@ class GameTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-      let game = Game()
-      for (state, move) in game {
-        print(state.board)
-        print(state.turn)
-        print(move.sum)
-      }
+  func testPerformance() {
+    let b = Bundle(for: Radix.self)
+    guard let url = b.url(forResource: "dictionaries/german", withExtension: "txt") else {return}
+    guard let content = try? String(contentsOf: url, encoding: .utf8) else {return}
+    let radix = Radix(text: content.lowercased())
+    let startLetters: [[Character?]] = [["l", "a"], ["e", "r"]]
+    let player = RandomPlayer(vocabulary: radix)
+    let game = Begriffix(startLetters: startLetters, starter: player, opponent: player)
+    measure {
+      _ = game.map {$0.1.word}
     }
-  func testColision() {
+  }
+  /*func testColision() {
     let values = """
 bravsten
 s..et.a.
@@ -46,6 +50,6 @@ dröhntet
   func testCollectionWord() {
     let x: [Character?] = [nil, "x", "y", "z", nil]
     XCTAssertEqual(x.word(around: 2), "xyz")
-  }
+  }*/
 
 }
