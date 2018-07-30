@@ -16,9 +16,8 @@ class PlayCommand: Command {
   let times = Key<Int>("-n", "--num-of-times")
   func execute() throws {
     let file = URL(fileURLWithPath: input.value ?? "Resources/dictionaries/german.txt")
-    let text = try String(contentsOf: file)
-    let radix = Radix()
-    radix.insert(text: text)
+    let content = try String(contentsOf: file).lowercased()
+    let radix = Radix(text: content)
     let startLetters: [[Character]] = [["l","a"],["e","r"]]
     if auto.value == true {
       let times = self.times.value ?? 1

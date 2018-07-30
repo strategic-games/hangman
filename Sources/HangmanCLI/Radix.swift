@@ -20,8 +20,7 @@ class RadixConvertCommand: Command {
     let txt = URL(fileURLWithPath: input.value ?? "dictionaries/german.txt")
     let json = URL(fileURLWithPath: output.value ?? "dictionaries/german.json")
     let content = try String(contentsOf: txt).lowercased()
-    let radix = Radix()
-    radix.insert(text: content)
+    let radix = Radix(text: content)
     let jsonEncoder = JSONEncoder()
     let jsonData = try jsonEncoder.encode(radix)
     try jsonData.write(to: json)
@@ -43,12 +42,11 @@ class RadixSearchCommand: Command {
       let jsonDecoder = JSONDecoder()
       radix = try jsonDecoder.decode(Radix.self, from: jsonData)
     } else if type == "txt" {
-      let content = try String(contentsOf: file)
-      radix = Radix()
+      let content = try String(contentsOf: file).lowercased()
       stdout <<< "creating radix"
-      radix.insert(text: content)
+      radix = Radix(text: content)
       stdout <<< "created"
     } else {return}
-    stdout <<< radix.match(pattern.value).description
+    stdout <<< radix.search(pattern: pattern.value).description
   }
 }
