@@ -18,7 +18,7 @@ class PlayCommand: Command {
     let file = URL(fileURLWithPath: input.value ?? "Resources/dictionaries/german.txt")
     let content = try String(contentsOf: file).lowercased()
     let radix = Radix(text: content)
-    let startLetters: [[Character]] = [["l","a"],["e","r"]]
+    let startLetters: [[Unicode.Scalar]] = [["l","a"],["e","r"]]
     if auto.value == true {
       let times = self.times.value ?? 1
       let starter = RandomPlayer(vocabulary: radix)
@@ -26,24 +26,25 @@ class PlayCommand: Command {
       var records = [Record]()
       records.reserveCapacity(5*times)
       for n in 0..<times {
+        print("play \(n)")
         let moves: [Begriffix.Move] = game.map {$0.1}
         records += moves.enumerated().map { (turn, move) in
           let wordSum = move.places?.map({(_, words) in words.count}).sum() ?? 0
-          return Record(game: n, turn: turn, word: move.word, sum: wordSum)
+          return Record(game: n, turn: turn, word: move.word.description, sum: wordSum)
         }
       }
-      let jsonEncoder = JSONEncoder()
-      let jsonData = try jsonEncoder.encode(records)
       if let outValue = output.value {
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try jsonEncoder.encode(records)
         let out = URL(fileURLWithPath: outValue)
         try jsonData.write(to: out)
       } else {
-        stdout.writeData(jsonData)
+        //stdout.writeData(jsonData)
       }
     } else {
       let game = Begriffix(startLetters: startLetters, starter: RandomPlayer(vocabulary: radix), opponent: HumanPlayer())
       for (state, _) in game {
-        stdout <<< state.board.description
+        stdout <<< state.board.map2({if let l = $0 {return Character(l)} else {return nil}}).description
       }
     }
   }

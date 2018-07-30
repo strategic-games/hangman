@@ -23,7 +23,7 @@ struct HumanPlayer: Player {
       let place = Place(start: start, direction: dir, count: word.count)
       if game.contains(place: place) {
         WriteStream.stdout <<< "move will be applied"
-        return Begriffix.Move(place: place, word: word)
+        return Begriffix.Move(place: place, word: Array(word.unicodeScalars))
       }
       WriteStream.stderr <<< "no valid move, please try again"
     }

@@ -1,5 +1,5 @@
 /// A generic matrix type
-public struct Matrix<Element: Hashable>: Hashable {
+public struct Matrix<Element>: MutableCollection, RandomAccessCollection {
   /// The type of the collection which is used internally for the matrix entries
   public typealias CollectionType = Array<Element>
   /// A type which keeps track of matrix dimensions and 1D indices
@@ -8,7 +8,7 @@ public struct Matrix<Element: Hashable>: Hashable {
   /// The matrix dimensions
   var size: Size
   private var entries: CollectionType
-  // MARK: Create matrices
+  // MARK: Initializers
   /// Create matrix from nested arrays
   /// - precondition: Inner arrays must have same length
   init(_ entries: [[Element]]) {
@@ -33,29 +33,23 @@ public struct Matrix<Element: Hashable>: Hashable {
     self.size = size
     self.entries = CollectionType(entries)
   }
-}
-
-// MARK: Adopt protocols
-extension Matrix: MutableCollection, RandomAccessCollection {
+  // MARK: Indices
   /// The collection index type
   public typealias Index = CollectionType.Index
   /// The first 1D index
   public var startIndex: Index {return entries.startIndex}
   /// The last 1D index
   public var endIndex: Index {return entries.endIndex}
-  /// Access a matrix element at a given 1D index
-  public subscript(index: Index) -> Element {
-    get {return entries[index]}
-    set {entries[index] = newValue}
-  }
   /// Return the 1D index after a given 1D index
   public func index(after i: Index) -> Index {return entries.index(after: i)}
   /// Return the 1D index before a given 1D index
   public func index(before i: Index) -> Index {return entries.index(before: i)}
-}
-
-// MARK: Matrix subscripts
-extension Matrix {
+  /// Access a matrix element at a given 1D index
+  // MARK: Subscripts
+  public subscript(index: Index) -> Element {
+    get {return entries[index]}
+    set {entries[index] = newValue}
+  }
   /// Return the matrix element at a given position
   /// - precondition: The position must be in the bounds of the matrix dimensions
   subscript(_ position: Position) -> Element {
@@ -137,8 +131,20 @@ extension Matrix {
       }
     }
   }
+  /// Get the matrix as lines, by the given direction
+  func lines(by direction: Direction, in range: Range<Index>? = nil) -> [[Element]] {
+    switch direction {
+    case .Horizontal:
+      let lines = range ?? (0..<size.m)
+      return lines.lazy.map {Array(self[row: $0])}
+    case .Vertical:
+      let lines = range ?? (0..<size.n)
+      return lines.lazy.map {Array(self[column: $0])}
+    }
+  }
+  // MARK: Transforming
   /// Transform the matrix element with a given closure and return them as new matrix
-  func map2<T>(_ transform: (Element) -> T) -> Matrix<T> {
+  public func map2<T>(_ transform: (Element) -> T) -> Matrix<T> {
     let items = self.map(transform)
     return Matrix<T>(items, size: self.size)
   }
@@ -210,38 +216,6 @@ extension Matrix: CustomStringConvertible, LosslessStringConvertible where Eleme
     cols = counts.first ?? 0
     size = Size(rows, cols)
     entries = CollectionType(lines.joined().map {$0 == "." ? nil : $0})
-  }
-  /// Return the words written on the board
-  func words(_ dir: Direction, lines: Range<Int>? = nil) -> [[String]] {
-    switch dir {
-    case .Horizontal:
-      let lines = lines ?? 0..<size.m
-      return lines.map({self[row: $0].words()})
-    case .Vertical:
-      let lines = lines ?? 0..<size.n
-      return lines.map({self[column: $0].words()})
-    }
-  }
-  /// Return the words written on the board
-  func words(_ dir: Direction, lines: Range<Int>? = nil, around: Int? = nil) -> [String] {
-    var words = [String]()
-    switch dir {
-    case .Horizontal:
-      let lines = lines ?? 0..<size.m
-      let around = around ?? size.n/2
-      for line in lines {
-        let row = Array(self[row: line])
-        if let word = row.word(around: around) {words.append(word)}
-      }
-    case .Vertical:
-      let lines = lines ?? 0..<size.n
-      let around = around ?? size.m/2
-      for line in lines {
-        let column = self[column: line]
-        if let word = column.word(around: around) {words.append(word)}
-      }
-    }
-    return words
   }
 }
 

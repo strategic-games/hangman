@@ -22,16 +22,19 @@ public protocol DyadicGame: BoardGame {
 
 /// A begriffix game
 public struct Begriffix: DyadicGame {
+  public typealias Letter = Unicode.Scalar
+  public typealias Word = [Letter]
+  public typealias Pattern = [Letter?]
   /// A begriffix move
   public struct Move {
     /// The place where the word should be written
     public let place: Place
     /// The word to write in this move
-    public let word: String
+    public let word: Word
     /// The collection which the move has been selected from
-    public let places: [Place:[String]]?
+    public let places: [Place:[Word]]?
     /// Initialize a move with given values
-    public init(place: Place, word: String, places: [Place:[String]]? = nil) {
+    public init(place: Place, word: Word, places: [Place:[Word]]? = nil) {
       self.place = place
       self.word = word
       self.places = places
@@ -48,7 +51,7 @@ public struct Begriffix: DyadicGame {
   }
   /// Some human-generated start letters
   public static let startLetters: [StaticString] = ["laer", "jaul", "kiod", "osni", "brau", "teoc", "ziaf", "prau", "muah", "wuag", "roed", "kanu", "giut", "fued", "ingo", "ehmo", "pois", "biel", "ormi"]
-  public var board: Matrix<Character?>
+  public var board: Matrix<Letter?>
   private var numericalBoard: Matrix<Int> {
     return board.map2 {$0 != nil ? 1 : 0}
   }
@@ -70,7 +73,7 @@ public struct Begriffix: DyadicGame {
     else {return .KnockOut}
   }
   /// Initialize a new begriffix game with given players
-  public init(startLetters: [[Board.Element]], starter: Player, opponent: Player) {
+  public init(startLetters: [[Letter?]], starter: Player, opponent: Player) {
     board = Board(repeating: nil, size: Dimensions(8))
     board[Position(3, 3), Dimensions(2, 2)] = Board(startLetters)
     self.starter = starter
@@ -118,11 +121,16 @@ public struct Begriffix: DyadicGame {
     }
   }
   /// Return the words crossing the given place after inserting a given word
-  func words(orthogonalTo place: Place, word: String) -> [String] {
+  func words(orthogonalTo place: Place, word: Word) -> [Word] {
     var board = self.board
-    board[place] = Array(word)
+    board[place] = word
     let (lines, around) = place.lines()
-    return board.words(place.direction.toggled(), lines: lines, around: around)
+    return board.lines(by: place.direction.toggled(), in: lines).compactMap {
+      let r = $0.indices(around: around, surround: nil)
+      if r.count < 3 {return nil}
+      let word = $0[r].compactMap {$0}
+      return word
+    }
   }
   /// Indicate if the given place is usable
   public func contains(place: Place) -> Bool {
@@ -130,28 +138,21 @@ public struct Begriffix: DyadicGame {
   }
 }
 
-extension RandomAccessCollection where Element == Character?, Index == Int {
-  /// Find the words in a sequence (at least 3 letters), separated by nil
-  func words() -> [String] {
-    return self.split(separator: nil).map({w in String(w.compactMap({$0}))}).filter {$0.count > 2}
-  }
-  /// Find the word in a sequence around a given index (nil if less than 3 letters)
-  func word(around i: Index) -> String? {
+extension BidirectionalCollection where Element: Equatable {
+  /// Returns the indices around a given index to return a slice that is surrounded by a given element
+  func indices(around i: Index, surround: Element) -> Range<Index> {
     precondition(indices.contains(i), "i out of bounds")
     var start = i
     var end = i
     while start > startIndex {
       let next = index(before: start)
-      if self[next] == nil {break}
+      if self[next] == surround {break}
       start = next
     }
     while end < endIndex {
       formIndex(after: &end)
-      if end == endIndex || self[end] == nil {break}
+      if end == endIndex || self[end] == surround {break}
     }
-    let r = start..<end
-    if r.count <= 2 {return nil}
-    let letters = self[r]
-    return String(letters.compactMap {$0})
+    return start..<end
   }
 }
