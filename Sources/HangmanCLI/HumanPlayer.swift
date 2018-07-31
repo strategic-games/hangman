@@ -30,11 +30,4 @@ struct HumanPlayer: Player {
   }
 }
 
-extension ConvertibleFromString where Self: LosslessStringConvertible {
-  public static func convert(from: String) -> Self? {
-    return Self(from)
-  }
-}
-
- extension Position: ConvertibleFromString {}
-
+extension Position: ConvertibleFromString {}

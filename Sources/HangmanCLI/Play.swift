@@ -18,7 +18,7 @@ class PlayCommand: Command {
     let file = URL(fileURLWithPath: input.value ?? "Resources/dictionaries/german.txt")
     let content = try String(contentsOf: file).lowercased()
     let radix = Radix(text: content)
-    let startLetters: [[Unicode.Scalar]] = [["l","a"],["e","r"]]
+    let startLetters: [[Unicode.Scalar]] = [["l", "a"], ["e", "r"]]
     if auto.value == true {
       let times = self.times.value ?? 1
       let starter = RandomPlayer(vocabulary: radix)

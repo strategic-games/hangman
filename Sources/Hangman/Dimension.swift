@@ -78,19 +78,19 @@ extension Dimensions: Comparable {
 
 extension Dimensions {
   /// Add two dimensions
-  static func +(lhs: Dimensions, rhs: Dimensions) -> Dimensions {
+  static func + (lhs: Dimensions, rhs: Dimensions) -> Dimensions {
     return Dimensions(lhs.m+rhs.m, lhs.n+rhs.n)
   }
   /// Subtract a dimension from another
-  static func -(lhs: Dimensions, rhs: Dimensions) -> Dimensions {
+  static func - (lhs: Dimensions, rhs: Dimensions) -> Dimensions {
     return Dimensions(lhs.m-rhs.m, lhs.n-rhs.n)
   }
   /// Add a dimension and a scalar
-  static func +(lhs: Dimensions, rhs: Int) -> Dimensions {
+  static func + (lhs: Dimensions, rhs: Int) -> Dimensions {
     return Dimensions(lhs.m+rhs, lhs.n+rhs)
   }
   /// Subtract a scalar from a dimension
-  static func -(lhs: Dimensions, rhs: Int) -> Dimensions {
+  static func - (lhs: Dimensions, rhs: Int) -> Dimensions {
     return Dimensions(lhs.m-rhs, lhs.n-rhs)
   }
 }

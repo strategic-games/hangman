@@ -32,9 +32,9 @@ public struct Begriffix: DyadicGame {
     /// The word to write in this move
     public let word: Word
     /// The collection which the move has been selected from
-    public let places: [Place:[Word]]?
+    public let places: [Place: [Word]]?
     /// Initialize a move with given values
-    public init(place: Place, word: Word, places: [Place:[Word]]? = nil) {
+    public init(place: Place, word: Word, places: [Place: [Word]]? = nil) {
       self.place = place
       self.word = word
       self.places = places
@@ -66,11 +66,9 @@ public struct Begriffix: DyadicGame {
   var ended: Bool = false
   /// The current game phase which is derived from turn
   public var phase: Phase {
-    if turn == 0 {
-      return .Restricted(playerIndex ? .Horizontal : .Vertical)
-    }
+    if turn == 0 {return .Restricted(playerIndex ? .Horizontal : .Vertical)}
     if turn <= 5 {return .Liberal}
-    else {return .KnockOut}
+    return .KnockOut
   }
   /// Initialize a new begriffix game with given players
   public init(startLetters: [[Letter?]], starter: Player, opponent: Player) {

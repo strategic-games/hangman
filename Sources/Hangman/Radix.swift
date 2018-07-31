@@ -5,11 +5,11 @@ public final class Radix: CustomStringConvertible, Equatable, Hashable, Comparab
   public typealias ChildrenType = SortedSet<Radix>
   // MARK: Comparison Operators
   /// Test equality of two nodes, respecting only the label
-  public static func ==(lhs: Radix, rhs: Radix) -> Bool {
+  public static func == (lhs: Radix, rhs: Radix) -> Bool {
     return lhs.label.elementsEqual(rhs.label)
   }
   /// Test order of two nodes, respecting only the label
-  public static func <(lhs: Radix, rhs: Radix) -> Bool {
+  public static func < (lhs: Radix, rhs: Radix) -> Bool {
     return lhs.label.lexicographicallyPrecedes(rhs.label)
   }
   // MARK: Properties
@@ -79,13 +79,11 @@ public final class Radix: CustomStringConvertible, Equatable, Hashable, Comparab
       } else if i == child.label.endIndex {
         return child.insert(Label(key[i...]))
       } else if i == key.endIndex {
-        //let newChild = child.split(prefix: key, keySuffix: Label(child.label[i...]))
         let newChild = child.split(at: i)
         children.remove(child)
         children.insert(newChild)
         return (true, newChild)
       } else {
-        //let newChild = child.diverge(prefix: Label(child.label[..<i]), keySuffix: Label(child.label[i...]), searchSuffix: Label(key[i...]))
         let newChild = child.diverge(newMember: key, at: i)
         children.remove(child)
         children.insert(newChild)

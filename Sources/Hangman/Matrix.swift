@@ -1,7 +1,7 @@
 /// A generic matrix type
 public struct Matrix<Element>: MutableCollection, RandomAccessCollection {
   /// The type of the collection which is used internally for the matrix entries
-  public typealias CollectionType = Array<Element>
+  public typealias CollectionType = [Element]
   /// A type which keeps track of matrix dimensions and 1D indices
   typealias Size = Dimensions
   // MARK: Stored properties
@@ -91,10 +91,8 @@ public struct Matrix<Element>: MutableCollection, RandomAccessCollection {
   }
   /// Return a matrix slice with a given size and reference position
   subscript(_ start: Position, _ size: Size) -> [Slice<Matrix<Element>>] {
-    get {
-      let idx = self.size.index(start, size: size)
-      return idx.map({self[$0]})
-    }
+    let idx = self.size.index(start, size: size)
+    return idx.map({self[$0]})
   }
   /// Return a matrix slice with given size and start position as matrix
   subscript(_ start: Position, _ size: Size) -> Matrix<Element> {
@@ -153,7 +151,7 @@ public struct Matrix<Element>: MutableCollection, RandomAccessCollection {
 // MARK: Number specific stuff
 extension Matrix where Element: Numeric {
   /// Elementwise matrix multiplication
-  static func *(lhs: Matrix, rhs: Matrix) -> Matrix {
+  static func * (lhs: Matrix, rhs: Matrix) -> Matrix {
     return Matrix(zip(lhs.entries, rhs.entries).map(*), size: lhs.size)
   }
   /// 2D convolution with numeric elements
@@ -225,7 +223,7 @@ extension Sequence where Element: Numeric {
     return self.reduce(0, +)
   }
   /// Multiply two sequences elementwise
-  static func *(lhs: Self, rhs: Self) -> [Self.Element] {
+  static func * (lhs: Self, rhs: Self) -> [Self.Element] {
     return zip(lhs, rhs).map(*)
   }
   /// Multiply two sequences elementwise and sum up the products

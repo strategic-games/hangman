@@ -4,7 +4,7 @@ import XCTest
 class MatrixTests: XCTestCase {
 
   var raw = ""
-  var matrix: Matrix<Character?>? = nil
+  var matrix: Matrix<Character?>?
   override func setUp() {
     raw = """
 ...zh...
