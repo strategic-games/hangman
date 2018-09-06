@@ -5,14 +5,14 @@ import Utility
 public struct DefaultPlayer: BegriffixPlayer {
   static var dict = loadDict()
   static func loadDict() -> Radix {
-    //let file = URL(fileURLWithPath: input.value ?? "Resources/dictionaries/german.txt")
-    //let content = try String(contentsOf: file).lowercased()
-    //let radix = Radix(text: content)
-    print(WordList.ScrabbleDict.url?.description ?? "none")
     let radix = Radix()
+    guard let str = WordList.ScrabbleDict.load() else {return radix}
+    str.lowercased().unicodeScalars
+    .split(separator: "\n")
+      .forEach {radix.insert(Array($0))}
     return radix
   }
-  /// Initialize a new player with a given id and vocabulary
+  /// Initialize a new player
   public init() {}
   public func move(_ game: Begriffix) -> Begriffix.Move? {
     guard let places = game.find() else {return nil}
