@@ -1,5 +1,6 @@
 import XCTest
-@testable import Hangman
+import Utility
+@testable import Games
 
 class BegriffixTests: XCTestCase {
   func testStartLetters() {
@@ -23,12 +24,8 @@ class BegriffixTests: XCTestCase {
     XCTAssertEqual(area.columns, 3..<4)
   }
   func testPerformance() {
-    let b = Bundle(for: Radix.self)
-    guard let url = b.url(forResource: "dictionaries/german", withExtension: "txt") else {return}
-    guard let content = try? String(contentsOf: url, encoding: .utf8) else {return}
-    let radix = Radix(text: content.lowercased())
     let startLetters: [[Unicode.Scalar?]] = [["l", "a"], ["e", "r"]]
-    let player = RandomPlayer(vocabulary: radix)
+    let player = DefaultPlayer()
     let game = Begriffix(startLetters: startLetters, starter: player, opponent: player)!
     measure {
       _ = game.map {$0.1.word}

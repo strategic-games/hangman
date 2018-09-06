@@ -1,5 +1,5 @@
 import XCTest
-@testable import Hangman
+@testable import Utility
 
 class Index2DTests: XCTestCase {
   var areas = [Area]()

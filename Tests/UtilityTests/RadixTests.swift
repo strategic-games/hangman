@@ -1,14 +1,15 @@
 import XCTest
-@testable import Hangman
+@testable import Utility
 
 final class RadixTests: XCTestCase {
   let word = ""
   let range = 3...5
   let pattern = "????zh????"
-  var dict: Set<String>?
+  var dict: [[Unicode.Scalar]]?
   var radix: Radix?
   override func setUp() {
-    dict = DictHelper.loadData("german")
+    let str = WordList.ScrabbleDict.load()
+    dict = str?.unicodeScalars.split(separator: "\n").map {Array($0)}
     if let tmp = self.dict {
       let radix = Radix()
       for x in tmp {
@@ -37,7 +38,7 @@ final class RadixTests: XCTestCase {
   }
     func testAnagramm() {
         guard let radix = self.radix, let dict = self.dict else {return}
-        let words = dict.map {String($0.reversed())}
+        let words = dict.map {Array($0.reversed())}
         var counter: Int = 0
         measure {
             for w in words {
@@ -47,7 +48,6 @@ final class RadixTests: XCTestCase {
                 }
             }
         }
-        print(counter)
     }
   func testDescending() {
     let radix = Radix()

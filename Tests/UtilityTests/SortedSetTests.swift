@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import Hangman
+@testable import Utility
 
 class SortedSetTests: XCTestCase {
 
@@ -20,7 +20,8 @@ class SortedSetTests: XCTestCase {
 
     func testInsert() {
       var x = SortedSet<String>()
-      guard let dict = DictHelper.loadData("german") else {return}
+      guard let str = WordList.ScrabbleDict.load() else {return}
+      let dict = str.split(separator: "\n").map {String($0)}
       for w in dict.prefix(10) {
         XCTAssertFalse(x.contains(w))
         x.insert(w)
@@ -28,7 +29,8 @@ class SortedSetTests: XCTestCase {
       }
     }
   func testRemove() {
-    guard let dict = DictHelper.loadData("german") else {return}
+    guard let str = WordList.ScrabbleDict.load() else {return}
+    let dict = str.split(separator: "\n").map {String($0)}
     let words = dict.prefix(10)
     var x = SortedSet<String>(words)
     for w in words {

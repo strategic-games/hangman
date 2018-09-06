@@ -1,5 +1,5 @@
 import XCTest
-@testable import Hangman
+@testable import Utility
 
 class MatrixTests: XCTestCase {
   var raw = ""
