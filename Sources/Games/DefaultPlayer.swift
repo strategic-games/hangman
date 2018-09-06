@@ -8,7 +8,7 @@ public struct DefaultPlayer: BegriffixPlayer {
     //let file = URL(fileURLWithPath: input.value ?? "Resources/dictionaries/german.txt")
     //let content = try String(contentsOf: file).lowercased()
     //let radix = Radix(text: content)
-    print(Bundle(for: Radix.self).url(forResource: "german", withExtension: "txt", subdirectory: "Resources/dictionaries")?.description ?? "none")
+    print(Bundle(for: Radix.self).url(forResource: "german", withExtension: "txt", subdirectory: "dictionaries")?.description ?? "none")
     let radix = Radix()
     return radix
   }
