@@ -6,7 +6,8 @@ public enum WordList: String {
   case English = "english"
   case Derewo = "derewo-v-100000t-2009-04-30-0.1"
   public var url: URL? {
-    return Bundle(path: "hangman")?
-      .url(forResource: self.rawValue, withExtension: "txt", subdirectory: "dictionaries")
+    return URL(fileURLWithPath: "dictionaries/\(self.rawValue).txt")
+    //return Bundle(path: "hangman")?
+      //.url(forResource: self.rawValue, withExtension: "txt", subdirectory: "dictionaries")
   }
 }
