@@ -14,7 +14,7 @@
     <a title="Matrix Structure Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Hangman Docs</a> (95% documented)</p>
+        <p><a href="../index.html">Hangman Docs</a> (94% documented)</p>
         <p class="header-right"><a href="https:://github.com/strategyc-games/hangman"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -40,24 +40,16 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Enums.html">Enumerations</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="../Enums/Direction.html">Direction</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Extensions/Array.html">Array</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/Collection.html">Collection</a>
+                <a href="../Extensions/BidirectionalCollection.html">BidirectionalCollection</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/RandomAccessCollection.html">RandomAccessCollection</a>
+                <a href="../Extensions/Collection.html">Collection</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Sequence.html">Sequence</a>
@@ -82,7 +74,16 @@
             <a href="../Structs.html">Structures</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Structs/Area.html">Area</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/Begriffix.html">Begriffix</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Begriffix/Direction.html">– Direction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Begriffix/Place.html">– Place</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Begriffix/Move.html">– Move</a>
@@ -91,16 +92,10 @@
                 <a href="../Structs/Begriffix/Phase.html">– Phase</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Dimensions.html">Dimensions</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Structs/Matrix.html">Matrix</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Place.html">Place</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Structs/Position.html">Position</a>
+                <a href="../Structs/Point.html">Point</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/RandomPlayer.html">RandomPlayer</a>
@@ -118,22 +113,29 @@
             <h1>Matrix</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Matrix</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">Hashable</span> <span class="k">where</span> <span class="kt">Element</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Matrix</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                 </div>
               </div>
-            <p>A generic matrix type</p>
+            <p>A 2D grid for game boards etc.</p>
 
           </section>
           <section class="section task-group-section">
             <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Properties"></a>
+                <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
+                <a href="#/Properties">
+                  <h3 class="section-name">Properties</h3>
+                </a>
+              </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Hangman6MatrixV14CollectionTypea"></a>
-                    <a name="//apple_ref/swift/Alias/CollectionType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixV14CollectionTypea">CollectionType</a>
+                    <a name="/s:7Hangman6MatrixV4rowsSivp"></a>
+                    <a name="//apple_ref/swift/Property/rows" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman6MatrixV4rowsSivp">rows</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -141,14 +143,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The type of the collection which is used internally for the matrix entries</p>
+                        <p>The number of rows and columns</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">CollectionType</span> <span class="o">=</span> <span class="kt">Array</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">rows</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -158,9 +160,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Hangman6MatrixV4Sizea"></a>
-                    <a name="//apple_ref/swift/Alias/Size" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixV4Sizea">Size</a>
+                    <a name="/s:7Hangman6MatrixV11descriptionSSvp"></a>
+                    <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman6MatrixV11descriptionSSvp">description</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -168,14 +170,68 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A type which keeps track of matrix dimensions and 1D indices</p>
+                        <p>A textual representation</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">typealias</span> <span class="kt">Size</span> <span class="o">=</span> <span class="kt"><a href="../Structs/Dimensions.html">Dimensions</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Hangman6MatrixV5countSivp"></a>
+                    <a name="//apple_ref/swift/Property/count" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman6MatrixV5countSivp">count</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The total number of elements</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">count</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Hangman6MatrixV6valuesSayxGvp"></a>
+                    <a name="//apple_ref/swift/Property/values" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman6MatrixV6valuesSayxGvp">values</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The elements as rowwise array</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">values</span><span class="p">:</span> <span class="p">[</span><span class="kt">Element</span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -186,19 +242,19 @@
             </div>
             <div class="task-group">
               <div class="task-name-container">
-                <a name="/Stored%20properties"></a>
-                <a name="//apple_ref/swift/Section/Stored properties" class="dashAnchor"></a>
-                <a href="#/Stored%20properties">
-                  <h3 class="section-name">Stored properties</h3>
+                <a name="/Initializers"></a>
+                <a name="//apple_ref/swift/Section/Initializers" class="dashAnchor"></a>
+                <a href="#/Initializers">
+                  <h3 class="section-name">Initializers</h3>
                 </a>
               </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Hangman6MatrixV4sizeAA10DimensionsVvp"></a>
-                    <a name="//apple_ref/swift/Property/size" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixV4sizeAA10DimensionsVvp">size</a>
+                    <a name="/s:7Hangman6MatrixV6values4rows7columnsACyxGSayxG_S2itcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(values:rows:columns:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman6MatrixV6values4rows7columnsACyxGSayxG_S2itcfc">init(values:rows:columns:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -206,14 +262,122 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The matrix dimensions</p>
+                        <p>Initialize new with values and dimensions</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Structs/Matrix.html#/s:7Hangman6MatrixV4Sizea">Size</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">values</span><span class="p">:</span> <span class="p">[</span><span class="kt">Element</span><span class="p">],</span> <span class="nv">rows</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">columns</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Hangman6MatrixV6values4areaACyxGSayxG_AA4AreaVtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(values:area:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman6MatrixV6values4areaACyxGSayxG_AA4AreaVtcfc">init(values:area:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initialize with values and the dimensions of a given area</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">values</span><span class="p">:</span> <span class="p">[</span><span class="kt">Element</span><span class="p">],</span> <span class="nv">area</span><span class="p">:</span> <span class="kt"><a href="../Structs/Area.html">Area</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Hangman6MatrixV6valuesACyxGSgSaySayxGG_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(values:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman6MatrixV6valuesACyxGSgSaySayxGG_tcfc">init(values:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initialize with a nested array</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">values</span><span class="p">:</span> <span class="p">[[</span><span class="kt">Element</span><span class="p">]])</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Hangman6MatrixV9repeating4rows7columnsACyxGx_S2itcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(repeating:rows:columns:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman6MatrixV9repeating4rows7columnsACyxGx_S2itcfc">init(repeating:rows:columns:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initialize with a repeated value and dimensions</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">repeating</span><span class="p">:</span> <span class="kt">Element</span><span class="p">,</span> <span class="nv">rows</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">columns</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Hangman6MatrixV9repeating4areaACyxGx_AA4AreaVtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(repeating:area:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman6MatrixV9repeating4areaACyxGx_AA4AreaVtcfc">init(repeating:area:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initialize with a repeated value and dimensions from a given area</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">repeating</span><span class="p">:</span> <span class="kt">Element</span><span class="p">,</span> <span class="nv">area</span><span class="p">:</span> <span class="kt"><a href="../Structs/Area.html">Area</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -224,19 +388,509 @@
             </div>
             <div class="task-group">
               <div class="task-name-container">
-                <a name="/Create%20matrices"></a>
-                <a name="//apple_ref/swift/Section/Create matrices" class="dashAnchor"></a>
-                <a href="#/Create%20matrices">
-                  <h3 class="section-name">Create matrices</h3>
+                <a name="/Subscripts"></a>
+                <a name="//apple_ref/swift/Section/Subscripts" class="dashAnchor"></a>
+                <a href="#/Subscripts">
+                  <h3 class="section-name">Subscripts</h3>
                 </a>
               </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Hangman6MatrixVyACyxGSaySayxGGcfc"></a>
+                    <a name="/s:7Hangman6MatrixVyxSi_Sitcip"></a>
+                    <a name="//apple_ref/swift/Method/subscript(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman6MatrixVyxSi_Sitcip">subscript(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Access the element at the given position</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">row</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">column</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Element</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Hangman6MatrixVyxAA5PointVcip"></a>
+                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman6MatrixVyxAA5PointVcip">subscript(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Access the element at the given point</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">point</span><span class="p">:</span> <span class="kt"><a href="../Structs/Point.html">Point</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Element</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Hangman6MatrixVyACyxGSnySiG_AEtcip"></a>
+                    <a name="//apple_ref/swift/Method/subscript(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman6MatrixVyACyxGSnySiG_AEtcip">subscript(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Access the elements in the given ranges</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">rows</span><span class="p">:</span> <span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">columns</span><span class="p">:</span> <span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Matrix</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Hangman6MatrixVySays10ArraySliceVyxGGSnySiG_AHtcip"></a>
+                    <a name="//apple_ref/swift/Method/subscript(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman6MatrixVySays10ArraySliceVyxGGSnySiG_AHtcip">subscript(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Access the elements in the given ranges</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">rows</span><span class="p">:</span> <span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">columns</span><span class="p">:</span> <span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">ArraySlice</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Hangman6MatrixVySayxGSnySiG_AEtcip"></a>
+                    <a name="//apple_ref/swift/Method/subscript(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman6MatrixVySayxGSnySiG_AEtcip">subscript(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Access the elements in the given ranges</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">rows</span><span class="p">:</span> <span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">columns</span><span class="p">:</span> <span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Element</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Hangman6MatrixVyACyxGAA4AreaVcip"></a>
+                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman6MatrixVyACyxGAA4AreaVcip">subscript(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Access the elements in the given area</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">area</span><span class="p">:</span> <span class="kt"><a href="../Structs/Area.html">Area</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Matrix</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Hangman6MatrixVySays10ArraySliceVyxGGAA4AreaVcip"></a>
+                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman6MatrixVySays10ArraySliceVyxGGAA4AreaVcip">subscript(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Access the elements in the given area</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">area</span><span class="p">:</span> <span class="kt"><a href="../Structs/Area.html">Area</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">ArraySlice</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Hangman6MatrixV3rowys10ArraySliceVyxGSiF"></a>
+                    <a name="//apple_ref/swift/Method/row(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman6MatrixV3rowys10ArraySliceVyxGSiF">row(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the elements in the given row</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">row</span><span class="p">(</span><span class="n">_</span> <span class="nv">i</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">ArraySlice</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Hangman6MatrixV6columnySayxGSiF"></a>
+                    <a name="//apple_ref/swift/Method/column(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman6MatrixV6columnySayxGSiF">column(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the elements in the given column</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">column</span><span class="p">(</span><span class="n">_</span> <span class="nv">j</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Element</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Hangman6MatrixV7rowwise2inSaySayxGGSnySiGSg_tF"></a>
+                    <a name="//apple_ref/swift/Method/rowwise(in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman6MatrixV7rowwise2inSaySayxGGSnySiGSg_tF">rowwise(in:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get the elements row by row</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">rowwise</span><span class="p">(</span><span class="k">in</span> <span class="nv">indices</span><span class="p">:</span> <span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[[</span><span class="kt">Element</span><span class="p">]]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Hangman6MatrixV7colwise2inSaySayxGGSnySiGSg_tF"></a>
+                    <a name="//apple_ref/swift/Method/colwise(in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman6MatrixV7colwise2inSaySayxGGSnySiGSg_tF">colwise(in:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get the elements column by column</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">colwise</span><span class="p">(</span><span class="k">in</span> <span class="nv">indices</span><span class="p">:</span> <span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[[</span><span class="kt">Element</span><span class="p">]]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Hangman6MatrixV5index3row6columnS2i_SitF"></a>
+                    <a name="//apple_ref/swift/Method/index(row:column:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman6MatrixV5index3row6columnS2i_SitF">index(row:column:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convert coordinates to array index</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">index</span><span class="p">(</span><span class="nv">row</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">column</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Hangman6MatrixV5index5pointSiAA5PointV_tF"></a>
+                    <a name="//apple_ref/swift/Method/index(point:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman6MatrixV5index5pointSiAA5PointV_tF">index(point:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convert point to array index</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">index</span><span class="p">(</span><span class="nv">point</span><span class="p">:</span> <span class="kt"><a href="../Structs/Point.html">Point</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Hangman6MatrixV5point2ofAA5PointVSi_tF"></a>
+                    <a name="//apple_ref/swift/Method/point(of:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman6MatrixV5point2ofAA5PointVSi_tF">point(of:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convert array index to point</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">point</span><span class="p">(</span><span class="n">of</span> <span class="nv">i</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Point.html">Point</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Hangman6MatrixV7indices4rows7columnsSaySnySiGGAG_AGtF"></a>
+                    <a name="//apple_ref/swift/Method/indices(rows:columns:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman6MatrixV7indices4rows7columnsSaySnySiGGAG_AGtF">indices(rows:columns:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convert 2D ranges to array indices</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">indices</span><span class="p">(</span><span class="nv">rows</span><span class="p">:</span> <span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">columns</span><span class="p">:</span> <span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Hangman6MatrixV7isValid3row6columnSbSi_SitF"></a>
+                    <a name="//apple_ref/swift/Method/isValid(row:column:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman6MatrixV7isValid3row6columnSbSi_SitF">isValid(row:column:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Indicate if a matrix contains the given coordinates</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">isValid</span><span class="p">(</span><span class="nv">row</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">column</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Hangman6MatrixV7isValid4rows7columnsSbSnySiG_AGtF"></a>
+                    <a name="//apple_ref/swift/Method/isValid(rows:columns:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman6MatrixV7isValid4rows7columnsSbSnySiG_AGtF">isValid(rows:columns:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Indicate if a matrix contains the given 2D range</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">isValid</span><span class="p">(</span><span class="nv">rows</span><span class="p">:</span> <span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">columns</span><span class="p">:</span> <span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Hangman6MatrixVAAs7UnicodeO6ScalarVSgRszlE11descriptionSSvp"></a>
+                    <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman6MatrixVAAs7UnicodeO6ScalarVSgRszlE11descriptionSSvp">description</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A textual 2D representation with dot for empty fields</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Hangman6MatrixVAAs7UnicodeO6ScalarVSgRszlEyACyAHGSgSScfc"></a>
                     <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixVyACyxGSaySayxGGcfc">init(_:)</a>
+                    <a class="token" href="#/s:7Hangman6MatrixVAAs7UnicodeO6ScalarVSgRszlEyACyAHGSgSScfc">init(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -244,78 +898,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Create matrix from nested arrays</p>
-<div class="aside aside-precondition">
-    <p class="aside-title">Precondition</p>
-    Inner arrays must have same length
-
-</div>
+                        <p>Initialize from 2D description</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">entries</span><span class="p">:</span> <span class="p">[[</span><span class="kt">Element</span><span class="p">]])</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Hangman6MatrixV9repeating4sizeACyxGx_AA10DimensionsVtcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(repeating:size:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixV9repeating4sizeACyxGx_AA10DimensionsVtcfc">init(repeating:size:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Create matrix with given size and prefill with repeating value</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="nv">repeating</span><span class="p">:</span> <span class="kt">Element</span><span class="p">,</span> <span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Structs/Matrix.html#/s:7Hangman6MatrixV4Sizea">Size</a></span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Hangman6MatrixV_4sizeACyxGSayxG_AA10DimensionsVtcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(_:size:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixV_4sizeACyxGSayxG_AA10DimensionsVtcfc">init(_:size:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Create matrix from simple array and given size</p>
-<div class="aside aside-precondition">
-    <p class="aside-title">Precondition</p>
-    Array and size must have same count
-
-</div>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">entries</span><span class="p">:</span> <span class="p">[</span><span class="kt">Element</span><span class="p">],</span> <span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Structs/Matrix.html#/s:7Hangman6MatrixV4Sizea">Size</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="n">_</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -325,408 +915,13 @@
               </ul>
             </div>
             <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Adopt%20protocols"></a>
-                <a name="//apple_ref/swift/Section/Adopt protocols" class="dashAnchor"></a>
-                <a href="#/Adopt%20protocols">
-                  <h3 class="section-name">Adopt protocols</h3>
-                </a>
-              </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Hangman6MatrixV5Indexa"></a>
-                    <a name="//apple_ref/swift/Alias/Index" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixV5Indexa">Index</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The collection index type</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Index</span> <span class="o">=</span> <span class="kt"><a href="../Structs/Matrix.html#/s:7Hangman6MatrixV14CollectionTypea">CollectionType</a></span><span class="o">.</span><span class="kt">Index</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Hangman6MatrixV10startIndexSivp"></a>
-                    <a name="//apple_ref/swift/Property/startIndex" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixV10startIndexSivp">startIndex</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The first 1D index</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">startIndex</span><span class="p">:</span> <span class="kt"><a href="../Structs/Matrix.html#/s:7Hangman6MatrixV5Indexa">Index</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Hangman6MatrixV8endIndexSivp"></a>
-                    <a name="//apple_ref/swift/Property/endIndex" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixV8endIndexSivp">endIndex</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The last 1D index</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">endIndex</span><span class="p">:</span> <span class="kt"><a href="../Structs/Matrix.html#/s:7Hangman6MatrixV5Indexa">Index</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Hangman6MatrixVyxSicip"></a>
-                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixVyxSicip">subscript(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Access a matrix element at a given 1D index</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">index</span><span class="p">:</span> <span class="kt"><a href="../Structs/Matrix.html#/s:7Hangman6MatrixV5Indexa">Index</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Element</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Hangman6MatrixV5index5afterS2i_tF"></a>
-                    <a name="//apple_ref/swift/Method/index(after:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixV5index5afterS2i_tF">index(after:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Return the 1D index after a given 1D index</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">index</span><span class="p">(</span><span class="n">after</span> <span class="nv">i</span><span class="p">:</span> <span class="kt"><a href="../Structs/Matrix.html#/s:7Hangman6MatrixV5Indexa">Index</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Matrix.html#/s:7Hangman6MatrixV5Indexa">Index</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Hangman6MatrixV5index6beforeS2i_tF"></a>
-                    <a name="//apple_ref/swift/Method/index(before:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixV5index6beforeS2i_tF">index(before:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Return the 1D index before a given 1D index</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">index</span><span class="p">(</span><span class="n">before</span> <span class="nv">i</span><span class="p">:</span> <span class="kt"><a href="../Structs/Matrix.html#/s:7Hangman6MatrixV5Indexa">Index</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Matrix.html#/s:7Hangman6MatrixV5Indexa">Index</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Matrix%20subscripts"></a>
-                <a name="//apple_ref/swift/Section/Matrix subscripts" class="dashAnchor"></a>
-                <a href="#/Matrix%20subscripts">
-                  <h3 class="section-name">Matrix subscripts</h3>
-                </a>
-              </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Hangman6MatrixVyxAA8PositionVcip"></a>
-                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixVyxAA8PositionVcip">subscript(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Return the matrix element at a given position</p>
-<div class="aside aside-precondition">
-    <p class="aside-title">Precondition</p>
-    The position must be in the bounds of the matrix dimensions
-
-</div>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="nf">subscript</span><span class="p">(</span><span class="nv">position</span><span class="p">:</span> <span class="kt"><a href="../Structs/Position.html">Position</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Element</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Hangman6MatrixV3rows5SliceVyACyxGGSi_tcip"></a>
-                    <a name="//apple_ref/swift/Method/subscript(row:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixV3rows5SliceVyACyxGGSi_tcip">subscript(row:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Return the elements in a given matrix row as slice</p>
-<div class="aside aside-precondition">
-    <p class="aside-title">Precondition</p>
-    Row must not exceed dimensions
-
-</div>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="nf">subscript</span><span class="p">(</span><span class="n">row</span> <span class="nv">i</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Slice</span><span class="o">&lt;</span><span class="kt">Matrix</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Hangman6MatrixV6columnSayxGSi_tcip"></a>
-                    <a name="//apple_ref/swift/Method/subscript(column:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixV6columnSayxGSi_tcip">subscript(column:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Return the elements at a given column index as array</p>
-<div class="aside aside-precondition">
-    <p class="aside-title">Precondition</p>
-    column must not exceed dimensions
-
-</div>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="nf">subscript</span><span class="p">(</span><span class="n">column</span> <span class="nv">j</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Element</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Hangman6MatrixVySays5SliceVyACyxGGGAA8PositionV_AA10DimensionsVtcip"></a>
-                    <a name="//apple_ref/swift/Method/subscript(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixVySays5SliceVyACyxGGGAA8PositionV_AA10DimensionsVtcip">subscript(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Return a matrix slice with a given size and reference position</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="nf">subscript</span><span class="p">(</span><span class="nv">start</span><span class="p">:</span> <span class="kt"><a href="../Structs/Position.html">Position</a></span><span class="p">,</span> <span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Structs/Matrix.html#/s:7Hangman6MatrixV4Sizea">Size</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Slice</span><span class="o">&lt;</span><span class="kt">Matrix</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;&gt;</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Hangman6MatrixVyACyxGAA8PositionV_AA10DimensionsVtcip"></a>
-                    <a name="//apple_ref/swift/Method/subscript(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixVyACyxGAA8PositionV_AA10DimensionsVtcip">subscript(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Return a matrix slice with given size and start position as matrix</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="nf">subscript</span><span class="p">(</span><span class="nv">start</span><span class="p">:</span> <span class="kt"><a href="../Structs/Position.html">Position</a></span><span class="p">,</span> <span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Structs/Matrix.html#/s:7Hangman6MatrixV4Sizea">Size</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Matrix</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Hangman6MatrixVySayxGAA5PlaceVcip"></a>
-                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixVySayxGAA5PlaceVcip">subscript(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Subscript a matrix with given place</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="nf">subscript</span><span class="p">(</span><span class="nv">place</span><span class="p">:</span> <span class="kt"><a href="../Structs/Place.html">Place</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Element</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Hangman6MatrixV4map2yACyqd__Gqd__xXESHRd__lF"></a>
-                    <a name="//apple_ref/swift/Method/map2(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixV4map2yACyqd__Gqd__xXESHRd__lF">map2(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Transform the matrix element with a given closure and return them as new matrix</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="n">map2</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">transform</span><span class="p">:</span> <span class="p">(</span><span class="kt">Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Matrix</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Number%20specific%20stuff"></a>
-                <a name="//apple_ref/swift/Section/Number specific stuff" class="dashAnchor"></a>
-                <a href="#/Number%20specific%20stuff">
-                  <h3 class="section-name">Number specific stuff</h3>
-                </a>
-              </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Hangman6MatrixVAASjRzrlE1moiyACyxGAE_AEtFZ"></a>
+                    <a name="/s:7Hangman6MatrixVAASjRzlE1moiyACyxGAE_AEtFZ"></a>
                     <a name="//apple_ref/swift/Method/*(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixVAASjRzrlE1moiyACyxGAE_AEtFZ">*(_:_:)</a>
+                    <a class="token" href="#/s:7Hangman6MatrixVAASjRzlE1moiyACyxGAE_AEtFZ">*(_:_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -751,9 +946,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Hangman6MatrixVAASjRzrlE5conv2yACyxGAEF"></a>
+                    <a name="/s:7Hangman6MatrixVAASjRzlE5conv2yACyxGAEF"></a>
                     <a name="//apple_ref/swift/Method/conv2(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixVAASjRzrlE5conv2yACyxGAEF">conv2(_:)</a>
+                    <a class="token" href="#/s:7Hangman6MatrixVAASjRzlE5conv2yACyxGAEF">conv2(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -778,9 +973,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Hangman6MatrixVAASjRzrlE6extendyACyxGAEF"></a>
+                    <a name="/s:7Hangman6MatrixVAASjRzlE6extendyACyxGAEF"></a>
                     <a name="//apple_ref/swift/Method/extend(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixVAASjRzrlE6extendyACyxGAEF">extend(_:)</a>
+                    <a class="token" href="#/s:7Hangman6MatrixVAASjRzlE6extendyACyxGAEF">extend(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -805,9 +1000,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Hangman6MatrixVAASjRzrlE6dilateyACyxGAEF"></a>
+                    <a name="/s:7Hangman6MatrixVAASjRzlE6dilateyACyxGAEF"></a>
                     <a name="//apple_ref/swift/Method/dilate(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixVAASjRzrlE6dilateyACyxGAEF">dilate(_:)</a>
+                    <a class="token" href="#/s:7Hangman6MatrixVAASjRzlE6dilateyACyxGAEF">dilate(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -832,9 +1027,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Hangman6MatrixVAASjRzrlE6invert3maxACyxGx_tF"></a>
+                    <a name="/s:7Hangman6MatrixVAASjRzlE6invert3maxACyxGx_tF"></a>
                     <a name="//apple_ref/swift/Method/invert(max:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixVAASjRzrlE6invert3maxACyxGx_tF">invert(max:)</a>
+                    <a class="token" href="#/s:7Hangman6MatrixVAASjRzlE6invert3maxACyxGx_tF">invert(max:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -858,129 +1053,10 @@
                 </li>
               </ul>
             </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Text%20input%20and%20output%20for%20matrices%20containing%20game%20entities"></a>
-                <a name="//apple_ref/swift/Section/Text input and output for matrices containing game entities" class="dashAnchor"></a>
-                <a href="#/Text%20input%20and%20output%20for%20matrices%20containing%20game%20entities">
-                  <h3 class="section-name">Text input and output for matrices containing game entities</h3>
-                </a>
-              </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Hangman6MatrixVAASJSgRszrlE11descriptionSSvp"></a>
-                    <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixVAASJSgRszrlE11descriptionSSvp">description</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>A textual description of a game board</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Hangman6MatrixVAASJSgRszrlEyACyADGSgSScfc"></a>
-                    <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixVAASJSgRszrlEyACyADGSgSScfc">init(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Create a game matrix from a string</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="n">_</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Hangman6MatrixVAASJSgRszrlE5words_5linesSaySaySSGGAA9DirectionO_SnySiGSgtF"></a>
-                    <a name="//apple_ref/swift/Method/words(_:lines:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixVAASJSgRszrlE5words_5linesSaySaySSGGAA9DirectionO_SnySiGSgtF">words(_:lines:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Return the words written on the board</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">words</span><span class="p">(</span><span class="n">_</span> <span class="nv">dir</span><span class="p">:</span> <span class="kt"><a href="../Enums/Direction.html">Direction</a></span><span class="p">,</span> <span class="nv">lines</span><span class="p">:</span> <span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[[</span><span class="kt">String</span><span class="p">]]</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Hangman6MatrixVAASJSgRszrlE5words_5lines6aroundSaySSGAA9DirectionO_SnySiGSgSiSgtF"></a>
-                    <a name="//apple_ref/swift/Method/words(_:lines:around:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman6MatrixVAASJSgRszrlE5words_5lines6aroundSaySSGAA9DirectionO_SnySiGSgSiSgtF">words(_:lines:around:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Return the words written on the board</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">words</span><span class="p">(</span><span class="n">_</span> <span class="nv">dir</span><span class="p">:</span> <span class="kt"><a href="../Enums/Direction.html">Direction</a></span><span class="p">,</span> <span class="nv">lines</span><span class="p">:</span> <span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">around</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">Tamara Cook</a>. All rights reserved. (Last updated: 2018-07-30)</p>
+          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">Tamara Cook</a>. All rights reserved. (Last updated: 2018-08-27)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

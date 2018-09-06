@@ -1,10 +1,17 @@
 {
   "warnings": [
     {
-      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/Hangman/Place.swift",
-      "line": 15,
-      "symbol": "Place.positions()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/Hangman/Matrix.swift",
+      "line": 17,
+      "symbol": "Area.indices",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/Hangman/Player.swift",
+      "line": null,
+      "symbol": "Player",
+      "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
@@ -17,6 +24,13 @@
     {
       "file": "/Users/tamaracook/Entwicklung/hangman/Sources/Hangman/Player.swift",
       "line": 2,
+      "symbol": "Player.id",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamaracook/Entwicklung/hangman/Sources/Hangman/Player.swift",
+      "line": 3,
       "symbol": "Player.deal(with:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -37,21 +51,21 @@
     },
     {
       "file": "/Users/tamaracook/Entwicklung/hangman/Sources/Hangman/Radix.swift",
-      "line": 115,
+      "line": 113,
       "symbol": "Radix.contains(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/tamaracook/Entwicklung/hangman/Sources/Hangman/Radix.swift",
-      "line": 118,
+      "line": 116,
       "symbol": "Radix.contains(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/tamaracook/Entwicklung/hangman/Sources/Hangman/RandomPlayer.swift",
-      "line": 9,
+      "line": 14,
       "symbol": "RandomPlayer.deal(with:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

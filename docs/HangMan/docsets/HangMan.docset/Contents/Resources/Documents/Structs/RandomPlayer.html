@@ -14,7 +14,7 @@
     <a title="RandomPlayer Structure Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Hangman Docs</a> (95% documented)</p>
+        <p><a href="../index.html">Hangman Docs</a> (94% documented)</p>
         <p class="header-right"><a href="https:://github.com/strategyc-games/hangman"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -40,24 +40,16 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Enums.html">Enumerations</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="../Enums/Direction.html">Direction</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Extensions/Array.html">Array</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/Collection.html">Collection</a>
+                <a href="../Extensions/BidirectionalCollection.html">BidirectionalCollection</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/RandomAccessCollection.html">RandomAccessCollection</a>
+                <a href="../Extensions/Collection.html">Collection</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Sequence.html">Sequence</a>
@@ -82,7 +74,16 @@
             <a href="../Structs.html">Structures</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Structs/Area.html">Area</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/Begriffix.html">Begriffix</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Begriffix/Direction.html">– Direction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Begriffix/Place.html">– Place</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Begriffix/Move.html">– Move</a>
@@ -91,16 +92,10 @@
                 <a href="../Structs/Begriffix/Phase.html">– Phase</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Dimensions.html">Dimensions</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Structs/Matrix.html">Matrix</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Place.html">Place</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Structs/Position.html">Position</a>
+                <a href="../Structs/Point.html">Point</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/RandomPlayer.html">RandomPlayer</a>
@@ -118,16 +113,43 @@
             <h1>RandomPlayer</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">RandomPlayer</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Player.html">Player</a></span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">RandomPlayer</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Player.html">Player</a></span><span class="p">,</span> <span class="kt">Hashable</span></code></pre>
 
                 </div>
               </div>
-            <p>A Begriffix player</p>
+            <p>A Begriffix player that selects by random</p>
 
           </section>
           <section class="section task-group-section">
             <div class="task-group">
               <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Hangman12RandomPlayerV2idSSvp"></a>
+                    <a name="//apple_ref/swift/Property/id" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman12RandomPlayerV2idSSvp">id</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A unique id for the player</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -158,9 +180,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Hangman12RandomPlayerV10vocabularyAcA5RadixC_tcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(vocabulary:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman12RandomPlayerV10vocabularyAcA5RadixC_tcfc">init(vocabulary:)</a>
+                    <a name="/s:7Hangman12RandomPlayerV2id10vocabularyACSSSg_AA5RadixCtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(id:vocabulary:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Hangman12RandomPlayerV2id10vocabularyACSSSg_AA5RadixCtcfc">init(id:vocabulary:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -168,14 +190,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initialize a new player with a given vocabulary</p>
+                        <p>Initialize a new player with a given id and vocabulary</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">vocabulary</span><span class="p">:</span> <span class="kt"><a href="../Classes/Radix.html">Radix</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">vocabulary</span><span class="p">:</span> <span class="kt"><a href="../Classes/Radix.html">Radix</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -212,9 +234,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Hangman12RandomPlayerV5match_5placeSaySSGAA9BegriffixV_AA5PlaceVtF"></a>
+                    <a name="/s:7Hangman12RandomPlayerV5match_5placeSaySays7UnicodeO6ScalarVGGAA9BegriffixV_AM5PlaceVtF"></a>
                     <a name="//apple_ref/swift/Method/match(_:place:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman12RandomPlayerV5match_5placeSaySSGAA9BegriffixV_AA5PlaceVtF">match(_:place:)</a>
+                    <a class="token" href="#/s:7Hangman12RandomPlayerV5match_5placeSaySays7UnicodeO6ScalarVGGAA9BegriffixV_AM5PlaceVtF">match(_:place:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -229,34 +251,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">match</span><span class="p">(</span><span class="n">_</span> <span class="nv">game</span><span class="p">:</span> <span class="kt"><a href="../Structs/Begriffix.html">Begriffix</a></span><span class="p">,</span> <span class="nv">place</span><span class="p">:</span> <span class="kt"><a href="../Structs/Place.html">Place</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Hangman12RandomPlayerV6select4fromAA9BegriffixV4MoveVSgSDyAA5PlaceVSaySSGG_tF"></a>
-                    <a name="//apple_ref/swift/Method/select(from:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Hangman12RandomPlayerV6select4fromAA9BegriffixV4MoveVSgSDyAA5PlaceVSaySSGG_tF">select(from:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Select a move from valid places and their words</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">select</span><span class="p">(</span><span class="n">from</span> <span class="nv">places</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Place.html">Place</a></span> <span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Begriffix.html">Begriffix</a></span><span class="o">.</span><span class="kt">Move</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">match</span><span class="p">(</span><span class="n">_</span> <span class="nv">game</span><span class="p">:</span> <span class="kt"><a href="../Structs/Begriffix.html">Begriffix</a></span><span class="p">,</span> <span class="nv">place</span><span class="p">:</span> <span class="kt"><a href="../Structs/Begriffix.html">Begriffix</a></span><span class="o">.</span><span class="kt">Place</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Structs/Begriffix.html">Begriffix</a></span><span class="o">.</span><span class="kt">Word</span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -268,7 +263,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">Tamara Cook</a>. All rights reserved. (Last updated: 2018-07-30)</p>
+          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">Tamara Cook</a>. All rights reserved. (Last updated: 2018-08-27)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
