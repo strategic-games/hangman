@@ -1,7 +1,7 @@
 import Foundation
 
 /// Word lists that can be used for verbal games
-public enum WordList: String, CaseIterable {
+public enum WordList: String, CaseIterable, Codable {
   /// A very long german word list from ScrabbleDict
   case ScrabbleDict
   /// The „Wortformenliste“ by Derewo, a german corpus-based project
