@@ -7,8 +7,9 @@ let package = Package(
     name: "hangman",
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
-  .executable(name: "HangmanResearch", targets: ["Research"]),
-    .executable(name: "HangmanPlay", targets: ["Play"])
+  .executable(name: "research", targets: ["Research"]),
+    .executable(name: "play", targets: ["Play"]),
+    .library(name: "BoardGames", targets: ["Games"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
