@@ -5,6 +5,8 @@ public protocol BoardGame: Sequence, IteratorProtocol {
   associatedtype Player
   /// The move type of a game
   associatedtype Move
+  /// A displayable name for the game
+  static var name: String {get}
   /// A game board where values can be entered
   var board: Board {get}
   /// The turn counter

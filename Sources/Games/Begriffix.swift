@@ -92,6 +92,7 @@ public struct Begriffix: DyadicGame {
     case KnockOut
   }
   /// Some human-generated start letters
+  public static let name = "Begriffix"
   public static let startLetters: [StaticString] = ["laer", "jaul", "kiod", "osni", "brau", "teoc", "ziaf", "prau", "muah", "wuag", "roed", "kanu", "giut", "fued", "ingo", "ehmo", "pois", "biel", "ormi"]
   public private(set) var board: Matrix<Letter?>
   private var numericalBoard: Matrix<Int> {
