@@ -26,4 +26,12 @@ public enum WordList: String, CaseIterable, Codable {
     guard let url = self.url else {return nil}
     return try? String(contentsOf: url)
   }
+  /// Returns the loaded word list if loading successfully
+  public func words() -> [[Unicode.Scalar]]? {
+    guard let str = load() else {return nil}
+    return str.lowercased().unicodeScalars
+      .split(separator: "\n")
+      .drop(while: {$0.first == "#"})
+      .map {Array($0.prefix(while: {$0 != " "}))}
+  }
 }
