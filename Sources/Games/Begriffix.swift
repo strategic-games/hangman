@@ -1,7 +1,7 @@
 import Utility
 
 /// A begriffix game
-public struct Begriffix: DyadicGame {
+public struct Begriffix: Game&BoardGame&Trackable {
   /// The type of a letter, can be written at one board position
   public typealias Letter = Unicode.Scalar
   /// The type of a word which is a sequence of letters
@@ -9,78 +9,29 @@ public struct Begriffix: DyadicGame {
   /// A sequence of optional letters, nil means that any letter can be used there
   public typealias Pattern = [Letter?]
   public typealias Board = Matrix<Letter?>
+  public typealias Notify = ((_ status: Status) -> Void)?
+  public typealias Update = (_ game: Begriffix) -> Command
+  public enum Command {
+    case Write(Word, Place)
+    case GiveUp
+  }
+  /// General progress states of a game
+  public enum Status: GameStatus {
+    /// The game has a freshly setup game board
+    case Ready
+    /// Some changes were made to the board
+    case Started
+    /// A player has written a word
+    case moved(Command)
+    /// The game has ended because a player couldn't prrovide a move
+    case Ended
+  }
   /// Errors that can happen when a move is inserted
   public enum MoveError: Error {
     /// The board does not contain this place
     case Place
     /// The word does not fit at the intended place
     case Word
-  }
-  /// The writing direction
-  public enum Direction: CaseIterable {
-    /// From left to right
-    case Horizontal
-    /// from top to bottom
-    case Vertical
-    /// Return a kernel according to this direction and a given length
-    func kernel(_ count: Int) -> Matrix<Int> {
-      switch self {
-      case .Horizontal: return Matrix(repeating: 1, rows: 1, columns: count)
-      case .Vertical: return Matrix(repeating: 1, rows: count, columns: 1)
-      }
-    }
-  }
-  /// A place where a word could be written
-  public struct Place: Hashable {
-    /// The position of the first letter
-    public let start: Point
-    /// The writing direction
-    public let direction: Direction
-    /// The word length
-    public let count: Int
-    /// Initialize a new place
-    public init(start: Point, direction: Direction, count: Int) {
-      self.start = start
-      self.direction = direction
-      self.count = count
-    }
-    /// An area representation of the place for inserting into matrices
-    public var area: Area {
-      switch direction {
-      case .Horizontal:
-        return Area(rows: start.row..<(start.row+1), columns: start.column..<(start.column+count))
-      case .Vertical:
-        return Area(rows: start.row..<(start.row+count), columns: start.column..<(start.column+1))
-      }
-    }
-    /// A matrix filled with 1 according to the area
-    var kernel: Matrix<Int> {return direction.kernel(count)}
-  }
-  /// A begriffix move
-  public struct Move {
-    /// Where the word should be written
-    public let place: Place
-    /// The word to write in this move
-    public let word: Word
-    /// The collection which the move has been selected from
-    public let places: [Place: [Word]]?
-    /// Initialize a move
-    public init(place: Place, word: Word, places: [Place: [Word]]? = nil) {
-      self.place = place
-      self.word = word
-      self.places = places
-    }
-  }
-  /// General progress states of a game
-  public enum State {
-    /// The game has a freshly setup game board
-    case Ready
-    /// Some changes were made to the board
-    case Playing
-    /// The game has ended because a player couldn't prrovide a move
-    case Ended
-    /// An error occured while a move was applied
-    case Crashed(Error)
   }
   /// phases of a game which is currently playing
   public enum Phase {
@@ -91,70 +42,58 @@ public struct Begriffix: DyadicGame {
     /// not yet implemented
     case KnockOut
   }
-  /// Some human-generated start letters
   public static let name = "Begriffix"
-  public static let startLetters: [StaticString] = ["laer", "jaul", "kiod", "osni", "brau", "teoc", "ziaf", "prau", "muah", "wuag", "roed", "kanu", "giut", "fued", "ingo", "ehmo", "pois", "biel", "ormi"]
-  public private(set) var board: Matrix<Letter?>
+  /// How many times the starter and opponent have provided a move
+  public private(set) var turn: Int = 0
+  private var playerIndex: Bool = true
+  public private(set) var board: Board
   private var numericalBoard: Matrix<Int> {
     return Matrix(values: board.values.map({$0 != nil ? 1 : 0}), rows: board.rows, columns: board.columns)
   }
   /// The first player in a turn
-  public let starter: BegriffixPlayer
+  public let starter: Update
   /// The second player in a turn
-  public let opponent: BegriffixPlayer
-  /// How many times the starter and opponent have provided a move
-  public private(set) var turn: Int = 0
-  private var playerIndex: Bool = true
+  public let opponent: Update
   /// The player who would be asked for the next move
-  public var player: BegriffixPlayer {
+  public var player: Update {
     return playerIndex ? starter : opponent
   }
-  /// The playing state of the game, is ready by default
-  public private(set) var state: State = .Ready
   /// The current game phase which is derived from turn
   public var phase: Phase {
     if turn == 0 {return .Restricted(playerIndex ? .Horizontal : .Vertical)}
     if turn <= 5 {return .Liberal}
     return .KnockOut
   }
+  public var notify: ((_ status: Status) -> Void)?
   /// Initialize a new begriffix game with given players
-  public init?(startLetters: [[Letter?]], starter: BegriffixPlayer, opponent: BegriffixPlayer) {
+  public init?(startLetters: [[Letter?]], starter: @escaping(Update), opponent: @escaping(Update)) {
     guard let startLetters = Board(values: startLetters) else {return nil}
     board = Board(repeating: nil, rows: 8, columns: 8)
     board[3..<5, 3..<5] = startLetters
     self.starter = starter
     self.opponent = opponent
   }
-  /// Initialize a new game with given players and randomly selected start letters
-  public init?(starter: BegriffixPlayer, opponent: BegriffixPlayer) {
-    guard let letters = Begriffix.startLetters.randomElement() else {return nil}
-    board = Board(repeating: nil, rows: 8, columns: 8)
-    let subboard: Board = Board(values: Array(letters.description.unicodeScalars), rows: 2, columns: 2)
-    board[3..<5, 3..<5] = subboard
-    self.starter = starter
-    self.opponent = opponent
-  }
-  /// Advance the game for one move
-  public mutating func next() -> (Begriffix, Move)? {
-    guard let move = player.move(self) else {
-      state = .Ended
-      return nil
-    }
-    do {
-      try insert(move)
-    } catch {
-      state = .Crashed(error)
-      return nil
-    }
-    return (self, move)
+  public mutating func play() throws {
+    var ended = false
+    repeat {
+      let cmd = player(self)
+      switch cmd {
+      case let .Write(word, place):
+        try insert(word, at: place)
+        notify?(.moved(cmd))
+      case .GiveUp:
+        ended = true
+        notify?(.Ended)
+      }
+    } while !ended
   }
   /// Apply a move to the game
-  public mutating func insert(_ move: Move) throws {
-    guard isValid(word: move.word, for: move.place) else {throw MoveError.Word}
+  public mutating func insert(_ word: Word, at place: Place) throws {
+    guard isValid(word: word, for: place) else {throw MoveError.Word}
     playerIndex.toggle()
     if playerIndex {turn += 1}
-    let area = move.place.area
-    board[area] = Matrix(values: move.word, area: area)
+    let area = place.area
+    board[area] = Matrix(values: word, area: area)
   }
   /// Get the search pattern at a given place
   public func pattern(of place: Place) -> Pattern {
@@ -241,20 +180,6 @@ public struct Begriffix: DyadicGame {
   /// Indicate if the given place is usable
   public func contains(place: Place) -> Bool {
     return find(direction: place.direction, count: place.count).contains(place.start)
-  }
-}
-
-extension Matrix: LosslessStringConvertible where Element == Unicode.Scalar? {
-  /// A textual 2D representation with dot for empty fields
-  public var description: String {
-    return self.rowwise().map({ (row: [Element]) -> String in
-      return String(String.UnicodeScalarView(row.compactMap {$0 == nil ? "." : $0}))
-      })
-      .joined(separator: "\n")
-  }
-  /// Initialize from 2D description
-  public init?(_ description: String) {
-    self.init(values: description.unicodeScalars.map({$0 == "." ? nil : $0}).split(separator: "\n").map {Array($0)})
   }
 }
 

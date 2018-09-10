@@ -1,37 +1,5 @@
 import SwiftCLI
 import Utility
-import Games
-
-struct HumanPlayer: BegriffixPlayer {
-  let id: String
-  func move(_ game: Begriffix) -> Begriffix.Move? {
-    while true {
-      let word = Input.readLine(prompt: "word")
-      if word.isEmpty {return nil}
-      let dir: Begriffix.Direction
-      switch game.phase {
-      case let .Restricted(currentDir):
-        dir = currentDir
-      case .Liberal:
-        let currentDir = Input.readBool(
-          prompt: "direction (horizontal = true, vertical = false):"
-        )
-        dir = currentDir ? .Horizontal : .Vertical
-      case .KnockOut: return nil
-      }
-      let start: Point = Input.readObject(
-        prompt: "start"
-      )
-      print(start)
-      let place = Begriffix.Place(start: start, direction: dir, count: word.count)
-      if game.contains(place: place) {
-        WriteStream.stdout <<< "move will be applied"
-        return Begriffix.Move(place: place, word: Array(word.unicodeScalars))
-      }
-      WriteStream.stderr <<< "no valid move, please try again"
-    }
-  }
-}
 
 extension Point: LosslessStringConvertible, ConvertibleFromString {
   /// A textual representation in chess notation
@@ -46,6 +14,7 @@ extension Point: LosslessStringConvertible, ConvertibleFromString {
     self.init(row: scalars[0]-97, column: scalars[1]-49)
   }
 }
+
 extension Area: LosslessStringConvertible {
   public init(start: Point, end: Point) {
     self.init(rows: Range(start.row...end.row), columns: Range(start.column...end.column))
