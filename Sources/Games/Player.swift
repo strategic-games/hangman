@@ -9,8 +9,11 @@ public struct Player {
     words.forEach {radix.insert($0)}
     return radix
   }
+  let vocabulary: Radix
   /// Initialize a new player
-  public init() {}
+  public init(_ vocabulary: Radix? = nil) {
+    self.vocabulary = vocabulary ?? Player.dict
+  }
   public func move(_ game: Begriffix) -> Begriffix.Command {
     guard let places = game.find() else {return .GiveUp}
     var result = [Place: [Begriffix.Word]]()
@@ -25,9 +28,9 @@ public struct Player {
   /// Find the words that could be inserted at the given place
   func match(_ game: Begriffix, place: Place) -> [Begriffix.Word] {
     let pattern = Array(game.board[place.area].joined())
-    return Player.dict.search(pattern: pattern).filter { word in
+    return vocabulary.search(pattern: pattern).filter { word in
       let words = game.words(orthogonalTo: place, word: word)
-      return words.allSatisfy {Player.dict.contains($0)}
+      return words.allSatisfy {vocabulary.contains($0)}
     }
   }
 }
