@@ -23,7 +23,7 @@ public struct Player {
     }
     guard let (place, words) = result.randomElement() else {return nil}
     guard let word = words.randomElement() else {return nil}
-    return .init(place, word)
+    return .init(place, word, result)
   }
   /// Find the words that could be inserted at the given place
   func match(_ game: Begriffix, place: Place) -> [Begriffix.Word] {

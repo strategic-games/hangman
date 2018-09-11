@@ -13,11 +13,14 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
   public typealias Notify = ((_ status: Status) -> Void)?
   public typealias Update = (_ game: Begriffix) -> Move?
   public struct Move: Codable {
+    public typealias Places = [Place:[Word]]?
     public let place: Place
     public let word: Word
-    public init(_ place: Place, _ word: Word) {
+    public let places: Places
+    public init(_ place: Place, _ word: Word, _ places: Places = nil) {
       self.place = place
       self.word = word
+      self.places = places
     }
   }
   /// General progress states of a game
