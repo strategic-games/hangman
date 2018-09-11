@@ -84,6 +84,14 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
     self.starter = starter
     self.opponent = opponent
   }
+  /// Initialize a new begriffix game with given players
+  public init(startLetters: [Field], starter: @escaping(Update), opponent: @escaping(Update)) {
+    let startLetters = Board(values: startLetters, rows: 2, columns: 2)
+    board = Board(repeating: nil, rows: 8, columns: 8)
+    board[3..<5, 3..<5] = startLetters
+    self.starter = starter
+    self.opponent = opponent
+  }
   public mutating func play() throws {
     notify?(.Started)
     repeat {
