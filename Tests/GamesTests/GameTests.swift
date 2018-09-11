@@ -21,9 +21,9 @@ class BegriffixTests: XCTestCase {
   func testPerformance() {
     let startLetters: [[Unicode.Scalar?]] = [["l", "a"], ["e", "r"]]
     let player = Player()
-    var game = Begriffix(startLetters: startLetters, starter: player.move, opponent: player.move)
+    guard let game = Begriffix(startLetters: startLetters, starter: player.move, opponent: player.move) else {return}
     measure {
-      _ = try? game?.play()
+      for _ in game {}
     }
   }
   /*func testColision() {
