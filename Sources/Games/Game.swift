@@ -1,9 +1,11 @@
+import Utility
+
 /// A game type
-public protocol Game {
+public protocol Game: Sequence {
   /// A displayable name for the game
   static var name: String {get}
   /// The move type of a game
-  associatedtype Command
+  associatedtype Move
   /// The turn counter
   var turn: Int {get}
   associatedtype Update
@@ -15,10 +17,25 @@ public protocol Game {
 
 /// A type that can act as a board game
 public protocol BoardGame {
-  /// A type that can act as a game board
-  associatedtype Board
+  /// The type of a field value
+  associatedtype Field
   /// A game board where values can be entered
-  var board: Board {get}
+  var board: Matrix<Field> {get}
+  /// Returns a character representation of a field value
+  func character(_ field: Field) -> Character
+}
+
+extension BoardGame {
+  /// Returns a board where the field values are replaced with their character representations
+  public var displayableBoard: Matrix<Character> {
+    let values: [Character] = board.values.map(character)
+    return Matrix(values: values, rows: board.rows, columns: board.columns)
+  }
+}
+
+public protocol VerbalGame {
+  associatedtype Letter
+  associatedtype Word
 }
 
 /// A type that can act as a dyadic board game

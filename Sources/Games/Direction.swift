@@ -1,11 +1,11 @@
 import Utility
 
 /// The direction on a game board
-public enum Direction: CaseIterable {
+public enum Direction: String, CaseIterable&Codable {
   /// From left to right
-  case Horizontal
+  case Horizontal = "h"
   /// from top to bottom
-  case Vertical
+  case Vertical = "v"
   /// Return a kernel according to this direction and a given length
   func kernel(_ count: Int) -> Matrix<Int> {
     switch self {
@@ -16,7 +16,7 @@ public enum Direction: CaseIterable {
 }
 
 /// A place where a word could be written
-public struct Place: Hashable {
+public struct Place: Hashable&Codable {
   /// The position of the first letter
   public let start: Point
   /// The writing direction

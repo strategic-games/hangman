@@ -14,16 +14,16 @@ public struct Player {
   public init(_ vocabulary: Radix? = nil) {
     self.vocabulary = vocabulary ?? Player.dict
   }
-  public func move(_ game: Begriffix) -> Begriffix.Command {
-    guard let places = game.find() else {return .GiveUp}
+  public func move(_ game: Begriffix) -> Begriffix.Move? {
+    guard let places = game.find() else {return nil}
     var result = [Place: [Begriffix.Word]]()
     places.forEach { place in
       let matches = match(game, place: place)
       if !matches.isEmpty {result[place] = matches}
     }
-    guard let (place, words) = result.randomElement() else {return .GiveUp}
-    guard let word = words.randomElement() else {return .GiveUp}
-    return .Write(word, place)
+    guard let (place, words) = result.randomElement() else {return nil}
+    guard let word = words.randomElement() else {return nil}
+    return .init(place, word)
   }
   /// Find the words that could be inserted at the given place
   func match(_ game: Begriffix, place: Place) -> [Begriffix.Word] {

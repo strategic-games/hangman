@@ -1,19 +1,24 @@
 import Utility
 
 /// A begriffix game
-public struct Begriffix: Game&BoardGame&Trackable {
+public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
   /// The type of a letter, can be written at one board position
   public typealias Letter = Unicode.Scalar
   /// The type of a word which is a sequence of letters
   public typealias Word = [Letter]
+  public typealias Field = Letter?
   /// A sequence of optional letters, nil means that any letter can be used there
-  public typealias Pattern = [Letter?]
-  public typealias Board = Matrix<Letter?>
+  public typealias Pattern = [Field]
+  public typealias Board = Matrix<Field>
   public typealias Notify = ((_ status: Status) -> Void)?
-  public typealias Update = (_ game: Begriffix) -> Command
-  public enum Command {
-    case Write(Word, Place)
-    case GiveUp
+  public typealias Update = (_ game: Begriffix) -> Move?
+  public struct Move: Codable {
+    public let place: Place
+    public let word: Word
+    public init(_ place: Place, _ word: Word) {
+      self.place = place
+      self.word = word
+    }
   }
   /// General progress states of a game
   public enum Status: GameStatus {
@@ -22,7 +27,7 @@ public struct Begriffix: Game&BoardGame&Trackable {
     /// Some changes were made to the board
     case Started
     /// A player has written a word
-    case moved(Command)
+    case Moved(Move)
     /// The game has ended because a player couldn't prrovide a move
     case Ended
   }
@@ -47,6 +52,9 @@ public struct Begriffix: Game&BoardGame&Trackable {
   public private(set) var turn: Int = 0
   private var playerIndex: Bool = true
   public private(set) var board: Board
+  public func character(_ field: Field) -> Character {
+    return field != nil ? Character(field!) : "."
+  }
   private var numericalBoard: Matrix<Int> {
     return Matrix(values: board.values.map({$0 != nil ? 1 : 0}), rows: board.rows, columns: board.columns)
   }
@@ -64,7 +72,7 @@ public struct Begriffix: Game&BoardGame&Trackable {
     if turn <= 5 {return .Liberal}
     return .KnockOut
   }
-  public var notify: ((_ status: Status) -> Void)?
+  public var notify: Notify
   /// Initialize a new begriffix game with given players
   public init?(startLetters: [[Letter?]], starter: @escaping(Update), opponent: @escaping(Update)) {
     guard let startLetters = Board(values: startLetters) else {return nil}
@@ -74,26 +82,33 @@ public struct Begriffix: Game&BoardGame&Trackable {
     self.opponent = opponent
   }
   public mutating func play() throws {
-    var ended = false
+    notify?(.Started)
     repeat {
-      let cmd = player(self)
-      switch cmd {
-      case let .Write(word, place):
-        try insert(word, at: place)
-        notify?(.moved(cmd))
-      case .GiveUp:
-        ended = true
+      guard let move = player(self) else {
         notify?(.Ended)
+        break
       }
-    } while !ended
+      try insert(move)
+      notify?(.Moved(move))
+    } while true
+  }
+  /// Advance the game for one move
+  public mutating func next() -> (Begriffix, Move)? {
+    guard let move = player(self) else {return nil}
+    do {
+      try insert(move)
+    } catch {
+      return nil
+    }
+    return (self, move)
   }
   /// Apply a move to the game
-  public mutating func insert(_ word: Word, at place: Place) throws {
-    guard isValid(word: word, for: place) else {throw MoveError.Word}
+  public mutating func insert(_ move: Move) throws {
+    guard isValid(move) else {throw MoveError.Word}
     playerIndex.toggle()
     if playerIndex {turn += 1}
-    let area = place.area
-    board[area] = Matrix(values: word, area: area)
+    let area = move.place.area
+    board[area] = Matrix(values: move.word, area: area)
   }
   /// Get the search pattern at a given place
   public func pattern(of place: Place) -> Pattern {
@@ -105,8 +120,8 @@ public struct Begriffix: Game&BoardGame&Trackable {
     return zip(word, pattern).allSatisfy {$0.1 == nil ? true : $0.0 == $0.1}
   }
   /// Indicates if a word fits the pattern at a given place
-  public func isValid(word: Word, for place: Place) -> Bool {
-    return isValid(word: word, for: pattern(of: place))
+  public func isValid(_ move: Move) -> Bool {
+    return isValid(word: move.word, for: pattern(of: move.place))
   }
   /// Find every place where words with allowed direction and length could be written
   public func find() -> [Place]? {
@@ -178,7 +193,7 @@ public struct Begriffix: Game&BoardGame&Trackable {
     }
   }
   /// Indicate if the given place is usable
-  public func contains(place: Place) -> Bool {
+  public func contains(_ place: Place) -> Bool {
     return find(direction: place.direction, count: place.count).contains(place.start)
   }
 }
