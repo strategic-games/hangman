@@ -15,3 +15,5 @@ This seems trivial but can easily become messy because the situation of data cre
 
 The point of this module is to automate the experimental process and make it more fluent. It provides a command line tool which reads experimental settings in JSON format from an input file, runs the simulations, and archives the results with meta data and settings as JSON file. This file could be read in R and a dynamic report generation tool like [knitr](https://yihui.name/knitr/) or [rmarkdown](https://rmarkdown.rstudio.com) can be used to write the analysis report.
 
+# Todo
+* Include build numbering via git

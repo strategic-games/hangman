@@ -1,10 +1,9 @@
 import Foundation
-import SwiftCLI
 import Games
 
-struct DefaultInfo<Game: BoardGame>: Codable {
+struct DefaultInfo<Game: Games.Game>: Codable {
   /// A one-line description of the experiment
-  let title: String?
+  let title: String
   /// More comments, descriptions, explanations
   let supplement: String?
   /// The build number of this software
@@ -13,15 +12,4 @@ struct DefaultInfo<Game: BoardGame>: Codable {
   let date = Date()
   /// The simulated game name
   let game = Game.name
-}
-
-extension DefaultInfo: Fixable {
-  func fixed() -> DefaultMetadata {
-    let title = self.title ?? Input.readObject(prompt: "Title")
-    let version = self.version ?? Input.readObject(prompt: "Version")
-    return DefaultMetadata(title: title, version: version)
-  }
-  mutating func fix() {
-    self = fixed()
-  }
 }

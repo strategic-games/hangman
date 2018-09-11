@@ -227,3 +227,14 @@ extension BidirectionalCollection where Element: Equatable {
     return start..<end
   }
 }
+
+extension Unicode.Scalar: Codable {
+  public func encode(to encoder: Encoder) throws {
+    try value.encode(to: encoder)
+  }
+  public init(from decoder: Decoder) throws {
+    let value = try UInt32(from: decoder)
+    guard let scalar = Unicode.Scalar(value) else {throw DecodingError.typeMismatch(Unicode.Scalar.self, .init(codingPath: decoder.codingPath, debugDescription: "Unicode scalar couldn't be initialized"))}
+    self = scalar
+  }
+}

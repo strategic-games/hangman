@@ -179,3 +179,25 @@ public struct Matrix<Element>: CustomStringConvertible {
     return rows.lowerBound >= 0 && rows.upperBound <= self.rows && columns.lowerBound >= 0 && columns.upperBound <= self.columns
   }
 }
+
+extension Point: Codable {}
+
+extension Range: Codable where Bound: Codable {
+  enum CodingKeys: CodingKey {
+    case lower, upper
+  }
+  public func encode(to encoder: Encoder) throws {
+    let dict = [CodingKeys.lower.stringValue: lowerBound, CodingKeys.upper.stringValue: upperBound]
+    try dict.encode(to: encoder)
+  }
+  public init(from decoder: Decoder) throws {
+    let dict = try [String: Bound](from: decoder)
+    guard let lower = dict[CodingKeys.lower.stringValue] else {
+      throw DecodingError.valueNotFound(Bound.self, .init(codingPath: decoder.codingPath + [CodingKeys.lower], debugDescription: "lowerBound not found"))
+    }
+    guard let upper = dict[CodingKeys.upper.stringValue] else {
+      throw DecodingError.valueNotFound(Bound.self, .init(codingPath: decoder.codingPath + [CodingKeys.upper], debugDescription: "upperBound not found"))
+    }
+    self.init(uncheckedBounds: (lower: lower, upper: upper))
+  }
+}
