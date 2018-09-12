@@ -35,3 +35,18 @@ public enum WordList: String, CaseIterable, Codable {
       .map {Array($0.prefix(while: {$0 != " "}))}
   }
 }
+
+public extension RangeReplaceableCollection {
+  /// Take a random sample from a range replaceable collection
+  func sample(_ size: Int) -> [Element]? {
+    guard !isEmpty else {return nil}
+    var population = self
+    var sample = [Element]()
+    sample.reserveCapacity(size)
+    repeat {
+      guard let i = indices.randomElement() else {return nil}
+      sample.append(population.remove(at: i))
+    } while sample.count < size
+    return sample
+  }
+}
