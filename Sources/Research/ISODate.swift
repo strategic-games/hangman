@@ -1,6 +1,7 @@
 import Foundation
 
 extension DateFormatter {
+  /// Returns a formatter which can convert between dates and strings representing dates in ISO 8601 format
   static func ISOFormatter() -> DateFormatter {
     let dateFormatter = DateFormatter()
     dateFormatter.locale = Locale(identifier: "en_US_POSIX")
@@ -11,10 +12,12 @@ extension DateFormatter {
 }
 
 extension Date {
+  /// Returns a string conforming to ISO 8601 from a date
   static func ISOStringFromDate(date: Date) -> String {
     let dateFormatter = DateFormatter.ISOFormatter()
     return dateFormatter.string(from: date)
   }
+  /// Parses a ISO 8601 string into a date
   static func dateFromISOString(string: String) -> Date? {
     let dateFormatter = DateFormatter.ISOFormatter()
     return dateFormatter.date(from: string)

@@ -2,9 +2,13 @@ import Foundation
 import Utility
 import Games
 
+/// A game simulation where AI players can play against each other
 struct BegriffixSimulation {
+  /// The game which is played
   typealias Game = Begriffix
+  /// Describing metadata
   struct Info: Codable {
+    /// A date formatter that outputs date strings in ISO 8601 format
     static let dateFormatter = DateFormatter.ISOFormatter()
     /// A one-line description of the experiment
     let title: String
@@ -17,14 +21,23 @@ struct BegriffixSimulation {
     /// The simulated game name
     let game = Game.name
   }
+  /// A type that stores game parameters
   struct Condition: Codable {
+    /// A type that stores player parameters
     struct Subject: Hashable, Codable {
+      /// An enum that contains vocabulary selection data
       enum Vocabulary: Hashable {
+        /// Take a complete word list
         case full(WordList)
+        /// Take the word list from its initial word up to a maximum number
         case prefix(Int, WordList)
+        /// Take a word list from its end up to a maximum number
         case suffix(Int, WordList)
+        /// Take a random sample with given size from a word list
         case sample(Int, WordList)
+        /// Take a customized list of strings
         case custom([String])
+        /// Returns a searchable radix tree with the words inserted
         func load() -> Radix {
           let radix = Radix()
           switch self {
@@ -42,28 +55,44 @@ struct BegriffixSimulation {
           return radix
         }
       }
+      /// A player's vocabulary
       let vocabulary: Vocabulary
+      /// A player object conforming to this description
       var player: Player {
         return .init(vocabulary.load())
       }
     }
+    /// A four-letter combination the game starts with
     let startLetters: Begriffix.Word
+    /// A player description of the starter
     let starter: Subject
+    /// A player description of the opponent
     let opponent: Subject?
+    /// Indicates how many times the game is played
     let trials: Int
   }
+  /// A game move with some extra data
   struct Record: Codable {
+    /// The move returned from a player
     let move: Begriffix.Move
+    /// The letter pattern the move was based on
     let pattern: Begriffix.Pattern
+    /// Indicates how many places on the board the player had to choose from
     let places: Int
+    /// Indicates how many words the player had to choose from
     let words: Int
   }
+  /// Describing metadata of a simulation
   var info: Info
+  /// A list of game descriptions that should be played in a simulation
   var conditions: [Condition]
+  /// A list of game results corresponding to conditions where one result is a list of trials which is a list of records
   var result: [[[Record]]]?
+  /// Play the games in conditions and assign the results to the result property accordingly
   mutating func process() {
     result = conditions.map {process($0)}
   }
+  /// Play the game in one condition and repeat for the given number of trials
   func process(_ condition: Condition) -> [[Record]] {
     let starter = condition.starter.player
     let game: Begriffix
@@ -79,6 +108,7 @@ struct BegriffixSimulation {
     }
     return games
   }
+  /// Play a single game
   func process(_ game: Begriffix) -> [Record] {
     var moves = [Record]()
     for (game, move) in game {
@@ -86,6 +116,7 @@ struct BegriffixSimulation {
     }
     return moves
   }
+  /// Create a record from a move and the corresponding game
   func process(_ move: Begriffix.Move, game: Begriffix) -> Record {
     let pattern = game.pattern(of: move.place)
     let places = move.places?.count ?? 0
