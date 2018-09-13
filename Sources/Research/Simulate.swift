@@ -9,6 +9,7 @@ class SimulateCommand: Command {
   let format = Key<String>("-t", "--format", "The output serialization format")
   func execute() throws {
     var simulation = try readSimulation()
+    stdout <<< "version: \(simulation.info.version)"
     simulation.process()
     try writeSimulation(simulation)
   }

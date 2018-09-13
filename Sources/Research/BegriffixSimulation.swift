@@ -14,12 +14,18 @@ struct BegriffixSimulation {
     let title: String
     /// More comments, descriptions, explanations
     let supplement: String?
-    /// The build number of this software
-    let version: String?
     /// When the measurement was started
-    let date = dateFormatter.string(from: Date())
+    let date: String
+    /// The build number of this software
+    let version: String
     /// The simulated game name
     let game = Game.name
+    init(title: String, supplement: String? = nil, date: String? = nil, version: String? = nil) {
+      self.title = title
+      self.supplement = supplement ?? "none"
+      self.date = date ?? Info.dateFormatter.string(from: Date())
+      self.version = version ?? Version.description
+    }
   }
   /// A type that stores game parameters
   struct Condition: Codable {
