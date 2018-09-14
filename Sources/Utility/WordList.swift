@@ -18,18 +18,17 @@ public enum WordList: String, CaseIterable, Codable {
   }
   /// The resource URL in the bundle
   var url: URL? {
-    return Bundle(for: Radix.self)
+    return Bundle(identifier: "Utility")?
       .url(forResource: self.resource, withExtension: "txt", subdirectory: "dictionaries")
   }
-  /// Returns the file content as string if it loads successfully
-  public func load() -> String? {
-    guard let url = self.url else {return nil}
-    return try? String(contentsOf: url)
+  /// Returns the file content as string
+  public func load() -> String {
+    precondition(url != nil, "resource not found")
+    return try! String(contentsOf: url!)
   }
-  /// Returns the loaded word list if loading successfully
-  public func words() -> [[Unicode.Scalar]]? {
-    guard let str = load() else {return nil}
-    return str.lowercased().unicodeScalars
+  /// Returns the loaded word list
+  public func words() -> [[Unicode.Scalar]] {
+    return load().lowercased().unicodeScalars
       .split(separator: "\n")
       .drop(while: {$0.first == "#"})
       .map {Array($0.prefix(while: {$0 != " "}))}
