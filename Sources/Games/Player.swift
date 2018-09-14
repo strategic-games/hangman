@@ -2,11 +2,10 @@ import Utility
 
 /// A Begriffix player that selects by random
 public struct Player {
-  static var dict = loadDict()
+  static let dict = loadDict()
   static func loadDict() -> Radix {
     let radix = Radix()
-    guard let words = WordList.ScrabbleDict.words() else {return radix}
-    words.forEach {radix.insert($0)}
+    WordList.ScrabbleDict.words().forEach {radix.insert($0)}
     return radix
   }
   let vocabulary: Radix
