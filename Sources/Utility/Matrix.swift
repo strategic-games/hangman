@@ -33,7 +33,7 @@ public struct Area: Hashable {
 }
 
 /// A 2D grid for game boards etc.
-public struct Matrix<Element>: CustomStringConvertible {
+public struct Matrix<Element> {
   //MARK: Properties
   /// The number of rows and columns
   public let rows: Int, columns: Int
@@ -180,6 +180,16 @@ public struct Matrix<Element>: CustomStringConvertible {
   }
 }
 
+extension Matrix: CustomStringConvertible where Element == Character {
+  public var description: String {
+    var str = String()
+    rowwise().forEach { (row: [Character]) in
+      row.forEach {str.append($0)}
+      str.append("\n")
+    }
+    return str
+  }
+}
 extension Point: Codable {}
 
 extension Range: Codable where Bound: Codable {
