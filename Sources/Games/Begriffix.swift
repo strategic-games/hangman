@@ -12,7 +12,7 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
   public typealias Board = Matrix<Field>
   public typealias Notify = ((_ status: Status) -> Void)?
   public typealias Update = (_ game: Begriffix) -> Move?
-  public struct Move: Codable {
+  public struct Move {
     public typealias Places = [Place:[Word]]?
     public let place: Place
     public let word: Word
@@ -106,12 +106,13 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
   /// Advance the game for one move
   public mutating func next() -> (Begriffix, Move)? {
     guard let move = player(self) else {return nil}
+    let currentGame = self
     do {
       try insert(move)
     } catch {
       return nil
     }
-    return (self, move)
+    return (currentGame, move)
   }
   /// Apply a move to the game
   public mutating func insert(_ move: Move) throws {
@@ -225,16 +226,5 @@ extension BidirectionalCollection where Element: Equatable {
       if end == endIndex || self[end] == surround {break}
     }
     return start..<end
-  }
-}
-
-extension Unicode.Scalar: Codable {
-  public func encode(to encoder: Encoder) throws {
-    try value.encode(to: encoder)
-  }
-  public init(from decoder: Decoder) throws {
-    let value = try UInt32(from: decoder)
-    guard let scalar = Unicode.Scalar(value) else {throw DecodingError.typeMismatch(Unicode.Scalar.self, .init(codingPath: decoder.codingPath, debugDescription: "Unicode scalar couldn't be initialized"))}
-    self = scalar
   }
 }
