@@ -1,0 +1,4 @@
+enum Version {
+  static let short = "${version}"
+  static let build = "${build}"
+}
