@@ -45,7 +45,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		8D86F6A921524F99004AACF9 /* dictionaries in Resources */ = {isa = PBXBuildFile; fileRef = 8D86F6A821524F99004AACF9 /* dictionaries */; };
+		8D8471DB215281B200A285D0 /* dictionaries in Resources */ = {isa = PBXBuildFile; fileRef = 8D86F6A821524F99004AACF9 /* dictionaries */; };
 		OBJ_141 /* api.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_72 /* api.c */; };
 		OBJ_142 /* emitter.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_73 /* emitter.c */; };
 		OBJ_143 /* parser.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_74 /* parser.c */; };
@@ -320,8 +320,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8D8471D82152770800A285D0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		8D86F6A821524F99004AACF9 /* dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dictionaries; sourceTree = "<group>"; };
-		"Guaka::Guaka::Product" /* Guaka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Guaka.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Guaka::Guaka::Product" /* Guaka.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Guaka.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_10 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		OBJ_100 /* FlagHelpGeneratorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagHelpGeneratorUtils.swift; sourceTree = "<group>"; };
 		OBJ_101 /* HelpGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpGenerator.swift; sourceTree = "<group>"; };
@@ -414,16 +415,16 @@
 		OBJ_97 /* CommandHelp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandHelp.swift; sourceTree = "<group>"; };
 		OBJ_98 /* DefaultHelpGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHelpGenerator.swift; sourceTree = "<group>"; };
 		OBJ_99 /* FlagHelp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagHelp.swift; sourceTree = "<group>"; };
-		"StringScanner::StringScanner::Product" /* StringScanner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = StringScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"Yams::CYaml::Product" /* CYaml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CYaml.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"Yams::Yams::Product" /* Yams.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Yams.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"hangman::Games::Product" /* Games.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Games.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"hangman::GamesTests::Product" /* GamesTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = GamesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		"hangman::HangmanCLI::Product" /* HangmanCLI */ = {isa = PBXFileReference; lastKnownFileType = text; path = HangmanCLI; sourceTree = BUILT_PRODUCTS_DIR; };
-		"hangman::SimulationDescription::Product" /* SimulationDescription.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SimulationDescription.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"hangman::SimulationDescriptionTests::Product" /* SimulationDescriptionTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimulationDescriptionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		"hangman::Utility::Product" /* Utility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Utility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"hangman::UtilityTests::Product" /* UtilityTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = UtilityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"StringScanner::StringScanner::Product" /* StringScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = StringScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Yams::CYaml::Product" /* CYaml.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CYaml.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Yams::Yams::Product" /* Yams.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Yams.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"hangman::Games::Product" /* Games.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Games.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"hangman::GamesTests::Product" /* GamesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = GamesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"hangman::HangmanCLI::Product" /* HangmanCLI */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = HangmanCLI; sourceTree = BUILT_PRODUCTS_DIR; };
+		"hangman::SimulationDescription::Product" /* SimulationDescription.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SimulationDescription.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"hangman::SimulationDescriptionTests::Product" /* SimulationDescriptionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = SimulationDescriptionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"hangman::Utility::Product" /* Utility.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Utility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"hangman::UtilityTests::Product" /* UtilityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = UtilityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -683,6 +684,7 @@
 		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
+				8D8471D82152770800A285D0 /* Config.xcconfig */,
 				8D86F6A821524F99004AACF9 /* dictionaries */,
 				OBJ_6 /* Package.swift */,
 				OBJ_7 /* Sources */,
@@ -1028,7 +1030,7 @@
 				8D86F6A621524F57004AACF9 /* ShellScript */,
 				OBJ_218 /* Sources */,
 				OBJ_227 /* Frameworks */,
-				8D86F6A721524F66004AACF9 /* Resources */,
+				8D8471D921527DD900A285D0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1103,6 +1105,7 @@
 			buildPhases = (
 				OBJ_294 /* Sources */,
 				OBJ_304 /* Frameworks */,
+				8D8471DA2152819A00A285D0 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -1173,17 +1176,36 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		8D86F6A721524F66004AACF9 /* Resources */ = {
+		8D8471DA2152819A00A285D0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D86F6A921524F99004AACF9 /* dictionaries in Resources */,
+				8D8471DB215281B200A285D0 /* dictionaries in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		8D8471D921527DD900A285D0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(INFOPLIST_FILE)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nScripts/clear_build_number.sh\n";
+			showEnvVarsInLog = 0;
+		};
 		8D86F6A621524F57004AACF9 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1196,10 +1218,12 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(INFOPLIST_FILE)",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nScripts/set_build_number.sh\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1732,6 +1756,7 @@
 		OBJ_216 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
@@ -1741,6 +1766,7 @@
 					"$(SRCROOT)/.build/checkouts/Yams.git--335867369359398045/Sources/CYaml/include",
 				);
 				INFOPLIST_FILE = hangman.xcodeproj/HangmanCLI_Info.plist;
+				INFOPLIST_PREPROCESS = NO;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -1756,6 +1782,7 @@
 		OBJ_217 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
@@ -1765,6 +1792,7 @@
 					"$(SRCROOT)/.build/checkouts/Yams.git--335867369359398045/Sources/CYaml/include",
 				);
 				INFOPLIST_FILE = hangman.xcodeproj/HangmanCLI_Info.plist;
+				INFOPLIST_PREPROCESS = NO;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";

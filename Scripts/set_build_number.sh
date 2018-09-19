@@ -13,5 +13,5 @@ echo "From GIT Version = $appVersion Build = $appBuild"
 #
 /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $appVersion" "${PRODUCT_SETTINGS_PATH}"
 /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $appBuild" "${PRODUCT_SETTINGS_PATH}"
-/usr/libexec/PlistBuddy -c "Add :GITHash string $gitHash" "${PRODUCT_SETTINGS_PATH}"
+/usr/libexec/PlistBuddy -c "Set :GITHash $gitHash" "${PRODUCT_SETTINGS_PATH}"
 echo "Updated ${PRODUCT_SETTINGS_PATH}"
