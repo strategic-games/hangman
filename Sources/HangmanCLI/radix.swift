@@ -17,5 +17,8 @@ private func execute(flags: Flags, args: [String]) {
   let radix = Radix()
   words.forEach {radix.insert($0)}
   let result = radix.search(pattern: args[1])
-  print(result)
+  guard result.count > 0 else {
+    rootCommand.fail(statusCode: 0, errorMessage: "no words matching \(args[1]) were found")
+  }
+  result.forEach {print($0)}
 }
