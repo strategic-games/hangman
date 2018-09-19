@@ -88,7 +88,7 @@
 		OBJ_203 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_114 /* Result.swift */; };
 		OBJ_205 /* StringScanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "StringScanner::StringScanner::Product" /* StringScanner.framework */; };
 		OBJ_213 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_115 /* Package.swift */; };
-		OBJ_219 /* Radix.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* Radix.swift */; };
+		OBJ_219 /* radix.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* radix.swift */; };
 		OBJ_220 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* Version.swift */; };
 		OBJ_221 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* extensions.swift */; };
 		OBJ_222 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_32 /* main.swift */; };
@@ -357,7 +357,7 @@
 		OBJ_25 /* Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Condition.swift; sourceTree = "<group>"; };
 		OBJ_26 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		OBJ_27 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
-		OBJ_29 /* Radix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Radix.swift; sourceTree = "<group>"; };
+		OBJ_29 /* radix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radix.swift; sourceTree = "<group>"; };
 		OBJ_30 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		OBJ_31 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		OBJ_32 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -626,7 +626,7 @@
 		OBJ_28 /* HangmanCLI */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_29 /* Radix.swift */,
+				OBJ_29 /* radix.swift */,
 				OBJ_30 /* Version.swift */,
 				OBJ_31 /* extensions.swift */,
 				OBJ_32 /* main.swift */,
@@ -680,7 +680,7 @@
 			path = Tests/UtilityTests;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				8D86F6A821524F99004AACF9 /* dictionaries */,
@@ -693,7 +693,6 @@
 				OBJ_51 /* Dependencies */,
 				OBJ_124 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_51 /* Dependencies */ = {
@@ -1146,7 +1145,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_124 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1280,7 +1279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_219 /* Radix.swift in Sources */,
+				OBJ_219 /* radix.swift in Sources */,
 				OBJ_220 /* Version.swift in Sources */,
 				OBJ_221 /* extensions.swift in Sources */,
 				OBJ_222 /* main.swift in Sources */,

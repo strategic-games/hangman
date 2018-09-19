@@ -5,7 +5,7 @@ let rootCommand = Command(usage: "research", configuration: configuration, run: 
 
 private func configuration(command: Command) {
   command.add(flags: [
-    Flag(longName: "version", value: false,
+    Flag(shortName: "v", longName: "version", value: false,
          description: "Prints the version", inheritable: false),
     ]
   )
