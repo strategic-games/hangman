@@ -320,7 +320,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8D8471D82152770800A285D0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		8D86F6A821524F99004AACF9 /* dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dictionaries; sourceTree = "<group>"; };
 		"Guaka::Guaka::Product" /* Guaka.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Guaka.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_10 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
@@ -684,7 +683,6 @@
 		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
-				8D8471D82152770800A285D0 /* Config.xcconfig */,
 				8D86F6A821524F99004AACF9 /* dictionaries */,
 				OBJ_6 /* Package.swift */,
 				OBJ_7 /* Sources */,
