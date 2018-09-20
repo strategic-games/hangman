@@ -30,7 +30,7 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
     /// Some changes were made to the board
     case Started
     /// A player has written a word
-    case Moved(Move)
+    case Moved(Move, Begriffix)
     /// The game has ended because a player couldn't prrovide a move
     case Ended
   }
@@ -76,22 +76,35 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
     return .KnockOut
   }
   public var notify: Notify
-  /// Initialize a new begriffix game with given players
-  public init?(startLetters: [[Letter?]], starter: @escaping(Update), opponent: @escaping(Update)) {
-    guard let startLetters = Board(values: startLetters) else {return nil}
-    board = Board(repeating: nil, rows: 8, columns: 8)
-    board[3..<5, 3..<5] = startLetters
+  /// Initialize a new begriffix game with given board and players
+  public init(board: Board, starter: @escaping(Update), opponent: @escaping(Update)) {
+    self.board = board
     self.starter = starter
     self.opponent = opponent
   }
-  /// Initialize a new begriffix game with given players
+  /// Initialize a new begriffix game with start letters as 2*2 fields board
+  public init(startLetters: Board, starter: @escaping(Update), opponent: @escaping(Update)) {
+    var board = Board(repeating: nil, rows: 8, columns: 8)
+    board[3..<5, 3..<5] = startLetters
+    self.init(board: board, starter: starter, opponent: opponent)
+  }
+  /// Initialize a new begriffix game with start letters as array of four field values
   public init(startLetters: [Field], starter: @escaping(Update), opponent: @escaping(Update)) {
+    precondition(startLetters.count == 4, "Need exactly four start letters")
     let startLetters = Board(values: startLetters, rows: 2, columns: 2)
-    board = Board(repeating: nil, rows: 8, columns: 8)
-    board[3..<5, 3..<5] = startLetters
-    self.starter = starter
-    self.opponent = opponent
+    self.init(startLetters: startLetters, starter: starter, opponent: opponent)
   }
+  /// Initialize a new begriffix game with start letters as 2*2 nested array
+  public init?(startLetters: [[Letter]], starter: @escaping(Update), opponent: @escaping(Update)) {
+    guard let startLetters = Board(values: startLetters) else {return nil}
+    self.init(startLetters: startLetters, starter: starter, opponent: opponent)
+  }
+  /// Initialize a new begriffix game with start letters as string with four characters
+  public init(startLetters: String, starter: @escaping(Update), opponent: @escaping(Update)) {
+    let fields = Array(startLetters.unicodeScalars)
+    self.init(startLetters: fields, starter: starter, opponent: opponent)
+  }
+  /// Play the game and pass notifications if a notify callback is set
   public mutating func play() throws {
     notify?(.Started)
     repeat {
@@ -100,7 +113,7 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
         break
       }
       try insert(move)
-      notify?(.Moved(move))
+      notify?(.Moved(move, self))
     } while true
   }
   /// Advance the game for one move
