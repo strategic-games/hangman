@@ -10,6 +10,19 @@ public struct Point: Hashable {
   }
 }
 
+extension Point: LosslessStringConvertible {
+  /// A textual description of a point in "row;column" format
+  public var description: String {
+    return "\(row);\(column)"
+  }
+  /// Initialize a point from a stirng which is formatted as "row;column"
+  public init?(_ description: String) {
+    let values = description.split(separator: ";").compactMap {Int($0)}
+    guard values.count == 2 else {return nil}
+    self.init(row: values[0], column: values[1])
+  }
+}
+
 /// A 2D index range
 public struct Area: Hashable {
   /// The row and column ranges
