@@ -1,7 +1,6 @@
 import Guaka
-import Utility
 
-let rootCommand = Command(usage: "research", configuration: configuration, run: execute)
+let rootCommand = Command(usage: "hangman", configuration: configuration, run: execute)
 
 private func configuration(command: Command) {
   command.add(flags: [
