@@ -12,6 +12,11 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
   public typealias Board = Matrix<Field>
   public typealias Notify = ((_ status: Status) -> Void)?
   public typealias Update = (_ game: Begriffix) -> Move?
+  public struct Configuration: Codable {
+    public let startLetters: String
+    public let starter: Player
+    public let opponent: Player
+  }
   public struct Move {
     public typealias Places = [Place:[Word]]?
     public let place: Place
@@ -103,6 +108,9 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
   public init(startLetters: String, starter: @escaping(Update), opponent: @escaping(Update)) {
     let fields = Array(startLetters.unicodeScalars)
     self.init(startLetters: fields, starter: starter, opponent: opponent)
+  }
+  public init(from config: Configuration) {
+    self.init(startLetters: config.startLetters, starter: config.starter.move, opponent: config.opponent.move)
   }
   /// Play the game and pass notifications if a notify callback is set
   public mutating func play() throws {
