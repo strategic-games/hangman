@@ -48,12 +48,36 @@ public protocol DyadicGame: BoardGame {
 }
 
 /// A game notification type
-public protocol GameStatus {}
+//public protocol GameStatus {}
+
+/// General progress states of a game
+public enum GameStatus<T: Game> {
+  /// The game has a freshly setup game board
+  case Ready
+  /// Some changes were made to the board
+  case Started
+  /// A player has written a word
+  case Moved(T.Move, T)
+  /// The game has ended because a player couldn't prrovide a move
+  case Ended
+  case Failure(GameError<T>)
+}
+
+/// Errors that can happen when a move is inserted
+public enum GameError<Game>: Error {
+  /// The board does not contain this place
+  case Place
+  /// The word does not fit at the intended place
+  case Word
+}
 
 /// Expose a closure property to be used for notification tracking
-public protocol Trackable {
-  /// The notification type
-  associatedtype Status: GameStatus
+public protocol Trackable: Game {
   /// A closure that is executed with status notifications
-  var notify: ((_ status: Status) -> Void)? {get set}
+  var notify: ((_ status: GameStatus<Self>) -> Void)? {get set}
+}
+
+public protocol Configurable {
+  associatedtype Configuration
+  init(from config: Configuration)
 }

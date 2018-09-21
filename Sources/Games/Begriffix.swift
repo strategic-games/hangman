@@ -1,7 +1,7 @@
 import Utility
 
 /// A begriffix game
-public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
+public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol&Configurable {
   /// The type of a letter, can be written at one board position
   public typealias Letter = Unicode.Scalar
   /// The type of a word which is a sequence of letters
@@ -10,6 +10,8 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
   /// A sequence of optional letters, nil means that any letter can be used there
   public typealias Pattern = [Field]
   public typealias Board = Matrix<Field>
+  public typealias Status = GameStatus<Begriffix>
+  public typealias Error = GameError<Begriffix>
   public typealias Notify = ((_ status: Status) -> Void)?
   public typealias Update = (_ game: Begriffix) -> Move?
   public struct Configuration: Codable {
@@ -27,24 +29,6 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
       self.word = word
       self.places = places
     }
-  }
-  /// General progress states of a game
-  public enum Status: GameStatus {
-    /// The game has a freshly setup game board
-    case Ready
-    /// Some changes were made to the board
-    case Started
-    /// A player has written a word
-    case Moved(Move, Begriffix)
-    /// The game has ended because a player couldn't prrovide a move
-    case Ended
-  }
-  /// Errors that can happen when a move is inserted
-  public enum MoveError: Error {
-    /// The board does not contain this place
-    case Place
-    /// The word does not fit at the intended place
-    case Word
   }
   /// phases of a game which is currently playing
   public enum Phase {
@@ -137,7 +121,7 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
   }
   /// Apply a move to the game
   public mutating func insert(_ move: Move) throws {
-    guard isValid(move) else {throw MoveError.Word}
+    guard isValid(move) else {throw GameError<Begriffix>.Word}
     playerIndex.toggle()
     if playerIndex {turn += 1}
     let area = move.place.area
