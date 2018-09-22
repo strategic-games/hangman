@@ -233,3 +233,21 @@ extension BidirectionalCollection where Element: Equatable {
     return start..<end
   }
 }
+
+extension Begriffix.Move: Codable {
+  enum CodingKeys: CodingKey {
+    case place, word, places
+  }
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    place = try container.decode(Place.self, forKey: .place)
+    let wordString = try container.decode(String.self, forKey: .word)
+    word = Array(wordString.unicodeScalars)
+    places = nil
+  }
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(place, forKey: .place)
+    try container.encode(String(String.UnicodeScalarView(word)), forKey: .word)
+  }
+}

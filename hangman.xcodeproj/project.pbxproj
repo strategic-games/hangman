@@ -45,6 +45,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		8D7A5DAE2153A63B0043F616 /* ask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A5DAC2153A56C0043F616 /* ask.swift */; };
+		8D7A5DB02153B1950043F616 /* FlagValueConformances.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A5DAF2153B1950043F616 /* FlagValueConformances.swift */; };
+		8D7A5DB32153C7A30043F616 /* Vocabulary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A5DB12153C7270043F616 /* Vocabulary.swift */; };
 		8D8471DB215281B200A285D0 /* dictionaries in Resources */ = {isa = PBXBuildFile; fileRef = 8D86F6A821524F99004AACF9 /* dictionaries */; };
 		OBJ_141 /* api.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_72 /* api.c */; };
 		OBJ_142 /* emitter.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_73 /* emitter.c */; };
@@ -90,7 +93,6 @@
 		OBJ_213 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_115 /* Package.swift */; };
 		OBJ_219 /* radix.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* radix.swift */; };
 		OBJ_220 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* Version.swift */; };
-		OBJ_221 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* extensions.swift */; };
 		OBJ_222 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_32 /* main.swift */; };
 		OBJ_223 /* play.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* play.swift */; };
 		OBJ_224 /* root.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* root.swift */; };
@@ -103,7 +105,7 @@
 		OBJ_232 /* SimulationDescription.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "hangman::SimulationDescription::Product" /* SimulationDescription.framework */; };
 		OBJ_233 /* Games.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "hangman::Games::Product" /* Games.framework */; };
 		OBJ_234 /* Utility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "hangman::Utility::Product" /* Utility.framework */; };
-		OBJ_253 /* BegriffixSimulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* BegriffixSimulation.swift */; };
+		OBJ_253 /* Simulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* Simulation.swift */; };
 		OBJ_254 /* Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* Condition.swift */; };
 		OBJ_255 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* Info.swift */; };
 		OBJ_256 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* Record.swift */; };
@@ -320,6 +322,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8D7A5DAC2153A56C0043F616 /* ask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ask.swift; sourceTree = "<group>"; };
+		8D7A5DAF2153B1950043F616 /* FlagValueConformances.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagValueConformances.swift; sourceTree = "<group>"; };
+		8D7A5DB12153C7270043F616 /* Vocabulary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vocabulary.swift; sourceTree = "<group>"; };
 		8D86F6A821524F99004AACF9 /* dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dictionaries; sourceTree = "<group>"; };
 		"Guaka::Guaka::Product" /* Guaka.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Guaka.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_10 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
@@ -353,13 +358,12 @@
 		OBJ_20 /* SortedSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortedSet.swift; sourceTree = "<group>"; };
 		OBJ_21 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		OBJ_22 /* WordList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordList.swift; sourceTree = "<group>"; };
-		OBJ_24 /* BegriffixSimulation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BegriffixSimulation.swift; sourceTree = "<group>"; };
+		OBJ_24 /* Simulation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Simulation.swift; sourceTree = "<group>"; };
 		OBJ_25 /* Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Condition.swift; sourceTree = "<group>"; };
 		OBJ_26 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		OBJ_27 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		OBJ_29 /* radix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radix.swift; sourceTree = "<group>"; };
 		OBJ_30 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
-		OBJ_31 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		OBJ_32 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		OBJ_33 /* play.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = play.swift; sourceTree = "<group>"; };
 		OBJ_34 /* root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = root.swift; sourceTree = "<group>"; };
@@ -614,7 +618,7 @@
 		OBJ_23 /* SimulationDescription */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_24 /* BegriffixSimulation.swift */,
+				OBJ_24 /* Simulation.swift */,
 				OBJ_25 /* Condition.swift */,
 				OBJ_26 /* Info.swift */,
 				OBJ_27 /* Record.swift */,
@@ -628,12 +632,13 @@
 			children = (
 				OBJ_29 /* radix.swift */,
 				OBJ_30 /* Version.swift */,
-				OBJ_31 /* extensions.swift */,
 				OBJ_32 /* main.swift */,
 				OBJ_33 /* play.swift */,
 				OBJ_34 /* root.swift */,
 				OBJ_35 /* setup.swift */,
 				OBJ_36 /* simulate.swift */,
+				8D7A5DAC2153A56C0043F616 /* ask.swift */,
+				8D7A5DAF2153B1950043F616 /* FlagValueConformances.swift */,
 			);
 			name = HangmanCLI;
 			path = Sources/HangmanCLI;
@@ -789,6 +794,7 @@
 				OBJ_10 /* Direction.swift */,
 				OBJ_11 /* Game.swift */,
 				OBJ_12 /* Player.swift */,
+				8D7A5DB12153C7270043F616 /* Vocabulary.swift */,
 			);
 			name = Games;
 			path = Sources/Games;
@@ -1138,6 +1144,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 9999;
+				TargetAttributes = {
+					"Yams::CYaml" = {
+						LastSwiftMigration = 1000;
+					};
+				};
 			};
 			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "hangman" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1244,6 +1255,7 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_156 /* Begriffix.swift in Sources */,
+				8D7A5DB32153C7A30043F616 /* Vocabulary.swift in Sources */,
 				OBJ_157 /* Direction.swift in Sources */,
 				OBJ_158 /* Game.swift in Sources */,
 				OBJ_159 /* Player.swift in Sources */,
@@ -1303,10 +1315,11 @@
 			files = (
 				OBJ_219 /* radix.swift in Sources */,
 				OBJ_220 /* Version.swift in Sources */,
-				OBJ_221 /* extensions.swift in Sources */,
 				OBJ_222 /* main.swift in Sources */,
+				8D7A5DAE2153A63B0043F616 /* ask.swift in Sources */,
 				OBJ_223 /* play.swift in Sources */,
 				OBJ_224 /* root.swift in Sources */,
+				8D7A5DB02153B1950043F616 /* FlagValueConformances.swift in Sources */,
 				OBJ_225 /* setup.swift in Sources */,
 				OBJ_226 /* simulate.swift in Sources */,
 			);
@@ -1316,7 +1329,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_253 /* BegriffixSimulation.swift in Sources */,
+				OBJ_253 /* Simulation.swift in Sources */,
 				OBJ_254 /* Condition.swift in Sources */,
 				OBJ_255 /* Info.swift in Sources */,
 				OBJ_256 /* Record.swift in Sources */,
@@ -1563,6 +1576,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				TARGET_NAME = CYaml;
 			};
 			name = Debug;
@@ -1591,6 +1606,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
 				TARGET_NAME = CYaml;
 			};
 			name = Release;

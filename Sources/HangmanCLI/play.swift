@@ -18,11 +18,8 @@ private func execute(flags: Flags, args: [String]) {
   }
   let wordList = flags.get(name: "words", type: WordList.self)!
   print("preparing AI vocabulary")
-  let words = wordList.words()
-  let radix = Radix()
-  words.forEach {radix.insert($0)}
+  let ai = Player(.full(wordList))
   print("AI is ready")
-  let ai = Player(radix)
   let starter = flags.getBool(name: "starter")!
   var game = starter ? Begriffix(startLetters: startLetters, starter: ai.move, opponent: move) : Begriffix(startLetters: startLetters, starter: move, opponent: ai.move)
   game.notify = { status in
