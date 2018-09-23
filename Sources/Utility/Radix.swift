@@ -1,17 +1,8 @@
 /// A radix tree node
-public final class Radix: CustomStringConvertible, Equatable, Hashable, Comparable, Codable {
+public final class Radix {
   public typealias Label = [Unicode.Scalar]
   /// The type of the child nodes collection
   public typealias ChildrenType = SortedSet<Radix>
-  // MARK: Comparison Operators
-  /// Test equality of two nodes, respecting only the label
-  public static func == (lhs: Radix, rhs: Radix) -> Bool {
-    return lhs.label.elementsEqual(rhs.label)
-  }
-  /// Test order of two nodes, respecting only the label
-  public static func < (lhs: Radix, rhs: Radix) -> Bool {
-    return lhs.label.lexicographicallyPrecedes(rhs.label)
-  }
   // MARK: Properties
   /// The prefix of this node
   public let label: Label
@@ -21,16 +12,6 @@ public final class Radix: CustomStringConvertible, Equatable, Hashable, Comparab
   public private(set) var isTerminal: Bool = false
   /// A collection that contains the node's child nodes
   private var children: ChildrenType
-  // MARK: Describing
-  ///////////// Indicates if the node contains any child nodes
-  public var isLeaf: Bool {return children.isEmpty}
-  public var isRoot: Bool {return level == 0}
-  /// A textual representation of the node
-  public var description: String {return "\(level): \(label.description)"}
-  /// Hash this node, respecting only its label
-  public func hash(into hasher: inout Hasher) {
-    hasher.combine(label.map {$0})
-  }
   // MARK: Initializers
   /// Create a node
   public init(label: Label = [], level: Int = 0, isTerminal: Bool = false, children: ChildrenType = ChildrenType()) {
@@ -39,11 +20,6 @@ public final class Radix: CustomStringConvertible, Equatable, Hashable, Comparab
     self.isTerminal = isTerminal
     self.children = children
   }
-  /// Initialize a node and insert the fragments of a string split by a separator
-  public convenience init(text: String) {
-    self.init()
-    insert(text: Label(text.unicodeScalars))
-  }
   /// Insert a string into the tree
   public func insert(_ key: String) {
     insert(Label(key.unicodeScalars))
@@ -51,11 +27,6 @@ public final class Radix: CustomStringConvertible, Equatable, Hashable, Comparab
   /// Insert the elements of a given sequence into the tree
   public func insert<S: Sequence>(_ s: S) where S.Element == String {
     s.forEach {insert($0)}
-  }
-  /// Split a string by whitespace and insert the fragments into the tree
-  public func insert(text: Label, separator: Unicode.Scalar = "\n") {
-    text.split(separator: separator)
-      .forEach {insert(Label($0))}
   }
   /// Insert a new member into this node
   @discardableResult
@@ -206,17 +177,37 @@ public final class Radix: CustomStringConvertible, Equatable, Hashable, Comparab
     newChild.children.insert(y)
     return newChild
   }
-  // MARK: Encoding and decoding
-  /// The coding keys for serialization
-  enum CodingKeys: String, CodingKey {
-    /// The key for the label property
-    case label
-    /// The key for the level property
-    case level
-    /// The key for the isTerminal property
-    case isTerminal
-    /// The key for the children property
-    case children
+}
+
+// MARK: Describing
+extension Radix: Hashable, CustomStringConvertible {
+  /// A textual representation of the node
+  public var description: String {return "\(level): \(label.description)"}
+  /// Hash this node, respecting only its label
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(label.map {$0})
+  }
+  ///////////// Indicates if the node contains any child nodes
+  public var isLeaf: Bool {return children.isEmpty}
+  public var isRoot: Bool {return level == 0}
+}
+
+// MARK: Comparison Operators
+extension Radix: Comparable {
+  /// Test equality of two nodes, respecting only the label
+  public static func == (lhs: Radix, rhs: Radix) -> Bool {
+    return lhs.label.elementsEqual(rhs.label)
+  }
+  /// Test order of two nodes, respecting only the label
+  public static func < (lhs: Radix, rhs: Radix) -> Bool {
+    return lhs.label.lexicographicallyPrecedes(rhs.label)
+  }
+}
+
+// MARK: Encoding and decoding
+extension Radix: Codable {
+  private enum CodingKeys: CodingKey {
+    case label, level, isTerminal, children
   }
   /// Initialize a node from a decoder
   public convenience init(from decoder: Decoder) throws {
