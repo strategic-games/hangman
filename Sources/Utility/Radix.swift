@@ -172,16 +172,8 @@ public final class Radix: CustomStringConvertible, Equatable, Hashable, Comparab
     return child.endNode(Label(member[child.label.endIndex...]))
   }
   /// Return the child node whose label is the prefix of or equal to the given string if present
-  private func startNode(of member: Label, range: Range<ChildrenType.Index>? = nil) -> Radix? {
-    let range = range ?? children.startIndex..<children.endIndex
-    let mid = range.count/2 + range.lowerBound
-    let child = children[mid]
-    if member.starts(with: child.label) {return child}
-    let left = range[..<mid]
-    let right = range[children.index(after: mid)...]
-    let selected = child.label.lexicographicallyPrecedes(member) ? right : left
-    if selected.isEmpty {return nil}
-    return startNode(of: member, range: selected)
+  func startNode(of label: Label) -> Radix? {
+    return children.first(where: {label.starts(with: $0.label)}, precedes: {$0.label.lexicographicallyPrecedes(label)})
   }
   // MARK: Adding and pruning tree nodes
   /// Adds a terminal child node with given label
