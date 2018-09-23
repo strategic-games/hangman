@@ -1,5 +1,5 @@
 /// A collection of unique elements which keeps itself sorted
-public struct SortedSet<Element: Comparable>: Equatable, ExpressibleByArrayLiteral {
+public struct SortedSet<Element: Comparable>: Equatable, ExpressibleByArrayLiteral, SelfSorting {
   /// The type of the wrapped collection which holds the elements
   public typealias CollectionType = [Element]
   /// A wrapped collection which holds the elements
@@ -51,35 +51,11 @@ extension SortedSet: RandomAccessCollection {
 }
 
 extension SortedSet: SetAlgebra {
-  // MARK: Finding elements
-  /// Return the index of the given element using binary search
-  public func index(of member: Element) -> (found: Bool, index: Index) {
-    if items.isEmpty {return (false, items.endIndex)}
-    return index(of: member, range: items.startIndex..<items.endIndex)
-  }
-  private func index(of member: Element, range: Range<Index>) -> (found: Bool, index: Index) {
-    let mid = range.count/2 + range.lowerBound
-    let item = items[mid]
-    if item == member {return (true, mid)}
-    let left = range[..<mid]
-    let right = range[items.index(after: mid)...]
-    let selected = member > item ? right : left
-    if selected.isEmpty {return (false, selected.upperBound)}
-    return index(of: member, range: selected)
-  }
-  /// Indicate if the given element is contained in the sorted set
-  public func contains(_ member: Element) -> Bool {
-    return self.index(of: member).found
-  }
-  /// Return the minimum element in the sorted set, its first element
-  public func min() -> Element? {return items.first}
-  /// Return the maximum element in the sorted set, its last element
-  public func max() -> Element? {return items.last}
   // MARK: Adding elements
   /// Insert an element into the sorted set if not already present
   @discardableResult
   public mutating func insert(_ newMember: Element) -> (inserted: Bool, memberAfterInsert: Element) {
-    let (found, i) = self.index(of: newMember)
+    let (found, i) = firstIndex(of: newMember)
     if found == false {
       items.insert(newMember, at: i)
       return (true, newMember)
@@ -90,7 +66,7 @@ extension SortedSet: SetAlgebra {
   /// Insert an element inconditionally
   @discardableResult
   public mutating func update(with newMember: Element) -> Element? {
-    let (found, i) = self.index(of: newMember)
+    let (found, i) = firstIndex(of: newMember)
     if found == false {
       items.insert(newMember, at: i)
       return nil
@@ -103,7 +79,7 @@ extension SortedSet: SetAlgebra {
   /// Remove an element from a sorted set
   @discardableResult
   public mutating func remove(_ member: Element) -> Element? {
-    let (found, i) = index(of: member)
+    let (found, i) = firstIndex(of: member)
     if found == false {
       return nil
     } else {

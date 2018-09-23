@@ -20,18 +20,17 @@ class SortedSetTests: XCTestCase {
 
     func testInsert() {
       var x = SortedSet<String>()
-      guard let str = WordList.ScrabbleDict.load() else {return}
-      let dict = str.split(separator: "\n").map {String($0)}
+      let dict = WordList.ScrabbleDict.words()
       for w in dict.prefix(10) {
-        XCTAssertFalse(x.contains(w))
-        x.insert(w)
-        XCTAssert(x.contains(w))
+        let stringValue = String(String.UnicodeScalarView(w))
+        XCTAssertFalse(x.contains(String(String.UnicodeScalarView(w))))
+        x.insert(stringValue)
+        XCTAssert(x.contains(stringValue))
       }
     }
   func testRemove() {
-    guard let str = WordList.ScrabbleDict.load() else {return}
-    let dict = str.split(separator: "\n").map {String($0)}
-    let words = dict.prefix(10)
+    let dict = WordList.ScrabbleDict.words()
+    let words = dict.prefix(10).map {String(String.UnicodeScalarView($0))}
     var x = SortedSet<String>(words)
     for w in words {
       XCTAssert(x.contains(w))

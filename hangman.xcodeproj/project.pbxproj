@@ -48,6 +48,8 @@
 		8D7A5DAE2153A63B0043F616 /* ask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A5DAC2153A56C0043F616 /* ask.swift */; };
 		8D7A5DB02153B1950043F616 /* FlagValueConformances.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A5DAF2153B1950043F616 /* FlagValueConformances.swift */; };
 		8D7A5DB32153C7A30043F616 /* Vocabulary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A5DB12153C7270043F616 /* Vocabulary.swift */; };
+		8D7A5DBB215754F10043F616 /* CollectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A5DBA215754F10043F616 /* CollectionExtensions.swift */; };
+		8D7A5DBD2157B2C00043F616 /* SelfSorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A5DBC2157B2C00043F616 /* SelfSorting.swift */; };
 		8D8471DB215281B200A285D0 /* dictionaries in Resources */ = {isa = PBXBuildFile; fileRef = 8D86F6A821524F99004AACF9 /* dictionaries */; };
 		OBJ_141 /* api.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_72 /* api.c */; };
 		OBJ_142 /* emitter.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_73 /* emitter.c */; };
@@ -325,6 +327,8 @@
 		8D7A5DAC2153A56C0043F616 /* ask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ask.swift; sourceTree = "<group>"; };
 		8D7A5DAF2153B1950043F616 /* FlagValueConformances.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagValueConformances.swift; sourceTree = "<group>"; };
 		8D7A5DB12153C7270043F616 /* Vocabulary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vocabulary.swift; sourceTree = "<group>"; };
+		8D7A5DBA215754F10043F616 /* CollectionExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionExtensions.swift; sourceTree = "<group>"; };
+		8D7A5DBC2157B2C00043F616 /* SelfSorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfSorting.swift; sourceTree = "<group>"; };
 		8D86F6A821524F99004AACF9 /* dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dictionaries; sourceTree = "<group>"; };
 		"Guaka::Guaka::Product" /* Guaka.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Guaka.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_10 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
@@ -601,12 +605,14 @@
 		OBJ_13 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				8D7A5DBA215754F10043F616 /* CollectionExtensions.swift */,
 				OBJ_14 /* ISODate.swift */,
 				OBJ_15 /* Math.swift */,
 				OBJ_16 /* Matrix.swift */,
 				OBJ_17 /* Radix.swift */,
 				OBJ_18 /* Scale_Stevens.swift */,
 				OBJ_19 /* Scale_Tukey.swift */,
+				8D7A5DBC2157B2C00043F616 /* SelfSorting.swift */,
 				OBJ_20 /* SortedSet.swift */,
 				OBJ_21 /* Version.swift */,
 				OBJ_22 /* WordList.swift */,
@@ -1373,7 +1379,9 @@
 				OBJ_297 /* Matrix.swift in Sources */,
 				OBJ_298 /* Radix.swift in Sources */,
 				OBJ_299 /* Scale_Stevens.swift in Sources */,
+				8D7A5DBB215754F10043F616 /* CollectionExtensions.swift in Sources */,
 				OBJ_300 /* Scale_Tukey.swift in Sources */,
+				8D7A5DBD2157B2C00043F616 /* SelfSorting.swift in Sources */,
 				OBJ_301 /* SortedSet.swift in Sources */,
 				OBJ_302 /* Version.swift in Sources */,
 				OBJ_303 /* WordList.swift in Sources */,

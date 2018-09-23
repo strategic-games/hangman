@@ -8,8 +8,7 @@ final class RadixTests: XCTestCase {
   var dict: [[Unicode.Scalar]]?
   var radix: Radix?
   override func setUp() {
-    let str = WordList.ScrabbleDict.load()
-    dict = str?.unicodeScalars.split(separator: "\n").map {Array($0)}
+    dict = WordList.ScrabbleDict.words()
     if let tmp = self.dict {
       let radix = Radix()
       for x in tmp {
@@ -84,6 +83,10 @@ final class RadixTests: XCTestCase {
     for w in words {
       XCTAssert(radix.contains(w))
     }
+  }
+  func testCollectionWord() {
+    let x: [Character?] = [nil, "x", "y", "z", nil]
+    XCTAssertEqual(x.indices(around: 2, surround: nil), 1..<4)
   }
     static var allTests = [
        ("Test Insert", testInsert),

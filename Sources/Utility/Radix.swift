@@ -246,19 +246,6 @@ public final class Radix: CustomStringConvertible, Equatable, Hashable, Comparab
   }
 }
 
-extension Collection where Element: Equatable {
-  /// Returns the index where a collection diverges from another one
-  func index(diverging from: Self) -> Self.Index {
-    let shorter = self.count < from.count ? self : from
-    var i = shorter.startIndex
-    while i < shorter.endIndex {
-      if self[i] != from[i] {break}
-      shorter.formIndex(after: &i)
-    }
-    return i
-  }
-}
-
 extension Array where Element == Unicode.Scalar {
   /// The string representation of a radix label
   public var description: String {return String(String.UnicodeScalarView(self))}
