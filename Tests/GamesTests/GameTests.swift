@@ -19,9 +19,9 @@ class BegriffixTests: XCTestCase {
     XCTAssertEqual(area.columns, 3..<4)
   }
   func testPerformance() {
-    let startLetters: [[Unicode.Scalar?]] = [["l", "a"], ["e", "r"]]
-    let player = Player()
-    guard let game = Begriffix(startLetters: startLetters, starter: player.move, opponent: player.move) else {return}
+    let startLetters = "laer"
+    let player = Player(.full(.ScrabbleDict))
+    let game = Begriffix(startLetters: startLetters, starter: player.move, opponent: player.move)
     measure {
       for _ in game {}
     }
@@ -38,9 +38,4 @@ dröhntet
 ...td...
 """
   }*/
-  func testCollectionWord() {
-    let x: [Character?] = [nil, "x", "y", "z", nil]
-    XCTAssertEqual(x.indices(around: 2, surround: nil), 1..<4)
-  }
-
 }

@@ -215,25 +215,6 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol&Conf
   }
 }
 
-extension BidirectionalCollection where Element: Equatable {
-  /// Returns the indices around a given index to return a slice that is surrounded by a given element
-  func indices(around i: Index, surround: Element) -> Range<Index> {
-    assert(indices.contains(i), "i out of bounds")
-    var start = i
-    var end = i
-    while start > startIndex {
-      let next = index(before: start)
-      if self[next] == surround {break}
-      start = next
-    }
-    while end < endIndex {
-      formIndex(after: &end)
-      if end == endIndex || self[end] == surround {break}
-    }
-    return start..<end
-  }
-}
-
 extension Begriffix.Move: Codable {
   enum CodingKeys: CodingKey {
     case place, word, places
