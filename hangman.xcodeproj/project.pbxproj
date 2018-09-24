@@ -110,7 +110,6 @@
 		OBJ_253 /* Simulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* Simulation.swift */; };
 		OBJ_254 /* Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* Condition.swift */; };
 		OBJ_255 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* Info.swift */; };
-		OBJ_256 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* Record.swift */; };
 		OBJ_258 /* Games.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "hangman::Games::Product" /* Games.framework */; };
 		OBJ_259 /* Utility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "hangman::Utility::Product" /* Utility.framework */; };
 		OBJ_267 /* InfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_39 /* InfoTests.swift */; };
@@ -365,7 +364,6 @@
 		OBJ_24 /* Simulation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Simulation.swift; sourceTree = "<group>"; };
 		OBJ_25 /* Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Condition.swift; sourceTree = "<group>"; };
 		OBJ_26 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
-		OBJ_27 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		OBJ_29 /* radix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radix.swift; sourceTree = "<group>"; };
 		OBJ_30 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		OBJ_32 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -627,7 +625,6 @@
 				OBJ_24 /* Simulation.swift */,
 				OBJ_25 /* Condition.swift */,
 				OBJ_26 /* Info.swift */,
-				OBJ_27 /* Record.swift */,
 			);
 			name = SimulationDescription;
 			path = Sources/SimulationDescription;
@@ -1338,7 +1335,6 @@
 				OBJ_253 /* Simulation.swift in Sources */,
 				OBJ_254 /* Condition.swift in Sources */,
 				OBJ_255 /* Info.swift in Sources */,
-				OBJ_256 /* Record.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
