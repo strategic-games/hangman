@@ -133,8 +133,8 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol&Conf
   }
   /// Indicates if a word fits a pattern
   public func isValid(word: Word, for pattern: Pattern) -> Bool {
-    if word.count != pattern.count {return false}
-    return zip(word, pattern).allSatisfy {$0.1 == nil ? true : $0.0 == $0.1}
+    guard word.count == pattern.count else {return false}
+    return word.match(pattern: pattern)
   }
   /// Indicates if a word fits the pattern at a given place
   public func isValid(_ move: Move) -> Bool {
@@ -216,19 +216,18 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol&Conf
 }
 
 extension Begriffix.Move: Codable {
-  enum CodingKeys: CodingKey {
+  private enum CodingKeys: CodingKey {
     case place, word, places
   }
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     place = try container.decode(Place.self, forKey: .place)
-    let wordString = try container.decode(String.self, forKey: .word)
-    word = Array(wordString.unicodeScalars)
+    word = try container.decode(String.self, forKey: .word).word
     places = nil
   }
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(place, forKey: .place)
-    try container.encode(String(String.UnicodeScalarView(word)), forKey: .word)
+    try container.encode(String(word: word), forKey: .word)
   }
 }
