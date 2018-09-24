@@ -1,5 +1,5 @@
 /// Scales of measurement (Stevens, 1946)
-public enum Scale_Stevens {
+public enum ScaleStevens {
   /// Unordered categories
   case Nominal([String])
   /// Ordered categories
@@ -10,8 +10,8 @@ public enum Scale_Stevens {
   case Ratio([Double])
 }
 
-extension Scale_Stevens: Codable {
-  enum CodingKeys: CodingKey {
+extension ScaleStevens: Codable {
+  private enum CodingKeys: CodingKey {
     case nominal, ordinal, interval, ratio
   }
   /// Encode a scale to an encoder

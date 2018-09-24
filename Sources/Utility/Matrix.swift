@@ -47,7 +47,7 @@ public struct Area: Hashable {
 
 /// A 2D grid for game boards etc.
 public struct Matrix<Element> {
-  //MARK: Properties
+  // MARK: Properties
   /// The number of rows and columns
   public let rows: Int, columns: Int
   /// A textual representation
@@ -56,7 +56,7 @@ public struct Matrix<Element> {
   public var count: Int {return rows*columns}
   /// The elements as rowwise array
   public private(set) var values: [Element]
-  //MARK: Initializers
+  // MARK: Initializers
   /// Initialize new with values and dimensions
   public init(values: [Element], rows: Int, columns: Int) {
     assert(columns*rows == values.count, "dimensions and values do not match")
@@ -87,7 +87,7 @@ public struct Matrix<Element> {
   public init(repeating: Element, area: Area) {
     self.init(repeating: repeating, rows: area.rows.count, columns: area.columns.count)
   }
-  //MARK: Subscripts
+  // MARK: Subscripts
   /// Access the element at the given position
   public subscript(row: Int, column: Int) -> Element {
     get {
@@ -133,7 +133,7 @@ public struct Matrix<Element> {
   }
   /// Access the elements in the given ranges
   public subscript(rows: Range<Int>, columns: Range<Int>) -> [Element] {
-    get {return Array(self[rows, columns].joined())}
+    return Array(self[rows, columns].joined())
   }
   /// Access the elements in the given area
   public subscript(area: Area) -> Matrix<Element> {

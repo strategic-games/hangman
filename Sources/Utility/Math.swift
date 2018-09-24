@@ -27,7 +27,6 @@ public extension Collection where Element == Double {
   }
 }
 
-
 public extension Matrix where Element: Numeric {
   /// Recode the matrix values by subtracting them from a given maximum value
   func invert(max: Element = 1) -> Matrix<Element> {

@@ -1,5 +1,5 @@
 /// Scales of measurement (Mosteller & Tukey, 1977)
-public enum Scale_Tukey {
+public enum ScaleTukey {
   /// Unordered labels
   case Names([String])
   /// Ordered labels
@@ -16,8 +16,8 @@ public enum Scale_Tukey {
   case Balances([Double])
 }
 
-extension Scale_Tukey: Codable {
-  enum CodingKeys: CodingKey {
+extension ScaleTukey: Codable {
+  private enum CodingKeys: CodingKey {
     case names, grades, ranks, counted_fractions, counts, amounts, balances
   }
   /// Encode a scale to an encoder

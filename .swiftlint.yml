@@ -1,6 +1,8 @@
 disabled_rules:
   - identifier_name
   - line_length
+  - force_try
+  - large_tuple
 included:
   - Sources
   - Tests

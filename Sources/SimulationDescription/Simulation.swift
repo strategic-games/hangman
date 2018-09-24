@@ -11,4 +11,3 @@ public struct Simulation: Codable {
     conditions = conditions.map {$0.run()}
   }
 }
-
