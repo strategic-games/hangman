@@ -22,7 +22,7 @@ public final class Radix {
   }
   /// Insert a string into the tree
   public func insert(_ key: String) {
-    insert(Label(key.unicodeScalars))
+    insert(key.word)
   }
   /// Insert the elements of a given sequence into the tree
   public func insert<S: Sequence>(_ s: S) where S.Element == String {
@@ -31,7 +31,7 @@ public final class Radix {
   /// Insert a new member into this node
   @discardableResult
   public func insert(_ key: Label) -> (added: Bool, node: Radix) {
-    if children.isEmpty {return (true, add(key))}
+    if isLeaf {return (true, add(key))}
     if let max = children.last, children.count > 3 {
       let i = max.label.index(diverging: key)
       if i == max.label.startIndex && max.label.lexicographicallyPrecedes(key) {return (true, add(key))}
@@ -65,24 +65,24 @@ public final class Radix {
   }
   /// Remove a given string from this tree if present
   public func remove(_ key: String) {
-    remove(Label(key.unicodeScalars))
+    remove(key.word)
   }
   /// Remove a string from this node if present, and prune leaf nodes if present
   public func remove(_ key: Label) {
-    if children.isEmpty {return}
+    if isLeaf {return}
     guard let child = startNode(of: key) else {return}
     if child.label.elementsEqual(key) {
       child.isTerminal = false
     } else {
       child.remove(Label(key[child.label.endIndex...]))
     }
-    if !child.isTerminal && child.children.isEmpty {
+    if !child.isTerminal && child.isLeaf {
       children.remove(child)
     }
   }
   // MARK: Testing for membership
   public func contains(_ member: String) -> Bool {
-    return endNode(Label(member.unicodeScalars)) != nil
+    return endNode(member.word) != nil
   }
   public func contains(_ member: Label) -> Bool {
     return endNode(member) != nil
@@ -90,20 +90,19 @@ public final class Radix {
   // MARK: Searching, filtering
   /// Return a new array with the strings in this tree
   public func search() -> [String] {
-    let results: [Label] = search()
-    return results.map {$0.description}
+    return search()
+      .map {String(word: $0)}
   }
   /// Return a new array with the strings in this tree that satisfy the given pattern
   public func search(pattern: String) -> [String] {
-    return search(pattern: pattern.unicodeScalars.map {$0 == "?" ? nil : $0})
-      .map {$0.description}
+    return search(pattern: pattern.pattern)
+      .map {String(word: $0)}
   }
   /// Return an array with every inserted string in this node, the given prefix prepended
   public func search(prefix: Label = []) -> [Label] {
   var words = [Label]()
-    var prev: Label
     for child in children {
-      prev = prefix + child.label
+      let prev = prefix + child.label
       if child.isTerminal {
         words.append(prev)
       }
@@ -114,18 +113,9 @@ public final class Radix {
   /// Return an array with every inserted string in this node that match the given pattern, the given prefix prepended
   public func search(prefix: Label = [], pattern: [Label.Element?]) -> [Label] {
     var words = [Label]()
-    var prev: Label
     for child in children {
-      prev = prefix + child.label
-      let matches = zip(prev, pattern)
-        .allSatisfy {(x, p) in
-          if let p = p {
-            return x == p
-          } else {
-            return true
-          }
-      }
-      guard matches else {continue}
+      let prev = prefix + child.label
+      guard prev.match(pattern: pattern) else {continue}
       if prev.count == pattern.count && child.isTerminal {
         words.append(prev)
       } else if prev.count < pattern.count {
@@ -137,7 +127,7 @@ public final class Radix {
   // MARK: Finding tree nodes
   /// Return the node which marks the end of a given string if present
   func endNode(_ member: Label) -> Radix? {
-    if children.isEmpty {return nil}
+    if isLeaf {return nil}
     guard let child = startNode(of: member) else {return nil}
     if child.label.elementsEqual(member) && child.isTerminal {return child}
     return child.endNode(Label(member[child.label.endIndex...]))
@@ -211,25 +201,19 @@ extension Radix: Codable {
   }
   /// Initialize a node from a decoder
   public convenience init(from decoder: Decoder) throws {
-    let values = try decoder.container(keyedBy: CodingKeys.self)
-    let labelString: String = try values.decode(String.self, forKey: .label)
-    let label = Label(labelString.unicodeScalars)
-    let level = try values.decode(Int.self, forKey: .level)
-    let isTerminal = try values.decode(Bool.self, forKey: .isTerminal)
-    let children = try values.decode(SortedSet<Radix>.self, forKey: .children)
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    let label = try container.decode(String.self, forKey: .label).word
+    let level = try container.decode(Int.self, forKey: .level)
+    let isTerminal = try container.decode(Bool.self, forKey: .isTerminal)
+    let children = try container.decode(SortedSet<Radix>.self, forKey: .children)
     self.init(label: label, level: level, isTerminal: isTerminal, children: children)
   }
   /// Encode the node into an encoder
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(label.description, forKey: .label)
+    try container.encode(String(word: label), forKey: .label)
     try container.encode(level, forKey: .level)
     try container.encode(isTerminal, forKey: .isTerminal)
     try container.encode(children, forKey: .children)
   }
-}
-
-extension Array where Element == Unicode.Scalar {
-  /// The string representation of a radix label
-  public var description: String {return String(String.UnicodeScalarView(self))}
 }
