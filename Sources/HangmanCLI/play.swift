@@ -34,10 +34,11 @@ private func execute(flags: Flags, args: [String]) {
   }
 }
 
-private func move(_ game: Begriffix) -> Begriffix.Move {
+private func move(_ game: Begriffix) -> (Begriffix.Move, [Begriffix.Hit])? {
   let start: Point = ask("Which position do you want to start writing from?")
   let direction = Direction.Horizontal
   let word: String = ask("Which word to you want to write?")
   let place = Place(start: start, direction: direction, count: word.count)
-  return .init(place, Array(word.unicodeScalars))
+  let move = Begriffix.Move(place, word.word)
+  return (move: move, hits: [])
 }

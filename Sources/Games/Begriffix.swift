@@ -13,21 +13,26 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol&Conf
   public typealias Status = GameStatus<Begriffix>
   public typealias Error = GameError<Begriffix>
   public typealias Notify = ((_ status: Status) -> Void)?
-  public typealias Update = (_ game: Begriffix) -> Move?
+  public typealias Update = (_ game: Begriffix) -> (Move, [Hit])?
   public struct Configuration: Codable {
     public let startLetters: String
     public let starter: Player
     public let opponent: Player
   }
   public struct Move {
-    public typealias Places = [Place:[Word]]?
     public let place: Place
     public let word: Word
-    public let places: Places
-    public init(_ place: Place, _ word: Word, _ places: Places = nil) {
+    public init(_ place: Place, _ word: Word) {
       self.place = place
       self.word = word
-      self.places = places
+    }
+  }
+  public struct Hit {
+    public let place: Place
+    public let words: [Word]
+    public init(_ place: Place, _ words: [Word]) {
+      self.place = place
+      self.words = words
     }
   }
   /// phases of a game which is currently playing
@@ -100,7 +105,7 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol&Conf
   public mutating func play() throws {
     notify?(.Started)
     repeat {
-      guard let move = player(self) else {
+      guard let (move, _) = player(self) else {
         notify?(.Ended)
         break
       }
@@ -109,15 +114,15 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol&Conf
     } while true
   }
   /// Advance the game for one move
-  public mutating func next() -> (Begriffix, Move)? {
-    guard let move = player(self) else {return nil}
+  public mutating func next() -> (Begriffix, Move, [Hit])? {
+    guard let (move, hits) = player(self) else {return nil}
     let currentGame = self
     do {
       try insert(move)
     } catch {
       return nil
     }
-    return (currentGame, move)
+    return (currentGame, move, hits)
   }
   /// Apply a move to the game
   public mutating func insert(_ move: Move) throws {
@@ -217,17 +222,32 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol&Conf
 
 extension Begriffix.Move: Codable {
   private enum CodingKeys: CodingKey {
-    case place, word, places
+    case place, word
   }
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     place = try container.decode(Place.self, forKey: .place)
     word = try container.decode(String.self, forKey: .word).word
-    places = nil
   }
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(place, forKey: .place)
     try container.encode(String(word: word), forKey: .word)
+  }
+}
+
+extension Begriffix.Hit: Codable {
+  private enum CodingKeys: CodingKey {
+    case place, words
+  }
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    place = try container.decode(Place.self, forKey: .place)
+    words = try container.decode([String].self, forKey: .words).map {$0.word}
+  }
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(place, forKey: .place)
+    try container.encode(words.map({String(word: $0)}), forKey: .words)
   }
 }

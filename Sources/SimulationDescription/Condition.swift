@@ -2,17 +2,17 @@ import Games
 
 /// A type that stores game parameters
 public enum Condition {
-  case begriffix(Begriffix.Configuration, Int, [[Begriffix.Move]]?)
+  case begriffix(Begriffix.Configuration, Int, [[BegriffixResult]]?)
   public func run() -> Condition {
     switch self {
     case let .begriffix(config, trials, _):
       let game = Begriffix(from: config)
-      var result = [[Begriffix.Move]]()
+      var result = [[BegriffixResult]]()
       result.reserveCapacity(trials)
       for _ in 1...trials {
-        var moves = [Begriffix.Move]()
-        for (_, move) in game {
-          moves.append(move)
+        var moves = [BegriffixResult]()
+        for (_, move, hits) in game {
+          moves.append(.init(move: move, hits: hits))
         }
         result.append(moves)
       }
@@ -32,7 +32,7 @@ extension Condition: Codable {
     switch game {
     case "begriffix":
       let config = try container.decode(Games.Begriffix.Configuration.self, forKey: .config)
-      let result = try container.decode([[Games.Begriffix.Move]].self, forKey: .result)
+      let result = try container.decode([[BegriffixResult]].self, forKey: .result)
       self = .begriffix(config, trials, result)
     default:
       throw DecodingError.keyNotFound(CodingKeys.game, .init(codingPath: decoder.codingPath, debugDescription: "no valid game name"))
@@ -48,4 +48,9 @@ extension Condition: Codable {
       try container.encode(result, forKey: .result)
     }
   }
+}
+
+public struct BegriffixResult: Codable {
+  let move: Begriffix.Move
+  let hits: [Begriffix.Hit]
 }
