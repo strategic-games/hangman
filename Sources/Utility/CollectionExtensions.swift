@@ -29,22 +29,21 @@ public extension String {
   }
 }
 
-extension BidirectionalCollection where Element: Equatable {
+extension RandomAccessCollection where Element: Equatable {
   /// Returns the indices around a given index to return a slice that is surrounded by a given element
-  public func indices(around i: Index, surround: Element) -> Range<Index> {
+  public func indices(around i: Index, surround: Element) -> Indices {
     assert(indices.contains(i), "i out of bounds")
     var start = i
     var end = i
-    while start > startIndex {
-      let next = index(before: start)
+    for next in indices[..<i].reversed() {
       if self[next] == surround {break}
       start = next
     }
-    while end < endIndex {
-      formIndex(after: &end)
-      if end == endIndex || self[end] == surround {break}
+    for next in indices[index(after: i)...] {
+      if self[next] == surround {break}
+      end = next
     }
-    return start..<end
+    return indices[start...end]
   }
 }
 
