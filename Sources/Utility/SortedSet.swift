@@ -1,5 +1,5 @@
 /// A collection of unique elements which keeps itself sorted
-public struct SortedSet<Element: Comparable>: Equatable, ExpressibleByArrayLiteral, SelfSorting {
+public struct SortedSet<Element: Comparable>: SelfSorting {
   /// The type of the wrapped collection which holds the elements
   public typealias CollectionType = [Element]
   /// A wrapped collection which holds the elements
@@ -15,6 +15,9 @@ public struct SortedSet<Element: Comparable>: Equatable, ExpressibleByArrayLiter
   fileprivate init<S>(sorted: S) where S: Sequence, S.Element == Element {
     items = CollectionType(sorted)
   }
+}
+
+extension SortedSet: ExpressibleByArrayLiteral {
   /// Create a sorted set from an array literal, sorting its content
   public init(arrayLiteral: Element...) {
     self.init(arrayLiteral.sorted())
@@ -175,22 +178,4 @@ extension SortedSet: SetAlgebra {
 }
 
 // MARK: Encoding and decoding
-extension SortedSet: Codable where Element: Codable {
-  /// Creates a sorted set by decoding from the given decoder
-  public init(from decoder: Decoder) throws {
-    var container = try decoder.unkeyedContainer()
-    var items = CollectionType()
-    while !container.isAtEnd {
-      let item = try container.decode(Element.self)
-      items.append(item)
-    }
-    self.items = items
-  }
-  /// Encode a sorted set into the given encoder
-  public func encode(to encoder: Encoder) throws {
-    var container = encoder.unkeyedContainer()
-    for element in self {
-      try container.encode(element)
-    }
-  }
-}
+extension SortedSet: Codable where Element: Codable {}
