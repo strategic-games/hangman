@@ -2,95 +2,81 @@ import XCTest
 @testable import Utility
 
 final class RadixTests: XCTestCase {
-  let word = ""
-  let range = 3...5
-  let pattern = "????zh????"
-  var dict: [[Unicode.Scalar]]?
-  var radix: Radix?
-  override func setUp() {
-    dict = WordList.ScrabbleDict.words()
-    if let tmp = self.dict {
-      let radix = Radix()
-      for x in tmp {
-        radix.insert(x)
-      }
-      self.radix = radix
-    }
-  }
-  func testInsert() {
-    let words = ["hallo", "halt", "halli", "hall"]
-    insertHelper(words: words)
-    insertHelper(words: words.reversed())
-  }
-  func testDict() {
-  guard let radix = self.radix, let dict = self.dict else {return}
-    let words = dict
-    measure {
-      for w in words {
-        if !radix.contains(w) {
-          print(w)
-            XCTAssert(false)
-            break
-        }
-      }
-    }
-  }
-    func testAnagramm() {
-        guard let radix = self.radix, let dict = self.dict else {return}
-        let words = dict.map {Array($0.reversed())}
-        var counter: Int = 0
-        measure {
-            for w in words {
-                if radix.contains(w) {
-                    XCTAssert(counter < 50000)
-                    counter += 1
-                }
-            }
-        }
-    }
-  func testDescending() {
+  let shorter = "Rassel"
+  let longer = "Rasselbande"
+  let secondLonger = "Rasseln"
+  let diverging = "Rassentheorie"
+  let dict = WordList.ScrabbleDict.words()
+  func testWordsShouldNotExistBeforeInsert() {
     let radix = Radix()
-    radix.insert("hallo")
-    radix.insert("hall")
-    XCTAssert(radix.contains("hall"), "hall not contained")
-    XCTAssert(radix.contains("hallo"), "hallo not contained")
+    dict.prefix(10).forEach {XCTAssertFalse(radix.contains($0))}
   }
-    func testAtomar() {
-        let radix = Radix()
-        radix.insert("hallo")
-        XCTAssertFalse(radix.contains("hall"))
-    }
-  func testRemove() {
-    guard let radix = self.radix, let dict = self.dict else {return}
-    for w in dict.prefix(10) {
-      XCTAssert(radix.contains(w))
-      radix.remove(w)
-      XCTAssertFalse(radix.contains(w))
-    }
-    _ = radix.contains("oktaviert")
-  }
-  func testMatch() {
-    guard let radix = self.radix else {return}
-    measure {
-      _ = radix.search(pattern: "???zh???")
-    }
-  }
-  func insertHelper(words: [String]) {
+  func testPrefixesShouldNotBeWords() {
     let radix = Radix()
-    for w in words {
-      radix.insert(w)
+    radix.insert(longer)
+    XCTAssert(radix.contains(longer))
+    XCTAssertFalse(radix.contains(shorter))
+  }
+  func testWordsShouldExistAfterInsertAndNotAfterRemoving() {
+    let radix = Radix()
+    dict.prefix(10).forEach { word in
+      radix.insert(word)
+      XCTAssert(radix.contains(word), "word not found after inserting")
+      radix.remove(word)
+      XCTAssertFalse(radix.contains(word), "word found after removing")
     }
-    for w in words {
-      XCTAssert(radix.contains(w))
-    }
+  }
+  func testShorterWordExistsAfterInsertingLonger() {
+    let radix = Radix()
+    radix.insert(shorter)
+    XCTAssert(radix.contains(shorter), "shorter word not found before inserting longer word")
+    radix.insert(longer)
+    XCTAssert(radix.contains(shorter), "shorter word not found after inserting longer word")
+    XCTAssert(radix.contains(longer), "longer word not found")
+  }
+  func testShorterExistsAfterInsertingTwoLonger() {
+    let radix = Radix()
+    radix.insert(shorter)
+    radix.insert(longer)
+    radix.insert(secondLonger)
+    XCTAssert(radix.contains(shorter), "shorter word not found after inserting longer word")
+    XCTAssert(radix.contains(longer), "longer word not found")
+    XCTAssert(radix.contains(secondLonger), "longer word not found")
+  }
+  func testLongerWordExistsAfterRemovingShorter() {
+    let radix = Radix()
+    radix.insert(shorter)
+    radix.insert(longer)
+    XCTAssert(radix.contains(shorter), "shorter word not found after inserting longer")
+    XCTAssert(radix.contains(longer))
+    radix.remove(shorter)
+    XCTAssertFalse(radix.contains(shorter), "shorter found despite removing")
+    XCTAssert(radix.contains(longer), "longer not found after removing shorter")
+  }
+  func testInsertShorterAfterLongerWord() {
+    let radix = Radix()
+    radix.insert(longer)
+    radix.insert(shorter)
+    XCTAssert(radix.contains(shorter))
+    XCTAssert(radix.contains(longer))
+  }
+  func testInsertedWordsExistAfterInsertingDivergentWords() {
+    let radix = Radix()
+    radix.insert(shorter)
+    radix.insert(diverging)
+    XCTAssert(radix.contains(shorter))
+    XCTAssert(radix.contains(diverging))
+  }
+  func testSearch() {
+    let radix = Radix()
+    let words = [shorter, longer, secondLonger]
+    words.forEach {radix.insert($0)}
+    let found: [String] = radix.search()
+    XCTAssertEqual(words.count, found.count)
+    words.forEach {XCTAssert(found.contains($0))}
   }
   func testCollectionWord() {
     let x: [Character?] = [nil, "x", "y", "z", nil]
     XCTAssertEqual(x.indices(around: 2, surround: nil), 1..<4)
   }
-    static var allTests = [
-       ("Test Insert", testInsert),
-       ("test Dict", testDict),
-       ("Test Descending", testDescending)
-    ]
 }
