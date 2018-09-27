@@ -17,7 +17,7 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol&Conf
   public struct Configuration: Codable {
     public let startLetters: String
     public let starter: Player
-    public let opponent: Player
+    public let opponent: Player?
   }
   public struct Move {
     public let place: Place
@@ -99,7 +99,7 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol&Conf
     self.init(startLetters: fields, starter: starter, opponent: opponent)
   }
   public init(from config: Configuration) {
-    self.init(startLetters: config.startLetters, starter: config.starter.move, opponent: config.opponent.move)
+    self.init(startLetters: config.startLetters, starter: config.starter.move, opponent: config.opponent?.move ?? config.starter.move)
   }
   /// Play the game and pass notifications if a notify callback is set
   public mutating func play() throws {
