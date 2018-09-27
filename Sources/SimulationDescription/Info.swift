@@ -2,8 +2,6 @@ import Foundation
 
 /// Describing metadata
 public struct Info {
-  /// A date formatter that outputs date strings in ISO 8601 format
-  static let dateFormatter = DateFormatter.ISOFormatter()
   /// A one-line description of the experiment
   let title: String
   /// More comments, descriptions, explanations
@@ -24,6 +22,6 @@ extension Info: Codable {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     title = try container.decode(String.self, forKey: .title)
     supplement = try container.decode(String.self, forKey: .supplement)
-    date = Info.dateFormatter.string(from: Date())
+    date = Date().description
   }
 }

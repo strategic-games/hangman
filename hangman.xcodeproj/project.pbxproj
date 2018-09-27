@@ -45,6 +45,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		8D248147215D0DEB000E0688 /* ISODate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D248146215D0DEB000E0688 /* ISODate.swift */; };
 		8D7A5DAE2153A63B0043F616 /* ask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A5DAC2153A56C0043F616 /* ask.swift */; };
 		8D7A5DB02153B1950043F616 /* FlagValueConformances.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A5DAF2153B1950043F616 /* FlagValueConformances.swift */; };
 		8D7A5DB32153C7A30043F616 /* Vocabulary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A5DB12153C7270043F616 /* Vocabulary.swift */; };
@@ -122,14 +123,12 @@
 		OBJ_282 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_121 /* StringExtension.swift */; };
 		OBJ_283 /* StringScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_122 /* StringScanner.swift */; };
 		OBJ_290 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_123 /* Package.swift */; };
-		OBJ_295 /* ISODate.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* ISODate.swift */; };
 		OBJ_296 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* Math.swift */; };
 		OBJ_297 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* Matrix.swift */; };
 		OBJ_298 /* Radix.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* Radix.swift */; };
 		OBJ_299 /* Scale_Stevens.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* Scale_Stevens.swift */; };
 		OBJ_300 /* Scale_Tukey.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* Scale_Tukey.swift */; };
 		OBJ_301 /* SortedSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* SortedSet.swift */; };
-		OBJ_302 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* Version.swift */; };
 		OBJ_303 /* WordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* WordList.swift */; };
 		OBJ_310 /* DimensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_43 /* DimensionsTests.swift */; };
 		OBJ_311 /* MatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_44 /* MatrixTests.swift */; };
@@ -323,6 +322,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8D248146215D0DEB000E0688 /* ISODate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISODate.swift; sourceTree = "<group>"; };
 		8D7A5DAC2153A56C0043F616 /* ask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ask.swift; sourceTree = "<group>"; };
 		8D7A5DAF2153B1950043F616 /* FlagValueConformances.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagValueConformances.swift; sourceTree = "<group>"; };
 		8D7A5DB12153C7270043F616 /* Vocabulary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vocabulary.swift; sourceTree = "<group>"; };
@@ -352,14 +352,12 @@
 		OBJ_121 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		OBJ_122 /* StringScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringScanner.swift; sourceTree = "<group>"; };
 		OBJ_123 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = "/Users/tamaracook/Entwicklung/hangman/.build/checkouts/StringScanner.git--8026872735033917074/Package.swift"; sourceTree = "<group>"; };
-		OBJ_14 /* ISODate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISODate.swift; sourceTree = "<group>"; };
 		OBJ_15 /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		OBJ_16 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 		OBJ_17 /* Radix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Radix.swift; sourceTree = "<group>"; };
 		OBJ_18 /* Scale_Stevens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scale_Stevens.swift; sourceTree = "<group>"; };
 		OBJ_19 /* Scale_Tukey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scale_Tukey.swift; sourceTree = "<group>"; };
 		OBJ_20 /* SortedSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortedSet.swift; sourceTree = "<group>"; };
-		OBJ_21 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		OBJ_22 /* WordList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordList.swift; sourceTree = "<group>"; };
 		OBJ_24 /* Simulation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Simulation.swift; sourceTree = "<group>"; };
 		OBJ_25 /* Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Condition.swift; sourceTree = "<group>"; };
@@ -604,7 +602,6 @@
 			isa = PBXGroup;
 			children = (
 				8D7A5DBA215754F10043F616 /* CollectionExtensions.swift */,
-				OBJ_14 /* ISODate.swift */,
 				OBJ_15 /* Math.swift */,
 				OBJ_16 /* Matrix.swift */,
 				OBJ_17 /* Radix.swift */,
@@ -612,7 +609,6 @@
 				OBJ_19 /* Scale_Tukey.swift */,
 				8D7A5DBC2157B2C00043F616 /* SelfSorting.swift */,
 				OBJ_20 /* SortedSet.swift */,
-				OBJ_21 /* Version.swift */,
 				OBJ_22 /* WordList.swift */,
 			);
 			name = Utility;
@@ -622,6 +618,7 @@
 		OBJ_23 /* SimulationDescription */ = {
 			isa = PBXGroup;
 			children = (
+				8D248146215D0DEB000E0688 /* ISODate.swift */,
 				OBJ_24 /* Simulation.swift */,
 				OBJ_25 /* Condition.swift */,
 				OBJ_26 /* Info.swift */,
@@ -1333,6 +1330,7 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_253 /* Simulation.swift in Sources */,
+				8D248147215D0DEB000E0688 /* ISODate.swift in Sources */,
 				OBJ_254 /* Condition.swift in Sources */,
 				OBJ_255 /* Info.swift in Sources */,
 			);
@@ -1370,7 +1368,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_295 /* ISODate.swift in Sources */,
 				OBJ_296 /* Math.swift in Sources */,
 				OBJ_297 /* Matrix.swift in Sources */,
 				OBJ_298 /* Radix.swift in Sources */,
@@ -1379,7 +1376,6 @@
 				OBJ_300 /* Scale_Tukey.swift in Sources */,
 				8D7A5DBD2157B2C00043F616 /* SelfSorting.swift in Sources */,
 				OBJ_301 /* SortedSet.swift in Sources */,
-				OBJ_302 /* Version.swift in Sources */,
 				OBJ_303 /* WordList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

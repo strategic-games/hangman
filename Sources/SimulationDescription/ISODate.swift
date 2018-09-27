@@ -23,3 +23,15 @@ public extension Date {
     return dateFormatter.date(from: string)
   }
 }
+
+extension Date: LosslessStringConvertible {
+  /// A date formatter for ISO 8601 format
+  static let isoFormatter = DateFormatter.ISOFormatter()
+  /// The date as ISO 8601 formatted string
+  public var description: String {return Date.isoFormatter.string(from: self)}
+  /// Initialize a date from an ISO 8601 formatted string
+  public init?(_ description: String) {
+    guard let date = Date.isoFormatter.date(from: description) else {return nil}
+    self = date
+  }
+}
