@@ -28,6 +28,10 @@ public final class Radix {
   public func insert<S: Sequence>(_ s: S) where S.Element == String {
     s.forEach {insert($0)}
   }
+  /// Insert the elements of a given sequence into the tree
+  public func insert<S: Sequence>(_ s: S) where S.Element == Label {
+    s.forEach {insert($0)}
+  }
   /// Insert a new member into this node
   @discardableResult
   public func insert(_ key: Label) -> (added: Bool, node: Radix) {
