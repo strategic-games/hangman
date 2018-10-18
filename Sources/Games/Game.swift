@@ -76,8 +76,3 @@ public protocol Trackable: Game {
   /// A closure that is executed with status notifications
   var notify: ((_ status: GameStatus<Self>) -> Void)? {get set}
 }
-
-public protocol Configurable {
-  associatedtype Configuration
-  init(from config: Configuration)
-}

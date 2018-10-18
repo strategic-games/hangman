@@ -1,7 +1,7 @@
 import Utility
 
 /// A begriffix game
-public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol&Configurable {
+public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
   /// The type of a letter, can be written at one board position
   public typealias Letter = Unicode.Scalar
   /// The type of a word which is a sequence of letters
@@ -14,11 +14,6 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol&Conf
   public typealias Error = GameError<Begriffix>
   public typealias Notify = ((_ status: Status) -> Void)?
   public typealias Update = (_ game: Begriffix) -> (Move, [Hit])?
-  public struct Configuration: Codable {
-    public let startLetters: String
-    public let starter: Player
-    public let opponent: Player?
-  }
   public struct Move {
     public let place: Place
     public let word: Word
@@ -97,9 +92,6 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol&Conf
   public init(startLetters: String, starter: @escaping(Update), opponent: @escaping(Update)) {
     let fields = Array(startLetters.unicodeScalars)
     self.init(startLetters: fields, starter: starter, opponent: opponent)
-  }
-  public init(from config: Configuration) {
-    self.init(startLetters: config.startLetters, starter: config.starter.move, opponent: config.opponent?.move ?? config.starter.move)
   }
   /// Play the game and pass notifications if a notify callback is set
   public mutating func play() throws {
