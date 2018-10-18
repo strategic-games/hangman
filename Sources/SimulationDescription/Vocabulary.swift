@@ -2,7 +2,30 @@ import Foundation
 import Utility
 
 /// Specify a player's vocabulary
-public struct Vocabulary {
+public struct Vocabulary: Hashable, Codable {
+  public struct WordList: Hashable {
+    typealias Words = [[Unicode.Scalar]]
+    private static var fileCache = [String: Words]()
+    public let path: String
+    private var url: URL {
+      return URL(fileURLWithPath: path)
+    }
+    func parse() throws -> [[Unicode.Scalar]] {
+      if let parsed = WordList.fileCache[path] {
+        return parsed
+      }
+      let contents = try load()
+      let words = contents.lowercased().unicodeScalars
+        .split(separator: "\n")
+        .drop(while: {$0.first == "#"})
+        .map {Array($0.prefix(while: {$0 != " "}))}
+      WordList.fileCache[path] = words
+      return words
+    }
+    func load() throws -> String {
+      return try String(contentsOf: url)
+    }
+  }
   /// The parts of a word list to take
   public enum Selector: Hashable {
     /// Take the word list from its initial word up to a maximum number
@@ -12,14 +35,13 @@ public struct Vocabulary {
     /// Take a random sample with given size from a word list
     case sample(Int)
   }
-  private static var fileCache = [URL: [[Unicode.Scalar]]]()
   private static var radixCache = [Vocabulary: Radix]()
   /// The word list the vocabulary is based on
-  public let base: URL
+  public let base: WordList
   /// The part to take from the base word list
   public let select: Selector?
   /// Initialize a new vocabulary
-  public init(base: URL, select: Selector? = nil) {
+  public init(base: WordList, select: Selector? = nil) {
     self.base = base
     self.select = select
   }
@@ -27,7 +49,7 @@ public struct Vocabulary {
     if let radix = Vocabulary.radixCache[self] {
       return radix
     }
-    let dict = try parseFile()
+    let dict = try base.parse()
     let radix = Radix()
     guard let select = self.select else {
       radix.insert(dict)
@@ -43,18 +65,14 @@ public struct Vocabulary {
     }
     return radix
   }
-  func parseFile() throws -> [[Unicode.Scalar]] {
-    if let parsed = Vocabulary.fileCache[base] {
-      return parsed
-    }
-    let contents = try loadFile()
-    return contents.lowercased().unicodeScalars
-      .split(separator: "\n")
-      .drop(while: {$0.first == "#"})
-      .map {Array($0.prefix(while: {$0 != " "}))}
+}
+
+extension Vocabulary.WordList: Codable {
+  public init(from decoder: Decoder) throws {
+    path = try String(from: decoder)
   }
-  func loadFile() throws -> String {
-    return try String(contentsOf: base)
+  public func encode(to encoder: Encoder) throws {
+    try path.encode(to: encoder)
   }
 }
 
@@ -89,6 +107,4 @@ extension Vocabulary.Selector: Codable {
     }
   }
 }
-
-extension Vocabulary: Hashable, Codable {}
 
