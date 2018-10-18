@@ -1,24 +1,39 @@
+import Foundation
 import Guaka
 import Utility
 
-let radixCommand = Command(usage: "radix words pattern", configuration: configuration, run: execute)
+let radixCommand = Command(usage: "radix pattern", configuration: configuration, run: execute)
 
 private func configuration(command: Command) {
   command.shortMessage = "Read a word list as radix tree and search for a pattern"
+  let dictionaryFlag = Flag(
+    shortName: "d",
+    longName: "dictionary",
+    value: "dictionary.txt",
+    description: "The file which contains the word list"
+  )
+  command.add(flag: dictionaryFlag)
 }
 
 private func execute(flags: Flags, args: [String]) {
-  guard args.count == 2 else {
-    rootCommand.fail(statusCode: 1, errorMessage: "Please enter a word list ID and a search pattern")
+  let path = flags.getString(name: "dictionary")!
+  let url = URL(fileURLWithPath: path)
+  do {
+    let content = try String(contentsOf: url)
+    let radix = loadWordList(content)
+    let result = args.count != 0 ? radix.search(pattern: args[0]) : radix.search()
+    print(result)
+  } catch {
+    radixCommand.fail(statusCode: 1, errorMessage: "\(error)")
   }
-  guard let words = WordList(rawValue: args[0])?.words() else {
-    rootCommand.fail(statusCode: 1, errorMessage: "Invalid word list ID")
-  }
+}
+
+func loadWordList(_ contents: String) -> Radix {
+  let dict = contents.lowercased().unicodeScalars
+    .split(separator: "\n")
+    .drop(while: {$0.first == "#"})
+    .map {Array($0.prefix(while: {$0 != " "}))}
   let radix = Radix()
-  words.forEach {radix.insert($0)}
-  let result = radix.search(pattern: args[1])
-  guard result.count > 0 else {
-    rootCommand.fail(statusCode: 0, errorMessage: "no words matching \(args[1]) were found")
-  }
-  result.forEach {print($0)}
+  dict.forEach {radix.insert($0)}
+  return radix
 }
