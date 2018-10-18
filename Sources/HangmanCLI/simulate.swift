@@ -16,38 +16,38 @@ private func execute(flags: Flags, args: [String]) {
     simulateCommand.fail(statusCode: 1, errorMessage: "Error: please supply a file name")
   }
   do {
-    var simulation = try readSimulation(file: args[0])
-    simulation.process()
+    var simulation: BegriffixSimulation = try deserialize(args[0])
+    try simulation.process()
     let format = flags.getString(name: "format")!
-    try writeSimulation(simulation, format: format)
+    try serialize(simulation, format: format)
   } catch {
     print(error)
   }
 }
 
-private func readSimulation(file: String) throws -> Simulation {
-  let url = URL(fileURLWithPath: file)
+private func deserialize<T: Decodable>(_ path: String) throws -> T {
+  let url = URL(fileURLWithPath: path)
   if url.pathExtension == "yaml" {
     let data = try String(contentsOf: url)
     let decoder = YAMLDecoder()
-    return try decoder.decode(Simulation.self, from: data)
+    return try decoder.decode(T.self, from: data)
   } else {
     let data = try Data(contentsOf: url)
     let decoder = JSONDecoder()
-    return try decoder.decode(Simulation.self, from: data)
+    return try decoder.decode(T.self, from: data)
   }
 }
 
-private func writeSimulation(_ simulation: Simulation, format: String) throws {
+private func serialize<T: Encodable&FileNameConvertible>(_ value: T, format: String) throws {
   if format == "yaml" {
-    let url = URL(fileURLWithPath: simulation.info.filename + ".yaml")
+    let url = URL(fileURLWithPath: value.fileName + ".yaml")
     let encoder = YAMLEncoder()
-    let data = try encoder.encode(simulation)
+    let data = try encoder.encode(value)
     try data.write(to: url, atomically: true, encoding: .utf8)
   } else {
-    let url = URL(fileURLWithPath: simulation.info.filename + ".json")
+    let url = URL(fileURLWithPath: value.fileName + ".json")
     let encoder = JSONEncoder()
-    let data = try encoder.encode(simulation)
+    let data = try encoder.encode(value)
     try data.write(to: url)
   }
 }

@@ -19,8 +19,9 @@ class BegriffixTests: XCTestCase {
     XCTAssertEqual(area.columns, 3..<4)
   }
   func testPerformance() {
+    let radix = Radix()
     let startLetters = "laer"
-    let player = Player(.full(.ScrabbleDict))
+    let player = Player(radix)
     let game = Begriffix(startLetters: startLetters, starter: player.move, opponent: player.move)
     measure {
       for _ in game {}
