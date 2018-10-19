@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "hangman::Utility"
-               BuildableName = "Utility.framework"
-               BlueprintName = "Utility"
+               BlueprintIdentifier = "hangman::HangmanCLI"
+               BuildableName = "HangmanCLI"
+               BlueprintName = "HangmanCLI"
                ReferencedContainer = "container:hangman.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,9 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "hangman::HangmanCLI"
-               BuildableName = "HangmanCLI"
-               BlueprintName = "HangmanCLI"
+               BlueprintIdentifier = "hangman::Utility"
+               BuildableName = "Utility.framework"
+               BlueprintName = "Utility"
                ReferencedContainer = "container:hangman.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -65,21 +65,11 @@
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      buildConfiguration = "Release"
+      selectedDebuggerIdentifier = ""
+      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "hangman::SimulationDescriptionTests"
-               BuildableName = "SimulationDescriptionTests.xctest"
-               BlueprintName = "SimulationDescriptionTests"
-               ReferencedContainer = "container:hangman.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
@@ -100,12 +90,22 @@
                ReferencedContainer = "container:hangman.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "hangman::SimulationDescriptionTests"
+               BuildableName = "SimulationDescriptionTests.xctest"
+               BlueprintName = "SimulationDescriptionTests"
+               ReferencedContainer = "container:hangman.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -117,9 +117,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "hangman::Utility"
-            BuildableName = "Utility.framework"
-            BlueprintName = "Utility"
+            BlueprintIdentifier = "hangman::HangmanCLI"
+            BuildableName = "HangmanCLI"
+            BlueprintName = "HangmanCLI"
             ReferencedContainer = "container:hangman.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

@@ -6,10 +6,9 @@ final class RadixTests: XCTestCase {
   let longer = "Rasselbande"
   let secondLonger = "Rasseln"
   let diverging = "Rassentheorie"
-  let dict = WordList.ScrabbleDict.words()
   func testWordsShouldNotExistBeforeInsert() {
     let radix = Radix()
-    dict.prefix(10).forEach {XCTAssertFalse(radix.contains($0))}
+    words.forEach {XCTAssertFalse(radix.contains($0))}
   }
   func testPrefixesShouldNotBeWords() {
     let radix = Radix()
@@ -19,7 +18,7 @@ final class RadixTests: XCTestCase {
   }
   func testWordsShouldExistAfterInsertAndNotAfterRemoving() {
     let radix = Radix()
-    dict.prefix(10).forEach { word in
+    words.forEach { word in
       radix.insert(word)
       XCTAssert(radix.contains(word), "word not found after inserting")
       radix.remove(word)

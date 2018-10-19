@@ -1,16 +1,11 @@
-//
-//  SortedSetTests.swift
-//  RadixTreeTests
-//
-//  Created by Tamara Cook on 29.06.18.
-//
-
 import XCTest
 @testable import Utility
 
+let words = ["AA", "AACHENER", "AACHENERIN", "AACHENERINNEN", "AACHENERN", "AACHENERS", "AAL", "AALE", "AALEN", "AALEND"]
+
 class SortedSetTests: XCTestCase {
 
-    override func setUp() {
+  override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
@@ -20,17 +15,13 @@ class SortedSetTests: XCTestCase {
 
     func testInsert() {
       var x = SortedSet<String>()
-      let dict = WordList.ScrabbleDict.words()
-      for w in dict.prefix(10) {
-        let stringValue = String(String.UnicodeScalarView(w))
-        XCTAssertFalse(x.contains(String(String.UnicodeScalarView(w))))
-        x.insert(stringValue)
-        XCTAssert(x.contains(stringValue))
+      for w in words.prefix(10) {
+        XCTAssertFalse(x.contains(w))
+        x.insert(w)
+        XCTAssert(x.contains(w))
       }
     }
   func testRemove() {
-    let dict = WordList.ScrabbleDict.words()
-    let words = dict.prefix(10).map {String(String.UnicodeScalarView($0))}
     var x = SortedSet<String>(words)
     for w in words {
       XCTAssert(x.contains(w))
