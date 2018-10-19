@@ -1,15 +1,18 @@
 import Foundation
 import Utility
 
-/// Specify a player's vocabulary
+/// A vocabulary descriptor
 public struct Vocabulary: Hashable, Codable {
+  /// A word list file descriptor
   public struct WordList: Hashable {
     typealias Words = [[Unicode.Scalar]]
     private static var fileCache = [String: Words]()
+    /// The file path of the text file containing the word list
     public let path: String
     private var url: URL {
       return URL(fileURLWithPath: path)
     }
+    /// Try to load the file and split into words
     func parse() throws -> [[Unicode.Scalar]] {
       if let parsed = WordList.fileCache[path] {
         return parsed
@@ -22,17 +25,18 @@ public struct Vocabulary: Hashable, Codable {
       WordList.fileCache[path] = words
       return words
     }
+    /// Try to load the file as string
     func load() throws -> String {
       return try String(contentsOf: url)
     }
   }
-  /// The parts of a word list to take
+  /// A descriptor of a selector for taking a part of a list
   public enum Selector: Hashable {
-    /// Take the word list from its initial word up to a maximum number
+    /// Take the list from its initial word up to a maximum number
     case prefix(Int)
-    /// Take a word list from its end up to a maximum number
+    /// Take a list from its end up to a maximum number
     case suffix(Int)
-    /// Take a random sample with given size from a word list
+    /// Take a random sample with given size from a list
     case sample(Int)
   }
   private static var radixCache = [Vocabulary: Radix]()
@@ -45,6 +49,7 @@ public struct Vocabulary: Hashable, Codable {
     self.base = base
     self.select = select
   }
+  /// Returns the vocabulary as radix tree
   func load() throws -> Radix {
     if let radix = Vocabulary.radixCache[self] {
       return radix
@@ -68,9 +73,11 @@ public struct Vocabulary: Hashable, Codable {
 }
 
 extension Vocabulary.WordList: Codable {
+  /// Initialize a word list from a decoder
   public init(from decoder: Decoder) throws {
     path = try String(from: decoder)
   }
+  /// Encode a word list to an encoder
   public func encode(to encoder: Encoder) throws {
     try path.encode(to: encoder)
   }
@@ -80,6 +87,7 @@ extension Vocabulary.Selector: Codable {
   private enum CodingKeys: CodingKey {
     case prefix, suffix, sample
   }
+  /// Initialize a selector from a decoder
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if container.contains(.prefix) {
@@ -95,6 +103,7 @@ extension Vocabulary.Selector: Codable {
       throw DecodingError.dataCorrupted(.init(codingPath: container.codingPath, debugDescription: "No valid selector case was found"))
     }
   }
+  /// Encode a selector to an encoder
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     switch self {

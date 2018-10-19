@@ -107,51 +107,9 @@
     },
     {
       "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Vocabulary.swift",
-      "line": null,
-      "symbol": "Vocabulary.WordList",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Vocabulary.swift",
-      "line": 6,
-      "symbol": "Vocabulary.WordList",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Vocabulary.swift",
-      "line": 7,
+      "line": 8,
       "symbol": "Vocabulary.WordList.Words",
       "symbol_kind": "source.lang.swift.decl.typealias",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Vocabulary.swift",
-      "line": 9,
-      "symbol": "Vocabulary.WordList.path",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Vocabulary.swift",
-      "line": 13,
-      "symbol": "Vocabulary.WordList.parse()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Vocabulary.swift",
-      "line": 25,
-      "symbol": "Vocabulary.WordList.load()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Vocabulary.swift",
-      "line": 48,
-      "symbol": "Vocabulary.load()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     }
   ],
