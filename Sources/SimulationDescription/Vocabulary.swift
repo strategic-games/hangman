@@ -14,9 +14,7 @@ public struct Vocabulary: Hashable, Codable {
     }
     /// Try to load the file and split into words
     func parse() throws -> [[Unicode.Scalar]] {
-      if let parsed = WordList.fileCache[path] {
-        return parsed
-      }
+      if let parsed = WordList.fileCache[path] {return parsed}
       let contents = try load()
       let words = contents.lowercased().unicodeScalars
         .split(separator: "\n")
@@ -51,9 +49,12 @@ public struct Vocabulary: Hashable, Codable {
   }
   /// Returns the vocabulary as radix tree
   func load() throws -> Radix {
-    if let radix = Vocabulary.radixCache[self] {
-      return radix
-    }
+    if let radix = Vocabulary.radixCache[self] {return radix}
+    let radix = try createSelected()
+    Vocabulary.radixCache[self] = radix
+    return radix
+  }
+  func createSelected() throws -> Radix {
     let dict = try base.parse()
     let radix = Radix()
     guard let select = self.select else {
@@ -116,4 +117,3 @@ extension Vocabulary.Selector: Codable {
     }
   }
 }
-
