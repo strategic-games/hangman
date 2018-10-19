@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Begriffix Structure Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/Begriffix" class="dashAnchor"></a>
+    <a title="Begriffix Structure Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">Games Docs</a> (79% documented)</p>
+        <p class="header-right"><a href="https://github.com/strategyc-games/hangman"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">Games Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Begriffix Structure Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/Direction.html">Direction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/GameError.html">GameError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/GameStatus.html">GameStatus</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/BoardGame.html">BoardGame</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DyadicGame.html">DyadicGame</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Game.html">Game</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Trackable.html">Trackable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/VerbalGame.html">VerbalGame</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Begriffix.html">Begriffix</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Begriffix/Move.html">– Move</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Begriffix/Hit.html">– Hit</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Begriffix/Phase.html">– Phase</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Place.html">Place</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Player.html">Player</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Begriffix</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Begriffix</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Game.html">Game</a></span> <span class="o">&amp;</span> <span class="kt"><a href="../Protocols/BoardGame.html">BoardGame</a></span> <span class="o">&amp;</span> <span class="kt"><a href="../Protocols/Trackable.html">Trackable</a></span> <span class="o">&amp;</span> <span class="kt">Sequence</span> <span class="o">&amp;</span> <span class="kt">IteratorProtocol</span></code></pre>
+
+                </div>
+              </div>
+            <p>A begriffix game</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV6Lettera"></a>
+                    <a name="//apple_ref/swift/Alias/Letter" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV6Lettera">Letter</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The type of a letter, can be written at one board position</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Letter</span> <span class="o">=</span> <span class="kt">Unicode</span><span class="o">.</span><span class="kt">Scalar</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV4Worda"></a>
+                    <a name="//apple_ref/swift/Alias/Word" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV4Worda">Word</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The type of a word which is a sequence of letters</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Word</span> <span class="o">=</span> <span class="p">[</span><span class="kt"><a href="../Structs/Begriffix.html#/s:5Games9BegriffixV6Lettera">Letter</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BoardGameP5FieldQa"></a>
+                    <a name="//apple_ref/swift/Alias/Field" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BoardGameP5FieldQa">Field</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Field</span> <span class="o">=</span> <span class="kt"><a href="../Structs/Begriffix.html#/s:5Games9BegriffixV6Lettera">Letter</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV7Patterna"></a>
+                    <a name="//apple_ref/swift/Alias/Pattern" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV7Patterna">Pattern</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A sequence of optional letters, nil means that any letter can be used there</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Pattern</span> <span class="o">=</span> <span class="p">[</span><span class="kt"><a href="../Structs/Begriffix.html#/s:5Games9BoardGameP5FieldQa">Field</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV5Boarda"></a>
+                    <a name="//apple_ref/swift/Alias/Board" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV5Boarda">Board</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Board</span> <span class="o">=</span> <span class="kt">Matrix</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/Begriffix.html#/s:5Games9BoardGameP5FieldQa">Field</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV6Statusa"></a>
+                    <a name="//apple_ref/swift/Alias/Status" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV6Statusa">Status</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Status</span> <span class="o">=</span> <span class="kt"><a href="../Enums/GameStatus.html">GameStatus</a></span><span class="o">&lt;</span><span class="kt">Begriffix</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV5Errora"></a>
+                    <a name="//apple_ref/swift/Alias/Error" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV5Errora">Error</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Error</span> <span class="o">=</span> <span class="kt"><a href="../Enums/GameError.html">GameError</a></span><span class="o">&lt;</span><span class="kt">Begriffix</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV6Notifya"></a>
+                    <a name="//apple_ref/swift/Alias/Notify" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV6Notifya">Notify</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Notify</span> <span class="o">=</span> <span class="p">((</span><span class="n">_</span> <span class="nv">status</span><span class="p">:</span> <span class="kt"><a href="../Structs/Begriffix.html#/s:5Games9BegriffixV6Statusa">Status</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV6Updatea"></a>
+                    <a name="//apple_ref/swift/Alias/Update" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV6Updatea">Update</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Update</span> <span class="o">=</span> <span class="p">(</span><span class="n">_</span> <span class="nv">game</span><span class="p">:</span> <span class="kt">Begriffix</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="kt"><a href="../Structs/Begriffix/Move.html">Move</a></span><span class="p">,</span> <span class="p">[</span><span class="kt"><a href="../Structs/Begriffix/Hit.html">Hit</a></span><span class="p">])?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games4GameP4MoveQa"></a>
+                    <a name="//apple_ref/swift/Struct/Move" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games4GameP4MoveQa">Move</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="../Structs/Begriffix/Move.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Move</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV3HitV"></a>
+                    <a name="//apple_ref/swift/Struct/Hit" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV3HitV">Hit</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="../Structs/Begriffix/Hit.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Hit</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV5PhaseO"></a>
+                    <a name="//apple_ref/swift/Enum/Phase" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV5PhaseO">Phase</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>phases of a game which is currently playing</p>
+
+                        <a href="../Structs/Begriffix/Phase.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Phase</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games4GameP4nameSSvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/name" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games4GameP4nameSSvpZ">name</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV4turnSivp"></a>
+                    <a name="//apple_ref/swift/Property/turn" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV4turnSivp">turn</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>How many times the starter and opponent have provided a move</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">turn</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BoardGameP5board7Utility6MatrixVy5FieldQzGvp"></a>
+                    <a name="//apple_ref/swift/Property/board" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BoardGameP5board7Utility6MatrixVy5FieldQzGvp">board</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">board</span><span class="p">:</span> <span class="kt"><a href="../Structs/Begriffix.html#/s:5Games9BegriffixV5Boarda">Board</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BoardGameP9characterySJ5FieldQzF"></a>
+                    <a name="//apple_ref/swift/Method/character(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BoardGameP9characterySJ5FieldQzF">character(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">character</span><span class="p">(</span><span class="n">_</span> <span class="nv">field</span><span class="p">:</span> <span class="kt"><a href="../Structs/Begriffix.html#/s:5Games9BoardGameP5FieldQa">Field</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Character</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV7starteryAC4MoveV_SayAC3HitVGtSgACcvp"></a>
+                    <a name="//apple_ref/swift/Property/starter" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV7starteryAC4MoveV_SayAC3HitVGtSgACcvp">starter</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The first player in a turn</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">starter</span><span class="p">:</span> <span class="kt"><a href="../Structs/Begriffix.html#/s:5Games9BegriffixV6Updatea">Update</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV8opponentyAC4MoveV_SayAC3HitVGtSgACcvp"></a>
+                    <a name="//apple_ref/swift/Property/opponent" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV8opponentyAC4MoveV_SayAC3HitVGtSgACcvp">opponent</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The second player in a turn</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">opponent</span><span class="p">:</span> <span class="kt"><a href="../Structs/Begriffix.html#/s:5Games9BegriffixV6Updatea">Update</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV6playeryAC4MoveV_SayAC3HitVGtSgACcvp"></a>
+                    <a name="//apple_ref/swift/Property/player" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV6playeryAC4MoveV_SayAC3HitVGtSgACcvp">player</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The player who would be asked for the next move</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">player</span><span class="p">:</span> <span class="kt"><a href="../Structs/Begriffix.html#/s:5Games9BegriffixV6Updatea">Update</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV5phaseAC5PhaseOvp"></a>
+                    <a name="//apple_ref/swift/Property/phase" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV5phaseAC5PhaseOvp">phase</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The current game phase which is derived from turn</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">phase</span><span class="p">:</span> <span class="kt"><a href="../Structs/Begriffix/Phase.html">Phase</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9TrackableP6notifyyAA10GameStatusOyxGcSgvp"></a>
+                    <a name="//apple_ref/swift/Property/notify" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9TrackableP6notifyyAA10GameStatusOyxGcSgvp">notify</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">notify</span><span class="p">:</span> <span class="kt">Begriffix</span><span class="o">.</span><span class="kt"><a href="../Structs/Begriffix.html#/s:5Games9BegriffixV6Notifya">Notify</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV5board7starter8opponentAC7Utility6MatrixVys7UnicodeO6ScalarVSgG_AC4MoveV_SayAC3HitVGtSgACcAuCctcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(board:starter:opponent:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV5board7starter8opponentAC7Utility6MatrixVys7UnicodeO6ScalarVSgG_AC4MoveV_SayAC3HitVGtSgACcAuCctcfc">init(board:starter:opponent:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initialize a new begriffix game with given board and players</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">board</span><span class="p">:</span> <span class="kt"><a href="../Structs/Begriffix.html#/s:5Games9BegriffixV5Boarda">Board</a></span><span class="p">,</span> <span class="nv">starter</span><span class="p">:</span> <span class="kd">@escaping(Update)</span><span class="p">,</span> <span class="nv">opponent</span><span class="p">:</span> <span class="kd">@escaping(Update)</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV12startLetters7starter8opponentAC7Utility6MatrixVys7UnicodeO6ScalarVSgG_AC4MoveV_SayAC3HitVGtSgACcAuCctcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(startLetters:starter:opponent:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV12startLetters7starter8opponentAC7Utility6MatrixVys7UnicodeO6ScalarVSgG_AC4MoveV_SayAC3HitVGtSgACcAuCctcfc">init(startLetters:starter:opponent:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initialize a new begriffix game with start letters as 2*2 fields board</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">startLetters</span><span class="p">:</span> <span class="kt"><a href="../Structs/Begriffix.html#/s:5Games9BegriffixV5Boarda">Board</a></span><span class="p">,</span> <span class="nv">starter</span><span class="p">:</span> <span class="kd">@escaping(Update)</span><span class="p">,</span> <span class="nv">opponent</span><span class="p">:</span> <span class="kd">@escaping(Update)</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV12startLetters7starter8opponentACSays7UnicodeO6ScalarVSgG_AC4MoveV_SayAC3HitVGtSgACcArCctcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(startLetters:starter:opponent:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV12startLetters7starter8opponentACSays7UnicodeO6ScalarVSgG_AC4MoveV_SayAC3HitVGtSgACcArCctcfc">init(startLetters:starter:opponent:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initialize a new begriffix game with start letters as array of four field values</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">startLetters</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Begriffix.html#/s:5Games9BoardGameP5FieldQa">Field</a></span><span class="p">],</span> <span class="nv">starter</span><span class="p">:</span> <span class="kd">@escaping(Update)</span><span class="p">,</span> <span class="nv">opponent</span><span class="p">:</span> <span class="kd">@escaping(Update)</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV12startLetters7starter8opponentACSgSaySays7UnicodeO6ScalarVGG_AC4MoveV_SayAC3HitVGtSgACcAsCctcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(startLetters:starter:opponent:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV12startLetters7starter8opponentACSgSaySays7UnicodeO6ScalarVGG_AC4MoveV_SayAC3HitVGtSgACcAsCctcfc">init(startLetters:starter:opponent:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initialize a new begriffix game with start letters as 2*2 nested array</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">startLetters</span><span class="p">:</span> <span class="p">[[</span><span class="kt"><a href="../Structs/Begriffix.html#/s:5Games9BegriffixV6Lettera">Letter</a></span><span class="p">]],</span> <span class="nv">starter</span><span class="p">:</span> <span class="kd">@escaping(Update)</span><span class="p">,</span> <span class="nv">opponent</span><span class="p">:</span> <span class="kd">@escaping(Update)</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV12startLetters7starter8opponentACSS_AC4MoveV_SayAC3HitVGtSgACcAlCctcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(startLetters:starter:opponent:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV12startLetters7starter8opponentACSS_AC4MoveV_SayAC3HitVGtSgACcAlCctcfc">init(startLetters:starter:opponent:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initialize a new begriffix game with start letters as string with four characters</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">startLetters</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">starter</span><span class="p">:</span> <span class="kd">@escaping(Update)</span><span class="p">,</span> <span class="nv">opponent</span><span class="p">:</span> <span class="kd">@escaping(Update)</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV4playyyKF"></a>
+                    <a name="//apple_ref/swift/Method/play()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV4playyyKF">play()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Play the game and pass notifications if a notify callback is set</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">play</span><span class="p">()</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV4nextAC_AC4MoveVSayAC3HitVGtSgyF"></a>
+                    <a name="//apple_ref/swift/Method/next()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV4nextAC_AC4MoveVSayAC3HitVGtSgyF">next()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Advance the game for one move</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">next</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="kt">Begriffix</span><span class="p">,</span> <span class="kt"><a href="../Structs/Begriffix/Move.html">Move</a></span><span class="p">,</span> <span class="p">[</span><span class="kt"><a href="../Structs/Begriffix/Hit.html">Hit</a></span><span class="p">])?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV6insertyyAC4MoveVKF"></a>
+                    <a name="//apple_ref/swift/Method/insert(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV6insertyyAC4MoveVKF">insert(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply a move to the game</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">insert</span><span class="p">(</span><span class="n">_</span> <span class="nv">move</span><span class="p">:</span> <span class="kt"><a href="../Structs/Begriffix/Move.html">Move</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV7pattern2ofSays7UnicodeO6ScalarVSgGAA5PlaceV_tF"></a>
+                    <a name="//apple_ref/swift/Method/pattern(of:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV7pattern2ofSays7UnicodeO6ScalarVSgGAA5PlaceV_tF">pattern(of:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get the search pattern at a given place</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">pattern</span><span class="p">(</span><span class="n">of</span> <span class="nv">place</span><span class="p">:</span> <span class="kt"><a href="../Structs/Place.html">Place</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Begriffix.html#/s:5Games9BegriffixV7Patterna">Pattern</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV7isValid4word3forSbSays7UnicodeO6ScalarVG_SayAJSgGtF"></a>
+                    <a name="//apple_ref/swift/Method/isValid(word:for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV7isValid4word3forSbSays7UnicodeO6ScalarVG_SayAJSgGtF">isValid(word:for:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Indicates if a word fits a pattern</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">isValid</span><span class="p">(</span><span class="nv">word</span><span class="p">:</span> <span class="kt"><a href="../Structs/Begriffix.html#/s:5Games9BegriffixV4Worda">Word</a></span><span class="p">,</span> <span class="k">for</span> <span class="nv">pattern</span><span class="p">:</span> <span class="kt"><a href="../Structs/Begriffix.html#/s:5Games9BegriffixV7Patterna">Pattern</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV7isValidySbAC4MoveVF"></a>
+                    <a name="//apple_ref/swift/Method/isValid(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV7isValidySbAC4MoveVF">isValid(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Indicates if a word fits the pattern at a given place</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">isValid</span><span class="p">(</span><span class="n">_</span> <span class="nv">move</span><span class="p">:</span> <span class="kt"><a href="../Structs/Begriffix/Move.html">Move</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV4findSayAA5PlaceVGSgyF"></a>
+                    <a name="//apple_ref/swift/Method/find()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV4findSayAA5PlaceVGSgyF">find()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Find every place where words with allowed direction and length could be written</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">find</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Structs/Place.html">Place</a></span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV4find9direction5countSay7Utility5PointVGAA9DirectionO_SitF"></a>
+                    <a name="//apple_ref/swift/Method/find(direction:count:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV4find9direction5countSay7Utility5PointVGAA9DirectionO_SitF">find(direction:count:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Find every start point where words with given direction and length could be written</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">find</span><span class="p">(</span><span class="nv">direction</span><span class="p">:</span> <span class="kt"><a href="../Enums/Direction.html">Direction</a></span><span class="p">,</span> <span class="nv">count</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Point</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV5words12orthogonalTo4wordSaySays7UnicodeO6ScalarVGGAA5PlaceV_AKtF"></a>
+                    <a name="//apple_ref/swift/Method/words(orthogonalTo:word:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV5words12orthogonalTo4wordSaySays7UnicodeO6ScalarVGGAA5PlaceV_AKtF">words(orthogonalTo:word:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Return the words crossing the given place after inserting a given word</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">words</span><span class="p">(</span><span class="n">orthogonalTo</span> <span class="nv">place</span><span class="p">:</span> <span class="kt"><a href="../Structs/Place.html">Place</a></span><span class="p">,</span> <span class="nv">word</span><span class="p">:</span> <span class="kt"><a href="../Structs/Begriffix.html#/s:5Games9BegriffixV4Worda">Word</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Structs/Begriffix.html#/s:5Games9BegriffixV4Worda">Word</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Games9BegriffixV8containsySbAA5PlaceVF"></a>
+                    <a name="//apple_ref/swift/Method/contains(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Games9BegriffixV8containsySbAA5PlaceVF">contains(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Indicate if the given place is usable</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">contains</span><span class="p">(</span><span class="n">_</span> <span class="nv">place</span><span class="p">:</span> <span class="kt"><a href="../Structs/Place.html">Place</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">Tamara Cook</a>. All rights reserved. (Last updated: 2018-10-19)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

@@ -1,9 +1,5 @@
 author: Tamara Cook
-github_url: https:://github.com/strategyc-games/hangman
-# module: Begriffix
-# output: docs/Begriffix
-# module: HangMan
-# output: docs/HangMan
+github_url: https://github.com/strategyc-games/hangman
 sdk: macosx
 swift_version: 4.2
 min_acl: internal

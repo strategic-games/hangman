@@ -1,0 +1,138 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Utility/CollectionExtensions.swift",
+      "line": 12,
+      "symbol": "Collection.match(pattern:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Utility/CollectionExtensions.swift",
+      "line": 20,
+      "symbol": "Pattern",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Utility/CollectionExtensions.swift",
+      "line": 22,
+      "symbol": "String.word",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Utility/CollectionExtensions.swift",
+      "line": 23,
+      "symbol": "String.init(word:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Utility/CollectionExtensions.swift",
+      "line": 26,
+      "symbol": "String.pattern",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Utility/CollectionExtensions.swift",
+      "line": 27,
+      "symbol": "String.init(pattern:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Utility/Matrix.swift",
+      "line": 30,
+      "symbol": "Area.indices",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Utility/Matrix.swift",
+      "line": 209,
+      "symbol": "Range.CodingKeys",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Utility/Matrix.swift",
+      "line": 210,
+      "symbol": "Range.CodingKeys.lower",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Utility/Matrix.swift",
+      "line": 210,
+      "symbol": "Range.CodingKeys.upper",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Utility/Radix.swift",
+      "line": 3,
+      "symbol": "Radix.Label",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Utility/Radix.swift",
+      "line": 88,
+      "symbol": "Radix.contains(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Utility/Radix.swift",
+      "line": 91,
+      "symbol": "Radix.contains(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Utility/Radix.swift",
+      "line": 186,
+      "symbol": "Radix.isRoot",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Utility/SelfSorting.swift",
+      "line": 5,
+      "symbol": "SelfSorting.Predicate",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Utility/SelfSorting.swift",
+      "line": 10,
+      "symbol": "SelfSorting.contains(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Utility/SelfSorting.swift",
+      "line": 14,
+      "symbol": "SelfSorting.first(where:precedes:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Utility/SelfSorting.swift",
+      "line": 18,
+      "symbol": "SelfSorting.firstIndex(of:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Utility/SelfSorting.swift",
+      "line": 21,
+      "symbol": "SelfSorting.firstIndex(where:precedes:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/tamara/Entwicklung/hangman"
+}

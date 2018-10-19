@@ -1,0 +1,159 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Simulation.swift",
+      "line": 4,
+      "symbol": "FileNameConvertible",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Simulation.swift",
+      "line": 5,
+      "symbol": "FileNameConvertible.fileName",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Simulation.swift",
+      "line": 10,
+      "symbol": "BegriffixSimulation.Player",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Simulation.swift",
+      "line": 11,
+      "symbol": "BegriffixSimulation.Player.vocabulary",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Simulation.swift",
+      "line": 13,
+      "symbol": "BegriffixSimulation.Result",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Simulation.swift",
+      "line": 14,
+      "symbol": "BegriffixSimulation.Result.move",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Simulation.swift",
+      "line": 15,
+      "symbol": "BegriffixSimulation.Result.hits",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Simulation.swift",
+      "line": 17,
+      "symbol": "BegriffixSimulation.Condition",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Simulation.swift",
+      "line": 18,
+      "symbol": "BegriffixSimulation.Condition.startLetters",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Simulation.swift",
+      "line": 19,
+      "symbol": "BegriffixSimulation.Condition.starter",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Simulation.swift",
+      "line": 20,
+      "symbol": "BegriffixSimulation.Condition.opponent",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Simulation.swift",
+      "line": 21,
+      "symbol": "BegriffixSimulation.Condition.trials",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Simulation.swift",
+      "line": 22,
+      "symbol": "BegriffixSimulation.Condition.results",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Simulation.swift",
+      "line": 23,
+      "symbol": "BegriffixSimulation.Condition.run()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Simulation.swift",
+      "line": 56,
+      "symbol": "BegriffixSimulation.fileName",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Vocabulary.swift",
+      "line": null,
+      "symbol": "Vocabulary.WordList",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Vocabulary.swift",
+      "line": 6,
+      "symbol": "Vocabulary.WordList",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Vocabulary.swift",
+      "line": 7,
+      "symbol": "Vocabulary.WordList.Words",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Vocabulary.swift",
+      "line": 9,
+      "symbol": "Vocabulary.WordList.path",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Vocabulary.swift",
+      "line": 13,
+      "symbol": "Vocabulary.WordList.parse()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Vocabulary.swift",
+      "line": 25,
+      "symbol": "Vocabulary.WordList.load()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/SimulationDescription/Vocabulary.swift",
+      "line": 48,
+      "symbol": "Vocabulary.load()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/tamara/Entwicklung/hangman"
+}

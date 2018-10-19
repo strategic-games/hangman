@@ -1,0 +1,145 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Games/Begriffix.swift",
+      "line": null,
+      "symbol": "Begriffix.Hit",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Games/Begriffix.swift",
+      "line": 12,
+      "symbol": "Begriffix.Board",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Games/Begriffix.swift",
+      "line": 13,
+      "symbol": "Begriffix.Status",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Games/Begriffix.swift",
+      "line": 14,
+      "symbol": "Begriffix.Error",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Games/Begriffix.swift",
+      "line": 15,
+      "symbol": "Begriffix.Notify",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Games/Begriffix.swift",
+      "line": 16,
+      "symbol": "Begriffix.Update",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Games/Begriffix.swift",
+      "line": 18,
+      "symbol": "Begriffix.Move.place",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Games/Begriffix.swift",
+      "line": 19,
+      "symbol": "Begriffix.Move.word",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Games/Begriffix.swift",
+      "line": 20,
+      "symbol": "Begriffix.Move.init(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Games/Begriffix.swift",
+      "line": 25,
+      "symbol": "Begriffix.Hit",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Games/Begriffix.swift",
+      "line": 26,
+      "symbol": "Begriffix.Hit.place",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Games/Begriffix.swift",
+      "line": 27,
+      "symbol": "Begriffix.Hit.words",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Games/Begriffix.swift",
+      "line": 28,
+      "symbol": "Begriffix.Hit.init(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Games/Game.swift",
+      "line": 11,
+      "symbol": "Game.Update",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Games/Game.swift",
+      "line": 36,
+      "symbol": "VerbalGame",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Games/Game.swift",
+      "line": 37,
+      "symbol": "VerbalGame.Letter",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Games/Game.swift",
+      "line": 38,
+      "symbol": "VerbalGame.Word",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Games/Game.swift",
+      "line": 43,
+      "symbol": "DyadicGame.Update",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Games/Game.swift",
+      "line": 63,
+      "symbol": "GameStatus.Failure(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/tamara/Entwicklung/hangman/Sources/Games/Player.swift",
+      "line": 10,
+      "symbol": "Player.move(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/tamara/Entwicklung/hangman"
+}
