@@ -178,4 +178,16 @@ extension SortedSet: SetAlgebra {
 }
 
 // MARK: Encoding and decoding
-extension SortedSet: Codable where Element: Codable {}
+extension SortedSet: Codable where Element: Codable {
+  public init(from decoder: Decoder) throws {
+    items = CollectionType()
+    var container = try decoder.unkeyedContainer()
+    while !container.isAtEnd {
+      let item = try container.decode(Element.self)
+      items.append(item)
+    }
+  }
+  public func encode(to encoder: Encoder) throws {
+    try items.encode(to: encoder)
+  }
+}
