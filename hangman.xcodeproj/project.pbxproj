@@ -45,6 +45,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		8D3E74B32179A041003EF20F /* VocabularyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E74B22179A041003EF20F /* VocabularyTests.swift */; };
 		OBJ_142 /* api.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_56 /* api.c */; };
 		OBJ_143 /* emitter.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_57 /* emitter.c */; };
 		OBJ_144 /* parser.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_58 /* parser.c */; };
@@ -317,6 +318,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8D3E74B22179A041003EF20F /* VocabularyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyTests.swift; sourceTree = "<group>"; };
 		"Guaka::Guaka::Product" /* Guaka.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Guaka.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_10 /* ask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ask.swift; sourceTree = "<group>"; };
 		OBJ_100 /* FlagHelp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagHelp.swift; sourceTree = "<group>"; };
@@ -643,6 +645,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_38 /* InfoTests.swift */,
+				8D3E74B22179A041003EF20F /* VocabularyTests.swift */,
 			);
 			name = SimulationDescriptionTests;
 			path = Tests/SimulationDescriptionTests;
@@ -1278,6 +1281,7 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_268 /* InfoTests.swift in Sources */,
+				8D3E74B32179A041003EF20F /* VocabularyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
