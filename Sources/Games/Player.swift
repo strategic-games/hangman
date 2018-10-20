@@ -7,6 +7,11 @@ public struct Player {
   public init(_ vocabulary: Radix) {
     self.vocabulary = vocabulary
   }
+  public init<S: Sequence>(_ vocabulary: S) where S.Element == String {
+    let radix = Radix()
+    radix.insert(vocabulary)
+    self.vocabulary = radix
+  }
   public func move(_ game: Begriffix) -> (Begriffix.Move, [Begriffix.Hit])? {
     guard let places = game.find() else {return nil}
     let result = places.compactMap { place -> Begriffix.Hit? in
