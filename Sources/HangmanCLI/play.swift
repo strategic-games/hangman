@@ -10,7 +10,7 @@ private func configuration(command: Command) {
   let wordListFlag = Flag(
     shortName: "d",
     longName: "dictionary",
-    value: "dictionary.txt",
+    value: "dictionary.pb",
     description: "The word list to use for the AI player"
   )
   let startLettersFlag = Flag(shortName: "l", longName: "letters", value: "laer", description: "The starting four-letter combination")
@@ -20,15 +20,16 @@ private func configuration(command: Command) {
 
 private func execute(flags: Flags, args: [String]) {
   guard let startLetters = flags.getString(name: "letters"), startLetters.count == 4 else {
-    rootCommand.fail(statusCode: 1, errorMessage: "Please supply exactly four start letters")
+    playCommand.fail(statusCode: 1, errorMessage: "Please supply exactly four start letters")
   }
   print("preparing AI vocabulary")
   let path = flags.getString(name: "dictionary")!
   let url = URL(fileURLWithPath: path)
-  let radix: Radix
+  let radix = Radix()
   do {
-    let content = try String(contentsOf: url)
-    radix = loadWordList(content)
+    let data = try Data(contentsOf: url)
+    let list = try WordList(serializedData: data)
+    list.words.forEach {radix.insert($0)}
   } catch {
     playCommand.fail(statusCode: 1, errorMessage: "\(error)")
   }
@@ -48,11 +49,11 @@ private func execute(flags: Flags, args: [String]) {
   }
 }
 
-private func move(_ game: Begriffix) -> (Begriffix.Move, [Begriffix.Hit])? {
+private func move(_ game: Begriffix) -> Begriffix.Move? {
   let start: Point = ask("Which position do you want to start writing from?")
   let direction = Direction.Horizontal
   let word: String = ask("Which word to you want to write?")
   let place = Place(start: start, direction: direction, count: word.count)
   let move = Begriffix.Move(place, word.word)
-  return (move: move, hits: [])
+  return move
 }

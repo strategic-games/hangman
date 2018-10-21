@@ -48,16 +48,6 @@
                ReferencedContainer = "container:hangman.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "hangman::SimulationDescriptionTests"
-               BuildableName = "SimulationDescriptionTests.xctest"
-               BlueprintName = "SimulationDescriptionTests"
-               ReferencedContainer = "container:hangman.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <AdditionalOptions>
       </AdditionalOptions>

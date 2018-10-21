@@ -13,13 +13,16 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
   public typealias Status = GameStatus<Begriffix>
   public typealias Error = GameError<Begriffix>
   public typealias Notify = ((_ status: Status) -> Void)?
-  public typealias Update = (_ game: Begriffix) -> (Move, [Hit])?
+  public typealias Update = (_ game: Begriffix) -> Move?
   public struct Move {
+    public typealias Hits = [Place: [Word]]
     public let place: Place
     public let word: Word
-    public init(_ place: Place, _ word: Word) {
+    public let hits: Hits?
+    public init(_ place: Place, _ word: Word, _ hits: Hits? = nil) {
       self.place = place
       self.word = word
+      self.hits = hits
     }
   }
   public struct Hit {
@@ -97,7 +100,7 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
   public mutating func play() throws {
     notify?(.Started)
     repeat {
-      guard let (move, _) = player(self) else {
+      guard let move = player(self) else {
         notify?(.Ended)
         break
       }
@@ -106,15 +109,15 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
     } while true
   }
   /// Advance the game for one move
-  public mutating func next() -> (Begriffix, Move, [Hit])? {
-    guard let (move, hits) = player(self) else {return nil}
+  public mutating func next() -> (Begriffix, Move)? {
+    guard let move = player(self) else {return nil}
     let currentGame = self
     do {
       try insert(move)
     } catch {
       return nil
     }
-    return (currentGame, move, hits)
+    return (currentGame, move)
   }
   /// Apply a move to the game
   public mutating func insert(_ move: Move) throws {
@@ -209,37 +212,5 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
   /// Indicate if the given place is usable
   public func contains(_ place: Place) -> Bool {
     return find(direction: place.direction, count: place.count).contains(place.start)
-  }
-}
-
-extension Begriffix.Move: Codable {
-  private enum CodingKeys: CodingKey {
-    case place, word
-  }
-  public init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: CodingKeys.self)
-    place = try container.decode(Place.self, forKey: .place)
-    word = try container.decode(String.self, forKey: .word).word
-  }
-  public func encode(to encoder: Encoder) throws {
-    var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(place, forKey: .place)
-    try container.encode(String(word: word), forKey: .word)
-  }
-}
-
-extension Begriffix.Hit: Codable {
-  private enum CodingKeys: CodingKey {
-    case place, words
-  }
-  public init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: CodingKeys.self)
-    place = try container.decode(Place.self, forKey: .place)
-    words = try container.decode([String].self, forKey: .words).map {$0.word}
-  }
-  public func encode(to encoder: Encoder) throws {
-    var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(place, forKey: .place)
-    try container.encode(words.map({String(word: $0)}), forKey: .words)
   }
 }

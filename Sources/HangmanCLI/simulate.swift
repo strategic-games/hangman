@@ -1,7 +1,5 @@
 import Foundation
 import Guaka
-import Yams
-import SimulationDescription
 
 let simulateCommand = Command(usage: "simulate file", configuration: configuration, run: execute)
 
@@ -16,38 +14,30 @@ private func execute(flags: Flags, args: [String]) {
     simulateCommand.fail(statusCode: 1, errorMessage: "Error: please supply a file name")
   }
   do {
-    var simulation: BegriffixSimulation = try deserialize(args[0])
-    try simulation.process()
-    let format = flags.getString(name: "format")!
-    try serialize(simulation, format: format)
+    let url = URL(fileURLWithPath: args[0])
+    let data = try Data(contentsOf: url)
+    var simulation: Simulation
+    switch url.pathExtension {
+    case "json":
+      simulation = try Simulation(jsonUTF8Data: data)
+    default:
+      simulation = try Simulation(serializedData: data)
+    }
+    simulation.info.date = .init(date: Date())
+    try simulation.run()
   } catch {
     print(error)
   }
 }
 
-private func deserialize<T: Decodable>(_ path: String) throws -> T {
-  let url = URL(fileURLWithPath: path)
-  if url.pathExtension == "yaml" {
-    let data = try String(contentsOf: url)
-    let decoder = YAMLDecoder()
-    return try decoder.decode(T.self, from: data)
-  } else {
-    let data = try Data(contentsOf: url)
-    let decoder = JSONDecoder()
-    return try decoder.decode(T.self, from: data)
+let importCommand = Command(usage: "import file") { (flags, args) in
+  guard args.count > 0 else {return}
+  let url = URL(fileURLWithPath: args[0])
+  do {
+    let simulation = try SimulationResults(contentsOf: url)
+    print(simulation.trials.count)
+  } catch {
+    print(error)
   }
 }
 
-private func serialize<T: Encodable&FileNameConvertible>(_ value: T, format: String) throws {
-  if format == "yaml" {
-    let url = URL(fileURLWithPath: value.fileName + ".yaml")
-    let encoder = YAMLEncoder()
-    let data = try encoder.encode(value)
-    try data.write(to: url, atomically: true, encoding: .utf8)
-  } else {
-    let url = URL(fileURLWithPath: value.fileName + ".json")
-    let encoder = JSONEncoder()
-    let data = try encoder.encode(value)
-    try data.write(to: url)
-  }
-}

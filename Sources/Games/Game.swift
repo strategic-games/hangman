@@ -47,9 +47,6 @@ public protocol DyadicGame: BoardGame {
   var opponent: Update {get}
 }
 
-/// A game notification type
-//public protocol GameStatus {}
-
 /// General progress states of a game
 public enum GameStatus<T: Game> {
   /// The game has a freshly setup game board

@@ -12,16 +12,16 @@ public struct Player {
     radix.insert(vocabulary)
     self.vocabulary = radix
   }
-  public func move(_ game: Begriffix) -> (Begriffix.Move, [Begriffix.Hit])? {
+  public func move(_ game: Begriffix) -> Begriffix.Move? {
     guard let places = game.find() else {return nil}
-    let result = places.compactMap { place -> Begriffix.Hit? in
-      let matches = match(game, place: place)
-      guard !matches.isEmpty else {return nil}
-      return Begriffix.Hit(place, matches)
+    var hits = [Place: [Begriffix.Word]](minimumCapacity: places.count)
+    places.forEach {
+      let matches = match(game, place: $0)
+      if !matches.isEmpty {hits[$0] = matches}
     }
-    guard let hit = result.randomElement() else {return nil}
-    guard let word = hit.words.randomElement() else {return nil}
-    return (.init(hit.place, word), result)
+    guard let (place, words) = hits.randomElement() else {return nil}
+    guard let word = words.randomElement() else {return nil}
+    return .init(place, word, hits)
   }
   /// Find the words that could be inserted at the given place
   func match(_ game: Begriffix, place: Place) -> [Begriffix.Word] {

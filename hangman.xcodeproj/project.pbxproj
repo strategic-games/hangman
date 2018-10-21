@@ -1,2349 +1,3315 @@
 // !$*UTF8*$!
 {
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXAggregateTarget section */
-		"hangman::HangmanCore::ProductTarget" /* HangmanCore */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = OBJ_246 /* Build configuration list for PBXAggregateTarget "HangmanCore" */;
-			buildPhases = (
-			);
-			dependencies = (
-				OBJ_249 /* PBXTargetDependency */,
-			);
-			name = HangmanCore;
-			productName = HangmanCore;
-		};
-		"hangman::hangman::ProductTarget" /* hangman */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = OBJ_349 /* Build configuration list for PBXAggregateTarget "hangman" */;
-			buildPhases = (
-			);
-			dependencies = (
-				OBJ_352 /* PBXTargetDependency */,
-			);
-			name = hangman;
-			productName = hangman;
-		};
-		"hangman::hangmanPackageTests::ProductTarget" /* hangmanPackageTests */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = OBJ_360 /* Build configuration list for PBXAggregateTarget "hangmanPackageTests" */;
-			buildPhases = (
-			);
-			dependencies = (
-				OBJ_363 /* PBXTargetDependency */,
-				OBJ_364 /* PBXTargetDependency */,
-				OBJ_365 /* PBXTargetDependency */,
-			);
-			name = hangmanPackageTests;
-			productName = hangmanPackageTests;
-		};
-/* End PBXAggregateTarget section */
-
-/* Begin PBXBuildFile section */
-		8D3E74B32179A041003EF20F /* VocabularyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E74B22179A041003EF20F /* VocabularyTests.swift */; };
-		OBJ_142 /* api.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_56 /* api.c */; };
-		OBJ_143 /* emitter.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_57 /* emitter.c */; };
-		OBJ_144 /* parser.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_58 /* parser.c */; };
-		OBJ_145 /* reader.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_59 /* reader.c */; };
-		OBJ_146 /* scanner.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_60 /* scanner.c */; };
-		OBJ_147 /* writer.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_61 /* writer.c */; };
-		OBJ_149 /* CYaml.h in Headers */ = {isa = PBXBuildFile; fileRef = OBJ_63 /* CYaml.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		OBJ_150 /* yaml.h in Headers */ = {isa = PBXBuildFile; fileRef = OBJ_64 /* yaml.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		OBJ_157 /* Begriffix.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* Begriffix.swift */; };
-		OBJ_158 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* Direction.swift */; };
-		OBJ_159 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* Game.swift */; };
-		OBJ_160 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* Player.swift */; };
-		OBJ_162 /* Utility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "hangman::Utility::Product" /* Utility.framework */; };
-		OBJ_170 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_40 /* GameTests.swift */; };
-		OBJ_172 /* Games.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "hangman::Games::Product" /* Games.framework */; };
-		OBJ_173 /* Utility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "hangman::Utility::Product" /* Utility.framework */; };
-		OBJ_181 /* Command+Execution.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_86 /* Command+Execution.swift */; };
-		OBJ_182 /* Command+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_87 /* Command+Utilities.swift */; };
-		OBJ_183 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_88 /* Command.swift */; };
-		OBJ_184 /* CommandTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_89 /* CommandTypes.swift */; };
-		OBJ_185 /* CommandExecution.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_91 /* CommandExecution.swift */; };
-		OBJ_186 /* Flag+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_93 /* Flag+Utilities.swift */; };
-		OBJ_187 /* Flag.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_94 /* Flag.swift */; };
-		OBJ_188 /* FlagSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_95 /* FlagSet.swift */; };
-		OBJ_189 /* Flags.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_96 /* Flags.swift */; };
-		OBJ_190 /* CommandHelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_98 /* CommandHelp.swift */; };
-		OBJ_191 /* DefaultHelpGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_99 /* DefaultHelpGenerator.swift */; };
-		OBJ_192 /* FlagHelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_100 /* FlagHelp.swift */; };
-		OBJ_193 /* FlagHelpGeneratorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_101 /* FlagHelpGeneratorUtils.swift */; };
-		OBJ_194 /* HelpGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_102 /* HelpGenerator.swift */; };
-		OBJ_195 /* HelpGeneratorDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_103 /* HelpGeneratorDefaults.swift */; };
-		OBJ_196 /* HelpGeneratorErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_104 /* HelpGeneratorErrors.swift */; };
-		OBJ_197 /* GuakaConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_106 /* GuakaConfig.swift */; };
-		OBJ_198 /* Levenshtein.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_107 /* Levenshtein.swift */; };
-		OBJ_199 /* ArgTokenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_109 /* ArgTokenType.swift */; };
-		OBJ_200 /* Command+Parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_110 /* Command+Parsing.swift */; };
-		OBJ_201 /* FlagSet+Parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_111 /* FlagSet+Parsing.swift */; };
-		OBJ_202 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_113 /* Errors.swift */; };
-		OBJ_203 /* FlagValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_114 /* FlagValue.swift */; };
-		OBJ_204 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_115 /* Result.swift */; };
-		OBJ_206 /* StringScanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "StringScanner::StringScanner::Product" /* StringScanner.framework */; };
-		OBJ_214 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_116 /* Package.swift */; };
-		OBJ_220 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Version.swift */; };
-		OBJ_221 /* ask.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* ask.swift */; };
-		OBJ_222 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* main.swift */; };
-		OBJ_223 /* play.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* play.swift */; };
-		OBJ_224 /* radix.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* radix.swift */; };
-		OBJ_225 /* root.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* root.swift */; };
-		OBJ_226 /* setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* setup.swift */; };
-		OBJ_227 /* simulate.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* simulate.swift */; };
-		OBJ_229 /* Yams.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Yams::Yams::Product" /* Yams.framework */; };
-		OBJ_230 /* CYaml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Yams::CYaml::Product" /* CYaml.framework */; };
-		OBJ_231 /* Guaka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Guaka::Guaka::Product" /* Guaka.framework */; };
-		OBJ_232 /* StringScanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "StringScanner::StringScanner::Product" /* StringScanner.framework */; };
-		OBJ_233 /* SimulationDescription.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "hangman::SimulationDescription::Product" /* SimulationDescription.framework */; };
-		OBJ_234 /* Games.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "hangman::Games::Product" /* Games.framework */; };
-		OBJ_235 /* Utility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "hangman::Utility::Product" /* Utility.framework */; };
-		OBJ_254 /* ISODate.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* ISODate.swift */; };
-		OBJ_255 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* Info.swift */; };
-		OBJ_256 /* Simulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* Simulation.swift */; };
-		OBJ_257 /* Vocabulary.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* Vocabulary.swift */; };
-		OBJ_259 /* Games.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "hangman::Games::Product" /* Games.framework */; };
-		OBJ_260 /* Utility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "hangman::Utility::Product" /* Utility.framework */; };
-		OBJ_268 /* InfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_38 /* InfoTests.swift */; };
-		OBJ_270 /* SimulationDescription.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "hangman::SimulationDescription::Product" /* SimulationDescription.framework */; };
-		OBJ_271 /* Games.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "hangman::Games::Product" /* Games.framework */; };
-		OBJ_272 /* Utility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "hangman::Utility::Product" /* Utility.framework */; };
-		OBJ_280 /* CharacterSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_119 /* CharacterSet.swift */; };
-		OBJ_281 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_120 /* Regex.swift */; };
-		OBJ_282 /* ScannerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_121 /* ScannerResult.swift */; };
-		OBJ_283 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_122 /* StringExtension.swift */; };
-		OBJ_284 /* StringScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_123 /* StringScanner.swift */; };
-		OBJ_291 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_124 /* Package.swift */; };
-		OBJ_296 /* CollectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* CollectionExtensions.swift */; };
-		OBJ_297 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* Math.swift */; };
-		OBJ_298 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* Matrix.swift */; };
-		OBJ_299 /* Radix.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* Radix.swift */; };
-		OBJ_300 /* Scale_Stevens.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_32 /* Scale_Stevens.swift */; };
-		OBJ_301 /* Scale_Tukey.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* Scale_Tukey.swift */; };
-		OBJ_302 /* SelfSorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* SelfSorting.swift */; };
-		OBJ_303 /* SortedSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_35 /* SortedSet.swift */; };
-		OBJ_310 /* DimensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_42 /* DimensionsTests.swift */; };
-		OBJ_311 /* MatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_43 /* MatrixTests.swift */; };
-		OBJ_312 /* RadixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_44 /* RadixTests.swift */; };
-		OBJ_313 /* SortedSetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_45 /* SortedSetTests.swift */; };
-		OBJ_317 /* Utility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "hangman::Utility::Product" /* Utility.framework */; };
-		OBJ_323 /* Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_66 /* Constructor.swift */; };
-		OBJ_324 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_67 /* Decoder.swift */; };
-		OBJ_325 /* Emitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_68 /* Emitter.swift */; };
-		OBJ_326 /* Encoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_69 /* Encoder.swift */; };
-		OBJ_327 /* Mark.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_70 /* Mark.swift */; };
-		OBJ_328 /* Node.Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_71 /* Node.Mapping.swift */; };
-		OBJ_329 /* Node.Scalar.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_72 /* Node.Scalar.swift */; };
-		OBJ_330 /* Node.Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_73 /* Node.Sequence.swift */; };
-		OBJ_331 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_74 /* Node.swift */; };
-		OBJ_332 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_75 /* Parser.swift */; };
-		OBJ_333 /* Representer.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_76 /* Representer.swift */; };
-		OBJ_334 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_77 /* Resolver.swift */; };
-		OBJ_335 /* String+Yams.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_78 /* String+Yams.swift */; };
-		OBJ_336 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_79 /* Tag.swift */; };
-		OBJ_337 /* YamlError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_80 /* YamlError.swift */; };
-		OBJ_338 /* shim.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_81 /* shim.swift */; };
-		OBJ_340 /* CYaml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Yams::CYaml::Product" /* CYaml.framework */; };
-		OBJ_347 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_82 /* Package.swift */; };
-		OBJ_358 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		8D3E749B21796F7E003EF20F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Yams::Yams";
-			remoteInfo = Yams;
-		};
-		8D3E749C21796F7E003EF20F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Yams::CYaml";
-			remoteInfo = CYaml;
-		};
-		8D3E749D21796F7E003EF20F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Yams::CYaml";
-			remoteInfo = CYaml;
-		};
-		8D3E749E21796F7E003EF20F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Guaka::Guaka";
-			remoteInfo = Guaka;
-		};
-		8D3E749F21796F7E003EF20F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "StringScanner::StringScanner";
-			remoteInfo = StringScanner;
-		};
-		8D3E74A021796F7E003EF20F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "StringScanner::StringScanner";
-			remoteInfo = StringScanner;
-		};
-		8D3E74A121796F7E003EF20F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "hangman::SimulationDescription";
-			remoteInfo = SimulationDescription;
-		};
-		8D3E74A221796F7E003EF20F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "hangman::Games";
-			remoteInfo = Games;
-		};
-		8D3E74A321796F7E003EF20F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "hangman::Utility";
-			remoteInfo = Utility;
-		};
-		8D3E74A421796F7E003EF20F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "hangman::Utility";
-			remoteInfo = Utility;
-		};
-		8D3E74A521796F7E003EF20F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "hangman::Games";
-			remoteInfo = Games;
-		};
-		8D3E74A621796F7E003EF20F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "hangman::Utility";
-			remoteInfo = Utility;
-		};
-		8D3E74A721796F7E003EF20F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "hangman::Games";
-			remoteInfo = Games;
-		};
-		8D3E74A821796F7E003EF20F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "hangman::Utility";
-			remoteInfo = Utility;
-		};
-		8D3E74A921796F7E003EF20F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "hangman::Utility";
-			remoteInfo = Utility;
-		};
-		8D3E74AA21796F7E003EF20F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "hangman::SimulationDescription";
-			remoteInfo = SimulationDescription;
-		};
-		8D3E74AB21796F7E003EF20F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "hangman::Games";
-			remoteInfo = Games;
-		};
-		8D3E74AC21796F7E003EF20F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "hangman::Utility";
-			remoteInfo = Utility;
-		};
-		8D3E74AD21796F80003EF20F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "hangman::Games";
-			remoteInfo = Games;
-		};
-		8D3E74AE21796F80003EF20F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "hangman::HangmanCLI";
-			remoteInfo = HangmanCLI;
-		};
-		8D3E74AF21796F80003EF20F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "hangman::UtilityTests";
-			remoteInfo = UtilityTests;
-		};
-		8D3E74B021796F80003EF20F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "hangman::GamesTests";
-			remoteInfo = GamesTests;
-		};
-		8D3E74B121796F80003EF20F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "hangman::SimulationDescriptionTests";
-			remoteInfo = SimulationDescriptionTests;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXFileReference section */
-		8D3E74B22179A041003EF20F /* VocabularyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyTests.swift; sourceTree = "<group>"; };
-		"Guaka::Guaka::Product" /* Guaka.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Guaka.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_10 /* ask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ask.swift; sourceTree = "<group>"; };
-		OBJ_100 /* FlagHelp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagHelp.swift; sourceTree = "<group>"; };
-		OBJ_101 /* FlagHelpGeneratorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagHelpGeneratorUtils.swift; sourceTree = "<group>"; };
-		OBJ_102 /* HelpGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpGenerator.swift; sourceTree = "<group>"; };
-		OBJ_103 /* HelpGeneratorDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpGeneratorDefaults.swift; sourceTree = "<group>"; };
-		OBJ_104 /* HelpGeneratorErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpGeneratorErrors.swift; sourceTree = "<group>"; };
-		OBJ_106 /* GuakaConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuakaConfig.swift; sourceTree = "<group>"; };
-		OBJ_107 /* Levenshtein.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Levenshtein.swift; sourceTree = "<group>"; };
-		OBJ_109 /* ArgTokenType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgTokenType.swift; sourceTree = "<group>"; };
-		OBJ_11 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		OBJ_110 /* Command+Parsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Command+Parsing.swift"; sourceTree = "<group>"; };
-		OBJ_111 /* FlagSet+Parsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FlagSet+Parsing.swift"; sourceTree = "<group>"; };
-		OBJ_113 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
-		OBJ_114 /* FlagValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagValue.swift; sourceTree = "<group>"; };
-		OBJ_115 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
-		OBJ_116 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = "/Users/tamara/Entwicklung/hangman/.build/checkouts/Guaka.git-2981993449689156837/Package.swift"; sourceTree = "<group>"; };
-		OBJ_119 /* CharacterSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSet.swift; sourceTree = "<group>"; };
-		OBJ_12 /* play.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = play.swift; sourceTree = "<group>"; };
-		OBJ_120 /* Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
-		OBJ_121 /* ScannerResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerResult.swift; sourceTree = "<group>"; };
-		OBJ_122 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		OBJ_123 /* StringScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringScanner.swift; sourceTree = "<group>"; };
-		OBJ_124 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = "/Users/tamara/Entwicklung/hangman/.build/checkouts/StringScanner.git--8026872735033917074/Package.swift"; sourceTree = "<group>"; };
-		OBJ_13 /* radix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radix.swift; sourceTree = "<group>"; };
-		OBJ_14 /* root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = root.swift; sourceTree = "<group>"; };
-		OBJ_15 /* setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setup.swift; sourceTree = "<group>"; };
-		OBJ_16 /* simulate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = simulate.swift; sourceTree = "<group>"; };
-		OBJ_18 /* Begriffix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Begriffix.swift; sourceTree = "<group>"; };
-		OBJ_19 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
-		OBJ_20 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
-		OBJ_21 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		OBJ_23 /* ISODate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISODate.swift; sourceTree = "<group>"; };
-		OBJ_24 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
-		OBJ_25 /* Simulation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Simulation.swift; sourceTree = "<group>"; };
-		OBJ_26 /* Vocabulary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vocabulary.swift; sourceTree = "<group>"; };
-		OBJ_28 /* CollectionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtensions.swift; sourceTree = "<group>"; };
-		OBJ_29 /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
-		OBJ_30 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
-		OBJ_31 /* Radix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Radix.swift; sourceTree = "<group>"; };
-		OBJ_32 /* Scale_Stevens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scale_Stevens.swift; sourceTree = "<group>"; };
-		OBJ_33 /* Scale_Tukey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scale_Tukey.swift; sourceTree = "<group>"; };
-		OBJ_34 /* SelfSorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfSorting.swift; sourceTree = "<group>"; };
-		OBJ_35 /* SortedSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortedSet.swift; sourceTree = "<group>"; };
-		OBJ_38 /* InfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTests.swift; sourceTree = "<group>"; };
-		OBJ_40 /* GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
-		OBJ_42 /* DimensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimensionsTests.swift; sourceTree = "<group>"; };
-		OBJ_43 /* MatrixTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixTests.swift; sourceTree = "<group>"; };
-		OBJ_44 /* RadixTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadixTests.swift; sourceTree = "<group>"; };
-		OBJ_45 /* SortedSetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortedSetTests.swift; sourceTree = "<group>"; };
-		OBJ_48 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = SOURCE_ROOT; };
-		OBJ_49 /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = SOURCE_ROOT; };
-		OBJ_50 /* Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scripts; sourceTree = SOURCE_ROOT; };
-		OBJ_51 /* dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dictionaries; sourceTree = SOURCE_ROOT; };
-		OBJ_56 /* api.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = api.c; sourceTree = "<group>"; };
-		OBJ_57 /* emitter.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = emitter.c; sourceTree = "<group>"; };
-		OBJ_58 /* parser.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = parser.c; sourceTree = "<group>"; };
-		OBJ_59 /* reader.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = reader.c; sourceTree = "<group>"; };
-		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		OBJ_60 /* scanner.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = scanner.c; sourceTree = "<group>"; };
-		OBJ_61 /* writer.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = writer.c; sourceTree = "<group>"; };
-		OBJ_63 /* CYaml.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYaml.h; sourceTree = "<group>"; };
-		OBJ_64 /* yaml.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = yaml.h; sourceTree = "<group>"; };
-		OBJ_66 /* Constructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constructor.swift; sourceTree = "<group>"; };
-		OBJ_67 /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
-		OBJ_68 /* Emitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emitter.swift; sourceTree = "<group>"; };
-		OBJ_69 /* Encoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encoder.swift; sourceTree = "<group>"; };
-		OBJ_70 /* Mark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mark.swift; sourceTree = "<group>"; };
-		OBJ_71 /* Node.Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.Mapping.swift; sourceTree = "<group>"; };
-		OBJ_72 /* Node.Scalar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.Scalar.swift; sourceTree = "<group>"; };
-		OBJ_73 /* Node.Sequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.Sequence.swift; sourceTree = "<group>"; };
-		OBJ_74 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
-		OBJ_75 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
-		OBJ_76 /* Representer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Representer.swift; sourceTree = "<group>"; };
-		OBJ_77 /* Resolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
-		OBJ_78 /* String+Yams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Yams.swift"; sourceTree = "<group>"; };
-		OBJ_79 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
-		OBJ_80 /* YamlError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YamlError.swift; sourceTree = "<group>"; };
-		OBJ_81 /* shim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shim.swift; sourceTree = "<group>"; };
-		OBJ_82 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = "/Users/tamara/Entwicklung/hangman/.build/checkouts/Yams.git--335867369359398045/Package.swift"; sourceTree = "<group>"; };
-		OBJ_86 /* Command+Execution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Command+Execution.swift"; sourceTree = "<group>"; };
-		OBJ_87 /* Command+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Command+Utilities.swift"; sourceTree = "<group>"; };
-		OBJ_88 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
-		OBJ_89 /* CommandTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandTypes.swift; sourceTree = "<group>"; };
-		OBJ_9 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
-		OBJ_91 /* CommandExecution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandExecution.swift; sourceTree = "<group>"; };
-		OBJ_93 /* Flag+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Flag+Utilities.swift"; sourceTree = "<group>"; };
-		OBJ_94 /* Flag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flag.swift; sourceTree = "<group>"; };
-		OBJ_95 /* FlagSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagSet.swift; sourceTree = "<group>"; };
-		OBJ_96 /* Flags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flags.swift; sourceTree = "<group>"; };
-		OBJ_98 /* CommandHelp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandHelp.swift; sourceTree = "<group>"; };
-		OBJ_99 /* DefaultHelpGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHelpGenerator.swift; sourceTree = "<group>"; };
-		"StringScanner::StringScanner::Product" /* StringScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = StringScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"Yams::CYaml::Product" /* CYaml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CYaml.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"Yams::Yams::Product" /* Yams.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Yams.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"hangman::Games::Product" /* Games.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Games.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"hangman::GamesTests::Product" /* GamesTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = GamesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		"hangman::HangmanCLI::Product" /* HangmanCLI */ = {isa = PBXFileReference; lastKnownFileType = text; path = HangmanCLI; sourceTree = BUILT_PRODUCTS_DIR; };
-		"hangman::SimulationDescription::Product" /* SimulationDescription.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SimulationDescription.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"hangman::SimulationDescriptionTests::Product" /* SimulationDescriptionTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimulationDescriptionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		"hangman::Utility::Product" /* Utility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Utility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"hangman::UtilityTests::Product" /* UtilityTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = UtilityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		OBJ_151 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_161 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_162 /* Utility.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_171 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_172 /* Games.framework in Frameworks */,
-				OBJ_173 /* Utility.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_205 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_206 /* StringScanner.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_228 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_229 /* Yams.framework in Frameworks */,
-				OBJ_230 /* CYaml.framework in Frameworks */,
-				OBJ_231 /* Guaka.framework in Frameworks */,
-				OBJ_232 /* StringScanner.framework in Frameworks */,
-				OBJ_233 /* SimulationDescription.framework in Frameworks */,
-				OBJ_234 /* Games.framework in Frameworks */,
-				OBJ_235 /* Utility.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_258 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_259 /* Games.framework in Frameworks */,
-				OBJ_260 /* Utility.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_269 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_270 /* SimulationDescription.framework in Frameworks */,
-				OBJ_271 /* Games.framework in Frameworks */,
-				OBJ_272 /* Utility.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_285 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_304 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_316 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_317 /* Utility.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_339 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_340 /* CYaml.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		OBJ_105 /* Misc */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_106 /* GuakaConfig.swift */,
-				OBJ_107 /* Levenshtein.swift */,
-			);
-			path = Misc;
-			sourceTree = "<group>";
-		};
-		OBJ_108 /* Parsing */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_109 /* ArgTokenType.swift */,
-				OBJ_110 /* Command+Parsing.swift */,
-				OBJ_111 /* FlagSet+Parsing.swift */,
-			);
-			path = Parsing;
-			sourceTree = "<group>";
-		};
-		OBJ_112 /* Types */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_113 /* Errors.swift */,
-				OBJ_114 /* FlagValue.swift */,
-				OBJ_115 /* Result.swift */,
-			);
-			path = Types;
-			sourceTree = "<group>";
-		};
-		OBJ_117 /* StringScanner 0.3.0 */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_118 /* StringScanner */,
-				OBJ_124 /* Package.swift */,
-			);
-			name = "StringScanner 0.3.0";
-			sourceTree = SOURCE_ROOT;
-		};
-		OBJ_118 /* StringScanner */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_119 /* CharacterSet.swift */,
-				OBJ_120 /* Regex.swift */,
-				OBJ_121 /* ScannerResult.swift */,
-				OBJ_122 /* StringExtension.swift */,
-				OBJ_123 /* StringScanner.swift */,
-			);
-			name = StringScanner;
-			path = ".build/checkouts/StringScanner.git--8026872735033917074/Sources/StringScanner";
-			sourceTree = SOURCE_ROOT;
-		};
-		OBJ_125 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				"hangman::Games::Product" /* Games.framework */,
-				"StringScanner::StringScanner::Product" /* StringScanner.framework */,
-				"Guaka::Guaka::Product" /* Guaka.framework */,
-				"hangman::SimulationDescription::Product" /* SimulationDescription.framework */,
-				"Yams::CYaml::Product" /* CYaml.framework */,
-				"hangman::HangmanCLI::Product" /* HangmanCLI */,
-				"Yams::Yams::Product" /* Yams.framework */,
-				"hangman::GamesTests::Product" /* GamesTests.xctest */,
-				"hangman::Utility::Product" /* Utility.framework */,
-				"hangman::UtilityTests::Product" /* UtilityTests.xctest */,
-				"hangman::SimulationDescriptionTests::Product" /* SimulationDescriptionTests.xctest */,
-			);
-			name = Products;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		OBJ_17 /* Games */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_18 /* Begriffix.swift */,
-				OBJ_19 /* Direction.swift */,
-				OBJ_20 /* Game.swift */,
-				OBJ_21 /* Player.swift */,
-			);
-			name = Games;
-			path = Sources/Games;
-			sourceTree = SOURCE_ROOT;
-		};
-		OBJ_22 /* SimulationDescription */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_23 /* ISODate.swift */,
-				OBJ_24 /* Info.swift */,
-				OBJ_25 /* Simulation.swift */,
-				OBJ_26 /* Vocabulary.swift */,
-			);
-			name = SimulationDescription;
-			path = Sources/SimulationDescription;
-			sourceTree = SOURCE_ROOT;
-		};
-		OBJ_27 /* Utility */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_28 /* CollectionExtensions.swift */,
-				OBJ_29 /* Math.swift */,
-				OBJ_30 /* Matrix.swift */,
-				OBJ_31 /* Radix.swift */,
-				OBJ_32 /* Scale_Stevens.swift */,
-				OBJ_33 /* Scale_Tukey.swift */,
-				OBJ_34 /* SelfSorting.swift */,
-				OBJ_35 /* SortedSet.swift */,
-			);
-			name = Utility;
-			path = Sources/Utility;
-			sourceTree = SOURCE_ROOT;
-		};
-		OBJ_36 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_37 /* SimulationDescriptionTests */,
-				OBJ_39 /* GamesTests */,
-				OBJ_41 /* UtilityTests */,
-			);
-			name = Tests;
-			sourceTree = SOURCE_ROOT;
-		};
-		OBJ_37 /* SimulationDescriptionTests */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_38 /* InfoTests.swift */,
-				8D3E74B22179A041003EF20F /* VocabularyTests.swift */,
-			);
-			name = SimulationDescriptionTests;
-			path = Tests/SimulationDescriptionTests;
-			sourceTree = SOURCE_ROOT;
-		};
-		OBJ_39 /* GamesTests */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_40 /* GameTests.swift */,
-			);
-			name = GamesTests;
-			path = Tests/GamesTests;
-			sourceTree = SOURCE_ROOT;
-		};
-		OBJ_41 /* UtilityTests */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_42 /* DimensionsTests.swift */,
-				OBJ_43 /* MatrixTests.swift */,
-				OBJ_44 /* RadixTests.swift */,
-				OBJ_45 /* SortedSetTests.swift */,
-			);
-			name = UtilityTests;
-			path = Tests/UtilityTests;
-			sourceTree = SOURCE_ROOT;
-		};
-		OBJ_5 /*  */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_6 /* Package.swift */,
-				OBJ_7 /* Sources */,
-				OBJ_36 /* Tests */,
-				OBJ_48 /* Resources */,
-				OBJ_49 /* docs */,
-				OBJ_50 /* Scripts */,
-				OBJ_51 /* dictionaries */,
-				OBJ_52 /* Dependencies */,
-				OBJ_125 /* Products */,
-			);
-			name = "";
-			sourceTree = "<group>";
-		};
-		OBJ_52 /* Dependencies */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_53 /* Yams 1.0.1 */,
-				OBJ_83 /* Guaka 0.3.1 */,
-				OBJ_117 /* StringScanner 0.3.0 */,
-			);
-			name = Dependencies;
-			sourceTree = "<group>";
-		};
-		OBJ_53 /* Yams 1.0.1 */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_54 /* CYaml */,
-				OBJ_65 /* Yams */,
-				OBJ_82 /* Package.swift */,
-			);
-			name = "Yams 1.0.1";
-			sourceTree = SOURCE_ROOT;
-		};
-		OBJ_54 /* CYaml */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_55 /* src */,
-				OBJ_62 /* include */,
-			);
-			name = CYaml;
-			path = ".build/checkouts/Yams.git--335867369359398045/Sources/CYaml";
-			sourceTree = SOURCE_ROOT;
-		};
-		OBJ_55 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_56 /* api.c */,
-				OBJ_57 /* emitter.c */,
-				OBJ_58 /* parser.c */,
-				OBJ_59 /* reader.c */,
-				OBJ_60 /* scanner.c */,
-				OBJ_61 /* writer.c */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
-		OBJ_62 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_63 /* CYaml.h */,
-				OBJ_64 /* yaml.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		OBJ_65 /* Yams */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_66 /* Constructor.swift */,
-				OBJ_67 /* Decoder.swift */,
-				OBJ_68 /* Emitter.swift */,
-				OBJ_69 /* Encoder.swift */,
-				OBJ_70 /* Mark.swift */,
-				OBJ_71 /* Node.Mapping.swift */,
-				OBJ_72 /* Node.Scalar.swift */,
-				OBJ_73 /* Node.Sequence.swift */,
-				OBJ_74 /* Node.swift */,
-				OBJ_75 /* Parser.swift */,
-				OBJ_76 /* Representer.swift */,
-				OBJ_77 /* Resolver.swift */,
-				OBJ_78 /* String+Yams.swift */,
-				OBJ_79 /* Tag.swift */,
-				OBJ_80 /* YamlError.swift */,
-				OBJ_81 /* shim.swift */,
-			);
-			name = Yams;
-			path = ".build/checkouts/Yams.git--335867369359398045/Sources/Yams";
-			sourceTree = SOURCE_ROOT;
-		};
-		OBJ_7 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_8 /* HangmanCLI */,
-				OBJ_17 /* Games */,
-				OBJ_22 /* SimulationDescription */,
-				OBJ_27 /* Utility */,
-			);
-			name = Sources;
-			sourceTree = SOURCE_ROOT;
-		};
-		OBJ_8 /* HangmanCLI */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_9 /* Version.swift */,
-				OBJ_10 /* ask.swift */,
-				OBJ_11 /* main.swift */,
-				OBJ_12 /* play.swift */,
-				OBJ_13 /* radix.swift */,
-				OBJ_14 /* root.swift */,
-				OBJ_15 /* setup.swift */,
-				OBJ_16 /* simulate.swift */,
-			);
-			name = HangmanCLI;
-			path = Sources/HangmanCLI;
-			sourceTree = SOURCE_ROOT;
-		};
-		OBJ_83 /* Guaka 0.3.1 */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_84 /* Guaka */,
-				OBJ_116 /* Package.swift */,
-			);
-			name = "Guaka 0.3.1";
-			sourceTree = SOURCE_ROOT;
-		};
-		OBJ_84 /* Guaka */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_85 /* Command */,
-				OBJ_90 /* Execution */,
-				OBJ_92 /* Flag */,
-				OBJ_97 /* Help */,
-				OBJ_105 /* Misc */,
-				OBJ_108 /* Parsing */,
-				OBJ_112 /* Types */,
-			);
-			name = Guaka;
-			path = ".build/checkouts/Guaka.git-2981993449689156837/Sources/Guaka";
-			sourceTree = SOURCE_ROOT;
-		};
-		OBJ_85 /* Command */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_86 /* Command+Execution.swift */,
-				OBJ_87 /* Command+Utilities.swift */,
-				OBJ_88 /* Command.swift */,
-				OBJ_89 /* CommandTypes.swift */,
-			);
-			path = Command;
-			sourceTree = "<group>";
-		};
-		OBJ_90 /* Execution */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_91 /* CommandExecution.swift */,
-			);
-			path = Execution;
-			sourceTree = "<group>";
-		};
-		OBJ_92 /* Flag */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_93 /* Flag+Utilities.swift */,
-				OBJ_94 /* Flag.swift */,
-				OBJ_95 /* FlagSet.swift */,
-				OBJ_96 /* Flags.swift */,
-			);
-			path = Flag;
-			sourceTree = "<group>";
-		};
-		OBJ_97 /* Help */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_98 /* CommandHelp.swift */,
-				OBJ_99 /* DefaultHelpGenerator.swift */,
-				OBJ_100 /* FlagHelp.swift */,
-				OBJ_101 /* FlagHelpGeneratorUtils.swift */,
-				OBJ_102 /* HelpGenerator.swift */,
-				OBJ_103 /* HelpGeneratorDefaults.swift */,
-				OBJ_104 /* HelpGeneratorErrors.swift */,
-			);
-			path = Help;
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXHeadersBuildPhase section */
-		OBJ_148 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_149 /* CYaml.h in Headers */,
-				OBJ_150 /* yaml.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
-/* Begin PBXNativeTarget section */
-		"Guaka::Guaka" /* Guaka */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_177 /* Build configuration list for PBXNativeTarget "Guaka" */;
-			buildPhases = (
-				OBJ_180 /* Sources */,
-				OBJ_205 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				OBJ_207 /* PBXTargetDependency */,
-			);
-			name = Guaka;
-			productName = Guaka;
-			productReference = "Guaka::Guaka::Product" /* Guaka.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		"Guaka::SwiftPMPackageDescription" /* GuakaPackageDescription */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_210 /* Build configuration list for PBXNativeTarget "GuakaPackageDescription" */;
-			buildPhases = (
-				OBJ_213 /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = GuakaPackageDescription;
-			productName = GuakaPackageDescription;
-			productType = "com.apple.product-type.framework";
-		};
-		"StringScanner::StringScanner" /* StringScanner */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_276 /* Build configuration list for PBXNativeTarget "StringScanner" */;
-			buildPhases = (
-				OBJ_279 /* Sources */,
-				OBJ_285 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = StringScanner;
-			productName = StringScanner;
-			productReference = "StringScanner::StringScanner::Product" /* StringScanner.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		"StringScanner::SwiftPMPackageDescription" /* StringScannerPackageDescription */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_287 /* Build configuration list for PBXNativeTarget "StringScannerPackageDescription" */;
-			buildPhases = (
-				OBJ_290 /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = StringScannerPackageDescription;
-			productName = StringScannerPackageDescription;
-			productType = "com.apple.product-type.framework";
-		};
-		"Yams::CYaml" /* CYaml */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_138 /* Build configuration list for PBXNativeTarget "CYaml" */;
-			buildPhases = (
-				OBJ_141 /* Sources */,
-				OBJ_148 /* Headers */,
-				OBJ_151 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = CYaml;
-			productName = CYaml;
-			productReference = "Yams::CYaml::Product" /* CYaml.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		"Yams::SwiftPMPackageDescription" /* YamsPackageDescription */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_343 /* Build configuration list for PBXNativeTarget "YamsPackageDescription" */;
-			buildPhases = (
-				OBJ_346 /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = YamsPackageDescription;
-			productName = YamsPackageDescription;
-			productType = "com.apple.product-type.framework";
-		};
-		"Yams::Yams" /* Yams */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_319 /* Build configuration list for PBXNativeTarget "Yams" */;
-			buildPhases = (
-				OBJ_322 /* Sources */,
-				OBJ_339 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				OBJ_341 /* PBXTargetDependency */,
-			);
-			name = Yams;
-			productName = Yams;
-			productReference = "Yams::Yams::Product" /* Yams.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		"hangman::Games" /* Games */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_153 /* Build configuration list for PBXNativeTarget "Games" */;
-			buildPhases = (
-				OBJ_156 /* Sources */,
-				OBJ_161 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				OBJ_163 /* PBXTargetDependency */,
-			);
-			name = Games;
-			productName = Games;
-			productReference = "hangman::Games::Product" /* Games.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		"hangman::GamesTests" /* GamesTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_166 /* Build configuration list for PBXNativeTarget "GamesTests" */;
-			buildPhases = (
-				OBJ_169 /* Sources */,
-				OBJ_171 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				OBJ_174 /* PBXTargetDependency */,
-				OBJ_175 /* PBXTargetDependency */,
-			);
-			name = GamesTests;
-			productName = GamesTests;
-			productReference = "hangman::GamesTests::Product" /* GamesTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		"hangman::HangmanCLI" /* HangmanCLI */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_216 /* Build configuration list for PBXNativeTarget "HangmanCLI" */;
-			buildPhases = (
-				OBJ_219 /* Sources */,
-				OBJ_228 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				OBJ_236 /* PBXTargetDependency */,
-				OBJ_238 /* PBXTargetDependency */,
-				OBJ_239 /* PBXTargetDependency */,
-				OBJ_240 /* PBXTargetDependency */,
-				OBJ_241 /* PBXTargetDependency */,
-				OBJ_243 /* PBXTargetDependency */,
-				OBJ_244 /* PBXTargetDependency */,
-			);
-			name = HangmanCLI;
-			productName = HangmanCLI;
-			productReference = "hangman::HangmanCLI::Product" /* HangmanCLI */;
-			productType = "com.apple.product-type.tool";
-		};
-		"hangman::SimulationDescription" /* SimulationDescription */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_250 /* Build configuration list for PBXNativeTarget "SimulationDescription" */;
-			buildPhases = (
-				OBJ_253 /* Sources */,
-				OBJ_258 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				OBJ_261 /* PBXTargetDependency */,
-				OBJ_262 /* PBXTargetDependency */,
-			);
-			name = SimulationDescription;
-			productName = SimulationDescription;
-			productReference = "hangman::SimulationDescription::Product" /* SimulationDescription.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		"hangman::SimulationDescriptionTests" /* SimulationDescriptionTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_264 /* Build configuration list for PBXNativeTarget "SimulationDescriptionTests" */;
-			buildPhases = (
-				OBJ_267 /* Sources */,
-				OBJ_269 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				OBJ_273 /* PBXTargetDependency */,
-				OBJ_274 /* PBXTargetDependency */,
-				OBJ_275 /* PBXTargetDependency */,
-			);
-			name = SimulationDescriptionTests;
-			productName = SimulationDescriptionTests;
-			productReference = "hangman::SimulationDescriptionTests::Product" /* SimulationDescriptionTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		"hangman::SwiftPMPackageDescription" /* hangmanPackageDescription */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_354 /* Build configuration list for PBXNativeTarget "hangmanPackageDescription" */;
-			buildPhases = (
-				OBJ_357 /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = hangmanPackageDescription;
-			productName = hangmanPackageDescription;
-			productType = "com.apple.product-type.framework";
-		};
-		"hangman::Utility" /* Utility */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_292 /* Build configuration list for PBXNativeTarget "Utility" */;
-			buildPhases = (
-				OBJ_295 /* Sources */,
-				OBJ_304 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Utility;
-			productName = Utility;
-			productReference = "hangman::Utility::Product" /* Utility.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		"hangman::UtilityTests" /* UtilityTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_306 /* Build configuration list for PBXNativeTarget "UtilityTests" */;
-			buildPhases = (
-				OBJ_309 /* Sources */,
-				OBJ_316 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				OBJ_318 /* PBXTargetDependency */,
-			);
-			name = UtilityTests;
-			productName = UtilityTests;
-			productReference = "hangman::UtilityTests::Product" /* UtilityTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		OBJ_1 /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastUpgradeCheck = 9999;
-				TargetAttributes = {
-					"Guaka::Guaka" = {
-						LastSwiftMigration = 1000;
-					};
-					"StringScanner::StringScanner" = {
-						LastSwiftMigration = 1000;
-					};
-					"Yams::Yams" = {
-						LastSwiftMigration = 1000;
-					};
-				};
-			};
-			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "hangman" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-			);
-			mainGroup = OBJ_5 /*  */;
-			productRefGroup = OBJ_125 /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				"Yams::CYaml" /* CYaml */,
-				"hangman::Games" /* Games */,
-				"hangman::GamesTests" /* GamesTests */,
-				"Guaka::Guaka" /* Guaka */,
-				"Guaka::SwiftPMPackageDescription" /* GuakaPackageDescription */,
-				"hangman::HangmanCLI" /* HangmanCLI */,
-				"hangman::HangmanCore::ProductTarget" /* HangmanCore */,
-				"hangman::SimulationDescription" /* SimulationDescription */,
-				"hangman::SimulationDescriptionTests" /* SimulationDescriptionTests */,
-				"StringScanner::StringScanner" /* StringScanner */,
-				"StringScanner::SwiftPMPackageDescription" /* StringScannerPackageDescription */,
-				"hangman::Utility" /* Utility */,
-				"hangman::UtilityTests" /* UtilityTests */,
-				"Yams::Yams" /* Yams */,
-				"Yams::SwiftPMPackageDescription" /* YamsPackageDescription */,
-				"hangman::hangman::ProductTarget" /* hangman */,
-				"hangman::SwiftPMPackageDescription" /* hangmanPackageDescription */,
-				"hangman::hangmanPackageTests::ProductTarget" /* hangmanPackageTests */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXSourcesBuildPhase section */
-		OBJ_141 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_142 /* api.c in Sources */,
-				OBJ_143 /* emitter.c in Sources */,
-				OBJ_144 /* parser.c in Sources */,
-				OBJ_145 /* reader.c in Sources */,
-				OBJ_146 /* scanner.c in Sources */,
-				OBJ_147 /* writer.c in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_156 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_157 /* Begriffix.swift in Sources */,
-				OBJ_158 /* Direction.swift in Sources */,
-				OBJ_159 /* Game.swift in Sources */,
-				OBJ_160 /* Player.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_169 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_170 /* GameTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_180 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_181 /* Command+Execution.swift in Sources */,
-				OBJ_182 /* Command+Utilities.swift in Sources */,
-				OBJ_183 /* Command.swift in Sources */,
-				OBJ_184 /* CommandTypes.swift in Sources */,
-				OBJ_185 /* CommandExecution.swift in Sources */,
-				OBJ_186 /* Flag+Utilities.swift in Sources */,
-				OBJ_187 /* Flag.swift in Sources */,
-				OBJ_188 /* FlagSet.swift in Sources */,
-				OBJ_189 /* Flags.swift in Sources */,
-				OBJ_190 /* CommandHelp.swift in Sources */,
-				OBJ_191 /* DefaultHelpGenerator.swift in Sources */,
-				OBJ_192 /* FlagHelp.swift in Sources */,
-				OBJ_193 /* FlagHelpGeneratorUtils.swift in Sources */,
-				OBJ_194 /* HelpGenerator.swift in Sources */,
-				OBJ_195 /* HelpGeneratorDefaults.swift in Sources */,
-				OBJ_196 /* HelpGeneratorErrors.swift in Sources */,
-				OBJ_197 /* GuakaConfig.swift in Sources */,
-				OBJ_198 /* Levenshtein.swift in Sources */,
-				OBJ_199 /* ArgTokenType.swift in Sources */,
-				OBJ_200 /* Command+Parsing.swift in Sources */,
-				OBJ_201 /* FlagSet+Parsing.swift in Sources */,
-				OBJ_202 /* Errors.swift in Sources */,
-				OBJ_203 /* FlagValue.swift in Sources */,
-				OBJ_204 /* Result.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_213 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_214 /* Package.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_219 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_220 /* Version.swift in Sources */,
-				OBJ_221 /* ask.swift in Sources */,
-				OBJ_222 /* main.swift in Sources */,
-				OBJ_223 /* play.swift in Sources */,
-				OBJ_224 /* radix.swift in Sources */,
-				OBJ_225 /* root.swift in Sources */,
-				OBJ_226 /* setup.swift in Sources */,
-				OBJ_227 /* simulate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_253 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_254 /* ISODate.swift in Sources */,
-				OBJ_255 /* Info.swift in Sources */,
-				OBJ_256 /* Simulation.swift in Sources */,
-				OBJ_257 /* Vocabulary.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_267 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_268 /* InfoTests.swift in Sources */,
-				8D3E74B32179A041003EF20F /* VocabularyTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_279 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_280 /* CharacterSet.swift in Sources */,
-				OBJ_281 /* Regex.swift in Sources */,
-				OBJ_282 /* ScannerResult.swift in Sources */,
-				OBJ_283 /* StringExtension.swift in Sources */,
-				OBJ_284 /* StringScanner.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_290 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_291 /* Package.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_295 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_296 /* CollectionExtensions.swift in Sources */,
-				OBJ_297 /* Math.swift in Sources */,
-				OBJ_298 /* Matrix.swift in Sources */,
-				OBJ_299 /* Radix.swift in Sources */,
-				OBJ_300 /* Scale_Stevens.swift in Sources */,
-				OBJ_301 /* Scale_Tukey.swift in Sources */,
-				OBJ_302 /* SelfSorting.swift in Sources */,
-				OBJ_303 /* SortedSet.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_309 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_310 /* DimensionsTests.swift in Sources */,
-				OBJ_311 /* MatrixTests.swift in Sources */,
-				OBJ_312 /* RadixTests.swift in Sources */,
-				OBJ_313 /* SortedSetTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_322 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_323 /* Constructor.swift in Sources */,
-				OBJ_324 /* Decoder.swift in Sources */,
-				OBJ_325 /* Emitter.swift in Sources */,
-				OBJ_326 /* Encoder.swift in Sources */,
-				OBJ_327 /* Mark.swift in Sources */,
-				OBJ_328 /* Node.Mapping.swift in Sources */,
-				OBJ_329 /* Node.Scalar.swift in Sources */,
-				OBJ_330 /* Node.Sequence.swift in Sources */,
-				OBJ_331 /* Node.swift in Sources */,
-				OBJ_332 /* Parser.swift in Sources */,
-				OBJ_333 /* Representer.swift in Sources */,
-				OBJ_334 /* Resolver.swift in Sources */,
-				OBJ_335 /* String+Yams.swift in Sources */,
-				OBJ_336 /* Tag.swift in Sources */,
-				OBJ_337 /* YamlError.swift in Sources */,
-				OBJ_338 /* shim.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_346 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_347 /* Package.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_357 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_358 /* Package.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		OBJ_163 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "hangman::Utility" /* Utility */;
-			targetProxy = 8D3E74A321796F7E003EF20F /* PBXContainerItemProxy */;
-		};
-		OBJ_174 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "hangman::Games" /* Games */;
-			targetProxy = 8D3E74A721796F7E003EF20F /* PBXContainerItemProxy */;
-		};
-		OBJ_175 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "hangman::Utility" /* Utility */;
-			targetProxy = 8D3E74A821796F7E003EF20F /* PBXContainerItemProxy */;
-		};
-		OBJ_207 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "StringScanner::StringScanner" /* StringScanner */;
-			targetProxy = 8D3E749F21796F7E003EF20F /* PBXContainerItemProxy */;
-		};
-		OBJ_236 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "Yams::Yams" /* Yams */;
-			targetProxy = 8D3E749B21796F7E003EF20F /* PBXContainerItemProxy */;
-		};
-		OBJ_238 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "Yams::CYaml" /* CYaml */;
-			targetProxy = 8D3E749D21796F7E003EF20F /* PBXContainerItemProxy */;
-		};
-		OBJ_239 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "Guaka::Guaka" /* Guaka */;
-			targetProxy = 8D3E749E21796F7E003EF20F /* PBXContainerItemProxy */;
-		};
-		OBJ_240 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "StringScanner::StringScanner" /* StringScanner */;
-			targetProxy = 8D3E74A021796F7E003EF20F /* PBXContainerItemProxy */;
-		};
-		OBJ_241 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "hangman::SimulationDescription" /* SimulationDescription */;
-			targetProxy = 8D3E74A121796F7E003EF20F /* PBXContainerItemProxy */;
-		};
-		OBJ_243 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "hangman::Games" /* Games */;
-			targetProxy = 8D3E74A521796F7E003EF20F /* PBXContainerItemProxy */;
-		};
-		OBJ_244 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "hangman::Utility" /* Utility */;
-			targetProxy = 8D3E74A621796F7E003EF20F /* PBXContainerItemProxy */;
-		};
-		OBJ_249 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "hangman::Games" /* Games */;
-			targetProxy = 8D3E74AD21796F80003EF20F /* PBXContainerItemProxy */;
-		};
-		OBJ_261 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "hangman::Games" /* Games */;
-			targetProxy = 8D3E74A221796F7E003EF20F /* PBXContainerItemProxy */;
-		};
-		OBJ_262 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "hangman::Utility" /* Utility */;
-			targetProxy = 8D3E74A421796F7E003EF20F /* PBXContainerItemProxy */;
-		};
-		OBJ_273 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "hangman::SimulationDescription" /* SimulationDescription */;
-			targetProxy = 8D3E74AA21796F7E003EF20F /* PBXContainerItemProxy */;
-		};
-		OBJ_274 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "hangman::Games" /* Games */;
-			targetProxy = 8D3E74AB21796F7E003EF20F /* PBXContainerItemProxy */;
-		};
-		OBJ_275 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "hangman::Utility" /* Utility */;
-			targetProxy = 8D3E74AC21796F7E003EF20F /* PBXContainerItemProxy */;
-		};
-		OBJ_318 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "hangman::Utility" /* Utility */;
-			targetProxy = 8D3E74A921796F7E003EF20F /* PBXContainerItemProxy */;
-		};
-		OBJ_341 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "Yams::CYaml" /* CYaml */;
-			targetProxy = 8D3E749C21796F7E003EF20F /* PBXContainerItemProxy */;
-		};
-		OBJ_352 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "hangman::HangmanCLI" /* HangmanCLI */;
-			targetProxy = 8D3E74AE21796F80003EF20F /* PBXContainerItemProxy */;
-		};
-		OBJ_363 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "hangman::UtilityTests" /* UtilityTests */;
-			targetProxy = 8D3E74AF21796F80003EF20F /* PBXContainerItemProxy */;
-		};
-		OBJ_364 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "hangman::GamesTests" /* GamesTests */;
-			targetProxy = 8D3E74B021796F80003EF20F /* PBXContainerItemProxy */;
-		};
-		OBJ_365 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "hangman::SimulationDescriptionTests" /* SimulationDescriptionTests */;
-			targetProxy = 8D3E74B121796F80003EF20F /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin XCBuildConfiguration section */
-		OBJ_139 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				DEFINES_MODULE = YES;
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/.build/checkouts/Yams.git--335867369359398045/Sources/CYaml/include",
-				);
-				INFOPLIST_FILE = hangman.xcodeproj/CYaml_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = CYaml;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				TARGET_NAME = CYaml;
-			};
-			name = Debug;
-		};
-		OBJ_140 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				DEFINES_MODULE = YES;
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/.build/checkouts/Yams.git--335867369359398045/Sources/CYaml/include",
-				);
-				INFOPLIST_FILE = hangman.xcodeproj/CYaml_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = CYaml;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				TARGET_NAME = CYaml;
-			};
-			name = Release;
-		};
-		OBJ_154 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = hangman.xcodeproj/Games_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = Games;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 4.2;
-				TARGET_NAME = Games;
-			};
-			name = Debug;
-		};
-		OBJ_155 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = hangman.xcodeproj/Games_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = Games;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 4.2;
-				TARGET_NAME = Games;
-			};
-			name = Release;
-		};
-		OBJ_167 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = hangman.xcodeproj/GamesTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 4.2;
-				TARGET_NAME = GamesTests;
-			};
-			name = Debug;
-		};
-		OBJ_168 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = hangman.xcodeproj/GamesTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 4.2;
-				TARGET_NAME = GamesTests;
-			};
-			name = Release;
-		};
-		OBJ_178 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = hangman.xcodeproj/Guaka_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = Guaka;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 4.2;
-				TARGET_NAME = Guaka;
-			};
-			name = Debug;
-		};
-		OBJ_179 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = hangman.xcodeproj/Guaka_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = Guaka;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 4.2;
-				TARGET_NAME = Guaka;
-			};
-			name = Release;
-		};
-		OBJ_211 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 4 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
-				SWIFT_VERSION = 4.0;
-			};
-			name = Debug;
-		};
-		OBJ_212 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 4 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
-				SWIFT_VERSION = 4.0;
-			};
-			name = Release;
-		};
-		OBJ_217 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/.build/checkouts/Yams.git--335867369359398045/Sources/CYaml/include",
-				);
-				INFOPLIST_FILE = hangman.xcodeproj/HangmanCLI_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
-				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
-				SWIFT_VERSION = 4.2;
-				TARGET_NAME = HangmanCLI;
-			};
-			name = Debug;
-		};
-		OBJ_218 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/.build/checkouts/Yams.git--335867369359398045/Sources/CYaml/include",
-				);
-				INFOPLIST_FILE = hangman.xcodeproj/HangmanCLI_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
-				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
-				SWIFT_VERSION = 4.2;
-				TARGET_NAME = HangmanCLI;
-			};
-			name = Release;
-		};
-		OBJ_247 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Debug;
-		};
-		OBJ_248 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Release;
-		};
-		OBJ_251 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = hangman.xcodeproj/SimulationDescription_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = SimulationDescription;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 4.2;
-				TARGET_NAME = SimulationDescription;
-			};
-			name = Debug;
-		};
-		OBJ_252 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = hangman.xcodeproj/SimulationDescription_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = SimulationDescription;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 4.2;
-				TARGET_NAME = SimulationDescription;
-			};
-			name = Release;
-		};
-		OBJ_265 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = hangman.xcodeproj/SimulationDescriptionTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 4.2;
-				TARGET_NAME = SimulationDescriptionTests;
-			};
-			name = Debug;
-		};
-		OBJ_266 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = hangman.xcodeproj/SimulationDescriptionTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 4.2;
-				TARGET_NAME = SimulationDescriptionTests;
-			};
-			name = Release;
-		};
-		OBJ_277 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = hangman.xcodeproj/StringScanner_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = StringScanner;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 4.2;
-				TARGET_NAME = StringScanner;
-			};
-			name = Debug;
-		};
-		OBJ_278 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = hangman.xcodeproj/StringScanner_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = StringScanner;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 4.2;
-				TARGET_NAME = StringScanner;
-			};
-			name = Release;
-		};
-		OBJ_288 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 4 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
-				SWIFT_VERSION = 4.0;
-			};
-			name = Debug;
-		};
-		OBJ_289 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 4 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
-				SWIFT_VERSION = 4.0;
-			};
-			name = Release;
-		};
-		OBJ_293 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = hangman.xcodeproj/Utility_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = Utility;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 4.2;
-				TARGET_NAME = Utility;
-			};
-			name = Debug;
-		};
-		OBJ_294 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = hangman.xcodeproj/Utility_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = Utility;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 4.2;
-				TARGET_NAME = Utility;
-			};
-			name = Release;
-		};
-		OBJ_3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_NS_ASSERTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_SWIFT_FLAGS = "-DXcode";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "SWIFT_PACKAGE DEBUG";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				USE_HEADERMAP = NO;
-			};
-			name = Debug;
-		};
-		OBJ_307 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = hangman.xcodeproj/UtilityTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 4.2;
-				TARGET_NAME = UtilityTests;
-			};
-			name = Debug;
-		};
-		OBJ_308 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = hangman.xcodeproj/UtilityTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 4.2;
-				TARGET_NAME = UtilityTests;
-			};
-			name = Release;
-		};
-		OBJ_320 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/.build/checkouts/Yams.git--335867369359398045/Sources/CYaml/include",
-				);
-				INFOPLIST_FILE = hangman.xcodeproj/Yams_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = Yams;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 4.2;
-				TARGET_NAME = Yams;
-			};
-			name = Debug;
-		};
-		OBJ_321 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/.build/checkouts/Yams.git--335867369359398045/Sources/CYaml/include",
-				);
-				INFOPLIST_FILE = hangman.xcodeproj/Yams_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = Yams;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 4.2;
-				TARGET_NAME = Yams;
-			};
-			name = Release;
-		};
-		OBJ_344 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 4 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
-				SWIFT_VERSION = 4.0;
-			};
-			name = Debug;
-		};
-		OBJ_345 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 4 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
-				SWIFT_VERSION = 4.0;
-			};
-			name = Release;
-		};
-		OBJ_350 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Debug;
-		};
-		OBJ_351 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Release;
-		};
-		OBJ_355 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 4.2 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
-				SWIFT_VERSION = 4.2;
-			};
-			name = Debug;
-		};
-		OBJ_356 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 4.2 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
-				SWIFT_VERSION = 4.2;
-			};
-			name = Release;
-		};
-		OBJ_361 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Debug;
-		};
-		OBJ_362 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Release;
-		};
-		OBJ_4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_OPTIMIZATION_LEVEL = s;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				OTHER_SWIFT_FLAGS = "-DXcode";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SWIFT_PACKAGE;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				USE_HEADERMAP = NO;
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		OBJ_138 /* Build configuration list for PBXNativeTarget "CYaml" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_139 /* Debug */,
-				OBJ_140 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_153 /* Build configuration list for PBXNativeTarget "Games" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_154 /* Debug */,
-				OBJ_155 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_166 /* Build configuration list for PBXNativeTarget "GamesTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_167 /* Debug */,
-				OBJ_168 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_177 /* Build configuration list for PBXNativeTarget "Guaka" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_178 /* Debug */,
-				OBJ_179 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_2 /* Build configuration list for PBXProject "hangman" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_3 /* Debug */,
-				OBJ_4 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_210 /* Build configuration list for PBXNativeTarget "GuakaPackageDescription" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_211 /* Debug */,
-				OBJ_212 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_216 /* Build configuration list for PBXNativeTarget "HangmanCLI" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_217 /* Debug */,
-				OBJ_218 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_246 /* Build configuration list for PBXAggregateTarget "HangmanCore" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_247 /* Debug */,
-				OBJ_248 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_250 /* Build configuration list for PBXNativeTarget "SimulationDescription" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_251 /* Debug */,
-				OBJ_252 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_264 /* Build configuration list for PBXNativeTarget "SimulationDescriptionTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_265 /* Debug */,
-				OBJ_266 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_276 /* Build configuration list for PBXNativeTarget "StringScanner" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_277 /* Debug */,
-				OBJ_278 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_287 /* Build configuration list for PBXNativeTarget "StringScannerPackageDescription" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_288 /* Debug */,
-				OBJ_289 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_292 /* Build configuration list for PBXNativeTarget "Utility" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_293 /* Debug */,
-				OBJ_294 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_306 /* Build configuration list for PBXNativeTarget "UtilityTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_307 /* Debug */,
-				OBJ_308 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_319 /* Build configuration list for PBXNativeTarget "Yams" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_320 /* Debug */,
-				OBJ_321 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_343 /* Build configuration list for PBXNativeTarget "YamsPackageDescription" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_344 /* Debug */,
-				OBJ_345 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_349 /* Build configuration list for PBXAggregateTarget "hangman" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_350 /* Debug */,
-				OBJ_351 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_354 /* Build configuration list for PBXNativeTarget "hangmanPackageDescription" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_355 /* Debug */,
-				OBJ_356 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_360 /* Build configuration list for PBXAggregateTarget "hangmanPackageTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_361 /* Debug */,
-				OBJ_362 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = OBJ_1 /* Project object */;
+   archiveVersion = "1";
+   objectVersion = "46";
+   objects = {
+      "Guaka::Guaka" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_213";
+         buildPhases = (
+            "OBJ_216",
+            "OBJ_241"
+         );
+         dependencies = (
+            "OBJ_243"
+         );
+         name = "Guaka";
+         productName = "Guaka";
+         productReference = "Guaka::Guaka::Product";
+         productType = "com.apple.product-type.framework";
+      };
+      "Guaka::Guaka::Product" = {
+         isa = "PBXFileReference";
+         path = "Guaka.framework";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      "Guaka::SwiftPMPackageDescription" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_246";
+         buildPhases = (
+            "OBJ_249"
+         );
+         dependencies = (
+         );
+         name = "GuakaPackageDescription";
+         productName = "GuakaPackageDescription";
+         productType = "com.apple.product-type.framework";
+      };
+      "OBJ_1" = {
+         isa = "PBXProject";
+         attributes = {
+            LastUpgradeCheck = "9999";
+         };
+         buildConfigurationList = "OBJ_2";
+         compatibilityVersion = "Xcode 3.2";
+         developmentRegion = "English";
+         hasScannedForEncodings = "0";
+         knownRegions = (
+            "en"
+         );
+         mainGroup = "OBJ_5";
+         productRefGroup = "OBJ_179";
+         projectDirPath = ".";
+         targets = (
+            "hangman::Games",
+            "hangman::GamesTests",
+            "Guaka::Guaka",
+            "Guaka::SwiftPMPackageDescription",
+            "hangman::HangmanCLI",
+            "hangman::HangmanCore::ProductTarget",
+            "StringScanner::StringScanner",
+            "StringScanner::SwiftPMPackageDescription",
+            "SwiftProtobuf::SwiftProtobuf",
+            "SwiftProtobuf::SwiftPMPackageDescription",
+            "hangman::Utility",
+            "hangman::UtilityTests",
+            "hangman::hangman::ProductTarget",
+            "hangman::SwiftPMPackageDescription",
+            "hangman::hangmanPackageTests::ProductTarget"
+         );
+      };
+      "OBJ_10" = {
+         isa = "PBXFileReference";
+         path = "Math.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_100" = {
+         isa = "PBXFileReference";
+         path = "Message+JSONAdditions.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_101" = {
+         isa = "PBXFileReference";
+         path = "Message+JSONArrayAdditions.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_102" = {
+         isa = "PBXFileReference";
+         path = "Message+TextFormatAdditions.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_103" = {
+         isa = "PBXFileReference";
+         path = "Message.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_104" = {
+         isa = "PBXFileReference";
+         path = "MessageExtension.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_105" = {
+         isa = "PBXFileReference";
+         path = "NameMap.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_106" = {
+         isa = "PBXFileReference";
+         path = "ProtoNameProviding.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_107" = {
+         isa = "PBXFileReference";
+         path = "ProtobufAPIVersionCheck.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_108" = {
+         isa = "PBXFileReference";
+         path = "ProtobufMap.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_109" = {
+         isa = "PBXFileReference";
+         path = "SelectiveVisitor.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_11" = {
+         isa = "PBXFileReference";
+         path = "Matrix.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_110" = {
+         isa = "PBXFileReference";
+         path = "SimpleExtensionMap.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_111" = {
+         isa = "PBXFileReference";
+         path = "StringUtils.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_112" = {
+         isa = "PBXFileReference";
+         path = "TextFormatDecoder.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_113" = {
+         isa = "PBXFileReference";
+         path = "TextFormatDecodingError.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_114" = {
+         isa = "PBXFileReference";
+         path = "TextFormatEncoder.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_115" = {
+         isa = "PBXFileReference";
+         path = "TextFormatEncodingVisitor.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_116" = {
+         isa = "PBXFileReference";
+         path = "TextFormatScanner.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_117" = {
+         isa = "PBXFileReference";
+         path = "TimeUtils.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_118" = {
+         isa = "PBXFileReference";
+         path = "UnknownStorage.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_119" = {
+         isa = "PBXFileReference";
+         path = "Varint.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_12" = {
+         isa = "PBXFileReference";
+         path = "Radix.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_120" = {
+         isa = "PBXFileReference";
+         path = "Version.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_121" = {
+         isa = "PBXFileReference";
+         path = "Visitor.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_122" = {
+         isa = "PBXFileReference";
+         path = "WireFormat.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_123" = {
+         isa = "PBXFileReference";
+         path = "ZigZag.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_124" = {
+         isa = "PBXFileReference";
+         path = "any.pb.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_125" = {
+         isa = "PBXFileReference";
+         path = "api.pb.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_126" = {
+         isa = "PBXFileReference";
+         path = "duration.pb.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_127" = {
+         isa = "PBXFileReference";
+         path = "empty.pb.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_128" = {
+         isa = "PBXFileReference";
+         path = "field_mask.pb.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_129" = {
+         isa = "PBXFileReference";
+         path = "source_context.pb.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_13" = {
+         isa = "PBXFileReference";
+         path = "Scale_Stevens.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_130" = {
+         isa = "PBXFileReference";
+         path = "struct.pb.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_131" = {
+         isa = "PBXFileReference";
+         path = "timestamp.pb.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_132" = {
+         isa = "PBXFileReference";
+         path = "type.pb.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_133" = {
+         isa = "PBXFileReference";
+         path = "wrappers.pb.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_134" = {
+         isa = "PBXGroup";
+         children = (
+         );
+         name = "SwiftProtobufPluginLibrary";
+         path = ".build/checkouts/swift-protobuf.git-5076314780452262810/Sources/SwiftProtobufPluginLibrary";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_135" = {
+         isa = "PBXGroup";
+         children = (
+         );
+         name = "protoc-gen-swift";
+         path = ".build/checkouts/swift-protobuf.git-5076314780452262810/Sources/protoc-gen-swift";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_136" = {
+         isa = "PBXFileReference";
+         explicitFileType = "sourcecode.swift";
+         name = "Package.swift";
+         path = "/Users/tamara/Entwicklung/strategic-games/hangman/.build/checkouts/swift-protobuf.git-5076314780452262810/Package.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_137" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_138",
+            "OBJ_170"
+         );
+         name = "Guaka 0.3.1";
+         path = "";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_138" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_139",
+            "OBJ_144",
+            "OBJ_146",
+            "OBJ_151",
+            "OBJ_159",
+            "OBJ_162",
+            "OBJ_166"
+         );
+         name = "Guaka";
+         path = ".build/checkouts/Guaka.git-2981993449689156837/Sources/Guaka";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_139" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_140",
+            "OBJ_141",
+            "OBJ_142",
+            "OBJ_143"
+         );
+         name = "Command";
+         path = "Command";
+         sourceTree = "<group>";
+      };
+      "OBJ_14" = {
+         isa = "PBXFileReference";
+         path = "Scale_Tukey.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_140" = {
+         isa = "PBXFileReference";
+         path = "Command+Execution.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_141" = {
+         isa = "PBXFileReference";
+         path = "Command+Utilities.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_142" = {
+         isa = "PBXFileReference";
+         path = "Command.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_143" = {
+         isa = "PBXFileReference";
+         path = "CommandTypes.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_144" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_145"
+         );
+         name = "Execution";
+         path = "Execution";
+         sourceTree = "<group>";
+      };
+      "OBJ_145" = {
+         isa = "PBXFileReference";
+         path = "CommandExecution.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_146" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_147",
+            "OBJ_148",
+            "OBJ_149",
+            "OBJ_150"
+         );
+         name = "Flag";
+         path = "Flag";
+         sourceTree = "<group>";
+      };
+      "OBJ_147" = {
+         isa = "PBXFileReference";
+         path = "Flag+Utilities.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_148" = {
+         isa = "PBXFileReference";
+         path = "Flag.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_149" = {
+         isa = "PBXFileReference";
+         path = "FlagSet.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_15" = {
+         isa = "PBXFileReference";
+         path = "SelfSorting.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_150" = {
+         isa = "PBXFileReference";
+         path = "Flags.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_151" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_152",
+            "OBJ_153",
+            "OBJ_154",
+            "OBJ_155",
+            "OBJ_156",
+            "OBJ_157",
+            "OBJ_158"
+         );
+         name = "Help";
+         path = "Help";
+         sourceTree = "<group>";
+      };
+      "OBJ_152" = {
+         isa = "PBXFileReference";
+         path = "CommandHelp.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_153" = {
+         isa = "PBXFileReference";
+         path = "DefaultHelpGenerator.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_154" = {
+         isa = "PBXFileReference";
+         path = "FlagHelp.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_155" = {
+         isa = "PBXFileReference";
+         path = "FlagHelpGeneratorUtils.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_156" = {
+         isa = "PBXFileReference";
+         path = "HelpGenerator.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_157" = {
+         isa = "PBXFileReference";
+         path = "HelpGeneratorDefaults.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_158" = {
+         isa = "PBXFileReference";
+         path = "HelpGeneratorErrors.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_159" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_160",
+            "OBJ_161"
+         );
+         name = "Misc";
+         path = "Misc";
+         sourceTree = "<group>";
+      };
+      "OBJ_16" = {
+         isa = "PBXFileReference";
+         path = "SortedSet.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_160" = {
+         isa = "PBXFileReference";
+         path = "GuakaConfig.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_161" = {
+         isa = "PBXFileReference";
+         path = "Levenshtein.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_162" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_163",
+            "OBJ_164",
+            "OBJ_165"
+         );
+         name = "Parsing";
+         path = "Parsing";
+         sourceTree = "<group>";
+      };
+      "OBJ_163" = {
+         isa = "PBXFileReference";
+         path = "ArgTokenType.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_164" = {
+         isa = "PBXFileReference";
+         path = "Command+Parsing.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_165" = {
+         isa = "PBXFileReference";
+         path = "FlagSet+Parsing.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_166" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_167",
+            "OBJ_168",
+            "OBJ_169"
+         );
+         name = "Types";
+         path = "Types";
+         sourceTree = "<group>";
+      };
+      "OBJ_167" = {
+         isa = "PBXFileReference";
+         path = "Errors.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_168" = {
+         isa = "PBXFileReference";
+         path = "FlagValue.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_169" = {
+         isa = "PBXFileReference";
+         path = "Result.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_17" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_18",
+            "OBJ_19",
+            "OBJ_20",
+            "OBJ_21"
+         );
+         name = "Games";
+         path = "Sources/Games";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_170" = {
+         isa = "PBXFileReference";
+         explicitFileType = "sourcecode.swift";
+         name = "Package.swift";
+         path = "/Users/tamara/Entwicklung/strategic-games/hangman/.build/checkouts/Guaka.git-2981993449689156837/Package.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_171" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_172",
+            "OBJ_178"
+         );
+         name = "StringScanner 0.3.0";
+         path = "";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_172" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_173",
+            "OBJ_174",
+            "OBJ_175",
+            "OBJ_176",
+            "OBJ_177"
+         );
+         name = "StringScanner";
+         path = ".build/checkouts/StringScanner.git--8026872735033917074/Sources/StringScanner";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_173" = {
+         isa = "PBXFileReference";
+         path = "CharacterSet.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_174" = {
+         isa = "PBXFileReference";
+         path = "Regex.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_175" = {
+         isa = "PBXFileReference";
+         path = "ScannerResult.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_176" = {
+         isa = "PBXFileReference";
+         path = "StringExtension.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_177" = {
+         isa = "PBXFileReference";
+         path = "StringScanner.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_178" = {
+         isa = "PBXFileReference";
+         explicitFileType = "sourcecode.swift";
+         name = "Package.swift";
+         path = "/Users/tamara/Entwicklung/strategic-games/hangman/.build/checkouts/StringScanner.git--8026872735033917074/Package.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_179" = {
+         isa = "PBXGroup";
+         children = (
+            "hangman::Utility::Product",
+            "hangman::HangmanCLI::Product",
+            "SwiftProtobuf::SwiftProtobuf::Product",
+            "hangman::GamesTests::Product",
+            "hangman::UtilityTests::Product",
+            "Guaka::Guaka::Product",
+            "hangman::Games::Product",
+            "StringScanner::StringScanner::Product"
+         );
+         name = "Products";
+         path = "";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      "OBJ_18" = {
+         isa = "PBXFileReference";
+         path = "Begriffix.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_189" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_190",
+            "OBJ_191"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_19" = {
+         isa = "PBXFileReference";
+         path = "Direction.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_190" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "hangman.xcodeproj/Games_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "Games";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.2";
+            TARGET_NAME = "Games";
+         };
+         name = "Debug";
+      };
+      "OBJ_191" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "hangman.xcodeproj/Games_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "Games";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.2";
+            TARGET_NAME = "Games";
+         };
+         name = "Release";
+      };
+      "OBJ_192" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_193",
+            "OBJ_194",
+            "OBJ_195",
+            "OBJ_196"
+         );
+      };
+      "OBJ_193" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_18";
+      };
+      "OBJ_194" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_19";
+      };
+      "OBJ_195" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_20";
+      };
+      "OBJ_196" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_21";
+      };
+      "OBJ_197" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+            "OBJ_198"
+         );
+      };
+      "OBJ_198" = {
+         isa = "PBXBuildFile";
+         fileRef = "hangman::Utility::Product";
+      };
+      "OBJ_199" = {
+         isa = "PBXTargetDependency";
+         target = "hangman::Utility";
+      };
+      "OBJ_2" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_3",
+            "OBJ_4"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_20" = {
+         isa = "PBXFileReference";
+         path = "Game.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_202" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_203",
+            "OBJ_204"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_203" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CLANG_ENABLE_MODULES = "YES";
+            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "hangman.xcodeproj/GamesTests_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "@loader_path/../Frameworks",
+               "@loader_path/Frameworks"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.2";
+            TARGET_NAME = "GamesTests";
+         };
+         name = "Debug";
+      };
+      "OBJ_204" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CLANG_ENABLE_MODULES = "YES";
+            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "hangman.xcodeproj/GamesTests_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "@loader_path/../Frameworks",
+               "@loader_path/Frameworks"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.2";
+            TARGET_NAME = "GamesTests";
+         };
+         name = "Release";
+      };
+      "OBJ_205" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_206"
+         );
+      };
+      "OBJ_206" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_45";
+      };
+      "OBJ_207" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+            "OBJ_208",
+            "OBJ_209"
+         );
+      };
+      "OBJ_208" = {
+         isa = "PBXBuildFile";
+         fileRef = "hangman::Games::Product";
+      };
+      "OBJ_209" = {
+         isa = "PBXBuildFile";
+         fileRef = "hangman::Utility::Product";
+      };
+      "OBJ_21" = {
+         isa = "PBXFileReference";
+         path = "Player.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_210" = {
+         isa = "PBXTargetDependency";
+         target = "hangman::Games";
+      };
+      "OBJ_211" = {
+         isa = "PBXTargetDependency";
+         target = "hangman::Utility";
+      };
+      "OBJ_213" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_214",
+            "OBJ_215"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_214" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "hangman.xcodeproj/Guaka_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "Guaka";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.0";
+            TARGET_NAME = "Guaka";
+         };
+         name = "Debug";
+      };
+      "OBJ_215" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "hangman.xcodeproj/Guaka_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "Guaka";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.0";
+            TARGET_NAME = "Guaka";
+         };
+         name = "Release";
+      };
+      "OBJ_216" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_217",
+            "OBJ_218",
+            "OBJ_219",
+            "OBJ_220",
+            "OBJ_221",
+            "OBJ_222",
+            "OBJ_223",
+            "OBJ_224",
+            "OBJ_225",
+            "OBJ_226",
+            "OBJ_227",
+            "OBJ_228",
+            "OBJ_229",
+            "OBJ_230",
+            "OBJ_231",
+            "OBJ_232",
+            "OBJ_233",
+            "OBJ_234",
+            "OBJ_235",
+            "OBJ_236",
+            "OBJ_237",
+            "OBJ_238",
+            "OBJ_239",
+            "OBJ_240"
+         );
+      };
+      "OBJ_217" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_140";
+      };
+      "OBJ_218" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_141";
+      };
+      "OBJ_219" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_142";
+      };
+      "OBJ_22" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_23",
+            "OBJ_24",
+            "OBJ_25",
+            "OBJ_26",
+            "OBJ_27",
+            "OBJ_28",
+            "OBJ_29",
+            "OBJ_30",
+            "OBJ_31",
+            "OBJ_32",
+            "OBJ_34",
+            "OBJ_35",
+            "OBJ_36",
+            "OBJ_37"
+         );
+         name = "HangmanCLI";
+         path = "Sources/HangmanCLI";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_220" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_143";
+      };
+      "OBJ_221" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_145";
+      };
+      "OBJ_222" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_147";
+      };
+      "OBJ_223" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_148";
+      };
+      "OBJ_224" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_149";
+      };
+      "OBJ_225" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_150";
+      };
+      "OBJ_226" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_152";
+      };
+      "OBJ_227" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_153";
+      };
+      "OBJ_228" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_154";
+      };
+      "OBJ_229" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_155";
+      };
+      "OBJ_23" = {
+         isa = "PBXFileReference";
+         path = "ISODate.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_230" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_156";
+      };
+      "OBJ_231" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_157";
+      };
+      "OBJ_232" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_158";
+      };
+      "OBJ_233" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_160";
+      };
+      "OBJ_234" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_161";
+      };
+      "OBJ_235" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_163";
+      };
+      "OBJ_236" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_164";
+      };
+      "OBJ_237" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_165";
+      };
+      "OBJ_238" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_167";
+      };
+      "OBJ_239" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_168";
+      };
+      "OBJ_24" = {
+         isa = "PBXFileReference";
+         path = "MessageExtension.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_240" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_169";
+      };
+      "OBJ_241" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+            "OBJ_242"
+         );
+      };
+      "OBJ_242" = {
+         isa = "PBXBuildFile";
+         fileRef = "StringScanner::StringScanner::Product";
+      };
+      "OBJ_243" = {
+         isa = "PBXTargetDependency";
+         target = "StringScanner::StringScanner";
+      };
+      "OBJ_246" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_247",
+            "OBJ_248"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_247" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "4",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
+            );
+            SWIFT_VERSION = "4.0";
+         };
+         name = "Debug";
+      };
+      "OBJ_248" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "4",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
+            );
+            SWIFT_VERSION = "4.0";
+         };
+         name = "Release";
+      };
+      "OBJ_249" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_250"
+         );
+      };
+      "OBJ_25" = {
+         isa = "PBXFileReference";
+         path = "Simulation.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_250" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_170";
+      };
+      "OBJ_252" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_253",
+            "OBJ_254"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_253" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "hangman.xcodeproj/HangmanCLI_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
+               "@executable_path"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_FORCE_DYNAMIC_LINK_STDLIB = "YES";
+            SWIFT_FORCE_STATIC_LINK_STDLIB = "NO";
+            SWIFT_VERSION = "4.2";
+            TARGET_NAME = "HangmanCLI";
+         };
+         name = "Debug";
+      };
+      "OBJ_254" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "hangman.xcodeproj/HangmanCLI_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
+               "@executable_path"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_FORCE_DYNAMIC_LINK_STDLIB = "YES";
+            SWIFT_FORCE_STATIC_LINK_STDLIB = "NO";
+            SWIFT_VERSION = "4.2";
+            TARGET_NAME = "HangmanCLI";
+         };
+         name = "Release";
+      };
+      "OBJ_255" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_256",
+            "OBJ_257",
+            "OBJ_258",
+            "OBJ_259",
+            "OBJ_260",
+            "OBJ_261",
+            "OBJ_262",
+            "OBJ_263",
+            "OBJ_264",
+            "OBJ_265",
+            "OBJ_266",
+            "OBJ_267",
+            "OBJ_268",
+            "OBJ_269"
+         );
+      };
+      "OBJ_256" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_23";
+      };
+      "OBJ_257" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_24";
+      };
+      "OBJ_258" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_25";
+      };
+      "OBJ_259" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_26";
+      };
+      "OBJ_26" = {
+         isa = "PBXFileReference";
+         path = "SimulationStreamer.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_260" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_27";
+      };
+      "OBJ_261" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_28";
+      };
+      "OBJ_262" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_29";
+      };
+      "OBJ_263" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_30";
+      };
+      "OBJ_264" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_31";
+      };
+      "OBJ_265" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_33";
+      };
+      "OBJ_266" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_34";
+      };
+      "OBJ_267" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_35";
+      };
+      "OBJ_268" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_36";
+      };
+      "OBJ_269" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_37";
+      };
+      "OBJ_27" = {
+         isa = "PBXFileReference";
+         path = "Version.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_270" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+            "OBJ_271",
+            "OBJ_272",
+            "OBJ_273",
+            "OBJ_274",
+            "OBJ_275"
+         );
+      };
+      "OBJ_271" = {
+         isa = "PBXBuildFile";
+         fileRef = "Guaka::Guaka::Product";
+      };
+      "OBJ_272" = {
+         isa = "PBXBuildFile";
+         fileRef = "StringScanner::StringScanner::Product";
+      };
+      "OBJ_273" = {
+         isa = "PBXBuildFile";
+         fileRef = "SwiftProtobuf::SwiftProtobuf::Product";
+      };
+      "OBJ_274" = {
+         isa = "PBXBuildFile";
+         fileRef = "hangman::Games::Product";
+      };
+      "OBJ_275" = {
+         isa = "PBXBuildFile";
+         fileRef = "hangman::Utility::Product";
+      };
+      "OBJ_276" = {
+         isa = "PBXTargetDependency";
+         target = "Guaka::Guaka";
+      };
+      "OBJ_277" = {
+         isa = "PBXTargetDependency";
+         target = "StringScanner::StringScanner";
+      };
+      "OBJ_278" = {
+         isa = "PBXTargetDependency";
+         target = "SwiftProtobuf::SwiftProtobuf";
+      };
+      "OBJ_28" = {
+         isa = "PBXFileReference";
+         path = "Vocabulary.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_280" = {
+         isa = "PBXTargetDependency";
+         target = "hangman::Games";
+      };
+      "OBJ_281" = {
+         isa = "PBXTargetDependency";
+         target = "hangman::Utility";
+      };
+      "OBJ_283" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_284",
+            "OBJ_285"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_284" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+         };
+         name = "Debug";
+      };
+      "OBJ_285" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+         };
+         name = "Release";
+      };
+      "OBJ_286" = {
+         isa = "PBXTargetDependency";
+         target = "hangman::Games";
+      };
+      "OBJ_287" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_288",
+            "OBJ_289"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_288" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "hangman.xcodeproj/StringScanner_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "StringScanner";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.0";
+            TARGET_NAME = "StringScanner";
+         };
+         name = "Debug";
+      };
+      "OBJ_289" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "hangman.xcodeproj/StringScanner_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "StringScanner";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.0";
+            TARGET_NAME = "StringScanner";
+         };
+         name = "Release";
+      };
+      "OBJ_29" = {
+         isa = "PBXFileReference";
+         path = "ask.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_290" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_291",
+            "OBJ_292",
+            "OBJ_293",
+            "OBJ_294",
+            "OBJ_295"
+         );
+      };
+      "OBJ_291" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_173";
+      };
+      "OBJ_292" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_174";
+      };
+      "OBJ_293" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_175";
+      };
+      "OBJ_294" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_176";
+      };
+      "OBJ_295" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_177";
+      };
+      "OBJ_296" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+         );
+      };
+      "OBJ_298" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_299",
+            "OBJ_300"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_299" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "4",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
+            );
+            SWIFT_VERSION = "4.0";
+         };
+         name = "Debug";
+      };
+      "OBJ_3" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CLANG_ENABLE_OBJC_ARC = "YES";
+            COMBINE_HIDPI_IMAGES = "YES";
+            COPY_PHASE_STRIP = "NO";
+            DEBUG_INFORMATION_FORMAT = "dwarf";
+            DYLIB_INSTALL_NAME_BASE = "@rpath";
+            ENABLE_NS_ASSERTIONS = "YES";
+            GCC_OPTIMIZATION_LEVEL = "0";
+            GCC_PREPROCESSOR_DEFINITIONS = (
+               "DEBUG=1",
+               "$(inherited)"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            ONLY_ACTIVE_ARCH = "YES";
+            OTHER_SWIFT_FLAGS = (
+               "-DXcode"
+            );
+            PRODUCT_NAME = "$(TARGET_NAME)";
+            SDKROOT = "macosx";
+            SUPPORTED_PLATFORMS = (
+               "macosx",
+               "iphoneos",
+               "iphonesimulator",
+               "appletvos",
+               "appletvsimulator",
+               "watchos",
+               "watchsimulator"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "SWIFT_PACKAGE",
+               "DEBUG"
+            );
+            SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+            USE_HEADERMAP = "NO";
+         };
+         name = "Debug";
+      };
+      "OBJ_30" = {
+         isa = "PBXFileReference";
+         path = "main.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_300" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "4",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
+            );
+            SWIFT_VERSION = "4.0";
+         };
+         name = "Release";
+      };
+      "OBJ_301" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_302"
+         );
+      };
+      "OBJ_302" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_178";
+      };
+      "OBJ_303" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_304",
+            "OBJ_305"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_304" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "hangman.xcodeproj/SwiftProtobuf_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "SwiftProtobuf";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.2";
+            TARGET_NAME = "SwiftProtobuf";
+         };
+         name = "Debug";
+      };
+      "OBJ_305" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "hangman.xcodeproj/SwiftProtobuf_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "SwiftProtobuf";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.2";
+            TARGET_NAME = "SwiftProtobuf";
+         };
+         name = "Release";
+      };
+      "OBJ_306" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_307",
+            "OBJ_308",
+            "OBJ_309",
+            "OBJ_310",
+            "OBJ_311",
+            "OBJ_312",
+            "OBJ_313",
+            "OBJ_314",
+            "OBJ_315",
+            "OBJ_316",
+            "OBJ_317",
+            "OBJ_318",
+            "OBJ_319",
+            "OBJ_320",
+            "OBJ_321",
+            "OBJ_322",
+            "OBJ_323",
+            "OBJ_324",
+            "OBJ_325",
+            "OBJ_326",
+            "OBJ_327",
+            "OBJ_328",
+            "OBJ_329",
+            "OBJ_330",
+            "OBJ_331",
+            "OBJ_332",
+            "OBJ_333",
+            "OBJ_334",
+            "OBJ_335",
+            "OBJ_336",
+            "OBJ_337",
+            "OBJ_338",
+            "OBJ_339",
+            "OBJ_340",
+            "OBJ_341",
+            "OBJ_342",
+            "OBJ_343",
+            "OBJ_344",
+            "OBJ_345",
+            "OBJ_346",
+            "OBJ_347",
+            "OBJ_348",
+            "OBJ_349",
+            "OBJ_350",
+            "OBJ_351",
+            "OBJ_352",
+            "OBJ_353",
+            "OBJ_354",
+            "OBJ_355",
+            "OBJ_356",
+            "OBJ_357",
+            "OBJ_358",
+            "OBJ_359",
+            "OBJ_360",
+            "OBJ_361",
+            "OBJ_362",
+            "OBJ_363",
+            "OBJ_364",
+            "OBJ_365",
+            "OBJ_366",
+            "OBJ_367",
+            "OBJ_368",
+            "OBJ_369",
+            "OBJ_370",
+            "OBJ_371",
+            "OBJ_372",
+            "OBJ_373",
+            "OBJ_374",
+            "OBJ_375",
+            "OBJ_376",
+            "OBJ_377",
+            "OBJ_378",
+            "OBJ_379",
+            "OBJ_380",
+            "OBJ_381",
+            "OBJ_382",
+            "OBJ_383"
+         );
+      };
+      "OBJ_307" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_57";
+      };
+      "OBJ_308" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_58";
+      };
+      "OBJ_309" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_59";
+      };
+      "OBJ_31" = {
+         isa = "PBXFileReference";
+         path = "play.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_310" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_60";
+      };
+      "OBJ_311" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_61";
+      };
+      "OBJ_312" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_62";
+      };
+      "OBJ_313" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_63";
+      };
+      "OBJ_314" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_64";
+      };
+      "OBJ_315" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_65";
+      };
+      "OBJ_316" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_66";
+      };
+      "OBJ_317" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_67";
+      };
+      "OBJ_318" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_68";
+      };
+      "OBJ_319" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_69";
+      };
+      "OBJ_32" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_33"
+         );
+         name = "proto";
+         path = "proto";
+         sourceTree = "<group>";
+      };
+      "OBJ_320" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_70";
+      };
+      "OBJ_321" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_71";
+      };
+      "OBJ_322" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_72";
+      };
+      "OBJ_323" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_73";
+      };
+      "OBJ_324" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_74";
+      };
+      "OBJ_325" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_75";
+      };
+      "OBJ_326" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_76";
+      };
+      "OBJ_327" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_77";
+      };
+      "OBJ_328" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_78";
+      };
+      "OBJ_329" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_79";
+      };
+      "OBJ_33" = {
+         isa = "PBXFileReference";
+         path = "DataModel.pb.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_330" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_80";
+      };
+      "OBJ_331" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_81";
+      };
+      "OBJ_332" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_82";
+      };
+      "OBJ_333" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_83";
+      };
+      "OBJ_334" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_84";
+      };
+      "OBJ_335" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_85";
+      };
+      "OBJ_336" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_86";
+      };
+      "OBJ_337" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_87";
+      };
+      "OBJ_338" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_88";
+      };
+      "OBJ_339" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_89";
+      };
+      "OBJ_34" = {
+         isa = "PBXFileReference";
+         path = "radix.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_340" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_90";
+      };
+      "OBJ_341" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_91";
+      };
+      "OBJ_342" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_92";
+      };
+      "OBJ_343" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_93";
+      };
+      "OBJ_344" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_94";
+      };
+      "OBJ_345" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_95";
+      };
+      "OBJ_346" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_96";
+      };
+      "OBJ_347" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_97";
+      };
+      "OBJ_348" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_98";
+      };
+      "OBJ_349" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_99";
+      };
+      "OBJ_35" = {
+         isa = "PBXFileReference";
+         path = "root.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_350" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_100";
+      };
+      "OBJ_351" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_101";
+      };
+      "OBJ_352" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_102";
+      };
+      "OBJ_353" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_103";
+      };
+      "OBJ_354" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_104";
+      };
+      "OBJ_355" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_105";
+      };
+      "OBJ_356" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_106";
+      };
+      "OBJ_357" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_107";
+      };
+      "OBJ_358" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_108";
+      };
+      "OBJ_359" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_109";
+      };
+      "OBJ_36" = {
+         isa = "PBXFileReference";
+         path = "setup.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_360" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_110";
+      };
+      "OBJ_361" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_111";
+      };
+      "OBJ_362" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_112";
+      };
+      "OBJ_363" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_113";
+      };
+      "OBJ_364" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_114";
+      };
+      "OBJ_365" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_115";
+      };
+      "OBJ_366" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_116";
+      };
+      "OBJ_367" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_117";
+      };
+      "OBJ_368" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_118";
+      };
+      "OBJ_369" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_119";
+      };
+      "OBJ_37" = {
+         isa = "PBXFileReference";
+         path = "simulate.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_370" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_120";
+      };
+      "OBJ_371" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_121";
+      };
+      "OBJ_372" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_122";
+      };
+      "OBJ_373" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_123";
+      };
+      "OBJ_374" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_124";
+      };
+      "OBJ_375" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_125";
+      };
+      "OBJ_376" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_126";
+      };
+      "OBJ_377" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_127";
+      };
+      "OBJ_378" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_128";
+      };
+      "OBJ_379" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_129";
+      };
+      "OBJ_38" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_39",
+            "OBJ_44"
+         );
+         name = "Tests";
+         path = "";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_380" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_130";
+      };
+      "OBJ_381" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_131";
+      };
+      "OBJ_382" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_132";
+      };
+      "OBJ_383" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_133";
+      };
+      "OBJ_384" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+         );
+      };
+      "OBJ_386" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_387",
+            "OBJ_388"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_387" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "4.2",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
+            );
+            SWIFT_VERSION = "4.2";
+         };
+         name = "Debug";
+      };
+      "OBJ_388" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "4.2",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
+            );
+            SWIFT_VERSION = "4.2";
+         };
+         name = "Release";
+      };
+      "OBJ_389" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_390"
+         );
+      };
+      "OBJ_39" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_40",
+            "OBJ_41",
+            "OBJ_42",
+            "OBJ_43"
+         );
+         name = "UtilityTests";
+         path = "Tests/UtilityTests";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_390" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_136";
+      };
+      "OBJ_391" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_392",
+            "OBJ_393"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_392" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "hangman.xcodeproj/Utility_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "Utility";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.2";
+            TARGET_NAME = "Utility";
+         };
+         name = "Debug";
+      };
+      "OBJ_393" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "hangman.xcodeproj/Utility_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "Utility";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.2";
+            TARGET_NAME = "Utility";
+         };
+         name = "Release";
+      };
+      "OBJ_394" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_395",
+            "OBJ_396",
+            "OBJ_397",
+            "OBJ_398",
+            "OBJ_399",
+            "OBJ_400",
+            "OBJ_401",
+            "OBJ_402"
+         );
+      };
+      "OBJ_395" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_9";
+      };
+      "OBJ_396" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_10";
+      };
+      "OBJ_397" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_11";
+      };
+      "OBJ_398" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_12";
+      };
+      "OBJ_399" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_13";
+      };
+      "OBJ_4" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CLANG_ENABLE_OBJC_ARC = "YES";
+            COMBINE_HIDPI_IMAGES = "YES";
+            COPY_PHASE_STRIP = "YES";
+            DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+            DYLIB_INSTALL_NAME_BASE = "@rpath";
+            GCC_OPTIMIZATION_LEVEL = "s";
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            OTHER_SWIFT_FLAGS = (
+               "-DXcode"
+            );
+            PRODUCT_NAME = "$(TARGET_NAME)";
+            SDKROOT = "macosx";
+            SUPPORTED_PLATFORMS = (
+               "macosx",
+               "iphoneos",
+               "iphonesimulator",
+               "appletvos",
+               "appletvsimulator",
+               "watchos",
+               "watchsimulator"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "SWIFT_PACKAGE"
+            );
+            SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+            USE_HEADERMAP = "NO";
+         };
+         name = "Release";
+      };
+      "OBJ_40" = {
+         isa = "PBXFileReference";
+         path = "DimensionsTests.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_400" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_14";
+      };
+      "OBJ_401" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_15";
+      };
+      "OBJ_402" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_16";
+      };
+      "OBJ_403" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+         );
+      };
+      "OBJ_405" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_406",
+            "OBJ_407"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_406" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CLANG_ENABLE_MODULES = "YES";
+            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "hangman.xcodeproj/UtilityTests_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "@loader_path/../Frameworks",
+               "@loader_path/Frameworks"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.2";
+            TARGET_NAME = "UtilityTests";
+         };
+         name = "Debug";
+      };
+      "OBJ_407" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CLANG_ENABLE_MODULES = "YES";
+            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "hangman.xcodeproj/UtilityTests_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "@loader_path/../Frameworks",
+               "@loader_path/Frameworks"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.2";
+            TARGET_NAME = "UtilityTests";
+         };
+         name = "Release";
+      };
+      "OBJ_408" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_409",
+            "OBJ_410",
+            "OBJ_411",
+            "OBJ_412"
+         );
+      };
+      "OBJ_409" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_40";
+      };
+      "OBJ_41" = {
+         isa = "PBXFileReference";
+         path = "MatrixTests.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_410" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_41";
+      };
+      "OBJ_411" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_42";
+      };
+      "OBJ_412" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_43";
+      };
+      "OBJ_413" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+            "OBJ_414"
+         );
+      };
+      "OBJ_414" = {
+         isa = "PBXBuildFile";
+         fileRef = "hangman::Utility::Product";
+      };
+      "OBJ_415" = {
+         isa = "PBXTargetDependency";
+         target = "hangman::Utility";
+      };
+      "OBJ_417" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_418",
+            "OBJ_419"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_418" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+         };
+         name = "Debug";
+      };
+      "OBJ_419" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+         };
+         name = "Release";
+      };
+      "OBJ_42" = {
+         isa = "PBXFileReference";
+         path = "RadixTests.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_420" = {
+         isa = "PBXTargetDependency";
+         target = "hangman::HangmanCLI";
+      };
+      "OBJ_422" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_423",
+            "OBJ_424"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_423" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "4.2",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
+            );
+            SWIFT_VERSION = "4.2";
+         };
+         name = "Debug";
+      };
+      "OBJ_424" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "4.2",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
+            );
+            SWIFT_VERSION = "4.2";
+         };
+         name = "Release";
+      };
+      "OBJ_425" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_426"
+         );
+      };
+      "OBJ_426" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_6";
+      };
+      "OBJ_428" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_429",
+            "OBJ_430"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_429" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+         };
+         name = "Debug";
+      };
+      "OBJ_43" = {
+         isa = "PBXFileReference";
+         path = "SortedSetTests.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_430" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+         };
+         name = "Release";
+      };
+      "OBJ_431" = {
+         isa = "PBXTargetDependency";
+         target = "hangman::GamesTests";
+      };
+      "OBJ_432" = {
+         isa = "PBXTargetDependency";
+         target = "hangman::UtilityTests";
+      };
+      "OBJ_44" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_45"
+         );
+         name = "GamesTests";
+         path = "Tests/GamesTests";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_45" = {
+         isa = "PBXFileReference";
+         path = "GameTests.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_46" = {
+         isa = "PBXFileReference";
+         path = "proto";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_47" = {
+         isa = "PBXFileReference";
+         path = "Resources";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_48" = {
+         isa = "PBXFileReference";
+         path = "docs";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_49" = {
+         isa = "PBXFileReference";
+         path = "simulations";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_5" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_6",
+            "OBJ_7",
+            "OBJ_38",
+            "OBJ_46",
+            "OBJ_47",
+            "OBJ_48",
+            "OBJ_49",
+            "OBJ_50",
+            "OBJ_51",
+            "OBJ_52",
+            "OBJ_53",
+            "OBJ_179"
+         );
+         path = "";
+         sourceTree = "<group>";
+      };
+      "OBJ_50" = {
+         isa = "PBXFileReference";
+         path = "Scripts";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_51" = {
+         isa = "PBXFileReference";
+         path = "radix";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_52" = {
+         isa = "PBXFileReference";
+         path = "dictionaries";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_53" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_54",
+            "OBJ_137",
+            "OBJ_171"
+         );
+         name = "Dependencies";
+         path = "";
+         sourceTree = "<group>";
+      };
+      "OBJ_54" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_55",
+            "OBJ_56",
+            "OBJ_134",
+            "OBJ_135",
+            "OBJ_136"
+         );
+         name = "SwiftProtobuf 1.2.0";
+         path = "";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_55" = {
+         isa = "PBXGroup";
+         children = (
+         );
+         name = "Conformance";
+         path = ".build/checkouts/swift-protobuf.git-5076314780452262810/Sources/Conformance";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_56" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_57",
+            "OBJ_58",
+            "OBJ_59",
+            "OBJ_60",
+            "OBJ_61",
+            "OBJ_62",
+            "OBJ_63",
+            "OBJ_64",
+            "OBJ_65",
+            "OBJ_66",
+            "OBJ_67",
+            "OBJ_68",
+            "OBJ_69",
+            "OBJ_70",
+            "OBJ_71",
+            "OBJ_72",
+            "OBJ_73",
+            "OBJ_74",
+            "OBJ_75",
+            "OBJ_76",
+            "OBJ_77",
+            "OBJ_78",
+            "OBJ_79",
+            "OBJ_80",
+            "OBJ_81",
+            "OBJ_82",
+            "OBJ_83",
+            "OBJ_84",
+            "OBJ_85",
+            "OBJ_86",
+            "OBJ_87",
+            "OBJ_88",
+            "OBJ_89",
+            "OBJ_90",
+            "OBJ_91",
+            "OBJ_92",
+            "OBJ_93",
+            "OBJ_94",
+            "OBJ_95",
+            "OBJ_96",
+            "OBJ_97",
+            "OBJ_98",
+            "OBJ_99",
+            "OBJ_100",
+            "OBJ_101",
+            "OBJ_102",
+            "OBJ_103",
+            "OBJ_104",
+            "OBJ_105",
+            "OBJ_106",
+            "OBJ_107",
+            "OBJ_108",
+            "OBJ_109",
+            "OBJ_110",
+            "OBJ_111",
+            "OBJ_112",
+            "OBJ_113",
+            "OBJ_114",
+            "OBJ_115",
+            "OBJ_116",
+            "OBJ_117",
+            "OBJ_118",
+            "OBJ_119",
+            "OBJ_120",
+            "OBJ_121",
+            "OBJ_122",
+            "OBJ_123",
+            "OBJ_124",
+            "OBJ_125",
+            "OBJ_126",
+            "OBJ_127",
+            "OBJ_128",
+            "OBJ_129",
+            "OBJ_130",
+            "OBJ_131",
+            "OBJ_132",
+            "OBJ_133"
+         );
+         name = "SwiftProtobuf";
+         path = ".build/checkouts/swift-protobuf.git-5076314780452262810/Sources/SwiftProtobuf";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_57" = {
+         isa = "PBXFileReference";
+         path = "AnyMessageStorage.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_58" = {
+         isa = "PBXFileReference";
+         path = "AnyUnpackError.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_59" = {
+         isa = "PBXFileReference";
+         path = "BinaryDecoder.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_6" = {
+         isa = "PBXFileReference";
+         explicitFileType = "sourcecode.swift";
+         path = "Package.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_60" = {
+         isa = "PBXFileReference";
+         path = "BinaryDecodingError.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_61" = {
+         isa = "PBXFileReference";
+         path = "BinaryDecodingOptions.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_62" = {
+         isa = "PBXFileReference";
+         path = "BinaryDelimited.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_63" = {
+         isa = "PBXFileReference";
+         path = "BinaryEncoder.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_64" = {
+         isa = "PBXFileReference";
+         path = "BinaryEncodingError.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_65" = {
+         isa = "PBXFileReference";
+         path = "BinaryEncodingSizeVisitor.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_66" = {
+         isa = "PBXFileReference";
+         path = "BinaryEncodingVisitor.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_67" = {
+         isa = "PBXFileReference";
+         path = "CustomJSONCodable.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_68" = {
+         isa = "PBXFileReference";
+         path = "Decoder.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_69" = {
+         isa = "PBXFileReference";
+         path = "DoubleFormatter.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_7" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_8",
+            "OBJ_17",
+            "OBJ_22"
+         );
+         name = "Sources";
+         path = "";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_70" = {
+         isa = "PBXFileReference";
+         path = "Enum.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_71" = {
+         isa = "PBXFileReference";
+         path = "ExtensibleMessage.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_72" = {
+         isa = "PBXFileReference";
+         path = "ExtensionFieldValueSet.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_73" = {
+         isa = "PBXFileReference";
+         path = "ExtensionFields.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_74" = {
+         isa = "PBXFileReference";
+         path = "ExtensionMap.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_75" = {
+         isa = "PBXFileReference";
+         path = "FieldTag.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_76" = {
+         isa = "PBXFileReference";
+         path = "FieldTypes.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_77" = {
+         isa = "PBXFileReference";
+         path = "Google_Protobuf_Any+Extensions.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_78" = {
+         isa = "PBXFileReference";
+         path = "Google_Protobuf_Any+Registry.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_79" = {
+         isa = "PBXFileReference";
+         path = "Google_Protobuf_Duration+Extensions.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_8" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_9",
+            "OBJ_10",
+            "OBJ_11",
+            "OBJ_12",
+            "OBJ_13",
+            "OBJ_14",
+            "OBJ_15",
+            "OBJ_16"
+         );
+         name = "Utility";
+         path = "Sources/Utility";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_80" = {
+         isa = "PBXFileReference";
+         path = "Google_Protobuf_FieldMask+Extensions.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_81" = {
+         isa = "PBXFileReference";
+         path = "Google_Protobuf_ListValue+Extensions.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_82" = {
+         isa = "PBXFileReference";
+         path = "Google_Protobuf_Struct+Extensions.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_83" = {
+         isa = "PBXFileReference";
+         path = "Google_Protobuf_Timestamp+Extensions.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_84" = {
+         isa = "PBXFileReference";
+         path = "Google_Protobuf_Value+Extensions.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_85" = {
+         isa = "PBXFileReference";
+         path = "Google_Protobuf_Wrappers+Extensions.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_86" = {
+         isa = "PBXFileReference";
+         path = "HashVisitor.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_87" = {
+         isa = "PBXFileReference";
+         path = "Internal.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_88" = {
+         isa = "PBXFileReference";
+         path = "JSONDecoder.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_89" = {
+         isa = "PBXFileReference";
+         path = "JSONDecodingError.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_9" = {
+         isa = "PBXFileReference";
+         path = "CollectionExtensions.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_90" = {
+         isa = "PBXFileReference";
+         path = "JSONDecodingOptions.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_91" = {
+         isa = "PBXFileReference";
+         path = "JSONEncoder.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_92" = {
+         isa = "PBXFileReference";
+         path = "JSONEncodingError.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_93" = {
+         isa = "PBXFileReference";
+         path = "JSONEncodingOptions.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_94" = {
+         isa = "PBXFileReference";
+         path = "JSONEncodingVisitor.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_95" = {
+         isa = "PBXFileReference";
+         path = "JSONMapEncodingVisitor.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_96" = {
+         isa = "PBXFileReference";
+         path = "JSONScanner.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_97" = {
+         isa = "PBXFileReference";
+         path = "MathUtils.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_98" = {
+         isa = "PBXFileReference";
+         path = "Message+AnyAdditions.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_99" = {
+         isa = "PBXFileReference";
+         path = "Message+BinaryAdditions.swift";
+         sourceTree = "<group>";
+      };
+      "StringScanner::StringScanner" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_287";
+         buildPhases = (
+            "OBJ_290",
+            "OBJ_296"
+         );
+         dependencies = (
+         );
+         name = "StringScanner";
+         productName = "StringScanner";
+         productReference = "StringScanner::StringScanner::Product";
+         productType = "com.apple.product-type.framework";
+      };
+      "StringScanner::StringScanner::Product" = {
+         isa = "PBXFileReference";
+         path = "StringScanner.framework";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      "StringScanner::SwiftPMPackageDescription" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_298";
+         buildPhases = (
+            "OBJ_301"
+         );
+         dependencies = (
+         );
+         name = "StringScannerPackageDescription";
+         productName = "StringScannerPackageDescription";
+         productType = "com.apple.product-type.framework";
+      };
+      "SwiftProtobuf::SwiftPMPackageDescription" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_386";
+         buildPhases = (
+            "OBJ_389"
+         );
+         dependencies = (
+         );
+         name = "SwiftProtobufPackageDescription";
+         productName = "SwiftProtobufPackageDescription";
+         productType = "com.apple.product-type.framework";
+      };
+      "SwiftProtobuf::SwiftProtobuf" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_303";
+         buildPhases = (
+            "OBJ_306",
+            "OBJ_384"
+         );
+         dependencies = (
+         );
+         name = "SwiftProtobuf";
+         productName = "SwiftProtobuf";
+         productReference = "SwiftProtobuf::SwiftProtobuf::Product";
+         productType = "com.apple.product-type.framework";
+      };
+      "SwiftProtobuf::SwiftProtobuf::Product" = {
+         isa = "PBXFileReference";
+         path = "SwiftProtobuf.framework";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      "hangman::Games" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_189";
+         buildPhases = (
+            "OBJ_192",
+            "OBJ_197"
+         );
+         dependencies = (
+            "OBJ_199"
+         );
+         name = "Games";
+         productName = "Games";
+         productReference = "hangman::Games::Product";
+         productType = "com.apple.product-type.framework";
+      };
+      "hangman::Games::Product" = {
+         isa = "PBXFileReference";
+         path = "Games.framework";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      "hangman::GamesTests" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_202";
+         buildPhases = (
+            "OBJ_205",
+            "OBJ_207"
+         );
+         dependencies = (
+            "OBJ_210",
+            "OBJ_211"
+         );
+         name = "GamesTests";
+         productName = "GamesTests";
+         productReference = "hangman::GamesTests::Product";
+         productType = "com.apple.product-type.bundle.unit-test";
+      };
+      "hangman::GamesTests::Product" = {
+         isa = "PBXFileReference";
+         path = "GamesTests.xctest";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      "hangman::HangmanCLI" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_252";
+         buildPhases = (
+            "OBJ_255",
+            "OBJ_270"
+         );
+         dependencies = (
+            "OBJ_276",
+            "OBJ_277",
+            "OBJ_278",
+            "OBJ_280",
+            "OBJ_281"
+         );
+         name = "HangmanCLI";
+         productName = "HangmanCLI";
+         productReference = "hangman::HangmanCLI::Product";
+         productType = "com.apple.product-type.tool";
+      };
+      "hangman::HangmanCLI::Product" = {
+         isa = "PBXFileReference";
+         path = "HangmanCLI";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      "hangman::HangmanCore::ProductTarget" = {
+         isa = "PBXAggregateTarget";
+         buildConfigurationList = "OBJ_283";
+         buildPhases = (
+         );
+         dependencies = (
+            "OBJ_286"
+         );
+         name = "HangmanCore";
+         productName = "HangmanCore";
+      };
+      "hangman::SwiftPMPackageDescription" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_422";
+         buildPhases = (
+            "OBJ_425"
+         );
+         dependencies = (
+         );
+         name = "hangmanPackageDescription";
+         productName = "hangmanPackageDescription";
+         productType = "com.apple.product-type.framework";
+      };
+      "hangman::Utility" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_391";
+         buildPhases = (
+            "OBJ_394",
+            "OBJ_403"
+         );
+         dependencies = (
+         );
+         name = "Utility";
+         productName = "Utility";
+         productReference = "hangman::Utility::Product";
+         productType = "com.apple.product-type.framework";
+      };
+      "hangman::Utility::Product" = {
+         isa = "PBXFileReference";
+         path = "Utility.framework";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      "hangman::UtilityTests" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_405";
+         buildPhases = (
+            "OBJ_408",
+            "OBJ_413"
+         );
+         dependencies = (
+            "OBJ_415"
+         );
+         name = "UtilityTests";
+         productName = "UtilityTests";
+         productReference = "hangman::UtilityTests::Product";
+         productType = "com.apple.product-type.bundle.unit-test";
+      };
+      "hangman::UtilityTests::Product" = {
+         isa = "PBXFileReference";
+         path = "UtilityTests.xctest";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      "hangman::hangman::ProductTarget" = {
+         isa = "PBXAggregateTarget";
+         buildConfigurationList = "OBJ_417";
+         buildPhases = (
+         );
+         dependencies = (
+            "OBJ_420"
+         );
+         name = "hangman";
+         productName = "hangman";
+      };
+      "hangman::hangmanPackageTests::ProductTarget" = {
+         isa = "PBXAggregateTarget";
+         buildConfigurationList = "OBJ_428";
+         buildPhases = (
+         );
+         dependencies = (
+            "OBJ_431",
+            "OBJ_432"
+         );
+         name = "hangmanPackageTests";
+         productName = "hangmanPackageTests";
+      };
+   };
+   rootObject = "OBJ_1";
 }

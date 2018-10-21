@@ -7,7 +7,9 @@ struct SimulationStreamer {
   init?(fileName: String) {
     self.fileName = fileName
     url = URL(fileURLWithPath: fileName)
-    if !FileManager.default.fileExists(atPath: url.path) {
+    do {
+      _ = try url.checkResourceIsReachable()
+    } catch {
       FileManager.default.createFile(atPath: url.path, contents: nil, attributes: nil)
     }
     guard let fileHandle = try? FileHandle(forWritingTo: url) else {return nil}

@@ -19,21 +19,12 @@ private func execute(flags: Flags, args: [String]) {
   let path = flags.getString(name: "dictionary")!
   let url = URL(fileURLWithPath: path)
   do {
-    let content = try String(contentsOf: url)
-    let radix = loadWordList(content)
+    let list = try WordList(contentsOf: url)
+    let radix = Radix()
+    radix.insert(list.words)
     let result = args.count != 0 ? radix.search(pattern: args[0]) : radix.search()
     print(result)
   } catch {
     radixCommand.fail(statusCode: 1, errorMessage: "\(error)")
   }
-}
-
-func loadWordList(_ contents: String) -> Radix {
-  let dict = contents.lowercased().unicodeScalars
-    .split(separator: "\n")
-    .drop(while: {$0.first == "#"})
-    .map {Array($0.prefix(while: {$0 != " "}))}
-  let radix = Radix()
-  dict.forEach {radix.insert($0)}
-  return radix
 }
