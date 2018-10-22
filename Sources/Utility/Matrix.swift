@@ -155,17 +155,17 @@ public struct Matrix<Element> {
   /// Returns the elements in the given column
   public func column(_ j: Int) -> [Element] {
     assert(j >= 0 && j < columns)
-    return stride(from: j, to: rows*columns+j, by: columns).map {values[$0]}
+    return stride(from: j, to: values.count, by: columns).map {values[$0]}
   }
   /// Get the elements row by row
   public func rowwise(in indices: Range<Int>? = nil) -> [[Element]] {
     let indices = indices ?? (0..<rows)
-    return indices.lazy.map {Array(row($0))}
+    return indices.map {Array(row($0))}
   }
   /// Get the elements column by column
   public func colwise(in indices: Range<Int>? = nil) -> [[Element]] {
     let indices = indices ?? (0..<columns)
-    return indices.lazy.map {column($0)}
+    return indices.map {column($0)}
   }
   /// Convert coordinates to array index
   func index(row: Int, column: Int) -> Int {
