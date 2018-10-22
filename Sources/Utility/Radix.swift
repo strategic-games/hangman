@@ -116,14 +116,15 @@ public final class Radix {
   }
   /// Return an array with every inserted string in this node that match the given pattern, the given prefix prepended
   public func search(prefix: Label = [], pattern: [Label.Element?]) -> [Label] {
+    guard prefix.count < pattern.count else {return []}
     var words = [Label]()
     for child in children {
+      guard child.label.match(pattern: pattern[prefix.endIndex...]) else {continue}
       let prev = prefix + child.label
-      guard prev.match(pattern: pattern) else {continue}
       if prev.count == pattern.count && child.isTerminal {
         words.append(prev)
       } else if prev.count < pattern.count {
-        words += child.search(prefix: prev, pattern: pattern)
+        words.append(contentsOf: child.search(prefix: prev, pattern: pattern))
       }
     }
     return words
