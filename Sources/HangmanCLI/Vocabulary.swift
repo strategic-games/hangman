@@ -1,7 +1,20 @@
 import Foundation
+import Guaka
 import Utility
 
 extension WordList {
+  enum DataFormat: String, FlagValue {
+    case proto
+    case text
+    static func fromString(flagValue value: String) throws -> DataFormat {
+      guard let mode = DataFormat(rawValue: value) else {
+        throw FlagValueError.conversionError("mode must be proto or text")
+      }
+      return mode
+    }
+    static let typeDescription = "The data format of a word list file"
+  }
+
   init(source: String, text: String) {
     self.source = source
     words = text.lowercased().unicodeScalars
