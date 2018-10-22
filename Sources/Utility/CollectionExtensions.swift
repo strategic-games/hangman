@@ -29,24 +29,6 @@ public extension String {
   }
 }
 
-extension RandomAccessCollection where Element: Equatable {
-  /// Returns the indices around a given index to return a slice that is surrounded by a given element
-  public func indices(around i: Index, surround: Element) -> Indices {
-    assert(indices.contains(i), "i out of bounds")
-    var start = i
-    var end = i
-    for next in indices[..<i].reversed() {
-      if self[next] == surround {break}
-      start = next
-    }
-    for next in indices[index(after: i)...] {
-      if self[next] == surround {break}
-      end = next
-    }
-    return indices[start...end]
-  }
-}
-
 public extension RangeReplaceableCollection {
   /// Take a random sample from a range replaceable collection
   func sample(_ size: Int) -> [Element]? {

@@ -202,15 +202,27 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
       values = board.rowwise(in: area.rows)
       around = place.start.column
     }
-    return values.compactMap {
-      let r = $0.indices(around: around, surround: nil)
-      if r.count < 3 {return nil}
-      let word = $0[r].compactMap {$0}
-      return word
+    return values.compactMap {Begriffix.word(in: $0, around: around)}
+  }
+  public static func word(in line: Pattern, around i: Pattern.Index) -> Word? {
+    assert(line.indices.contains(i), "i out of bounds")
+    var start = i, end = i
+    for n in stride(from: start, through: line.startIndex, by: -1) {
+      if line[n] == nil {break}
+      start = n
     }
+    for n in end..<line.endIndex {
+      if line[n] == nil {break}
+      end = n
+    }
+    let r = start...end
+    if r.count < 3 {return nil}
+    let word = line[r].compactMap {$0}
+    return word
   }
   /// Indicate if the given place is usable
   public func contains(_ place: Place) -> Bool {
     return find(direction: place.direction, count: place.count).contains(place.start)
   }
 }
+
