@@ -27,3 +27,20 @@ func ask<T: LosslessStringConvertible>(_ prompt: String, validator: Validator<T>
     return value
   } while true
 }
+
+func agree(_ prompt: String) -> Bool {
+  print(prompt)
+  repeat {
+    guard let str = readLine(strippingNewline: true) else {
+      print("Please enter a value")
+      continue
+    }
+    switch str {
+    case "yes", "y", "j": return true
+    case "no", "n": return false
+    default:
+      print("Please enter yes/y/j or n/no")
+      continue
+    }
+  } while true
+}

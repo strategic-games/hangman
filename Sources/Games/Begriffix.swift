@@ -154,7 +154,8 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
     }
     var places = [Place]()
     for dir in direction {
-      for count in stride(from: 8, through: min, by: -1) {
+      // stride(from: 8, through: min, by: -1)
+      for count in min...8 {
         places += find(direction: dir, count: count).map {Place(start: $0, direction: dir, count: count)}
       }
     }
