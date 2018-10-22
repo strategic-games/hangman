@@ -1,13 +1,21 @@
 import Foundation
+import Guaka
 import Utility
 import Games
 
 extension Simulation {
-  func run() throws {
-    guard let streamer = SimulationStreamer(fileName: info.fileName) else {
-      print("couldn't create streamer")
-      return
+  enum DataFormat: String, FlagValue {
+    case proto
+    case json
+    static func fromString(flagValue value: String) throws -> DataFormat {
+      guard let mode = DataFormat(rawValue: value) else {
+        throw FlagValueError.conversionError("mode must be proto or json")
+      }
+      return mode
     }
+    static let typeDescription = "The data format of a simulation config file"
+  }
+  func run(streamer: SimulationStreamer) throws {
     var results = SimulationResults()
     for (n, c) in conditions.enumerated() {
       print("running condition \(n)")

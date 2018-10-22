@@ -1,18 +1,25 @@
 import Foundation
 import Guaka
 
-let simulateCommand = Command(usage: "simulate file", configuration: configuration, run: execute)
-
-private func configuration(command: Command) {
-  command.shortMessage = "Simulate game definitions and export the results"
-  let formatFlag = Flag(shortName: "t", longName: "format", value: "json", description: "The output serialization format to write the results to")
-  command.add(flag: formatFlag)
-}
+let simulateCommand = Command(
+  usage: "simulate file",
+  shortMessage: "Simulate game definitions and export the results",
+  flags: [
+    Flag(
+      shortName: "o",
+      longName: "out",
+      type: String.self,
+      description: "A directory path where the results file is written to (working directory by default)"
+    )
+  ],
+  run: execute
+)
 
 private func execute(flags: Flags, args: [String]) {
   guard args.count != 0 else {
     simulateCommand.fail(statusCode: 1, errorMessage: "Error: please supply a file name")
   }
+  let out = flags.getString(name: "out")
   do {
     let url = URL(fileURLWithPath: args[0])
     let data = try Data(contentsOf: url)
@@ -24,7 +31,11 @@ private func execute(flags: Flags, args: [String]) {
       simulation = try Simulation(serializedData: data)
     }
     simulation.info.date = .init(date: Date())
-    try simulation.run()
+    guard let streamer = SimulationStreamer(fileName: simulation.info.fileName, dir: out) else {
+      rootCommand.fail(statusCode: 1, errorMessage: "couldn't create streamer")
+      return
+    }
+    try simulation.run(streamer: streamer)
   } catch {
     print(error)
   }
