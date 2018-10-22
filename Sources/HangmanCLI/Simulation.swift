@@ -17,6 +17,10 @@ extension Simulation {
   }
   func run(streamer: SimulationStreamer) throws {
     var results = SimulationResults()
+    let firstEntry = SimulationResults.with {
+      $0.config = self
+    }
+    try streamer.append(firstEntry.serializedData())
     for (n, c) in conditions.enumerated() {
       print("running condition \(n)")
       guard let game = Begriffix(condition: c) else {
