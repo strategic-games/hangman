@@ -74,8 +74,4 @@ final class RadixTests: XCTestCase {
     XCTAssertEqual(words.count, found.count)
     words.forEach {XCTAssert(found.contains($0))}
   }
-  func testCollectionWord() {
-    let x: [Character?] = [nil, "x", "y", "z", nil]
-    XCTAssertEqual(x.indices(around: 2, surround: nil), 1..<4)
-  }
 }

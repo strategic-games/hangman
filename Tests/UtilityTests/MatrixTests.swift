@@ -65,4 +65,10 @@ class MatrixTests: XCTestCase {
     XCTAssertEqual(board[3, 0], "h")
     XCTAssertEqual(board[0, 3], "r")
   }
+  func testColwise() {
+    let values = [1, 2, 3, 4, 5, 6]
+    let m = Matrix(values: values, rows: 3, columns: 2)
+    let columns = [[1, 3, 5], [2, 4, 6]]
+    XCTAssertEqual(m.colwise(), columns)
+  }
 }

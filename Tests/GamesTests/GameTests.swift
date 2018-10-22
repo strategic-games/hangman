@@ -18,6 +18,10 @@ class BegriffixTests: XCTestCase {
     XCTAssertEqual(area.rows, 3..<8)
     XCTAssertEqual(area.columns, 3..<4)
   }
+  func testWordInLine() {
+    let x: Begriffix.Pattern = [nil, "x", "y", "z", nil]
+    XCTAssertEqual(Begriffix.word(in: x, around: 2), ["x", "y", "z"])
+  }
   func testPerformance() {
     let radix = Radix()
     let startLetters = "laer"
