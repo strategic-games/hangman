@@ -7,7 +7,7 @@ private func configuration(command: Command) {
   command.add(flag: versionFlag)
   command.inheritablePreRun = { flags, args in
     if let version = flags["version"]?.value as? Bool, version {
-      print("Version \(Version.description)")
+      print("Version " + Version.current.description)
       return false
     }
     return true
