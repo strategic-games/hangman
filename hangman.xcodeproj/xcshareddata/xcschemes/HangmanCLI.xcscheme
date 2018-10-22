@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "hangman::GamesTests"
-               BuildableName = "GamesTests.xctest"
-               BlueprintName = "GamesTests"
+               BlueprintIdentifier = "hangman::UtilityTests"
+               BuildableName = "UtilityTests.xctest"
+               BlueprintName = "UtilityTests"
                ReferencedContainer = "container:hangman.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +42,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "hangman::UtilityTests"
-               BuildableName = "UtilityTests.xctest"
-               BlueprintName = "UtilityTests"
+               BlueprintIdentifier = "hangman::GamesTests"
+               BuildableName = "GamesTests.xctest"
+               BlueprintName = "GamesTests"
                ReferencedContainer = "container:hangman.xcodeproj">
             </BuildableReference>
          </TestableReference>
