@@ -11,18 +11,32 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
   public typealias Pattern = [Field]
   public typealias Board = Matrix<Field>
   public typealias Status = GameStatus<Begriffix>
-  public typealias Error = GameError<Begriffix>
   public typealias Notify = ((_ status: Status) -> Void)?
   public typealias Update = (_ game: Begriffix) -> Move?
+  /// A message type which contains data to advance the game
   public struct Move {
+    /// The board position where the new word should be written
     public let place: Place
+    /// The new word that should be written
     public let word: Word
+    /// The totality of all possible moves.
+    /// Each entry consists of a valid place and an array of words matching the according pattern.
+    /// If player types are aware of this information, they can provide it with their moves.
     public let hits: [Place: [Word]]?
+    /// Initialize a new move
     public init(_ place: Place, _ word: Word, _ hits: [Place: [Word]]? = nil) {
+      assert(place.count == word.count, "place and word length must be equal")
       self.place = place
       self.word = word
       self.hits = hits
     }
+  }
+  /// Errors that can occur when a move is inserted
+  public enum MoveError: Error {
+    /// The board does not contain this place
+    case invalidPlace
+    /// The word does not fit at the intended place
+    case patternMismatch
   }
   /// phases of a game which is currently playing
   public enum Phase {
@@ -100,7 +114,10 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
       notify?(.moved(move, self))
     } while true
   }
-  /// Advance the game for one move
+  /// Try to get a valid move from the current player and apply that move.
+  ///
+  /// - Returns: The game state which is shown to the player and the move provided by the player.
+  ///If the player cannot provide a valid move, nil is returned.
   public mutating func next() -> (Begriffix, Move)? {
     guard let move = player(self) else {return nil}
     let currentGame = self
@@ -113,7 +130,7 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
   }
   /// Apply a move to the game
   public mutating func insert(_ move: Move) throws {
-    guard isValid(move) else {throw GameError<Begriffix>.word}
+    guard isValid(move) else {throw MoveError.patternMismatch}
     playerIndex.toggle()
     if playerIndex {turn += 1}
     let area = move.place.area
@@ -199,6 +216,12 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
     }
     return values.compactMap {Begriffix.word(in: $0, around: around)}
   }
+  /// Extracts a word from a pattern around a given position
+  ///
+  /// - Parameters:
+  ///   - line: A pattern, mostly a board row or column
+  ///   - index: The position around which to search for letters.
+  /// - Returns: If the element at the given position is part of a word with at least three letters, this word is returned, nil otherwise.
   public static func word(in line: Pattern, around index: Pattern.Index) -> Word? {
     assert(line.indices.contains(index), "index out of bounds")
     var start = index, end = index

@@ -57,15 +57,7 @@ public enum GameStatus<T: Game> {
   case moved(T.Move, T)
   /// The game has ended because a player couldn't prrovide a move
   case ended
-  case failure(GameError<T>)
-}
-
-/// Errors that can happen when a move is inserted
-public enum GameError<Game>: Error {
-  /// The board does not contain this place
-  case place
-  /// The word does not fit at the intended place
-  case word
+  case failure(Error)
 }
 
 /// Expose a closure property to be used for notification tracking
