@@ -44,6 +44,12 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		8D0FBABC217E1D97001B097F /* HangmanCLI in CopyFiles */ = {isa = PBXBuildFile; fileRef = "hangman::HangmanCLI::Product" /* HangmanCLI */; };
+		8D0FBABD217E2163001B097F /* SwiftProtobuf.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = "SwiftProtobuf::SwiftProtobuf::Product" /* SwiftProtobuf.framework */; };
+		8D0FBABE217E2163001B097F /* Utility.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = "hangman::Utility::Product" /* Utility.framework */; };
+		8D0FBABF217E2163001B097F /* Games.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = "hangman::Games::Product" /* Games.framework */; };
+		8D0FBAC0217E2163001B097F /* Guaka.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = "Guaka::Guaka::Product" /* Guaka.framework */; };
+		8D0FBAC1217E2195001B097F /* StringScanner.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = "StringScanner::StringScanner::Product" /* StringScanner.framework */; };
 		OBJ_191 /* Begriffix.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Begriffix.swift */; };
 		OBJ_192 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Direction.swift */; };
 		OBJ_193 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Game.swift */; };
@@ -297,6 +303,24 @@
 			remoteInfo = GamesTests;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8D0FBABB217E1D11001B097F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(HOME)/bin";
+			dstSubfolderSpec = 0;
+			files = (
+				8D0FBAC1217E2195001B097F /* StringScanner.framework in CopyFiles */,
+				8D0FBABD217E2163001B097F /* SwiftProtobuf.framework in CopyFiles */,
+				8D0FBABE217E2163001B097F /* Utility.framework in CopyFiles */,
+				8D0FBABF217E2163001B097F /* Games.framework in CopyFiles */,
+				8D0FBAC0217E2163001B097F /* Guaka.framework in CopyFiles */,
+				8D0FBABC217E1D97001B097F /* HangmanCLI in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		"Guaka::Guaka::Product" /* Guaka.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Guaka.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1041,6 +1065,8 @@
 				OBJ_253 /* Sources */,
 				OBJ_268 /* Frameworks */,
 				8D0FBABA217DEFD0001B097F /* ShellScript */,
+				8D0FBABB217E1D11001B097F /* CopyFiles */,
+				8D36644121845DED0083EC2D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1184,6 +1210,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${SRCROOT}/Scripts/clear_build_number.sh\n";
+		};
+		8D36644121845DED0083EC2D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${SRCROOT}/Scripts/lint.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

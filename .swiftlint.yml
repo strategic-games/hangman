@@ -1,8 +1,5 @@
-disabled_rules:
-  - identifier_name
-  - line_length
-  - force_try
-  - large_tuple
+excluded:
+  - "Sources/HangmanCLI/proto/DataModel.pb.swift"
 included:
   - Sources
   - Tests
