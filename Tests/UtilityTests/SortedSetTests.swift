@@ -1,7 +1,10 @@
 import XCTest
 @testable import Utility
 
-let words = ["AA", "AACHENER", "AACHENERIN", "AACHENERINNEN", "AACHENERN", "AACHENERS", "AAL", "AALE", "AALEN", "AALEND"]
+let words = [
+  "AA", "AACHENER", "AACHENERIN", "AACHENERINNEN", "AACHENERN",
+  "AACHENERS", "AAL", "AALE", "AALEN", "AALEND"
+]
 
 class SortedSetTests: XCTestCase {
 
@@ -14,19 +17,19 @@ class SortedSetTests: XCTestCase {
     }
 
     func testInsert() {
-      var x = SortedSet<String>()
-      for w in words.prefix(10) {
-        XCTAssertFalse(x.contains(w))
-        x.insert(w)
-        XCTAssert(x.contains(w))
+      var set = SortedSet<String>()
+      for word in words.prefix(10) {
+        XCTAssertFalse(set.contains(word))
+        set.insert(word)
+        XCTAssert(set.contains(word))
       }
     }
   func testRemove() {
-    var x = SortedSet<String>(words)
-    for w in words {
-      XCTAssert(x.contains(w))
-      x.remove(w)
-      XCTAssertFalse(x.contains(w))
+    var set = SortedSet<String>(words)
+    for word in words {
+      XCTAssert(set.contains(word))
+      set.remove(word)
+      XCTAssertFalse(set.contains(word))
     }
   }
 }

@@ -25,41 +25,41 @@ public final class Radix {
     insert(key.word)
   }
   /// Insert the elements of a given sequence into the tree
-  public func insert<S: Sequence>(_ s: S) where S.Element == String {
-    s.forEach {insert($0)}
+  public func insert<S: Sequence>(_ source: S) where S.Element == String {
+    source.forEach {insert($0)}
   }
   /// Insert the elements of a given sequence into the tree
-  public func insert<S: Sequence>(_ s: S) where S.Element == Label {
-    s.forEach {insert($0)}
+  public func insert<S: Sequence>(_ source: S) where S.Element == Label {
+    source.forEach {insert($0)}
   }
   /// Insert a new member into this node
   @discardableResult
   public func insert(_ key: Label) -> (added: Bool, node: Radix) {
     if isLeaf {return (true, add(key))}
     if let max = children.last, children.count > 3 {
-      let i = max.label.index(diverging: key)
-      if i == max.label.startIndex && max.label.lexicographicallyPrecedes(key) {return (true, add(key))}
+      let index = max.label.index(diverging: key)
+      if index == max.label.startIndex && max.label.lexicographicallyPrecedes(key) {return (true, add(key))}
     }
     for child in children {
-      let i = child.label.index(diverging: key)
-      if i == child.label.startIndex {
+      let index = child.label.index(diverging: key)
+      if index == child.label.startIndex {
         if key.lexicographicallyPrecedes(child.label) {
           break
           } else {
           continue
           }
-      } else if i == child.label.endIndex && i == key.endIndex {
+      } else if index == child.label.endIndex && index == key.endIndex {
         child.isTerminal = true
         return (false, child)
-      } else if i == child.label.endIndex {
-        return child.insert(Label(key[i...]))
-      } else if i == key.endIndex {
-        let newChild = child.split(at: i)
+      } else if index == child.label.endIndex {
+        return child.insert(Label(key[index...]))
+      } else if index == key.endIndex {
+        let newChild = child.split(at: index)
         children.remove(child)
         children.insert(newChild)
         return (true, newChild)
       } else {
-        let newChild = child.diverge(newMember: key, at: i)
+        let newChild = child.diverge(newMember: key, at: index)
         children.remove(child)
         children.insert(newChild)
         return (true, newChild)
@@ -150,27 +150,27 @@ public final class Radix {
     return child
   }
   /// Extract a suffix into a new child node and mark this as terminal
-  private func split(at i: Label.Index) -> Radix {
-    let prefix = Label(label[..<i])
-    let suffix = Label(label[i...])
-    let newChild = Radix(label: prefix, level: self.level, isTerminal: true)
-    let x = Radix(label: suffix, level: newChild.level+1, isTerminal: self.isTerminal)
-    x.children = self.children
-    newChild.children.insert(x)
-    return newChild
+  private func split(at index: Label.Index) -> Radix {
+    let prefix = Label(label[..<index])
+    let suffix = Label(label[index...])
+    let newSelf = Radix(label: prefix, level: self.level, isTerminal: true)
+    let newChild = Radix(label: suffix, level: self.level+1, isTerminal: self.isTerminal)
+    newChild.children = self.children
+    newSelf.children.insert(newChild)
+    return newSelf
   }
   /// Extract a suffix into a new child node and add another suffix as child node
-  private func diverge(newMember: Label, at i: Label.Index) -> Radix {
-    let prefix = Label(label[..<i])
-    let labelSuffix = Label(label[i...])
-    let newSuffix = Label(newMember[i...])
-    let newChild = Radix(label: prefix, level: self.level, isTerminal: false)
-    let x = Radix(label: labelSuffix, level: newChild.level+1, isTerminal: self.isTerminal)
-    x.children = self.children
-    let y = Radix(label: newSuffix, level: newChild.level+1, isTerminal: true)
-    newChild.children.insert(x)
-    newChild.children.insert(y)
-    return newChild
+  private func diverge(newMember: Label, at index: Label.Index) -> Radix {
+    let prefix = Label(label[..<index])
+    let labelSuffix = Label(label[index...])
+    let newSuffix = Label(newMember[index...])
+    let newSelf = Radix(label: prefix, level: self.level, isTerminal: false)
+    let newChild = Radix(label: labelSuffix, level: self.level+1, isTerminal: self.isTerminal)
+    newChild.children = self.children
+    let divergingChild = Radix(label: newSuffix, level: self.level+1, isTerminal: true)
+    newSelf.children.insert(newChild)
+    newSelf.children.insert(divergingChild)
+    return newSelf
   }
 }
 

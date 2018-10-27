@@ -26,7 +26,7 @@ let playCommand = Command(
       description: "play as the starting player against an AI opponent"
     )
   ]
-) { (flags: Flags, args: [String]) in
+) { (flags, _) in
   guard let startLetters = flags.getString(name: "letters"), startLetters.count == 4 else {
     rootCommand.fail(statusCode: 1, errorMessage: "Please supply exactly four start letters")
   }
@@ -35,18 +35,24 @@ let playCommand = Command(
   let url = URL(fileURLWithPath: path)
   let radix = Radix()
   do {
-    let list = try WordList(contentsOf: url)
+    let list = try SGWordList(contentsOf: url)
     radix.insert(list.words)
   } catch {
     rootCommand.fail(statusCode: 1, errorMessage: "\(error)")
   }
-  let ai = Player(radix)
+  let player = Player(radix)
   print("AI is ready")
   let starter = flags.getBool(name: "starter")!
-  print(starter ? "You will be the starter" : "You will be the opponent")
-  var game = starter ? Begriffix(startLetters: startLetters, starter: ai.move, opponent: move) : Begriffix(startLetters: startLetters, starter: move, opponent: ai.move)
+  var game: Begriffix
+  if starter {
+    print("You will be the starter")
+    game = Begriffix(startLetters: startLetters, starter: player.move, opponent: move)
+  } else {
+    print("You will be the opponent")
+    game = Begriffix(startLetters: startLetters, starter: move, opponent: player.move)
+  }
   game.notify = { status in
-    if case .Moved(_, let game) = status {
+    if case .moved(_, let game) = status {
       print(game.displayableBoard)
     }
   }
@@ -61,13 +67,13 @@ private func move(_ game: Begriffix) -> Begriffix.Move? {
   let start: Point = ask("Which position do you want to start writing from?")
   let direction: Direction
   switch game.phase {
-  case .Restricted(let dir):
+  case .restricted(let dir):
     print("Direction is \(dir), because we are in turn 1")
     direction = dir
-  case .Liberal:
+  case .liberal:
     let dirBool = agree("Do you want to write horizontally? Otherwise vertically.")
-    direction = dirBool ? .Horizontal : .Vertical
-  case .KnockOut:
+    direction = dirBool ? .horizontal : .vertical
+  case .knockOut:
     print("KO is not yet implemented")
     return nil
   }

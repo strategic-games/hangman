@@ -50,22 +50,22 @@ public protocol DyadicGame: BoardGame {
 /// General progress states of a game
 public enum GameStatus<T: Game> {
   /// The game has a freshly setup game board
-  case Ready
+  case ready
   /// Some changes were made to the board
-  case Started
+  case started
   /// A player has written a word
-  case Moved(T.Move, T)
+  case moved(T.Move, T)
   /// The game has ended because a player couldn't prrovide a move
-  case Ended
-  case Failure(GameError<T>)
+  case ended
+  case failure(GameError<T>)
 }
 
 /// Errors that can happen when a move is inserted
 public enum GameError<Game>: Error {
   /// The board does not contain this place
-  case Place
+  case place
   /// The word does not fit at the intended place
-  case Word
+  case word
 }
 
 /// Expose a closure property to be used for notification tracking

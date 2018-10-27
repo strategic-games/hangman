@@ -2,17 +2,18 @@ public extension Collection where Element: Equatable {
   /// Returns the index where a collection diverges from another one
   func index(diverging from: Self) -> Self.Index {
     let shorter = self.count < from.count ? self : from
-    var i = shorter.startIndex
-    while i < shorter.endIndex {
-      if self[i] != from[i] {break}
-      shorter.formIndex(after: &i)
+    var index = shorter.startIndex
+    while index < shorter.endIndex {
+      if self[index] != from[index] {break}
+      shorter.formIndex(after: &index)
     }
-    return i
+    return index
   }
   func match<T: Collection>(pattern: T) -> Bool where T.Element == Element? {
     guard self.count <= pattern.count else {return false}
-    return zip(self, pattern).allSatisfy { (x, y) in
-      return y == nil ? true : x == y
+    return zip(self, pattern).allSatisfy {
+      if $0.1 == nil {return true}
+      return $0.0 == $0.1
     }
   }
 }
@@ -37,8 +38,8 @@ public extension RangeReplaceableCollection {
     var sample = [Element]()
     sample.reserveCapacity(size)
     repeat {
-      guard let i = indices.randomElement() else {return nil}
-      sample.append(population.remove(at: i))
+      guard let index = indices.randomElement() else {return nil}
+      sample.append(population.remove(at: index))
     } while sample.count < size
     return sample
   }

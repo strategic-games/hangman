@@ -1,6 +1,6 @@
 enum InputError: Error {
-  case Conversion(String)
-  case Validation(String)
+  case conversion(String)
+  case validation(String)
 }
 
 typealias Validator<T> = (T) -> (Bool, String)

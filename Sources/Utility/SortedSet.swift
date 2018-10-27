@@ -40,10 +40,12 @@ extension SortedSet: RandomAccessCollection {
   public var startIndex: Index {return items.startIndex}
   /// The position after the last element in the SortedSet
   public var endIndex: Index {return items.endIndex}
+  // swiftlint:disable identifier_name
   /// The position after the given index
   public func index(after i: Index) -> Index {return items.index(after: i)}
   /// The position before the given index
   public func index(before i: Index) -> Index {return items.index(before: i)}
+  // swiftlint:enable identifier_name
   // MARK: Accessing elements
   /// Accesses the element at the given position
   public subscript(position: Index) -> Element {return items[position]}
@@ -58,23 +60,23 @@ extension SortedSet: SetAlgebra {
   /// Insert an element into the sorted set if not already present
   @discardableResult
   public mutating func insert(_ newMember: Element) -> (inserted: Bool, memberAfterInsert: Element) {
-    let (found, i) = firstIndex(of: newMember)
+    let (found, index) = firstIndex(of: newMember)
     if found == false {
-      items.insert(newMember, at: i)
+      items.insert(newMember, at: index)
       return (true, newMember)
     } else {
-      return (false, items[i])
+      return (false, items[index])
     }
   }
   /// Insert an element inconditionally
   @discardableResult
   public mutating func update(with newMember: Element) -> Element? {
-    let (found, i) = firstIndex(of: newMember)
+    let (found, index) = firstIndex(of: newMember)
     if found == false {
-      items.insert(newMember, at: i)
+      items.insert(newMember, at: index)
       return nil
     } else {
-      items[i] = newMember
+      items[index] = newMember
       return newMember
     }
   }
@@ -82,11 +84,11 @@ extension SortedSet: SetAlgebra {
   /// Remove an element from a sorted set
   @discardableResult
   public mutating func remove(_ member: Element) -> Element? {
-    let (found, i) = firstIndex(of: member)
+    let (found, index) = firstIndex(of: member)
     if found == false {
       return nil
     } else {
-      return items.remove(at: i)
+      return items.remove(at: index)
     }
   }
   /// Remove the element at a given position
@@ -102,24 +104,23 @@ extension SortedSet: SetAlgebra {
   /// Return a new sorted set containing the elements of this and another set
   public func union(_ other: SortedSet<Element>) -> SortedSet<Element> {
     var new = CollectionType()
-    let a = self.items, b = other.items
-    var i = a.startIndex, j = b.startIndex
-    while i < a.endIndex, j < b.endIndex {
-      let x = a[i], y = b[j]
-      if x < y {
-        new.append(x)
-        a.formIndex(after: &i)
-      } else if y < x {
-        new.append(y)
-        b.formIndex(after: &j)
+    var index = items.startIndex, otherIndex = other.items.startIndex
+    while index < items.endIndex, otherIndex < other.items.endIndex {
+      let item = items[index], otherItem = other.items[otherIndex]
+      if item < otherItem {
+        new.append(item)
+        items.formIndex(after: &index)
+      } else if otherItem < item {
+        new.append(otherItem)
+        other.items.formIndex(after: &otherIndex)
       } else {
-        new.append(x)
-        a.formIndex(after: &i)
-        b.formIndex(after: &j)
+        new.append(item)
+        items.formIndex(after: &index)
+        other.items.formIndex(after: &otherIndex)
       }
     }
-    if i < a.endIndex {new += a[i...]}
-    if j < b.endIndex {new += b[j...]}
+    if index < items.endIndex {new += items[index...]}
+    if otherIndex < other.items.endIndex {new += other.items[otherIndex...]}
     return SortedSet(sorted: new)
   }
   /// Add the elements of the given sorted set
@@ -129,18 +130,17 @@ extension SortedSet: SetAlgebra {
   /// Return a new set containing the elements that are common to this and the given set
   public func intersection(_ other: SortedSet<Element>) -> SortedSet<Element> {
     var new = CollectionType()
-    let a = self.items, b = other.items
-    var i = a.startIndex, j = b.startIndex
-    while i < a.endIndex, j < b.endIndex {
-      let x = a[i], y = b[j]
-      if x < y {
-        a.formIndex(after: &i)
-      } else if y < x {
-        b.formIndex(after: &j)
+    var index = items.startIndex, otherIndex = other.items.startIndex
+    while index < items.endIndex, otherIndex < other.items.endIndex {
+      let item = items[index], otherItem = other.items[otherIndex]
+      if item < otherItem {
+        items.formIndex(after: &index)
+      } else if otherItem < item {
+        other.items.formIndex(after: &otherIndex)
       } else {
-        new.append(x)
-        a.formIndex(after: &i)
-        b.formIndex(after: &j)
+        new.append(item)
+        items.formIndex(after: &index)
+        other.items.formIndex(after: &otherIndex)
       }
     }
     return SortedSet(sorted: new)
@@ -152,26 +152,26 @@ extension SortedSet: SetAlgebra {
   /// Return a new set with the elements that are either in this or in the given set, but not in both
   public func symmetricDifference(_ other: SortedSet<Element>) -> SortedSet<Element> {
     var new = CollectionType()
-    let a = self.items, b = other.items
-    var i = a.startIndex, j = b.startIndex
-    while i < a.endIndex, j < b.endIndex {
-      let x = a[i], y = b[j]
-      if x < y {
-        new.append(x)
-        a.formIndex(after: &i)
-      } else if y < x {
-        new.append(y)
-        b.formIndex(after: &j)
+    var index = items.startIndex, otherIndex = other.items.startIndex
+    while index < items.endIndex, otherIndex < other.items.endIndex {
+      let item = items[index], otherItem = other.items[otherIndex]
+      if item < otherItem {
+        new.append(item)
+        items.formIndex(after: &index)
+      } else if otherItem < item {
+        new.append(otherItem)
+        other.items.formIndex(after: &otherIndex)
       } else {
-        a.formIndex(after: &i)
-        b.formIndex(after: &j)
+        items.formIndex(after: &index)
+        other.items.formIndex(after: &otherIndex)
       }
-      if i < a.endIndex {new += a[i...]}
-      if j < b.endIndex {new += b[j...]}
+      if index < items.endIndex {new += items[index...]}
+      if otherIndex < other.items.endIndex {new += other.items[otherIndex...]}
     }
     return SortedSet(sorted: new)
   }
-  /// Removes the elements of the set that are also in the given set and adds the members of the given set that are not already in the set
+  /// Removes the elements of the set that are also in the given set
+  /// and adds the members of the given set that are not already in the set
   public mutating func formSymmetricDifference(_ other: SortedSet<Element>) {
     self = symmetricDifference(other)
   }

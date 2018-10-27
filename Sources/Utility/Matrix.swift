@@ -112,8 +112,8 @@ public struct Matrix<Element> {
     set {
       assert(isValid(rows: rows, columns: columns))
       assert(rows.count == newValue.rows && columns.count == newValue.columns)
-      indices(rows: rows, columns: columns).enumerated().forEach { (n, x) in
-        self.values[x] = newValue.row(n)
+      indices(rows: rows, columns: columns).enumerated().forEach {
+        self.values[$0.1] = newValue.row($0.0)
       }
     }
   }
@@ -126,8 +126,8 @@ public struct Matrix<Element> {
     set {
       assert(isValid(rows: rows, columns: columns))
       assert(rows.count == newValue.count && columns.count == newValue[0].count)
-      indices(rows: rows, columns: columns).enumerated().forEach { (n, x) in
-        self.values[x] = newValue[n]
+      indices(rows: rows, columns: columns).enumerated().forEach {
+        self.values[$0.1] = newValue[$0.0]
       }
     }
   }
@@ -146,16 +146,16 @@ public struct Matrix<Element> {
     set {self[area.rows, area.columns] = newValue}
   }
   /// Returns the elements in the given row
-  public func row(_ i: Int) -> ArraySlice<Element> {
-  assert(i >= 0 && i < rows)
-    let start = columns*i
-  let end = columns*(i+1)
+  public func row(_ index: Int) -> ArraySlice<Element> {
+  assert(index >= 0 && index < rows)
+    let start = columns*index
+  let end = columns*(index+1)
   return values[start..<end]
   }
   /// Returns the elements in the given column
-  public func column(_ j: Int) -> [Element] {
-    assert(j >= 0 && j < columns)
-    return stride(from: j, to: values.count, by: columns).map {values[$0]}
+  public func column(_ index: Int) -> [Element] {
+    assert(index >= 0 && index < columns)
+    return stride(from: index, to: values.count, by: columns).map {values[$0]}
   }
   /// Get the elements row by row
   public func rowwise(in indices: Range<Int>? = nil) -> [[Element]] {
@@ -176,8 +176,11 @@ public struct Matrix<Element> {
     return index(row: point.row, column: point.column)
   }
   /// Convert array index to point
-  public func point(of i: Int) -> Point {
-    return Point(row: i/columns, column: i%columns)
+  public func point(of index: Int) -> Point {
+    return Point(
+      row: index/columns,
+      column: index%columns
+    )
   }
   /// Convert 2D ranges to array indices
   func indices(rows: Range<Int>, columns: Range<Int>) -> [Range<Int>] {
@@ -189,7 +192,8 @@ public struct Matrix<Element> {
   }
   /// Indicate if a matrix contains the given 2D range
   func isValid(rows: Range<Int>, columns: Range<Int>) -> Bool {
-    return rows.lowerBound >= 0 && rows.upperBound <= self.rows && columns.lowerBound >= 0 && columns.upperBound <= self.columns
+    return rows.lowerBound >= 0 && rows.upperBound <= self.rows &&
+      columns.lowerBound >= 0 && columns.upperBound <= self.columns
   }
 }
 
@@ -216,10 +220,16 @@ extension Range: Codable where Bound: Codable {
   public init(from decoder: Decoder) throws {
     let dict = try [String: Bound](from: decoder)
     guard let lower = dict[CodingKeys.lower.stringValue] else {
-      throw DecodingError.valueNotFound(Bound.self, .init(codingPath: decoder.codingPath + [CodingKeys.lower], debugDescription: "lowerBound not found"))
+      throw DecodingError.valueNotFound(
+        Bound.self,
+        .init(codingPath: decoder.codingPath + [CodingKeys.lower], debugDescription: "lowerBound not found")
+      )
     }
     guard let upper = dict[CodingKeys.upper.stringValue] else {
-      throw DecodingError.valueNotFound(Bound.self, .init(codingPath: decoder.codingPath + [CodingKeys.upper], debugDescription: "upperBound not found"))
+      throw DecodingError.valueNotFound(
+        Bound.self,
+        .init(codingPath: decoder.codingPath + [CodingKeys.upper], debugDescription: "upperBound not found")
+      )
     }
     self.init(uncheckedBounds: (lower: lower, upper: upper))
   }

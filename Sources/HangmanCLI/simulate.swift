@@ -26,15 +26,15 @@ let runCommand = Command(
   do {
     let url = URL(fileURLWithPath: args[0])
     let data = try Data(contentsOf: url)
-    var simulation: Simulation
+    var simulation: SGSimulation
     switch url.pathExtension {
     case "json":
-      simulation = try Simulation(jsonUTF8Data: data)
+      simulation = try SGSimulation(jsonUTF8Data: data)
     default:
-      simulation = try Simulation(serializedData: data)
+      simulation = try SGSimulation(serializedData: data)
     }
     simulation.info.date = .init(date: Date())
-    simulation.info.version = Version.current
+    simulation.info.version = SGVersion.current
     guard let streamer = SimulationStreamer(fileName: simulation.info.fileName, dir: out) else {
       rootCommand.fail(statusCode: 1, errorMessage: "couldn't create streamer")
     }
@@ -48,11 +48,11 @@ let loadCommand = Command(
   usage: "load file",
   shortMessage: "Load results from a file and print some metadata",
   parent: simulationCommand
-) { (flags, args) in
+) { (_, args) in
   guard args.count > 0 else {return}
   let url = URL(fileURLWithPath: args[0])
   do {
-    let simulation = try SimulationResults(contentsOf: url)
+    let simulation = try SGSimulationResults(contentsOf: url)
     print("title: ", simulation.config.info.title)
     print("date: ", simulation.config.info.date.date)
     print("number of trials: ", simulation.trials.count)

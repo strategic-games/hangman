@@ -4,23 +4,32 @@ import Utility
 
 class BegriffixTests: XCTestCase {
   func testKernel() {
-    let k3 = Direction.Horizontal.kernel(3)
-    XCTAssertEqual(k3.rows, 1)
-    XCTAssertEqual(k3.columns, 3)
-    let place = Place(start: Point(row: 3, column: 3), direction: .Vertical, count: 5)
-    let k5 = place.kernel
-    XCTAssertEqual(k5.rows, 5)
-    XCTAssertEqual(k5.columns, 1)
+    let kern3 = Direction.horizontal.kernel(3)
+    XCTAssertEqual(kern3.rows, 1)
+    XCTAssertEqual(kern3.columns, 3)
+    let place = Place(
+      start: Point(row: 3, column: 3),
+      direction: .vertical,
+      count: 5
+    )
+    let kern5 = place.kernel
+    XCTAssertEqual(kern5.rows, 5)
+    XCTAssertEqual(kern5.columns, 1)
   }
   func testPlaceToArea() {
-    let place = Place(start: Point(row: 3, column: 3), direction: .Vertical, count: 5)
+    let place = Place(
+      start: Point(row: 3, column: 3),
+      direction: .vertical,
+      count: 5
+    )
     let area = place.area
     XCTAssertEqual(area.rows, 3..<8)
     XCTAssertEqual(area.columns, 3..<4)
   }
   func testWordInLine() {
-    let x: Begriffix.Pattern = [nil, "x", "y", "z", nil]
-    XCTAssertEqual(Begriffix.word(in: x, around: 2), ["x", "y", "z"])
+    let pattern: Begriffix.Pattern = [nil, "x", "y", "z", nil]
+    let word: Begriffix.Word = ["x", "y", "z"]
+    XCTAssertEqual(Begriffix.word(in: pattern, around: 2), word)
   }
   func testPerformance() {
     let radix = Radix()

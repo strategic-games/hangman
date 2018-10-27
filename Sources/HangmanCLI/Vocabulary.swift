@@ -2,7 +2,7 @@ import Foundation
 import Guaka
 import Utility
 
-extension WordList {
+extension SGWordList {
   enum DataFormat: String, FlagValue {
     case proto
     case text
@@ -24,19 +24,19 @@ extension WordList {
   }
 }
 
-extension Vocabulary {
-  static var fileCache = [URL: WordList]()
-  static var radixCache = [Vocabulary: Radix]()
+extension SGVocabulary {
+  static var fileCache = [URL: SGWordList]()
+  static var radixCache = [SGVocabulary: Radix]()
   var url: URL {
     return URL(fileURLWithPath: path)
   }
   /// Returns the vocabulary as radix tree
   func load() throws -> Radix {
-    if let radix = Vocabulary.radixCache[self] {
+    if let radix = SGVocabulary.radixCache[self] {
       return radix
     }
     let radix = try createSelected()
-    Vocabulary.radixCache[self] = radix
+    SGVocabulary.radixCache[self] = radix
     return radix
   }
   func createSelected() throws -> Radix {
@@ -56,11 +56,11 @@ extension Vocabulary {
     }
     return radix
   }
-  func loadList() throws -> WordList {
-    if let list = Vocabulary.fileCache[url] {return list}
+  func loadList() throws -> SGWordList {
+    if let list = SGVocabulary.fileCache[url] {return list}
     let data = try Data(contentsOf: url)
-    let list = try WordList(serializedData: data)
-    Vocabulary.fileCache[url] = list
+    let list = try SGWordList(serializedData: data)
+    SGVocabulary.fileCache[url] = list
     return list
   }
 }

@@ -3,14 +3,14 @@ import Utility
 /// The direction on a game board
 public enum Direction: String, CaseIterable&Codable {
   /// From left to right
-  case Horizontal = "h"
+  case horizontal = "h"
   /// from top to bottom
-  case Vertical = "v"
+  case vertical = "v"
   /// Return a kernel according to this direction and a given length
   func kernel(_ count: Int) -> Matrix<Int> {
     switch self {
-    case .Horizontal: return Matrix(repeating: 1, rows: 1, columns: count)
-    case .Vertical: return Matrix(repeating: 1, rows: count, columns: 1)
+    case .horizontal: return Matrix(repeating: 1, rows: 1, columns: count)
+    case .vertical: return Matrix(repeating: 1, rows: count, columns: 1)
     }
   }
 }
@@ -32,9 +32,9 @@ public struct Place: Hashable&Codable {
   /// An area representation of the place for inserting into matrices
   public var area: Area {
     switch direction {
-    case .Horizontal:
+    case .horizontal:
       return Area(rows: start.row..<(start.row+1), columns: start.column..<(start.column+count))
-    case .Vertical:
+    case .vertical:
       return Area(rows: start.row..<(start.row+count), columns: start.column..<(start.column+1))
     }
   }

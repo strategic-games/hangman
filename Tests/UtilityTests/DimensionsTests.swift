@@ -18,9 +18,9 @@ class Index2DTests: XCTestCase {
     XCTAssertEqual(areas[2].count, 40)
   }
   func testContains() {
-    let p = Point(row: 4, column: 5)
-    XCTAssert(areas[0].contains(point: p))
-    XCTAssert(areas[1].contains(point: p))
-    XCTAssertFalse(areas[2].contains(point: p))
+    let point = Point(row: 4, column: 5)
+    XCTAssert(areas[0].contains(point: point))
+    XCTAssert(areas[1].contains(point: point))
+    XCTAssertFalse(areas[2].contains(point: point))
   }
 }

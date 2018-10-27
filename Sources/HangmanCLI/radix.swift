@@ -22,8 +22,8 @@ let searchCommand = Command(
     Flag(
       shortName: "m",
       longName: "mode",
-      value: WordList.DataFormat.proto,
-      description: "A word list can be read from a binary file produced with protocol buffers, or it can contain words as text, one word per line."
+      value: SGWordList.DataFormat.proto,
+      description: "The file format of the word list file to read"
     )
   ],
   parent: radixCommand,
@@ -32,15 +32,15 @@ let searchCommand = Command(
 
 private func search(flags: Flags, args: [String]) {
   let path = flags.getString(name: "dictionary")!
-  let mode = flags.get(name: "mode", type: WordList.DataFormat.self)!
+  let mode = flags.get(name: "mode", type: SGWordList.DataFormat.self)!
   let url = URL(fileURLWithPath: path)
   do {
-    let list: WordList
+    let list: SGWordList
     switch mode {
-    case .proto: list = try WordList(contentsOf: url)
+    case .proto: list = try SGWordList(contentsOf: url)
     case .text:
       let data = try String(contentsOf: url)
-      list = WordList(source: path, text: data)
+      list = SGWordList(source: path, text: data)
     }
     let radix = Radix()
     radix.insert(list.words)
@@ -78,7 +78,7 @@ private func text2proto(flags: Flags, args: [String]) {
   let urlOut = URL(fileURLWithPath: output)
   do {
     let text = try String(contentsOf: urlIn)
-    let list = WordList(source: input, text: text)
+    let list = SGWordList(source: input, text: text)
     let data = try list.serializedData()
     try data.write(to: urlOut)
   } catch {

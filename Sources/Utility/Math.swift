@@ -51,20 +51,18 @@ public extension Matrix where Element: Numeric {
   func extend(_ kernel: Matrix) -> Matrix<Element> {
     let kernSum = kernel.values.sum()
     var extended = Matrix(repeating: 0, rows: rows+kernel.rows-1, columns: columns+kernel.columns-1)
-    for (n, x) in values.enumerated() {
-      if x != kernSum {continue}
-      let p = point(of: n)
-      extended[p.row..<(p.row+kernel.rows), p.column..<(p.column+kernel.columns)] = kernel
+    for (index, value) in values.enumerated() where value == kernSum {
+      let point = self.point(of: index)
+      extended[point.row..<(point.row+kernel.rows), point.column..<(point.column+kernel.columns)] = kernel
     }
     return extended
   }
   /// Extend and dilate conv2 matrix with a given kernel
   func dilate(_ kernel: Matrix) -> Matrix<Element> {
     var dilated = Matrix(repeating: 0, rows: rows+kernel.rows-1, columns: columns+kernel.columns-1)
-    for (n, x) in values.enumerated() {
-      if x == 0 {continue}
-      let p = point(of: n)
-      dilated[p.row..<(p.row+kernel.rows), p.column..<(p.column+kernel.columns)] = kernel
+    for (index, value) in values.enumerated() where value != 0 {
+      let point = self.point(of: index)
+      dilated[point.row..<(point.row+kernel.rows), point.column..<(point.column+kernel.columns)] = kernel
     }
     return dilated
   }

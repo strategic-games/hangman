@@ -30,7 +30,11 @@ class MatrixTests: XCTestCase {
     XCTAssertEqual(matrix?.columns, 8)
   }
   func testConv2() {
-    let nums: Matrix<Int> = Matrix(values: matrix!.values.map({$0 != nil ? 1 : 0}), rows: matrix!.rows, columns: matrix!.columns)
+    let nums = Matrix(
+      values: matrix!.values.map {$0 != nil ? 1 : 0},
+      rows: matrix!.rows,
+      columns: matrix!.columns
+    )
     let kernel = Matrix<Int>(repeating: 1, rows: 2, columns: 2)
     XCTAssertEqual(kernel.rows, 2)
     XCTAssertEqual(kernel.values.sum(), 4)
@@ -41,15 +45,17 @@ class MatrixTests: XCTestCase {
     XCTAssertEqual(ext.rows, 4)
     XCTAssertEqual(ext.columns, 8)
   }
-  func testDilate() {
-    let kh = Matrix(repeating: 1, rows: 1, columns: 2)
-    let mh = Matrix(values: [1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1], rows: 3, columns: 6)
-    let rh = Matrix(values: [1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1], rows: 3, columns: 6)
-    XCTAssert(mh.conv2(kh).dilate(kh).values.elementsEqual(rh.values))
-    let kv = Matrix(repeating: 1, rows: 2, columns: 1)
-    let mv = Matrix(values: [1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1], rows: 6, columns: 3)
-    let rv = Matrix(values: [1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1], rows: 6, columns: 3)
-    XCTAssert(mv.conv2(kv).dilate(kv).values.elementsEqual(rv.values))
+  func testDilateHorizontal() {
+    let kern = Matrix(repeating: 1, rows: 1, columns: 2)
+    let matrix = Matrix(values: [1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1], rows: 3, columns: 6)
+    let result = Matrix(values: [1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1], rows: 3, columns: 6)
+    XCTAssert(matrix.conv2(kern).dilate(kern).values.elementsEqual(result.values))
+  }
+  func testDilateVertical() {
+    let kern = Matrix(repeating: 1, rows: 2, columns: 1)
+    let matrix = Matrix(values: [1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1], rows: 6, columns: 3)
+    let result = Matrix(values: [1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1], rows: 6, columns: 3)
+    XCTAssert(matrix.conv2(kern).dilate(kern).values.elementsEqual(result.values))
   }
   func testSubscripts() {
     let startLetters = Matrix<Character?>(values: [["z", "h"], ["e", "n"]])!
@@ -67,8 +73,8 @@ class MatrixTests: XCTestCase {
   }
   func testColwise() {
     let values = [1, 2, 3, 4, 5, 6]
-    let m = Matrix(values: values, rows: 3, columns: 2)
+    let matrix = Matrix(values: values, rows: 3, columns: 2)
     let columns = [[1, 3, 5], [2, 4, 6]]
-    XCTAssertEqual(m.colwise(), columns)
+    XCTAssertEqual(matrix.colwise(), columns)
   }
 }

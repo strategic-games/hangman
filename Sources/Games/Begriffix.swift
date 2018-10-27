@@ -15,32 +15,24 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
   public typealias Notify = ((_ status: Status) -> Void)?
   public typealias Update = (_ game: Begriffix) -> Move?
   public struct Move {
-    public typealias Hits = [Place: [Word]]
     public let place: Place
     public let word: Word
-    public let hits: Hits?
-    public init(_ place: Place, _ word: Word, _ hits: Hits? = nil) {
+    public let hits: [Place: [Word]]?
+    public init(_ place: Place, _ word: Word, _ hits: [Place: [Word]]? = nil) {
       self.place = place
       self.word = word
       self.hits = hits
     }
   }
-  public struct Hit {
-    public let place: Place
-    public let words: [Word]
-    public init(_ place: Place, _ words: [Word]) {
-      self.place = place
-      self.words = words
-    }
-  }
   /// phases of a game which is currently playing
   public enum Phase {
-    /// Players must write words with at least four characters, starting player must write horizontally, and opponent must write vertically
-    case Restricted(Direction)
+    /// Players must write words with at least four letters,
+    /// starting player must write horizontally, and opponent vertically
+    case restricted(Direction)
     /// Any words and directions are allowed
-    case Liberal
+    case liberal
     /// not yet implemented
-    case KnockOut
+    case knockOut
   }
   public static let name = "Begriffix"
   /// How many times the starter and opponent have provided a move
@@ -63,9 +55,9 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
   }
   /// The current game phase which is derived from turn
   public var phase: Phase {
-    if turn == 0 {return .Restricted(playerIndex ? .Horizontal : .Vertical)}
-    if turn <= 5 {return .Liberal}
-    return .KnockOut
+    if turn == 0 {return .restricted(playerIndex ? .horizontal : .vertical)}
+    if turn <= 5 {return .liberal}
+    return .knockOut
   }
   public var notify: Notify
   /// Initialize a new begriffix game with given board and players
@@ -98,14 +90,14 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
   }
   /// Play the game and pass notifications if a notify callback is set
   public mutating func play() throws {
-    notify?(.Started)
+    notify?(.started)
     repeat {
       guard let move = player(self) else {
-        notify?(.Ended)
+        notify?(.ended)
         break
       }
       try insert(move)
-      notify?(.Moved(move, self))
+      notify?(.moved(move, self))
     } while true
   }
   /// Advance the game for one move
@@ -121,7 +113,7 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
   }
   /// Apply a move to the game
   public mutating func insert(_ move: Move) throws {
-    guard isValid(move) else {throw GameError<Begriffix>.Word}
+    guard isValid(move) else {throw GameError<Begriffix>.word}
     playerIndex.toggle()
     if playerIndex {turn += 1}
     let area = move.place.area
@@ -144,13 +136,13 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
   public func find() -> [Place]? {
     let direction: [Direction], min: Int
     switch phase {
-    case .Restricted(let dir):
+    case .restricted(let dir):
       min = 4
       direction = [dir]
-    case .Liberal:
+    case .liberal:
       min = 3
       direction = Direction.allCases
-    case .KnockOut: return nil
+    case .knockOut: return nil
     }
     var places = [Place]()
     for dir in direction {
@@ -163,28 +155,30 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
   }
   /// Find every start point where words with given direction and length could be written
   public func find(direction: Direction, count: Int) -> [Point] {
-    let k2 = direction.kernel(2)
-    let k3 = direction.kernel(3)
-    let f2 = numericalBoard.conv2(k2).extend(k2)
-    let f3 = numericalBoard.conv2(k3).extend(k3).conv2(k2).dilate(k2)
-    let w = direction.kernel(count)
-    let w2 = f2.conv2(w)
-    let w3 = f3.conv2(w)
-    let w2_inv = w2.values.map {$0 >= 2 ? 1 : 0}
-    let w3_inv = w3.values.map {$0 == 0 ? 1 : 0}
-    let allowed = w2_inv*w3_inv
-    let positions = allowed.enumerated().filter({$1 == 1}).map({(n, _) in w2.point(of: n)})
-    if w2.count == count {return positions}
-    return positions.filter { p in
+    let kern2 = direction.kernel(2)
+    let kern3 = direction.kernel(3)
+    let found2 = numericalBoard.conv2(kern2).extend(kern2)
+    let found3 = numericalBoard.conv2(kern3).extend(kern3).conv2(kern2).dilate(kern2)
+    let kernWord = direction.kernel(count)
+    let word2 = found2.conv2(kernWord)
+    let word3 = found3.conv2(kernWord)
+    let word2inv = word2.values.map {$0 >= 2 ? 1 : 0}
+    let word3inv = word3.values.map {$0 == 0 ? 1 : 0}
+    let allowed = word2inv*word3inv
+    let positions = allowed.enumerated()
+      .filter {$1 == 1}
+      .map { word2.point(of: $0.0)}
+    if word2.count == count {return positions}
+    return positions.filter { position in
       switch direction {
-      case .Horizontal:
-        if p.column > 0 && board[p.row, p.column-1] != nil {return false}
-        let end = p.column+count
-        if end < board.columns && board[p.row, end] != nil {return false}
-      case .Vertical:
-        if p.row > 0 && board[p.row-1, p.column] != nil {return false}
-        let end = p.row+count
-        if end < board.rows && board[end, p.column] != nil {return false}
+      case .horizontal:
+        if position.column > 0 && board[position.row, position.column-1] != nil {return false}
+        let end = position.column+count
+        if end < board.columns && board[position.row, end] != nil {return false}
+      case .vertical:
+        if position.row > 0 && board[position.row-1, position.column] != nil {return false}
+        let end = position.row+count
+        if end < board.rows && board[end, position.column] != nil {return false}
       }
       return true
     }
@@ -196,29 +190,29 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
     board[area] = Matrix(values: word, area: area)
     let values: [[Letter?]], around: Int
     switch place.direction {
-    case .Horizontal:
+    case .horizontal:
       values = board.colwise(in: area.columns)
       around = place.start.row
-    case .Vertical:
+    case .vertical:
       values = board.rowwise(in: area.rows)
       around = place.start.column
     }
     return values.compactMap {Begriffix.word(in: $0, around: around)}
   }
-  public static func word(in line: Pattern, around i: Pattern.Index) -> Word? {
-    assert(line.indices.contains(i), "i out of bounds")
-    var start = i, end = i
-    for n in stride(from: start, through: line.startIndex, by: -1) {
-      if line[n] == nil {break}
-      start = n
+  public static func word(in line: Pattern, around index: Pattern.Index) -> Word? {
+    assert(line.indices.contains(index), "index out of bounds")
+    var start = index, end = index
+    for next in stride(from: start, through: line.startIndex, by: -1) {
+      if line[next] == nil {break}
+      start = next
     }
-    for n in end..<line.endIndex {
-      if line[n] == nil {break}
-      end = n
+    for next in end..<line.endIndex {
+      if line[next] == nil {break}
+      end = next
     }
-    let r = start...end
-    if r.count < 3 {return nil}
-    let word = line[r].compactMap {$0}
+    let range = start...end
+    if range.count < 3 {return nil}
+    let word = line[range].compactMap {$0}
     return word
   }
   /// Indicate if the given place is usable
@@ -226,4 +220,3 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
     return find(direction: place.direction, count: place.count).contains(place.start)
   }
 }
-

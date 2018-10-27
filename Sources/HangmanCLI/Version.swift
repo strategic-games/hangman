@@ -1,11 +1,11 @@
 import Foundation
 
-extension Version {
+extension SGVersion {
   /// The git-based versioning constants from Info.plist
-  static let current: Version = {
+  static let current: SGVersion = {
     let dummy = ("0.0.0", "0", "abc")
     let infoPlist = Bundle.main.infoDictionary
-    return Version.with {
+    return SGVersion.with {
       $0.short = infoPlist?["CFBundleShortVersionString"] as? String ?? dummy.0
       $0.build = infoPlist?["CFBundleVersion"] as? String ?? dummy.1
       $0.hash = infoPlist?["GITHash"] as? String ?? dummy.2

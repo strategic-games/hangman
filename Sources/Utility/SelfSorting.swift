@@ -12,8 +12,8 @@ public extension SelfSorting {
     return found
   }
   func first(where equals: Predicate, precedes: Predicate) -> Element? {
-    let (found, i) = firstIndex(where: equals, precedes: precedes)
-    return found ? self[i] : nil
+    let (found, index) = firstIndex(where: equals, precedes: precedes)
+    return found ? self[index] : nil
   }
   func firstIndex(of element: Element) -> (Bool, Index) {
     return firstIndex(where: {$0 == element}, precedes: {$0 < element})

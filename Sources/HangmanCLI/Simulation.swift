@@ -3,7 +3,7 @@ import Guaka
 import Utility
 import Games
 
-extension Simulation {
+extension SGSimulation {
   enum DataFormat: String, FlagValue {
     case proto
     case json
@@ -16,29 +16,29 @@ extension Simulation {
     static let typeDescription = "The data format of a simulation config file"
   }
   func run(streamer: SimulationStreamer) throws {
-    var results = SimulationResults()
-    let firstEntry = SimulationResults.with {
+    let firstEntry = SGSimulationResults.with {
       $0.config = self
     }
     try streamer.append(firstEntry.serializedData())
-    for (n, c) in conditions.enumerated() {
-      print("running condition \(n)")
-      guard let game = Begriffix(condition: c) else {
+    for (conditionIndex, condition) in conditions.enumerated() {
+      print("running condition \(conditionIndex)")
+      guard let game = Begriffix(condition: condition) else {
         print("couldn't create game")
         continue
       }
-      let n = UInt32(n)
-      for t in 0..<c.trials {
-        print("running trial \(t)")
-        let moves = game.map {
-          return SimulationResults.Move($0.1)
+      let conditionIndex = UInt32(conditionIndex)
+      for trialIndex in 0..<condition.trials {
+        print("running trial \(trialIndex)")
+        let results = SGSimulationResults.with {
+          let trial = SGSimulationResults.Trial.with {
+            $0.condition = conditionIndex
+            $0.trial = trialIndex
+            $0.moves = game.map {
+              return SGSimulationResults.Move($0.1)
+            }
+          }
+          $0.trials = [trial]
         }
-        let trial = SimulationResults.Trial.with {
-          $0.condition = n
-          $0.trial = t
-          $0.moves = moves
-        }
-        results.trials = [trial]
         let data = try results.serializedData()
         streamer.append(data)
       }
@@ -46,7 +46,7 @@ extension Simulation {
   }
 }
 
-extension Simulation.Info {
+extension SGSimulation.Info {
   /// A filename string composed of title and date
   public var fileName: String {
     let message = title.split(separator: " ").joined(separator: "_")
@@ -58,7 +58,7 @@ extension Simulation.Info {
 }
 
 extension Begriffix {
-  init?(condition: Simulation.Condition) {
+  init?(condition: SGSimulation.Condition) {
     guard let starter = try? Player(config: condition.starter) else {return nil}
     let opponent = (try? Player(config: condition.opponent)) ?? starter
     self.init(startLetters: condition.startLetters, starter: starter.move, opponent: opponent.move)
@@ -66,44 +66,44 @@ extension Begriffix {
 }
 
 extension Player {
-  init(config: Simulation.Condition.Player) throws {
+  init(config: SGSimulation.Condition.Player) throws {
     let radix = try config.vocabulary.load()
     self.init(radix)
   }
 }
 
-extension SimulationResults.Trial {
+extension SGSimulationResults.Trial {
   init(condition: Int, trial: Int, moves: [Begriffix.Move]) {
     self.condition = UInt32(condition)
     self.trial = UInt32(trial)
-    self.moves = moves.map {SimulationResults.Move($0)}
+    self.moves = moves.map {SGSimulationResults.Move($0)}
   }
 }
 
-extension SimulationResults.Move {
+extension SGSimulationResults.Move {
   init(_ move: Begriffix.Move) {
-    self.place = SimulationResults.Place(move.place)
+    self.place = SGSimulationResults.Place(move.place)
     self.word = String(String.UnicodeScalarView(move.word))
     if let hits = move.hits {
-      self.hits = hits.map {SimulationResults.Hit($0.key, $0.value)}
+      self.hits = hits.map {SGSimulationResults.Hit($0.key, $0.value)}
     }
   }
 }
 
-extension SimulationResults.Hit {
+extension SGSimulationResults.Hit {
   init(_ place: Place, _ words: [Begriffix.Word]) {
-    self.place = SimulationResults.Place(place)
+    self.place = SGSimulationResults.Place(place)
     self.words = words.map {String(String.UnicodeScalarView($0))}
   }
 }
 
-extension SimulationResults.Place {
+extension SGSimulationResults.Place {
   init(_ place: Games.Place) {
     self.column = UInt32(place.start.column)
     self.row = UInt32(place.start.row)
     switch place.direction {
-    case .Horizontal: self.direction = .horizontal
-    case .Vertical: self.direction = .vertical
+    case .horizontal: self.direction = .horizontal
+    case .vertical: self.direction = .vertical
     }
   }
 }
