@@ -221,7 +221,8 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
   /// - Parameters:
   ///   - line: A pattern, mostly a board row or column
   ///   - index: The position around which to search for letters.
-  /// - Returns: If the element at the given position is part of a word with at least three letters, this word is returned, nil otherwise.
+  /// - Returns: If the element at the given position is part of a word with at least three letters,
+  ///   this word is returned, nil otherwise.
   public static func word(in line: Pattern, around index: Pattern.Index) -> Word? {
     assert(line.indices.contains(index), "index out of bounds")
     var start = index, end = index

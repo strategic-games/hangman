@@ -15,6 +15,12 @@ let runCommand = Command(
       longName: "out",
       type: String.self,
       description: "A directory path where the results file is written to (working directory by default)"
+    ),
+    Flag(
+      shortName: "p",
+      longName: "path",
+      type: String.self,
+      description: "A file path where the results are written to (has precedence over out)"
     )
   ],
   parent: simulationCommand
@@ -23,6 +29,7 @@ let runCommand = Command(
     rootCommand.fail(statusCode: 1, errorMessage: "Error: please supply a file name")
   }
   let out = flags.getString(name: "out")
+  let path = flags.getString(name: "path")
   do {
     let url = URL(fileURLWithPath: args[0])
     let data = try Data(contentsOf: url)
@@ -35,10 +42,17 @@ let runCommand = Command(
     }
     simulation.info.date = .init(date: Date())
     simulation.info.version = SGVersion.current
-    guard let streamer = SimulationStreamer(fileName: simulation.info.fileName, dir: out) else {
+    let streamer: SimulationStreamer?
+    if let path = path {
+      streamer = SimulationStreamer(path: path)
+    } else {
+      streamer = SimulationStreamer(fileName: simulation.info.fileName, dir: out)
+    }
+    if let streamer = streamer {
+      try simulation.run(streamer: streamer)
+    } else {
       rootCommand.fail(statusCode: 1, errorMessage: "couldn't create streamer")
     }
-    try simulation.run(streamer: streamer)
   } catch {
     rootCommand.fail(statusCode: 1, errorMessage: "\(error)")
   }

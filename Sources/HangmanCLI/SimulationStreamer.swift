@@ -1,23 +1,29 @@
 import Foundation
 
 struct SimulationStreamer {
-  let fileName: String
-  let dir: String
   let url: URL
   let fileHandle: FileHandle
-  init?(fileName: String, dir: String? = nil) {
-    self.fileName = fileName
-    self.dir = dir ?? "."
-    let dirUrl = URL(fileURLWithPath: self.dir, isDirectory: true)
-    url = dirUrl.appendingPathComponent(fileName)
+  init?(url: URL) {
+    self.url = url
     do {
-      try FileManager.default.createDirectory(at: dirUrl, withIntermediateDirectories: true, attributes: nil)
       _ = try url.checkResourceIsReachable()
     } catch {
       FileManager.default.createFile(atPath: url.path, contents: nil, attributes: nil)
     }
     guard let fileHandle = try? FileHandle(forWritingTo: url) else {return nil}
     self.fileHandle = fileHandle
+  }
+  init?(path: String) {
+    self.init(url: URL(fileURLWithPath: path))
+  }
+  init?(fileName: String, dir: String? = nil) {
+    let dirUrl = URL(fileURLWithPath: dir ?? ".", isDirectory: true)
+    do {
+      try FileManager.default.createDirectory(at: dirUrl, withIntermediateDirectories: true, attributes: nil)
+      self.init(url: dirUrl.appendingPathComponent(fileName))
+    } catch {
+      return nil
+    }
   }
   func append(_ data: Data) {
     fileHandle.seekToEndOfFile()
