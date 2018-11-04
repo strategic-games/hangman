@@ -59,6 +59,8 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
   private var numericalBoard: Matrix<Int> {
     return Matrix(values: board.values.map({$0 != nil ? 1 : 0}), rows: board.rows, columns: board.columns)
   }
+  /// A reference vocabulary which is used for word validation
+  public let vocabulary: Radix?
   /// The first player in a turn
   public let starter: Update
   /// The second player in a turn
@@ -75,32 +77,33 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
   }
   public var notify: Notify
   /// Initialize a new begriffix game with given board and players
-  public init(board: Board, starter: @escaping(Update), opponent: @escaping(Update)) {
+  public init(board: Board, starter: @escaping(Update), opponent: @escaping(Update), vocabulary: Radix? = nil) {
     self.board = board
     self.starter = starter
     self.opponent = opponent
+    self.vocabulary = vocabulary
   }
   /// Initialize a new begriffix game with start letters as 2*2 fields board
-  public init(startLetters: Board, starter: @escaping(Update), opponent: @escaping(Update)) {
+  public init(startLetters: Board, starter: @escaping(Update), opponent: @escaping(Update), vocabulary: Radix? = nil) {
     var board = Board(repeating: nil, rows: 8, columns: 8)
     board[3..<5, 3..<5] = startLetters
-    self.init(board: board, starter: starter, opponent: opponent)
+    self.init(board: board, starter: starter, opponent: opponent, vocabulary: vocabulary)
   }
   /// Initialize a new begriffix game with start letters as array of four field values
-  public init(startLetters: [Field], starter: @escaping(Update), opponent: @escaping(Update)) {
+  public init(startLetters: [Field], starter: @escaping(Update), opponent: @escaping(Update), vocabulary: Radix? = nil) {
     precondition(startLetters.count == 4, "Need exactly four start letters")
     let startLetters = Board(values: startLetters, rows: 2, columns: 2)
-    self.init(startLetters: startLetters, starter: starter, opponent: opponent)
+    self.init(startLetters: startLetters, starter: starter, opponent: opponent, vocabulary: vocabulary)
   }
   /// Initialize a new begriffix game with start letters as 2*2 nested array
-  public init?(startLetters: [[Letter]], starter: @escaping(Update), opponent: @escaping(Update)) {
+  public init?(startLetters: [[Letter]], starter: @escaping(Update), opponent: @escaping(Update), vocabulary: Radix? = nil) {
     guard let startLetters = Board(values: startLetters) else {return nil}
-    self.init(startLetters: startLetters, starter: starter, opponent: opponent)
+    self.init(startLetters: startLetters, starter: starter, opponent: opponent, vocabulary: vocabulary)
   }
   /// Initialize a new begriffix game with start letters as string with four characters
-  public init(startLetters: String, starter: @escaping(Update), opponent: @escaping(Update)) {
+  public init(startLetters: String, starter: @escaping(Update), opponent: @escaping(Update), vocabulary: Radix? = nil) {
     let fields = Array(startLetters.unicodeScalars)
-    self.init(startLetters: fields, starter: starter, opponent: opponent)
+    self.init(startLetters: fields, starter: starter, opponent: opponent, vocabulary: vocabulary)
   }
   /// Play the game and pass notifications if a notify callback is set
   public mutating func play() throws {
@@ -145,9 +148,20 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
     guard word.count == pattern.count else {return false}
     return word.match(pattern: pattern)
   }
+  /// Indicates if a word fits the pattern at a given place,
+  /// and if the word and orthogonal words exist in the reference vocabulary.
+  /// If no vocabulary is given, only the pattern is checked.
+  public func isValid(word: Word, place: Place) -> Bool {
+    guard isValid(word: word, for: pattern(of: place)) else {return false}
+    guard let vocabulary = vocabulary else {return true}
+    guard vocabulary.contains(word) else {return false}
+    let words = self.words(orthogonalTo: place, word: word)
+    guard words.allSatisfy({vocabulary.contains($0)}) else {return false}
+    return true
+  }
   /// Indicates if a word fits the pattern at a given place
   public func isValid(_ move: Move) -> Bool {
-    return isValid(word: move.word, for: pattern(of: move.place))
+    return isValid(word: move.word, place: move.place)
   }
   /// Find every place where words with allowed direction and length could be written
   public func find() -> [Place]? {
