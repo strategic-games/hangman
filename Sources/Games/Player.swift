@@ -26,7 +26,8 @@ public struct Player {
   /// Find the words that could be inserted at the given place
   func match(_ game: Begriffix, place: Place) -> [Begriffix.Word] {
     let pattern = Array(game.board[place.area].joined())
-    return vocabulary.search(pattern: pattern).filter { word in
+    return vocabulary.search(pattern: pattern)
+      .filter { word in
       let words = game.words(orthogonalTo: place, word: word)
       return words.allSatisfy {vocabulary.contains($0)}
     }
