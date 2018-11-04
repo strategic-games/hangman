@@ -61,7 +61,8 @@ extension Begriffix {
   init?(condition: SGSimulation.Condition) {
     guard let starter = try? Player(config: condition.starter) else {return nil}
     let opponent = (try? Player(config: condition.opponent)) ?? starter
-    self.init(startLetters: condition.startLetters, starter: starter.move, opponent: opponent.move)
+    let vocabulary = try? condition.vocabulary.load()
+    self.init(startLetters: condition.startLetters, starter: starter.move, opponent: opponent.move, vocabulary: vocabulary)
   }
 }
 
