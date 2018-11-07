@@ -4,7 +4,7 @@
 #
 git=`sh /etc/profile; which git`
 appVersion=$(git describe --tags --always --abbrev=0)
-appBuild=$(git describe --long | cut -f 2 -d "-") 
+appBuild=$(git describe --long | cut -f 2 -d "-")
 gitHash=$(git describe --long | cut -f 3 -d "-")
 echo "From GIT Version = $appVersion Build = $appBuild"
 
