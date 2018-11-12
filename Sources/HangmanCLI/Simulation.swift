@@ -69,7 +69,8 @@ extension Begriffix {
 extension Player {
   init(config: SGSimulation.Condition.Player) throws {
     let radix = try config.vocabulary.load()
-    self.init(radix)
+    let preference = Preference(rawValue: config.preference.rawValue) ?? .random
+    self.init(radix, preference: preference)
   }
 }
 
