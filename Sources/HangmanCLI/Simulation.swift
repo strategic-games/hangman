@@ -69,8 +69,16 @@ extension Begriffix {
 extension Player {
   init(config: SGSimulation.Condition.Player) throws {
     let radix = try config.vocabulary.load()
-    let preference = Preference(rawValue: config.preference.rawValue) ?? .random
-    self.init(radix, preference: preference)
+    let begriffixStrategy: BegriffixStrategy
+    switch config.begriffixStrategy {
+    case .random: begriffixStrategy = randomBegriffixStrategy
+    case .short: begriffixStrategy = shortBegriffixStrategy
+    case .long: begriffixStrategy = longBegriffixStrategy
+    case .availability: begriffixStrategy = availabilityBegriffixStrategy
+    case .minPlaces: begriffixStrategy = minPlacesBegriffixStrategy
+    default: begriffixStrategy = randomBegriffixStrategy
+    }
+    self.init(radix, begriffixStrategy: begriffixStrategy)
   }
 }
 
