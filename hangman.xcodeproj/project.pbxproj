@@ -51,6 +51,7 @@
 		8D0FBAC0217E2163001B097F /* Guaka.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = "Guaka::Guaka::Product" /* Guaka.framework */; };
 		8D0FBAC1217E2195001B097F /* StringScanner.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = "StringScanner::StringScanner::Product" /* StringScanner.framework */; };
 		8DAE6504219C2D8B0011722A /* BegriffixStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAE6503219C2D8B0011722A /* BegriffixStrategy.swift */; };
+		8DAE6506219C7FF10011722A /* StrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAE6505219C7FF10011722A /* StrategyTests.swift */; };
 		OBJ_191 /* Begriffix.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Begriffix.swift */; };
 		OBJ_192 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Direction.swift */; };
 		OBJ_193 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Game.swift */; };
@@ -325,6 +326,7 @@
 
 /* Begin PBXFileReference section */
 		8DAE6503219C2D8B0011722A /* BegriffixStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BegriffixStrategy.swift; sourceTree = "<group>"; };
+		8DAE6505219C7FF10011722A /* StrategyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyTests.swift; sourceTree = "<group>"; };
 		"Guaka::Guaka::Product" /* Guaka.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Guaka.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_10 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		OBJ_100 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -768,6 +770,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_40 /* GameTests.swift */,
+				8DAE6505219C7FF10011722A /* StrategyTests.swift */,
 			);
 			name = GamesTests;
 			path = Tests/GamesTests;
@@ -1250,6 +1253,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				8DAE6506219C7FF10011722A /* StrategyTests.swift in Sources */,
 				OBJ_204 /* GameTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
