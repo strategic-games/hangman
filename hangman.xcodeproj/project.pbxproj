@@ -52,6 +52,7 @@
 		8D0FBAC1217E2195001B097F /* StringScanner.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = "StringScanner::StringScanner::Product" /* StringScanner.framework */; };
 		8DAE6504219C2D8B0011722A /* BegriffixStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAE6503219C2D8B0011722A /* BegriffixStrategy.swift */; };
 		8DAE6506219C7FF10011722A /* StrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAE6505219C7FF10011722A /* StrategyTests.swift */; };
+		8DAE6508219DCB070011722A /* SimulationSchema.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAE6507219DCB070011722A /* SimulationSchema.pb.swift */; };
 		OBJ_191 /* Begriffix.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Begriffix.swift */; };
 		OBJ_192 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Direction.swift */; };
 		OBJ_193 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Game.swift */; };
@@ -95,7 +96,6 @@
 		OBJ_260 /* ask.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* ask.swift */; };
 		OBJ_261 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* main.swift */; };
 		OBJ_262 /* play.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* play.swift */; };
-		OBJ_263 /* DataModel.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* DataModel.pb.swift */; };
 		OBJ_264 /* radix.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* radix.swift */; };
 		OBJ_265 /* root.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_35 /* root.swift */; };
 		OBJ_266 /* setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_36 /* setup.swift */; };
@@ -327,6 +327,7 @@
 /* Begin PBXFileReference section */
 		8DAE6503219C2D8B0011722A /* BegriffixStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BegriffixStrategy.swift; sourceTree = "<group>"; };
 		8DAE6505219C7FF10011722A /* StrategyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyTests.swift; sourceTree = "<group>"; };
+		8DAE6507219DCB070011722A /* SimulationSchema.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimulationSchema.pb.swift; sourceTree = "<group>"; };
 		"Guaka::Guaka::Product" /* Guaka.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Guaka.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_10 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		OBJ_100 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -411,7 +412,6 @@
 		OBJ_29 /* ask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ask.swift; sourceTree = "<group>"; };
 		OBJ_30 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		OBJ_31 /* play.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = play.swift; sourceTree = "<group>"; };
-		OBJ_33 /* DataModel.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.pb.swift; sourceTree = "<group>"; };
 		OBJ_34 /* radix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radix.swift; sourceTree = "<group>"; };
 		OBJ_35 /* root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = root.swift; sourceTree = "<group>"; };
 		OBJ_36 /* setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setup.swift; sourceTree = "<group>"; };
@@ -752,7 +752,7 @@
 		OBJ_32 /* proto */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_33 /* DataModel.pb.swift */,
+				8DAE6507219DCB070011722A /* SimulationSchema.pb.swift */,
 			);
 			path = proto;
 			sourceTree = "<group>";
@@ -1305,12 +1305,12 @@
 				OBJ_255 /* MessageExtension.swift in Sources */,
 				OBJ_256 /* Simulation.swift in Sources */,
 				OBJ_257 /* SimulationStreamer.swift in Sources */,
+				8DAE6508219DCB070011722A /* SimulationSchema.pb.swift in Sources */,
 				OBJ_258 /* Version.swift in Sources */,
 				OBJ_259 /* Vocabulary.swift in Sources */,
 				OBJ_260 /* ask.swift in Sources */,
 				OBJ_261 /* main.swift in Sources */,
 				OBJ_262 /* play.swift in Sources */,
-				OBJ_263 /* DataModel.pb.swift in Sources */,
 				OBJ_264 /* radix.swift in Sources */,
 				OBJ_265 /* root.swift in Sources */,
 				OBJ_266 /* setup.swift in Sources */,

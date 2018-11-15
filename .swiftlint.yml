@@ -1,5 +1,5 @@
 excluded:
-  - "Sources/HangmanCLI/proto/DataModel.pb.swift"
+  - "Sources/HangmanCLI/proto/*pb.swift"
 included:
   - Sources
   - Tests
