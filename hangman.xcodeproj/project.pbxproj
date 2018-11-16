@@ -53,6 +53,7 @@
 		8DAE6504219C2D8B0011722A /* BegriffixStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAE6503219C2D8B0011722A /* BegriffixStrategy.swift */; };
 		8DAE6506219C7FF10011722A /* StrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAE6505219C7FF10011722A /* StrategyTests.swift */; };
 		8DAE6508219DCB070011722A /* SimulationSchema.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAE6507219DCB070011722A /* SimulationSchema.pb.swift */; };
+		8DAE650A219F4FFF0011722A /* CwlRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAE6509219F4FFF0011722A /* CwlRandom.swift */; };
 		OBJ_191 /* Begriffix.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Begriffix.swift */; };
 		OBJ_192 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Direction.swift */; };
 		OBJ_193 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Game.swift */; };
@@ -328,6 +329,7 @@
 		8DAE6503219C2D8B0011722A /* BegriffixStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BegriffixStrategy.swift; sourceTree = "<group>"; };
 		8DAE6505219C7FF10011722A /* StrategyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyTests.swift; sourceTree = "<group>"; };
 		8DAE6507219DCB070011722A /* SimulationSchema.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimulationSchema.pb.swift; sourceTree = "<group>"; };
+		8DAE6509219F4FFF0011722A /* CwlRandom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlRandom.swift; sourceTree = "<group>"; };
 		"Guaka::Guaka::Product" /* Guaka.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Guaka.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_10 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		OBJ_100 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -556,6 +558,7 @@
 		OBJ_13 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				8DAE6509219F4FFF0011722A /* CwlRandom.swift */,
 				OBJ_14 /* CollectionExtensions.swift */,
 				OBJ_15 /* Math.swift */,
 				OBJ_16 /* Matrix.swift */,
@@ -1441,6 +1444,7 @@
 				OBJ_397 /* Scale_Stevens.swift in Sources */,
 				OBJ_398 /* Scale_Tukey.swift in Sources */,
 				OBJ_399 /* SelfSorting.swift in Sources */,
+				8DAE650A219F4FFF0011722A /* CwlRandom.swift in Sources */,
 				OBJ_400 /* SortedSet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
