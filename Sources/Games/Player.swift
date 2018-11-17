@@ -2,6 +2,9 @@ import Utility
 
 /// A Begriffix player that selects by random
 public struct Player {
+  public typealias BegriffixHits = [Place: [Begriffix.Word]]
+  public typealias BegriffixStrategy = (BegriffixHits, Begriffix) -> Begriffix.Move?
+  public static var randomSource = Xoshiro()
   private let vocabulary: Radix
   let begriffixStrategy: BegriffixStrategy
   /// Initialize a new player
