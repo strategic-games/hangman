@@ -1,5 +1,6 @@
 import Foundation
 import Guaka
+import Games
 
 let simulationCommand = Command(
   usage: "simulation",
@@ -42,6 +43,7 @@ let runCommand = Command(
     }
     simulation.info.date = .init(date: Date())
     simulation.info.version = SGVersion.current
+    Player.randomSource = .init(seed: simulation.info.randomSeed)
     let streamer: SimulationStreamer?
     if let path = path {
       streamer = SimulationStreamer(path: path)
