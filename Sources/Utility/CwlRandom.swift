@@ -78,24 +78,57 @@ public struct DevRandom: RandomGenerator {
   }
 }
 
+/// Derived from public domain implementation of SplitMix64 here:
+/// http://xoshiro.di.unimi.it
+/// by Sebastiano Vigna
+public struct SplitMix64: RandomNumberGenerator {
+  /// The type of the rng's internal state
+  public typealias State = UInt64
+  private var state: State = 0
+  /// Initialize a SplitMix64 seeded to 0
+  public init() {}
+  /// Initialize a SplitMix64 with a given seed
+  public init(seed: State) {
+    state = seed
+  }
+  public mutating func next() -> UInt64 {
+    state += 0x9e3779b97f4a7c15
+    var result = state
+    result = (result ^ (result >> 30)) * 0xbf58476d1ce4e5b9
+    result = (result ^ (result >> 27)) * 0x94d049bb133111eb
+    return result ^ (result >> 31)
+  }
+}
+
+/// Derived from public domain implementation of xoshiro256** here:
+/// http://xoshiro.di.unimi.it
+/// by David Blackman and Sebastiano Vigna
 public struct Xoshiro: RandomNumberGenerator {
+  /// The type of the rng's internal state
   public typealias StateType = (UInt64, UInt64, UInt64, UInt64)
-
   private var state: StateType = (0, 0, 0, 0)
-
+  /// Initialize a new Xoshiro with a random seed
   public init() {
     var dr = DevRandom()
     dr.randomize(value: &state)
   }
-
+  /// Initialize a new Xoshiro with a given seed
   public init(seed: StateType) {
     self.state = seed
   }
-
+  /// Initialize a new Xoshiro seeded via SplitMix64.
+  ///
+  /// - Parameter seed: A seed used to create a new SplitMix64 which the state for this Xoshiro is derived from
+  public init(seed: UInt64) {
+    var splitMix = SplitMix64(seed: seed)
+    state = (
+      splitMix.next(),
+      splitMix.next(),
+      splitMix.next(),
+      splitMix.next()
+    )
+  }
   public mutating func next() -> UInt64 {
-    // Derived from public domain implementation of xoshiro256** here:
-    // http://xoshiro.di.unimi.it
-    // by David Blackman and Sebastiano Vigna
     let x = state.1 &* 5
     let result = ((x &<< 7) | (x &>> 57)) &* 9
     let t = state.1 &<< 17
