@@ -44,7 +44,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		8D0FBABC217E1D97001B097F /* HangmanCLI in CopyFiles */ = {isa = PBXBuildFile; fileRef = "hangman::HangmanCLI::Product" /* HangmanCLI */; };
+		8D0FBABC217E1D97001B097F /* hangman in CopyFiles */ = {isa = PBXBuildFile; fileRef = "hangman::HangmanCLI::Product" /* hangman */; };
 		8D0FBABD217E2163001B097F /* SwiftProtobuf.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = "SwiftProtobuf::SwiftProtobuf::Product" /* SwiftProtobuf.framework */; };
 		8D0FBABE217E2163001B097F /* Utility.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = "hangman::Utility::Product" /* Utility.framework */; };
 		8D0FBABF217E2163001B097F /* Games.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = "hangman::Games::Product" /* Games.framework */; };
@@ -319,7 +319,7 @@
 				8D0FBABE217E2163001B097F /* Utility.framework in CopyFiles */,
 				8D0FBABF217E2163001B097F /* Games.framework in CopyFiles */,
 				8D0FBAC0217E2163001B097F /* Guaka.framework in CopyFiles */,
-				8D0FBABC217E1D97001B097F /* HangmanCLI in CopyFiles */,
+				8D0FBABC217E1D97001B097F /* hangman in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,7 +480,7 @@
 		"SwiftProtobuf::SwiftProtobuf::Product" /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftProtobuf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"hangman::Games::Product" /* Games.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Games.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"hangman::GamesTests::Product" /* GamesTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = GamesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		"hangman::HangmanCLI::Product" /* HangmanCLI */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = HangmanCLI; sourceTree = BUILT_PRODUCTS_DIR; };
+		"hangman::HangmanCLI::Product" /* hangman */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = hangman; sourceTree = BUILT_PRODUCTS_DIR; };
 		"hangman::Utility::Product" /* Utility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Utility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"hangman::UtilityTests::Product" /* UtilityTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = UtilityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -724,7 +724,7 @@
 				"hangman::Games::Product" /* Games.framework */,
 				"Guaka::Guaka::Product" /* Guaka.framework */,
 				"hangman::UtilityTests::Product" /* UtilityTests.xctest */,
-				"hangman::HangmanCLI::Product" /* HangmanCLI */,
+				"hangman::HangmanCLI::Product" /* hangman */,
 				"StringScanner::StringScanner::Product" /* StringScanner.framework */,
 			);
 			name = Products;
@@ -1088,7 +1088,7 @@
 			);
 			name = HangmanCLI;
 			productName = HangmanCLI;
-			productReference = "hangman::HangmanCLI::Product" /* HangmanCLI */;
+			productReference = "hangman::HangmanCLI::Product" /* hangman */;
 			productType = "com.apple.product-type.tool";
 		};
 		"hangman::SwiftPMPackageDescription" /* hangmanPackageDescription */ = {
@@ -1704,6 +1704,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
+				EXECUTABLE_NAME = hangman;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
@@ -1728,6 +1729,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
+				EXECUTABLE_NAME = hangman;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
