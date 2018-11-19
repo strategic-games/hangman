@@ -11,9 +11,29 @@ You need the protoc compiler and the swift plugin to build the included protocol
 brew install swift-protobuf
 ```
 
-
 ## Installation
-### Manual (Swift)
+### Mac OS
+* Go to [releases](https://github.com/strategic-games/hangman/releases) tab
+* download the installation package (pkg file) for the latest release.
+* open the package and follow installation instructions
+* if OS X complains about missing signature, right-click the pkg and choose open
+
+## Build from source
+### Xcodebuild
+```sh
+# Clone this repo
+cd ~/documents/code
+git clone --recurse-submodules git@github.com:strategic-games/hangman.git
+cd hangman
+# Generate proto schema
+./Scripts/generate-proto.sh
+# Build with xcodebuild
+xcodebuild install -scheme hangman-Package
+```
+
+The hangman-<release>.pkg file will bi placed in /tmp. Go there and install the pkg.
+  
+### Swift
 ```sh
 # Clone this repo
 cd ~/documents/code
@@ -29,12 +49,3 @@ swift run -c release hangman --help
 cp .build/release/hangman ~/bin/
 hangman --help
 ```
-
-### Xcode
-* Clone this repo
-* Generate proto schema
-* Open hangman.xcodeproj in the directory
-* Build
-* In project navigator, go to Products > hangman
-* Right-click > show in finder
-* Copy the contents of the opened directory to a binary search path or where you can find it again
