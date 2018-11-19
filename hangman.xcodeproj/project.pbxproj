@@ -44,12 +44,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		8D0FBABC217E1D97001B097F /* hangman in CopyFiles */ = {isa = PBXBuildFile; fileRef = "hangman::HangmanCLI::Product" /* hangman */; };
-		8D0FBABD217E2163001B097F /* SwiftProtobuf.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = "SwiftProtobuf::SwiftProtobuf::Product" /* SwiftProtobuf.framework */; };
-		8D0FBABE217E2163001B097F /* Utility.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = "hangman::Utility::Product" /* Utility.framework */; };
-		8D0FBABF217E2163001B097F /* Games.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = "hangman::Games::Product" /* Games.framework */; };
-		8D0FBAC0217E2163001B097F /* Guaka.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = "Guaka::Guaka::Product" /* Guaka.framework */; };
-		8D0FBAC1217E2195001B097F /* StringScanner.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = "StringScanner::StringScanner::Product" /* StringScanner.framework */; };
 		8DAE6504219C2D8B0011722A /* BegriffixStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAE6503219C2D8B0011722A /* BegriffixStrategy.swift */; };
 		8DAE6506219C7FF10011722A /* StrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAE6505219C7FF10011722A /* StrategyTests.swift */; };
 		8DAE6508219DCB070011722A /* SimulationSchema.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAE6507219DCB070011722A /* SimulationSchema.pb.swift */; };
@@ -307,24 +301,6 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		8D0FBABB217E1D11001B097F /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(HOME)/bin";
-			dstSubfolderSpec = 0;
-			files = (
-				8D0FBAC1217E2195001B097F /* StringScanner.framework in CopyFiles */,
-				8D0FBABD217E2163001B097F /* SwiftProtobuf.framework in CopyFiles */,
-				8D0FBABE217E2163001B097F /* Utility.framework in CopyFiles */,
-				8D0FBABF217E2163001B097F /* Games.framework in CopyFiles */,
-				8D0FBAC0217E2163001B097F /* Guaka.framework in CopyFiles */,
-				8D0FBABC217E1D97001B097F /* hangman in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		8DAE6503219C2D8B0011722A /* BegriffixStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BegriffixStrategy.swift; sourceTree = "<group>"; };
 		8DAE6505219C7FF10011722A /* StrategyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyTests.swift; sourceTree = "<group>"; };
@@ -477,11 +453,11 @@
 		OBJ_98 /* Message+JSONArrayAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message+JSONArrayAdditions.swift"; sourceTree = "<group>"; };
 		OBJ_99 /* Message+TextFormatAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message+TextFormatAdditions.swift"; sourceTree = "<group>"; };
 		"StringScanner::StringScanner::Product" /* StringScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = StringScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"SwiftProtobuf::SwiftProtobuf::Product" /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftProtobuf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"hangman::Games::Product" /* Games.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Games.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"SwiftProtobuf::SwiftProtobuf::Product" /* SwiftProtobuf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftProtobuf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"hangman::Games::Product" /* Games.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Games.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"hangman::GamesTests::Product" /* GamesTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = GamesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		"hangman::HangmanCLI::Product" /* hangman */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = hangman; sourceTree = BUILT_PRODUCTS_DIR; };
-		"hangman::Utility::Product" /* Utility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Utility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"hangman::Utility::Product" /* Utility.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Utility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"hangman::UtilityTests::Product" /* UtilityTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = UtilityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1074,8 +1050,8 @@
 				OBJ_253 /* Sources */,
 				OBJ_268 /* Frameworks */,
 				8D0FBABA217DEFD0001B097F /* ShellScript */,
-				8D0FBABB217E1D11001B097F /* CopyFiles */,
 				8D36644121845DED0083EC2D /* ShellScript */,
+				8DA85C6B21A21F6B0006A1A9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1188,7 +1164,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		8D0FBAB9217DEE0B001B097F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -1199,13 +1175,14 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${SRCROOT}/Scripts/set_build_number.sh\n";
+			showEnvVarsInLog = 0;
 		};
 		8D0FBABA217DEFD0001B097F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -1216,7 +1193,7 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${SRCROOT}/Scripts/clear_build_number.sh\n";
 		};
@@ -1236,6 +1213,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${SRCROOT}/Scripts/lint.sh\n";
+			showEnvVarsInLog = 0;
+		};
+		8DA85C6B21A21F6B0006A1A9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${SRCROOT}/Scripts/build_pkg.sh\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1561,7 +1557,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Games;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_VERSION = 4.2;
 				TARGET_NAME = Games;
@@ -1585,7 +1581,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Games;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_VERSION = 4.2;
 				TARGET_NAME = Games;
@@ -1651,7 +1647,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Guaka;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_VERSION = 4.2;
 				TARGET_NAME = Guaka;
@@ -1675,7 +1671,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Guaka;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_VERSION = 4.2;
 				TARGET_NAME = Guaka;
@@ -1779,7 +1775,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = StringScanner;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_VERSION = 4.2;
 				TARGET_NAME = StringScanner;
@@ -1803,7 +1799,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = StringScanner;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_VERSION = 4.2;
 				TARGET_NAME = StringScanner;
@@ -1871,7 +1867,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = SwiftProtobuf;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_VERSION = 4.2;
 				TARGET_NAME = SwiftProtobuf;
@@ -1895,7 +1891,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = SwiftProtobuf;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_VERSION = 4.2;
 				TARGET_NAME = SwiftProtobuf;
@@ -1937,7 +1933,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Utility;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_VERSION = 4.2;
 				TARGET_NAME = Utility;
@@ -1961,7 +1957,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Utility;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_VERSION = 4.2;
 				TARGET_NAME = Utility;
