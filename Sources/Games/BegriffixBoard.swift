@@ -9,6 +9,9 @@ public struct BegriffixBoard {
   /// A sequence of optional letters, nil means that any letter can be used there
   public typealias Pattern = [Field]
   enum BoardError: Error {
+    /// The board does not contain this place
+    case invalidPlace
+    /// The word does not fit at the intended place
     case patternMismatch
   }
   private var fields: Matrix<Field>
