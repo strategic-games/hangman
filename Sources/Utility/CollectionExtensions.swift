@@ -44,3 +44,23 @@ public extension RangeReplaceableCollection {
     return sample
   }
 }
+
+extension Collection where Index == Int {
+  /// Split a collection into equal-sized arrays
+  ///
+  /// If the collection's size is not a multiple of the given size, the last chunk holds the remaining elements.
+  ///
+  /// - Parameter size: The size of the chunks which the collection is split into.
+  /// - Returns: An array of equal-sized chunks
+  public func chunked(into size: Int) -> [[Element]] {
+    var ranges = [Range<Index>]()
+    var end = startIndex
+    while end < endIndex {
+      let start = end
+      _ = formIndex(&end, offsetBy: size, limitedBy: endIndex)
+      ranges.append(start..<end)
+    }
+    return ranges
+      .map {Array(self[$0])}
+  }
+}
