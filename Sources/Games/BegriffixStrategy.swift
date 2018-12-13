@@ -10,8 +10,8 @@ public func randomBegriffixStrategy(hits: Player.BegriffixHits, game: Begriffix)
 /// Select a random word from the shortest pattern
 public func shortBegriffixStrategy(hits: Player.BegriffixHits, game: Begriffix) -> Begriffix.Move? {
   guard let (place, words) = hits.min(by: {
-    let left = game.pattern(of: $0.key)
-    let right = game.pattern(of: $1.key)
+    let left = game.board.pattern(of: $0.key)
+    let right = game.board.pattern(of: $1.key)
     return left.count <= right.count
   }) else {return nil}
 guard let word = words.randomElement(using: &Player.randomSource) else {return nil}
@@ -21,8 +21,8 @@ return .init(place, word, hits)
 /// Select a random word from the longest pattern
 public func longBegriffixStrategy(hits: Player.BegriffixHits, game: Begriffix) -> Begriffix.Move? {
   guard let (place, words) = hits.max(by: {
-    let left = game.pattern(of: $0.key)
-    let right = game.pattern(of: $1.key)
+    let left = game.board.pattern(of: $0.key)
+    let right = game.board.pattern(of: $1.key)
     return left.count <= right.count
   }) else {return nil}
   guard let word = words.randomElement(using: &Player.randomSource) else {return nil}
@@ -32,8 +32,8 @@ public func longBegriffixStrategy(hits: Player.BegriffixHits, game: Begriffix) -
 /// Prefer words for patterns starting with the given letters
 public func availabilityBegriffixStrategy(hits: Player.BegriffixHits, game: Begriffix) -> Begriffix.Move? {
   guard let (place, words) = hits.min(by: {
-    let left = game.pattern(of: $0.key).firstIndex(where: {$0 != nil}) ?? 0
-    let right = game.pattern(of: $1.key).firstIndex(where: {$0 != nil}) ?? 0
+    let left = game.board.pattern(of: $0.key).firstIndex(where: {$0 != nil}) ?? 0
+    let right = game.board.pattern(of: $1.key).firstIndex(where: {$0 != nil}) ?? 0
     return left <= right
   }) else {return nil}
   guard let word = words.randomElement(using: &Player.randomSource) else {return nil}
