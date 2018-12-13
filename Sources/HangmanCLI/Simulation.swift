@@ -62,7 +62,7 @@ extension Begriffix {
     guard let starter = try? Player(config: condition.starter) else {return nil}
     let opponent = (try? Player(config: condition.opponent)) ?? starter
     let vocabulary = try? condition.vocabulary.load()
-    guard let board = try? BegriffixBoard(startLetters: condition.startLetters) else {return nil}
+    guard let board = try? BegriffixBoard(startLetters: condition.startLetters, sideLength: Int(condition.boardSize)) else {return nil}
     self.init(board: board, starter: starter.move, opponent: opponent.move, vocabulary: vocabulary)
   }
 }
