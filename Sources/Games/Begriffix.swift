@@ -1,15 +1,9 @@
 import Utility
 
 /// A begriffix game
-public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
-  /// The type of a letter, can be written at one board position
-  public typealias Letter = Unicode.Scalar
-  /// The type of a word which is a sequence of letters
-  public typealias Word = [Letter]
-  public typealias Field = Letter?
-  /// A sequence of optional letters, nil means that any letter can be used there
-  public typealias Pattern = [Field]
-  public typealias Board = Matrix<Field>
+public struct Begriffix: DyadicGame, Trackable {
+  public typealias Word = [Unicode.Scalar]
+  public typealias Board = BegriffixBoard
   public typealias Status = GameStatus<Begriffix>
   public typealias Notify = ((_ status: Status) -> Void)?
   public typealias Update = (_ game: Begriffix) -> Move?
@@ -31,13 +25,6 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
       self.hits = hits
     }
   }
-  /// Errors that can occur when a move is inserted
-  public enum MoveError: Error {
-    /// The board does not contain this place
-    case invalidPlace
-    /// The word does not fit at the intended place
-    case patternMismatch
-  }
   /// phases of a game which is currently playing
   public enum Phase {
     /// Players must write words with at least four letters,
@@ -45,20 +32,16 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
     case restricted(Direction)
     /// Any words and directions are allowed
     case liberal
-    /// not yet implemented
-    case knockOut
   }
   public static let name = "Begriffix"
   /// How many times the starter and opponent have provided a move
-  public private(set) var turn: Int = 0
+  private var moveCount: Int = 0
+  public var turn: Int {
+    return moveCount/2
+  }
+  // public private(set) var turn: Int = 0
   private var playerIndex: Bool = true
   public private(set) var board: Board
-  public func character(_ field: Field) -> Character {
-    return field != nil ? Character(field!) : "."
-  }
-  private var numericalBoard: Matrix<Int> {
-    return Matrix(values: board.values.map({$0 != nil ? 1 : 0}), rows: board.rows, columns: board.columns)
-  }
   /// A reference vocabulary which is used for word validation
   public let vocabulary: Radix?
   /// The first player in a turn
@@ -67,13 +50,12 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
   public let opponent: Update
   /// The player who would be asked for the next move
   public var player: Update {
-    return playerIndex ? starter : opponent
+    return moveCount % 2 == 0 ? starter : opponent
   }
   /// The current game phase which is derived from turn
   public var phase: Phase {
     if turn == 0 {return .restricted(playerIndex ? .horizontal : .vertical)}
-    if turn <= 5 {return .liberal}
-    return .knockOut
+    return .liberal
   }
   public var notify: Notify
   /// Initialize a new begriffix game with given board and players
@@ -82,28 +64,6 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
     self.starter = starter
     self.opponent = opponent
     self.vocabulary = vocabulary
-  }
-  /// Initialize a new begriffix game with start letters as 2*2 fields board
-  public init(startLetters: Board, starter: @escaping(Update), opponent: @escaping(Update), vocabulary: Radix? = nil) {
-    var board = Board(repeating: nil, rows: 8, columns: 8)
-    board[3..<5, 3..<5] = startLetters
-    self.init(board: board, starter: starter, opponent: opponent, vocabulary: vocabulary)
-  }
-  /// Initialize a new begriffix game with start letters as array of four field values
-  public init(startLetters: [Field], starter: @escaping(Update), opponent: @escaping(Update), vocabulary: Radix? = nil) {
-    precondition(startLetters.count == 4, "Need exactly four start letters")
-    let startLetters = Board(values: startLetters, rows: 2, columns: 2)
-    self.init(startLetters: startLetters, starter: starter, opponent: opponent, vocabulary: vocabulary)
-  }
-  /// Initialize a new begriffix game with start letters as 2*2 nested array
-  public init?(startLetters: [[Letter]], starter: @escaping(Update), opponent: @escaping(Update), vocabulary: Radix? = nil) {
-    guard let startLetters = Board(values: startLetters) else {return nil}
-    self.init(startLetters: startLetters, starter: starter, opponent: opponent, vocabulary: vocabulary)
-  }
-  /// Initialize a new begriffix game with start letters as string with four characters
-  public init(startLetters: String, starter: @escaping(Update), opponent: @escaping(Update), vocabulary: Radix? = nil) {
-    let fields = Array(startLetters.unicodeScalars)
-    self.init(startLetters: fields, starter: starter, opponent: opponent, vocabulary: vocabulary)
   }
   /// Play the game and pass notifications if a notify callback is set
   public mutating func play() throws {
@@ -117,6 +77,48 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
       notify?(.moved(move, self))
     } while true
   }
+  /// Apply a move to the game
+  public mutating func insert(_ move: Move) throws {
+    try board.insert(move.word, at: move.place)
+    moveCount += 1
+    // playerIndex.toggle()
+    // if playerIndex {turn += 1}
+  }
+  /// Find every place where words with allowed direction and length could be written
+  public func find() -> [Place]? {
+    let direction: [Direction], min: Int
+    switch phase {
+    case .restricted(let dir):
+      min = 4
+      direction = [dir]
+    case .liberal:
+      min = 3
+      direction = Direction.allCases
+    }
+    var places = [Place]()
+    for dir in direction {
+      // stride(from: 8, through: min, by: -1)
+      for count in min...board.sideLength {
+        places += board.find(direction: dir, count: count).map {Place(start: $0, direction: dir, count: count)}
+      }
+    }
+    return places
+  }
+  /// Indicates if a word fits a pattern
+  /// Indicates if a word fits the pattern at a given place,
+  /// and if the word and orthogonal words exist in the reference vocabulary.
+  /// If no vocabulary is given, only the pattern is checked.
+  func isValid(_ word: Board.Word, at place: Place) -> Bool {
+    guard board.isValid(word, at: place) else {return false}
+    guard let vocabulary = vocabulary else {return true}
+    guard vocabulary.contains(word) else {return false}
+    let words = board.words(orthogonalTo: place, word: word)
+    guard words.allSatisfy({vocabulary.contains($0)}) else {return false}
+    return true
+  }
+}
+
+extension Begriffix: Sequence, IteratorProtocol {
   /// Try to get a valid move from the current player and apply that move.
   ///
   /// - Returns: The game state which is shown to the player and the move provided by the player.
@@ -130,131 +132,5 @@ public struct Begriffix: Game&BoardGame&Trackable&Sequence&IteratorProtocol {
       return nil
     }
     return (currentGame, move)
-  }
-  /// Apply a move to the game
-  public mutating func insert(_ move: Move) throws {
-    guard isValid(move) else {throw MoveError.patternMismatch}
-    playerIndex.toggle()
-    if playerIndex {turn += 1}
-    let area = move.place.area
-    board[area] = Matrix(values: move.word, area: area)
-  }
-  /// Get the search pattern at a given place
-  public func pattern(of place: Place) -> Pattern {
-    return board[place.area].values
-  }
-  /// Indicates if a word fits a pattern
-  public func isValid(word: Word, for pattern: Pattern) -> Bool {
-    guard word.count == pattern.count else {return false}
-    return word.match(pattern: pattern)
-  }
-  /// Indicates if a word fits the pattern at a given place,
-  /// and if the word and orthogonal words exist in the reference vocabulary.
-  /// If no vocabulary is given, only the pattern is checked.
-  public func isValid(word: Word, place: Place) -> Bool {
-    guard isValid(word: word, for: pattern(of: place)) else {return false}
-    guard let vocabulary = vocabulary else {return true}
-    guard vocabulary.contains(word) else {return false}
-    let words = self.words(orthogonalTo: place, word: word)
-    guard words.allSatisfy({vocabulary.contains($0)}) else {return false}
-    return true
-  }
-  /// Indicates if a word fits the pattern at a given place
-  public func isValid(_ move: Move) -> Bool {
-    return isValid(word: move.word, place: move.place)
-  }
-  /// Find every place where words with allowed direction and length could be written
-  public func find() -> [Place]? {
-    let direction: [Direction], min: Int
-    switch phase {
-    case .restricted(let dir):
-      min = 4
-      direction = [dir]
-    case .liberal:
-      min = 3
-      direction = Direction.allCases
-    case .knockOut: return nil
-    }
-    var places = [Place]()
-    for dir in direction {
-      // stride(from: 8, through: min, by: -1)
-      for count in min...8 {
-        places += find(direction: dir, count: count).map {Place(start: $0, direction: dir, count: count)}
-      }
-    }
-    return places
-  }
-  /// Find every start point where words with given direction and length could be written
-  public func find(direction: Direction, count: Int) -> [Point] {
-    let kern2 = direction.kernel(2)
-    let kern3 = direction.kernel(3)
-    let found2 = numericalBoard.conv2(kern2).extend(kern2)
-    let found3 = numericalBoard.conv2(kern3).extend(kern3).conv2(kern2).dilate(kern2)
-    let kernWord = direction.kernel(count)
-    let word2 = found2.conv2(kernWord)
-    let word3 = found3.conv2(kernWord)
-    let word2inv = word2.values.map {$0 >= 2 ? 1 : 0}
-    let word3inv = word3.values.map {$0 == 0 ? 1 : 0}
-    let allowed = word2inv*word3inv
-    let positions = allowed.enumerated()
-      .filter {$1 == 1}
-      .map { word2.point(of: $0.0)}
-    if word2.count == count {return positions}
-    return positions.filter { position in
-      switch direction {
-      case .horizontal:
-        if position.column > 0 && board[position.row, position.column-1] != nil {return false}
-        let end = position.column+count
-        if end < board.columns && board[position.row, end] != nil {return false}
-      case .vertical:
-        if position.row > 0 && board[position.row-1, position.column] != nil {return false}
-        let end = position.row+count
-        if end < board.rows && board[end, position.column] != nil {return false}
-      }
-      return true
-    }
-  }
-  /// Return the words crossing the given place after inserting a given word
-  public func words(orthogonalTo place: Place, word: Word) -> [Word] {
-    let area = place.area
-    var board = self.board
-    board[area] = Matrix(values: word, area: area)
-    let values: [[Letter?]], around: Int
-    switch place.direction {
-    case .horizontal:
-      values = board.colwise(in: area.columns)
-      around = place.start.row
-    case .vertical:
-      values = board.rowwise(in: area.rows)
-      around = place.start.column
-    }
-    return values.compactMap {Begriffix.word(in: $0, around: around)}
-  }
-  /// Extracts a word from a pattern around a given position
-  ///
-  /// - Parameters:
-  ///   - line: A pattern, mostly a board row or column
-  ///   - index: The position around which to search for letters.
-  /// - Returns: If the element at the given position is part of a word with at least three letters,
-  ///   this word is returned, nil otherwise.
-  public static func word(in line: Pattern, around index: Pattern.Index) -> Word? {
-    assert(line.indices.contains(index), "index out of bounds")
-    var start = index, end = index
-    for next in stride(from: start, through: line.startIndex, by: -1) {
-      if line[next] == nil {break}
-      start = next
-    }
-    for next in end..<line.endIndex {
-      if line[next] == nil {break}
-      end = next
-    }
-    let range = start...end
-    if range.count < 3 {return nil}
-    let word = line[range].compactMap {$0}
-    return word
-  }
-  /// Indicate if the given place is usable
-  public func contains(_ place: Place) -> Bool {
-    return find(direction: place.direction, count: place.count).contains(place.start)
   }
 }
