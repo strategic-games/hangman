@@ -62,7 +62,8 @@ extension Begriffix {
     guard let starter = try? Player(config: condition.starter) else {return nil}
     let opponent = (try? Player(config: condition.opponent)) ?? starter
     let vocabulary = try? condition.vocabulary.load()
-    self.init(startLetters: condition.startLetters, starter: starter.move, opponent: opponent.move, vocabulary: vocabulary)
+    guard let board = try? BegriffixBoard(startLetters: condition.startLetters) else {return nil}
+    self.init(board: board, starter: starter.move, opponent: opponent.move, vocabulary: vocabulary)
   }
 }
 
@@ -101,7 +102,7 @@ extension SGSimulationResults.Move {
 }
 
 extension SGSimulationResults.Hit {
-  init(_ place: Place, _ words: [Begriffix.Word]) {
+  init(_ place: Place, _ words: [BegriffixBoard.Word]) {
     self.place = SGSimulationResults.Place(place)
     self.words = words.map {String(String.UnicodeScalarView($0))}
   }

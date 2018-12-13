@@ -30,6 +30,9 @@ let playCommand = Command(
   guard let startLetters = flags.getString(name: "letters"), startLetters.count == 4 else {
     rootCommand.fail(statusCode: 1, errorMessage: "Please supply exactly four start letters")
   }
+  guard let board = try? BegriffixBoard(startLetters: startLetters) else {
+    rootCommand.fail(statusCode: 1, errorMessage: "The board couldn't be created with the given start letters")
+  }
   print("preparing AI vocabulary …")
   let path = flags.getString(name: "dictionary")!
   let url = URL(fileURLWithPath: path)
@@ -46,14 +49,14 @@ let playCommand = Command(
   var game: Begriffix
   if starter {
     print("You will be the starter")
-    game = Begriffix(startLetters: startLetters, starter: player.move, opponent: move)
+    game = Begriffix(board: board, starter: player.move, opponent: move)
   } else {
     print("You will be the opponent")
-    game = Begriffix(startLetters: startLetters, starter: move, opponent: player.move)
+    game = Begriffix(board: board, starter: move, opponent: player.move)
   }
   game.notify = { status in
     if case .moved(_, let game) = status {
-      print(game.displayableBoard)
+      print(game.board)
     }
   }
   do {
@@ -73,13 +76,10 @@ private func move(_ game: Begriffix) -> Begriffix.Move? {
   case .liberal:
     let dirBool = agree("Do you want to write horizontally? Otherwise vertically.")
     direction = dirBool ? .horizontal : .vertical
-  case .knockOut:
-    print("KO is not yet implemented")
-    return nil
   }
   let word: String = ask("Which word to you want to write?")
   let place = Place(start: start, direction: direction, count: word.count)
-  guard game.contains(place) else {
+  guard game.board.contains(place) else {
     print("Invalid move, giving up.")
     return nil
   }
