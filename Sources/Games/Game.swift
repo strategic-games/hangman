@@ -15,22 +15,9 @@ public protocol Game: Sequence {
   mutating func play() throws
 }
 
-/// A type that can act as a board game
-public protocol BoardGame {
-  /// The type of a field value
-  associatedtype Field
-  /// A game board where values can be entered
-  var board: Matrix<Field> {get}
-  /// Returns a character representation of a field value
-  func character(_ field: Field) -> Character
-}
-
-extension BoardGame {
-  /// Returns a board where the field values are replaced with their character representations
-  public var displayableBoard: Matrix<Character> {
-    let values: [Character] = board.values.map(character)
-    return Matrix(values: values, rows: board.rows, columns: board.columns)
-  }
+public protocol BoardGame: Game {
+  associatedtype Board
+  var board: Board {get}
 }
 
 public protocol VerbalGame {
