@@ -2,7 +2,7 @@ import Utility
 
 /// A Begriffix player that selects by random
 public struct Player {
-  public typealias BegriffixHits = [Place: [Begriffix.Word]]
+  public typealias BegriffixHits = [Place: [BegriffixBoard.Word]]
   public typealias BegriffixStrategy = (BegriffixHits, Begriffix) -> Begriffix.Move?
   public static var randomSource = Xoshiro()
   private let vocabulary: Radix
@@ -20,7 +20,7 @@ public struct Player {
   }
   public func move(_ game: Begriffix) -> Begriffix.Move? {
     guard let places = game.find() else {return nil}
-    var hits = [Place: [Begriffix.Word]](minimumCapacity: places.count)
+    var hits = [Place: [BegriffixBoard.Word]](minimumCapacity: places.count)
     places.forEach {
       let matches = match(game, place: $0)
       if !matches.isEmpty {hits[$0] = matches}
@@ -28,11 +28,9 @@ public struct Player {
     return begriffixStrategy(hits, game)
   }
   /// Find the words that could be inserted at the given place
-  func match(_ game: Begriffix, place: Place) -> [Begriffix.Word] {
-    let pattern = Array(game.board[place.area].joined())
+  func match(_ game: Begriffix, place: Place) -> [BegriffixBoard.Word] {
+    let pattern = game.board.pattern(of: place)
     return vocabulary.search(pattern: pattern)
-      .filter { word in
-        return game.isValid(word: word, place: place)
-    }
+      .filter {game.isValid($0, at: place)}
   }
 }
