@@ -48,6 +48,11 @@
 		8DAE6506219C7FF10011722A /* StrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAE6505219C7FF10011722A /* StrategyTests.swift */; };
 		8DAE6508219DCB070011722A /* SimulationSchema.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAE6507219DCB070011722A /* SimulationSchema.pb.swift */; };
 		8DAE650A219F4FFF0011722A /* CwlRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAE6509219F4FFF0011722A /* CwlRandom.swift */; };
+		8DAE707021C13E2D008B957F /* BegriffixBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAE706F21C13E2D008B957F /* BegriffixBoard.swift */; };
+		8DAE707221C27100008B957F /* PlaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAE707121C27100008B957F /* PlaceTests.swift */; };
+		8DAE707421C2725B008B957F /* BegriffixBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAE707321C2725B008B957F /* BegriffixBoardTests.swift */; };
+		8DAE707621C27779008B957F /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAE707521C27779008B957F /* Point.swift */; };
+		8DAE707821C27EE3008B957F /* Area.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAE707721C27EE3008B957F /* Area.swift */; };
 		OBJ_191 /* Begriffix.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Begriffix.swift */; };
 		OBJ_192 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Direction.swift */; };
 		OBJ_193 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Game.swift */; };
@@ -306,6 +311,11 @@
 		8DAE6505219C7FF10011722A /* StrategyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyTests.swift; sourceTree = "<group>"; };
 		8DAE6507219DCB070011722A /* SimulationSchema.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimulationSchema.pb.swift; sourceTree = "<group>"; };
 		8DAE6509219F4FFF0011722A /* CwlRandom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlRandom.swift; sourceTree = "<group>"; };
+		8DAE706F21C13E2D008B957F /* BegriffixBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BegriffixBoard.swift; sourceTree = "<group>"; };
+		8DAE707121C27100008B957F /* PlaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTests.swift; sourceTree = "<group>"; };
+		8DAE707321C2725B008B957F /* BegriffixBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BegriffixBoardTests.swift; sourceTree = "<group>"; };
+		8DAE707521C27779008B957F /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		8DAE707721C27EE3008B957F /* Area.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Area.swift; sourceTree = "<group>"; };
 		"Guaka::Guaka::Product" /* Guaka.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Guaka.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_10 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		OBJ_100 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -538,11 +548,13 @@
 				OBJ_14 /* CollectionExtensions.swift */,
 				OBJ_15 /* Math.swift */,
 				OBJ_16 /* Matrix.swift */,
+				8DAE707521C27779008B957F /* Point.swift */,
 				OBJ_17 /* Radix.swift */,
 				OBJ_18 /* Scale_Stevens.swift */,
 				OBJ_19 /* Scale_Tukey.swift */,
 				OBJ_20 /* SelfSorting.swift */,
 				OBJ_21 /* SortedSet.swift */,
+				8DAE707721C27EE3008B957F /* Area.swift */,
 			);
 			name = Utility;
 			path = Sources/Utility;
@@ -749,7 +761,9 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_40 /* GameTests.swift */,
+				8DAE707121C27100008B957F /* PlaceTests.swift */,
 				8DAE6505219C7FF10011722A /* StrategyTests.swift */,
+				8DAE707321C2725B008B957F /* BegriffixBoardTests.swift */,
 			);
 			name = GamesTests;
 			path = Tests/GamesTests;
@@ -904,6 +918,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_9 /* Begriffix.swift */,
+				8DAE706F21C13E2D008B957F /* BegriffixBoard.swift */,
 				OBJ_10 /* Direction.swift */,
 				OBJ_11 /* Game.swift */,
 				8DAE6503219C2D8B0011722A /* BegriffixStrategy.swift */,
@@ -1245,6 +1260,7 @@
 				OBJ_193 /* Game.swift in Sources */,
 				OBJ_194 /* Player.swift in Sources */,
 				8DAE6504219C2D8B0011722A /* BegriffixStrategy.swift in Sources */,
+				8DAE707021C13E2D008B957F /* BegriffixBoard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1253,6 +1269,8 @@
 			buildActionMask = 0;
 			files = (
 				8DAE6506219C7FF10011722A /* StrategyTests.swift in Sources */,
+				8DAE707421C2725B008B957F /* BegriffixBoardTests.swift in Sources */,
+				8DAE707221C27100008B957F /* PlaceTests.swift in Sources */,
 				OBJ_204 /* GameTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1439,8 +1457,10 @@
 				OBJ_396 /* Radix.swift in Sources */,
 				OBJ_397 /* Scale_Stevens.swift in Sources */,
 				OBJ_398 /* Scale_Tukey.swift in Sources */,
+				8DAE707621C27779008B957F /* Point.swift in Sources */,
 				OBJ_399 /* SelfSorting.swift in Sources */,
 				8DAE650A219F4FFF0011722A /* CwlRandom.swift in Sources */,
+				8DAE707821C27EE3008B957F /* Area.swift in Sources */,
 				OBJ_400 /* SortedSet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
