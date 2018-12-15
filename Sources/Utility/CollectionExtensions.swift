@@ -45,7 +45,7 @@ public extension RangeReplaceableCollection {
   }
 }
 
-extension Collection where Index == Int {
+extension Collection {
   /// Split a collection into equal-sized arrays
   ///
   /// If the collection's size is not a multiple of the given size, the last chunk holds the remaining elements.
