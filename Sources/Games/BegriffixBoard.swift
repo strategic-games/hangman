@@ -68,7 +68,7 @@ public struct BegriffixBoard {
   }
   /// Indicate if the given place is usable
   public func contains(_ place: Place) -> Bool {
-    return find(direction: place.direction, count: place.count).contains(place.start)
+    return find(direction: place.direction, count: place.count).contains(place)
   }
   public func isValid(_ word: Word, at place: Place) -> Bool {
     return isValid(place) && isValid(word, for: pattern(of: place))
@@ -84,7 +84,7 @@ public struct BegriffixBoard {
     return fields.isValid(area: place.area)
   }
   /// Find every start point where words with given direction and length could be written
-  public func find(direction: Direction, count: Int) -> [Point] {
+  public func find(direction: Direction, count: Int) -> [Place] {
     let kern2 = direction.kernel(2)
     let kern3 = direction.kernel(3)
     let found2 = numericFields.conv2(kern2).extend(kern2)
@@ -98,20 +98,25 @@ public struct BegriffixBoard {
     let positions = allowed.enumerated()
       .filter {$1 == 1}
       .map { word2.point(of: $0.0)}
-    if word2.count == count {return positions}
-    return positions.filter { position in
-      switch direction {
-      case .horizontal:
-        if position.column > 0 && fields[position.row, position.column-1] != nil {return false}
-        let end = position.column+count
-        if end < fields.columns && fields[position.row, end] != nil {return false}
-      case .vertical:
-        if position.row > 0 && fields[position.row-1, position.column] != nil {return false}
-        let end = position.row+count
-        if end < fields.rows && fields[end, position.column] != nil {return false}
-      }
-      return true
+    if word2.count == count {
+      return positions
+        .map {Place(start: $0, direction: direction, count: count)}
     }
+    return positions
+      .filter { position in
+        switch direction {
+        case .horizontal:
+          if position.column > 0 && fields[position.row, position.column-1] != nil {return false}
+          let end = position.column+count
+          if end < fields.columns && fields[position.row, end] != nil {return false}
+        case .vertical:
+          if position.row > 0 && fields[position.row-1, position.column] != nil {return false}
+          let end = position.row+count
+          if end < fields.rows && fields[end, position.column] != nil {return false}
+        }
+        return true
+      }
+      .map {Place(start: $0, direction: direction, count: count)}
   }
   /// Return the words crossing the given place after inserting a given word
   public func words(orthogonalTo place: Place, word: Word) -> [Word] {
