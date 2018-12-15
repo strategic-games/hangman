@@ -64,7 +64,6 @@ class BegriffixBoardTests: XCTestCase {
     for dir in Direction.allCases {
       for count in 4...8 {
         places += board.find(direction: dir, count: count)
-          .map {Place(start: $0, direction: dir, count: count)}
       }
     }
     places.forEach {
