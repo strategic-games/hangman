@@ -19,12 +19,9 @@ public struct Player {
     self.begriffixStrategy = begriffixStrategy ?? randomBegriffixStrategy
   }
   public func move(_ game: Begriffix) -> Begriffix.Move? {
-    guard let places = game.find() else {return nil}
-    var hits = [Place: [BegriffixBoard.Word]](minimumCapacity: places.count)
-    places.forEach {
-      let matches = match(game, place: $0)
-      if !matches.isEmpty {hits[$0] = matches}
-    }
+    let places = game.find()
+    let matches = places.concurrentMap {self.match(game, place: $0)}
+    let hits = [Place: [BegriffixBoard.Word]](uniqueKeysWithValues: zip(places, matches)).filter {!$0.value.isEmpty}
     return begriffixStrategy(hits, game)
   }
   /// Find the words that could be inserted at the given place

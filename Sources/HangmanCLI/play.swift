@@ -46,14 +46,15 @@ let playCommand = Command(
   let player = Player(radix)
   print("AI is ready")
   let starter = flags.getBool(name: "starter")!
-  var game: Begriffix
+  let players: DyadicPlayers<Begriffix>
   if starter {
     print("You will be the starter")
-    game = Begriffix(board: board, starter: player.move, opponent: move)
+    players = .init(starter: player.move, opponent: move)
   } else {
     print("You will be the opponent")
-    game = Begriffix(board: board, starter: move, opponent: player.move)
+    players = .init(starter: move, opponent: player.move)
   }
+  var game = Begriffix(board: board, players: players)
   game.notify = { status in
     if case .moved(_, let game) = status {
       print(game.board)

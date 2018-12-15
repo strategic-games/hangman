@@ -27,11 +27,7 @@ public protocol VerbalGame {
 
 /// A type that can act as a dyadic board game
 public protocol DyadicGame: BoardGame {
-  associatedtype Update
-  /// The player who starts the game
-  var starter: Update {get}
-  /// The responding player
-  var opponent: Update {get}
+  var players: DyadicPlayers<Self> {get}
 }
 
 /// General progress states of a game

@@ -48,7 +48,7 @@ public func minPlacesBegriffixStrategy(hits: Player.BegriffixHits, game: Begriff
       var rightGame = game
       try leftGame.insert(.init($0.key, $0.value[0]))
       try rightGame.insert(.init($1.key, $1.value[0]))
-      return leftGame.find()?.count ?? 0 <= rightGame.find()?.count ?? 0
+      return leftGame.find().count <= rightGame.find().count
     }) else {return nil}
     guard let word = words.randomElement(using: &Player.randomSource) else {return nil}
     return .init(place, word, hits)

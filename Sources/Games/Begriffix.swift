@@ -4,9 +4,9 @@ import Utility
 public struct Begriffix: DyadicGame, Trackable {
   public typealias Word = [Unicode.Scalar]
   public typealias Board = BegriffixBoard
+  public typealias Players = DyadicPlayers<Begriffix>
   public typealias Status = GameStatus<Begriffix>
   public typealias Notify = ((_ status: Status) -> Void)?
-  public typealias Update = (_ game: Begriffix) -> Move?
   /// A message type which contains data to advance the game
   public struct Move {
     /// The board position where the new word should be written
@@ -32,44 +32,52 @@ public struct Begriffix: DyadicGame, Trackable {
     case restricted(Direction)
     /// Any words and directions are allowed
     case liberal
+    /// The minimal word length which is allowed in this phase
+    var min: Int {
+      switch self {
+      case .restricted: return 4
+      case .liberal: return 3
+      }
+    }
   }
   public static let name = "Begriffix"
   /// How many times the starter and opponent have provided a move
-  private var moveCount: Int = 0
+  private(set) var moveCount: Int = 0
   public var turn: Int {
     return moveCount/2
   }
-  // public private(set) var turn: Int = 0
-  private var playerIndex: Bool = true
+  /// The current player position
+  public var player: Players.Position {
+    return moveCount % 2 == 0 ? .starter : .opponent
+  }
+  /// The players coordinator
+  public var players: Players
+  /// The game board
   public private(set) var board: Board
   /// A reference vocabulary which is used for word validation
   public let vocabulary: Radix?
-  /// The first player in a turn
-  public let starter: Update
-  /// The second player in a turn
-  public let opponent: Update
-  /// The player who would be asked for the next move
-  public var player: Update {
-    return moveCount % 2 == 0 ? starter : opponent
-  }
-  /// The current game phase which is derived from turn
+  /// The current game phase which is derived from turn and player position
   public var phase: Phase {
-    if turn == 0 {return .restricted(playerIndex ? .horizontal : .vertical)}
-    return .liberal
+    if turn > 0 {return .liberal}
+    let dir: Direction
+    switch player {
+    case .starter: dir = .horizontal
+    case .opponent: dir = .vertical
+    }
+    return .restricted(dir)
   }
   public var notify: Notify
   /// Initialize a new begriffix game with given board and players
-  public init(board: Board, starter: @escaping(Update), opponent: @escaping(Update), vocabulary: Radix? = nil) {
+  public init(board: Board, players: Players, vocabulary: Radix? = nil) {
     self.board = board
-    self.starter = starter
-    self.opponent = opponent
+    self.players = players
     self.vocabulary = vocabulary
   }
   /// Play the game and pass notifications if a notify callback is set
   public mutating func play() throws {
     notify?(.started)
     repeat {
-      guard let move = player(self) else {
+      guard let move = players[player](self) else {
         notify?(.ended)
         break
       }
@@ -81,28 +89,24 @@ public struct Begriffix: DyadicGame, Trackable {
   public mutating func insert(_ move: Move) throws {
     try board.insert(move.word, at: move.place)
     moveCount += 1
-    // playerIndex.toggle()
-    // if playerIndex {turn += 1}
   }
   /// Find every place where words with allowed direction and length could be written
-  public func find() -> [Place]? {
-    let direction: [Direction], min: Int
+  public func find() -> FlattenCollection<[[Place]]> {
+    let wordRange = phase.min...board.sideLength
     switch phase {
     case .restricted(let dir):
-      min = 4
-      direction = [dir]
+      return wordRange
+        .concurrentMap {self.board.find(direction: dir, count: $0)}
+        .joined()
     case .liberal:
-      min = 3
-      direction = Direction.allCases
+      return Direction.allCases
+        .map { dir in
+          wordRange.map {(dir, $0)}
+        }
+        .joined()
+        .concurrentMap {self.board.find(direction: $0.0, count: $0.1)}
+        .joined()
     }
-    var places = [Place]()
-    for dir in direction {
-      // stride(from: 8, through: min, by: -1)
-      for count in min...board.sideLength {
-        places += board.find(direction: dir, count: count).map {Place(start: $0, direction: dir, count: count)}
-      }
-    }
-    return places
   }
   /// Indicates if a word fits a pattern
   /// Indicates if a word fits the pattern at a given place,
@@ -124,7 +128,7 @@ extension Begriffix: Sequence, IteratorProtocol {
   /// - Returns: The game state which is shown to the player and the move provided by the player.
   ///If the player cannot provide a valid move, nil is returned.
   public mutating func next() -> (Begriffix, Move)? {
-    guard let move = player(self) else {return nil}
+    guard let move = players[player](self) else {return nil}
     let currentGame = self
     do {
       try insert(move)

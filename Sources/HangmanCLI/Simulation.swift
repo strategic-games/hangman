@@ -62,8 +62,15 @@ extension Begriffix {
     guard let starter = try? Player(config: condition.starter) else {return nil}
     let opponent = (try? Player(config: condition.opponent)) ?? starter
     let vocabulary = try? condition.vocabulary.load()
-    guard let board = try? BegriffixBoard(startLetters: condition.startLetters, sideLength: Int(condition.boardSize)) else {return nil}
-    self.init(board: board, starter: starter.move, opponent: opponent.move, vocabulary: vocabulary)
+    guard let board = BegriffixBoard(condition: condition) else {return nil}
+    let players = DyadicPlayers<Begriffix>(starter: starter.move, opponent: opponent.move)
+    self.init(board: board, players: players, vocabulary: vocabulary)
+  }
+}
+
+extension BegriffixBoard {
+  init?(condition: SGSimulation.Condition) {
+    try? self.init(startLetters: condition.startLetters, sideLength: Int(condition.boardSize))
   }
 }
 
