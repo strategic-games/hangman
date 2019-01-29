@@ -64,6 +64,10 @@ extension Begriffix {
     let vocabulary = try? condition.vocabulary.load()
     guard let board = BegriffixBoard(condition: condition) else {return nil}
     let players = DyadicPlayers<Begriffix>(starter: starter.move, opponent: opponent.move)
+    guard condition.hasWordMinLength else {
+      self.init(board: board, players: players, vocabulary: vocabulary)
+      return
+    }
     let minWordLength = (
       restricted: Int(condition.wordMinLength.restricted),
       liberal: Int(condition.wordMinLength.liberal)
@@ -74,6 +78,10 @@ extension Begriffix {
 
 extension BegriffixBoard {
   init?(condition: SGSimulation.Condition) {
+    guard condition.boardSize >= 2 else{
+      try? self.init(startLetters: condition.startLetters)
+      return
+    }
     try? self.init(startLetters: condition.startLetters, sideLength: Int(condition.boardSize))
   }
 }
