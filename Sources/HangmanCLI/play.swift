@@ -71,7 +71,7 @@ private func move(_ game: Begriffix) -> Begriffix.Move? {
   let start: Point = ask("Which position do you want to start writing from?")
   let direction: Direction
   switch game.phase {
-  case .restricted(let dir):
+  case .restricted(let dir, _):
     print("Direction is \(dir), because we are in turn 1")
     direction = dir
   case .liberal:

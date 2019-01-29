@@ -4,6 +4,7 @@ import Utility
 public struct Begriffix: DyadicGame, Trackable {
   public typealias Word = [Unicode.Scalar]
   public typealias Board = BegriffixBoard
+  public typealias MinWordLength = (restricted: Int, liberal: Int)
   public typealias Players = DyadicPlayers<Begriffix>
   public typealias Status = GameStatus<Begriffix>
   public typealias Notify = ((_ status: Status) -> Void)?
@@ -27,18 +28,12 @@ public struct Begriffix: DyadicGame, Trackable {
   }
   /// phases of a game which is currently playing
   public enum Phase {
-    /// Players must write words with at least four letters,
+    /// Players must write words with at least a given length
     /// starting player must write horizontally, and opponent vertically
-    case restricted(Direction)
-    /// Any words and directions are allowed
-    case liberal
-    /// The minimal word length which is allowed in this phase
-    var min: Int {
-      switch self {
-      case .restricted: return 4
-      case .liberal: return 3
-      }
-    }
+    case restricted(Direction, Int)
+    /// Players must write words with at least a given length
+    /// Any directions are allowed
+    case liberal(Int)
   }
   public static let name = "Begriffix"
   /// How many times the starter and opponent have provided a move
@@ -58,19 +53,22 @@ public struct Begriffix: DyadicGame, Trackable {
   public let vocabulary: Radix?
   /// The current game phase which is derived from turn and player position
   public var phase: Phase {
-    if turn > 0 {return .liberal}
+    if turn > 0 {return .liberal(minWordLength.liberal)}
     let dir: Direction
     switch player {
     case .starter: dir = .horizontal
     case .opponent: dir = .vertical
     }
-    return .restricted(dir)
+    return .restricted(dir, minWordLength.restricted)
   }
+  /// The minimum word lengths for the two game phases
+  public let minWordLength: MinWordLength
   public var notify: Notify
   /// Initialize a new begriffix game with given board and players
-  public init(board: Board, players: Players, vocabulary: Radix? = nil) {
+  public init(board: Board, players: Players, minWordLength: MinWordLength = (restricted: 5, liberal: 4), vocabulary: Radix? = nil) {
     self.board = board
     self.players = players
+    self.minWordLength = minWordLength
     self.vocabulary = vocabulary
   }
   /// Play the game and pass notifications if a notify callback is set
@@ -92,16 +90,15 @@ public struct Begriffix: DyadicGame, Trackable {
   }
   /// Find every place where words with allowed direction and length could be written
   public func find() -> FlattenCollection<[[Place]]> {
-    let wordRange = phase.min...board.sideLength
     switch phase {
-    case .restricted(let dir):
-      return wordRange
+    case let .restricted(dir, min):
+      return (min...board.sideLength)
         .concurrentMap {self.board.find(direction: dir, count: $0)}
         .joined()
-    case .liberal:
+    case .liberal(let min):
       return Direction.allCases
         .map { dir in
-          wordRange.map {(dir, $0)}
+          (min...board.sideLength).map {(dir, $0)}
         }
         .joined()
         .concurrentMap {self.board.find(direction: $0.0, count: $0.1)}
