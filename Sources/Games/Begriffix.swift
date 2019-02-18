@@ -26,18 +26,9 @@ public struct Begriffix: DyadicGame, Trackable {
       self.hits = hits
     }
   }
-  /// phases of a game which is currently playing
-  public enum Phase {
-    /// Players must write words with at least a given length
-    /// starting player must write horizontally, and opponent vertically
-    case restricted(Direction, Int)
-    /// Players must write words with at least a given length
-    /// Any directions are allowed
-    case liberal(Int)
-  }
   public static let name = "Begriffix"
   /// How many times the starter and opponent have provided a move
-  private(set) var moveCount: Int = 0
+  public private(set) var moveCount: Int = 0
   public var turn: Int {
     return moveCount/2
   }
@@ -51,16 +42,6 @@ public struct Begriffix: DyadicGame, Trackable {
   public private(set) var board: Board
   /// A reference vocabulary which is used for word validation
   public let vocabulary: Radix?
-  /// The current game phase which is derived from turn and player position
-  public var phase: Phase {
-    if turn > 0 {return .liberal(minWordLength.liberal)}
-    let dir: Direction
-    switch player {
-    case .starter: dir = .horizontal
-    case .opponent: dir = .vertical
-    }
-    return .restricted(dir, minWordLength.restricted)
-  }
   /// The minimum word lengths for the two game phases
   public let minWordLength: MinWordLength
   public var notify: Notify
@@ -90,12 +71,12 @@ public struct Begriffix: DyadicGame, Trackable {
   }
   /// Find every place where words with allowed direction and length could be written
   public func find() -> FlattenCollection<[[Place]]> {
-    switch phase {
-    case let .restricted(dir, min):
+    let min = turn == 0 ? minWordLength.restricted : minWordLength.liberal
+    if moveCount == 1, let dir = board.findBalance() {
       return (min...board.sideLength)
         .concurrentMap {self.board.find(direction: dir, count: $0)}
         .joined()
-    case .liberal(let min):
+    } else {
       return Direction.allCases
         .map { dir in
           (min...board.sideLength).map {(dir, $0)}
@@ -105,7 +86,7 @@ public struct Begriffix: DyadicGame, Trackable {
         .joined()
     }
   }
-  /// Indicates if a word fits a pattern
+    /// Indicates if a word fits a pattern
   /// Indicates if a word fits the pattern at a given place,
   /// and if the word and orthogonal words exist in the reference vocabulary.
   /// If no vocabulary is given, only the pattern is checked.
