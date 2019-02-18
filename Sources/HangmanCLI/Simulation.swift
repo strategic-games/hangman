@@ -78,7 +78,7 @@ extension Begriffix {
 
 extension BegriffixBoard {
   init?(condition: SGSimulation.Condition) {
-    guard condition.boardSize >= 2 else{
+    guard condition.boardSize >= 2 else {
       try? self.init(startLetters: condition.startLetters)
       return
     }
