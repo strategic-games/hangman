@@ -27,6 +27,17 @@ class BegriffixTests: XCTestCase {
       _ = game.next()
     }
   }
+  func testRestrictedMinWordLength() {
+    guard var game = self.game else {return}
+    guard let move = game.players.starter(game) else {return}
+    XCTAssertEqual(move.hits?.count, 40)
+    try! game.insert(move)
+    guard let move2 = game.players.opponent(game) else {return}
+    XCTAssertEqual(move2.hits?.count, 20)
+    XCTAssertNotEqual(move.place.direction, move2.place.direction)
+    try! game.insert(move2)
+    XCTAssertEqual(game.find().count, 26)
+  }
   func testFindPerformance() {
     measure {
       _ = game?.find()
