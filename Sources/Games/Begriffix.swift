@@ -44,12 +44,21 @@ public struct Begriffix: DyadicGame, Trackable {
   public let vocabulary: Radix?
   /// The minimum word lengths for the two game phases
   public let minWordLength: MinWordLength
+  /// Indicates if opponent must write orthogonally to starter in the first turn
+  public let firstOrthogonal: Bool
   public var notify: Notify
-  /// Initialize a new begriffix game with given board and players
-  public init(board: Board, players: Players, minWordLength: MinWordLength = (restricted: 5, liberal: 4), vocabulary: Radix? = nil) {
+  /// Initialize a new begriffix game
+  public init(
+    board: Board,
+    players: Players,
+    minWordLength: MinWordLength = (restricted: 5, liberal: 4),
+    firstOrthogonal: Bool = true,
+    vocabulary: Radix? = nil
+  ) {
     self.board = board
     self.players = players
     self.minWordLength = minWordLength
+    self.firstOrthogonal = firstOrthogonal
     self.vocabulary = vocabulary
   }
   /// Play the game and pass notifications if a notify callback is set
@@ -72,7 +81,7 @@ public struct Begriffix: DyadicGame, Trackable {
   /// Find every place where words with allowed direction and length could be written
   public func find() -> FlattenCollection<[[Place]]> {
     let min = turn == 0 ? minWordLength.restricted : minWordLength.liberal
-    if moveCount == 1, let dir = board.findBalance() {
+    if moveCount == 1, firstOrthogonal, let dir = board.findBalance() {
       return (min...board.sideLength)
         .concurrentMap {self.board.find(direction: dir, count: $0)}
         .joined()
