@@ -31,7 +31,9 @@ class StrategyTests: XCTestCase {
     XCTAssertEqual(move?.place.count, 8)
   }
   func testAvailability() {
-    let game = Begriffix(board: board, players: .init(starter: availabilityPlayer.move, opponent: availabilityPlayer.move))
+    let game = Begriffix(
+      board: board, players: .init(starter: availabilityPlayer.move, opponent: availabilityPlayer.move)
+    )
     let move = availabilityBegriffixStrategy(hits: hits, game: game)
     XCTAssertEqual(move?.place.count, 4)
   }
