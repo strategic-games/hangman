@@ -120,10 +120,10 @@ public struct BegriffixBoard {
   }
   /// Returns the direction which more places exist for
   public func findBalance() -> Direction? {
-    let horizontal = self.find(direction: .horizontal, count: self.sideLength)
-    let vertical = self.find(direction: .vertical, count: self.sideLength)
+    let horizontal = self.find(direction: .horizontal, count: self.sideLength).count
+    let vertical = self.find(direction: .vertical, count: self.sideLength).count
     if horizontal == vertical {return nil}
-    return horizontal.count > vertical.count ? .horizontal : .vertical
+    return horizontal > vertical ? .horizontal : .vertical
   }
   /// Return the words crossing the given place after inserting a given word
   public func words(orthogonalTo place: Place, word: Word) -> [Word] {
