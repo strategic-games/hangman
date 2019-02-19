@@ -65,14 +65,17 @@ extension Begriffix {
     guard let board = BegriffixBoard(condition: condition) else {return nil}
     let players = DyadicPlayers<Begriffix>(starter: starter.move, opponent: opponent.move)
     guard condition.hasWordMinLength else {
-      self.init(board: board, players: players, vocabulary: vocabulary)
+      self.init(board: board, players: players, firstOrthogonal: condition.firstOrthogonal, vocabulary: vocabulary)
       return
     }
     let minWordLength = (
       restricted: Int(condition.wordMinLength.restricted),
       liberal: Int(condition.wordMinLength.liberal)
     )
-    self.init(board: board, players: players, minWordLength: minWordLength, vocabulary: vocabulary)
+    self.init(
+      board: board, players: players,
+      minWordLength: minWordLength, firstOrthogonal: condition.firstOrthogonal, vocabulary: vocabulary
+    )
   }
 }
 
