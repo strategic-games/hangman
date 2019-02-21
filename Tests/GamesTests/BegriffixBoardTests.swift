@@ -75,27 +75,4 @@ class BegriffixBoardTests: XCTestCase {
     let word: Begriffix.Word = ["x", "y", "z"]
     XCTAssertEqual(BegriffixBoard.word(in: pattern, around: 2), word)
   }
-  // MARK: findBalance
-  func testBalanceAfterInit() {
-    let board = try! BegriffixBoard(startLetters: "xxxx")
-    XCTAssertNil(board.findBalance())
-  }
-  func testBalanceafterFirstHorizontalMoveIsVertical() {
-    var board = try! BegriffixBoard(startLetters: "xxxx")
-    let point = Point(row: 3, column: 3)
-    let word = "xxxxx"
-    let place = Place(start: point, direction: .horizontal, count: 5)
-    try! board.insert(Array(word.unicodeScalars), at: place)
-    let balance = board.findBalance()
-    XCTAssertEqual(balance, .vertical)
-  }
-  func testBalanceafterFirstVerticalMoveIsHorizontal() {
-    var board = try! BegriffixBoard(startLetters: "xxxx")
-    let point = Point(row: 3, column: 3)
-    let word = "xxxxx"
-    let place = Place(start: point, direction: .vertical, count: 5)
-    try! board.insert(Array(word.unicodeScalars), at: place)
-    let balance = board.findBalance()
-    XCTAssertEqual(balance, .horizontal)
-  }
 }
