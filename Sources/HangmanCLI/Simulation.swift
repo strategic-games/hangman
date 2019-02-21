@@ -57,6 +57,17 @@ extension SGSimulation.Info {
   }
 }
 
+extension Begriffix.DirectionRestrictionMode {
+  init?(condition: SGSimulation.Condition.DirectionRestrictions.Mode) {
+    switch condition {
+    case .none: return nil
+    case .fixed: self = .fixed
+    case .starter: self = .variable
+    default: return nil
+    }
+  }
+}
+
 extension Begriffix {
   init?(condition: SGSimulation.Condition) {
     guard let starter = try? Player(config: condition.starter) else {return nil}
@@ -64,17 +75,17 @@ extension Begriffix {
     let vocabulary = try? condition.vocabulary.load()
     guard let board = BegriffixBoard(condition: condition) else {return nil}
     let players = DyadicPlayers<Begriffix>(starter: starter.move, opponent: opponent.move)
-    guard condition.hasWordMinLength else {
-      self.init(board: board, players: players, firstOrthogonal: condition.firstOrthogonal, vocabulary: vocabulary)
-      return
-    }
-    let minWordLength = (
-      restricted: Int(condition.wordMinLength.restricted),
-      liberal: Int(condition.wordMinLength.liberal)
-    )
+    let minWordLength = condition.hasWordMinLength ?
+      (first: Int(condition.wordMinLength.first), other: Int(condition.wordMinLength.other)) : (first: 5, other: 4)
+    let directionRestrictions = condition.hasDirectionRestrictions ?
+      (
+        first: Begriffix.DirectionRestrictionMode(condition: condition.directionRestrictions.first),
+        other: Begriffix.DirectionRestrictionMode(condition: condition.directionRestrictions.other)
+      ) :
+      (first: .variable, other: nil)
     self.init(
       board: board, players: players,
-      minWordLength: minWordLength, firstOrthogonal: condition.firstOrthogonal, vocabulary: vocabulary
+      minWordLength: minWordLength, directionRestrictions: directionRestrictions, vocabulary: vocabulary
     )
   }
 }

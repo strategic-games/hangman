@@ -33,6 +33,7 @@ class BegriffixTests: XCTestCase {
     XCTAssertEqual(move.hits?.count, 40)
     try! game.insert(move)
     guard let move2 = game.players.opponent(game) else {return}
+    XCTAssertEqual(game.moves.count, 1)
     XCTAssertEqual(move2.hits?.count, 20)
     XCTAssertNotEqual(move.place.direction, move2.place.direction)
     try! game.insert(move2)

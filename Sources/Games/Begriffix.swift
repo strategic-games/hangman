@@ -4,7 +4,15 @@ import Utility
 public struct Begriffix: DyadicGame, Trackable {
   public typealias Word = [Unicode.Scalar]
   public typealias Board = BegriffixBoard
-  public typealias MinWordLength = (restricted: Int, liberal: Int)
+  public typealias MinWordLength = (first: Int, other: Int)
+  /// Modes of restriction for the writing direction
+  public enum DirectionRestrictionMode {
+    /// Starter is unrestricted, opponent must write orthogonally to starter
+    case variable
+    /// Starter must write horizontally, opponent must write vertically
+    case fixed
+  }
+  public typealias DirectionRestrictions = (first: DirectionRestrictionMode?, other: DirectionRestrictionMode?)
   public typealias Players = DyadicPlayers<Begriffix>
   public typealias Status = GameStatus<Begriffix>
   public typealias Notify = ((_ status: Status) -> Void)?
@@ -27,14 +35,14 @@ public struct Begriffix: DyadicGame, Trackable {
     }
   }
   public static let name = "Begriffix"
-  /// How many times the starter and opponent have provided a move
-  public private(set) var moveCount: Int = 0
+  /// The already inserted moves
+  public private(set) var moves: [Move] = []
   public var turn: Int {
-    return moveCount/2
+    return moves.count / 2
   }
   /// The current player position
   public var player: Players.Position {
-    return moveCount % 2 == 0 ? .starter : .opponent
+    return moves.count % 2 == 0 ? .starter : .opponent
   }
   /// The players coordinator
   public var players: Players
@@ -44,21 +52,21 @@ public struct Begriffix: DyadicGame, Trackable {
   public let vocabulary: Radix?
   /// The minimum word lengths for the two game phases
   public let minWordLength: MinWordLength
-  /// Indicates if opponent must write orthogonally to starter in the first turn
-  public let firstOrthogonal: Bool
+  /// The restrictions of writing direction in and after the first turn
+  public let directionRestrictions: DirectionRestrictions
   public var notify: Notify
   /// Initialize a new begriffix game
   public init(
     board: Board,
     players: Players,
-    minWordLength: MinWordLength = (restricted: 5, liberal: 4),
-    firstOrthogonal: Bool = true,
+    minWordLength: MinWordLength = (first: 5, other: 4),
+    directionRestrictions: DirectionRestrictions = (first: .variable, other: nil),
     vocabulary: Radix? = nil
   ) {
     self.board = board
     self.players = players
     self.minWordLength = minWordLength
-    self.firstOrthogonal = firstOrthogonal
+    self.directionRestrictions = directionRestrictions
     self.vocabulary = vocabulary
   }
   /// Play the game and pass notifications if a notify callback is set
@@ -76,12 +84,22 @@ public struct Begriffix: DyadicGame, Trackable {
   /// Apply a move to the game
   public mutating func insert(_ move: Move) throws {
     try board.insert(move.word, at: move.place)
-    moveCount += 1
+    moves.append(move)
+  }
+  /// The direction which can currently be used to write, nil if not restricted
+  public var dir: Direction? {
+    guard let mode = turn == 0 ? directionRestrictions.first : directionRestrictions.other else {return nil}
+    switch mode {
+    case .fixed:
+      return self.player == .starter ? .horizontal : .vertical
+    case .variable:
+      return self.player == .opponent ? moves.last?.place.direction.orthogonal : nil
+    }
   }
   /// Find every place where words with allowed direction and length could be written
   public func find() -> FlattenCollection<[[Place]]> {
-    let min = turn == 0 ? minWordLength.restricted : minWordLength.liberal
-    if moveCount == 1, firstOrthogonal, let dir = board.findBalance() {
+    let min = turn == 0 ? minWordLength.first : minWordLength.other
+    if let dir = self.dir {
       return (min...board.sideLength)
         .concurrentMap {self.board.find(direction: dir, count: $0)}
         .joined()

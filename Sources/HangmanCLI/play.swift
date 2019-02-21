@@ -70,7 +70,7 @@ let playCommand = Command(
 private func move(_ game: Begriffix) -> Begriffix.Move? {
   let start: Point = ask("Which position do you want to start writing from?")
   let direction: Direction
-  if game.moveCount == 1, let dir = game.board.findBalance() {
+  if let dir = game.dir {
     print("Direction is \(dir), because we are in turn 1 and you are opponent")
     direction = dir
   } else {
