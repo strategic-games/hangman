@@ -6,6 +6,13 @@ public enum Direction: String, CaseIterable&Codable {
   case horizontal = "h"
   /// from top to bottom
   case vertical = "v"
+  /// The direction orthogonal to this direction
+  public var orthogonal: Direction {
+    switch self {
+    case .horizontal: return .vertical
+    case .vertical: return .horizontal
+    }
+  }
   /// Return a kernel according to this direction and a given length
   func kernel(_ count: Int) -> Matrix<Int> {
     switch self {
