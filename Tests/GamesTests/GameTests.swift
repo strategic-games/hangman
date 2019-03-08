@@ -9,22 +9,21 @@ class BegriffixTests: XCTestCase {
   override func setUp() {
     let bundle = Bundle(for: BegriffixTests.self)
     guard let url = bundle.url(forResource: "Scrabbledict_german", withExtension: "txt") else {return}
-    guard let str = try? String(contentsOf: url) else {return}
-    let words = str.lowercased().unicodeScalars
-      .split(separator: "\n")
-      .drop(while: {$0.first == "#"})
-      .map {String($0.prefix(while: {$0 != " "}))}
+    guard let text = try? String(contentsOf: url) else {return}
     let radix = Radix()
-    radix.insert(words)
+    radix.insert(text.words)
   let startLetters = "laer"
   let player = Player(radix)
   let board = try! BegriffixBoard(startLetters: startLetters)
     game = Begriffix(board: board, players: .init(starter: player.move, opponent: player.move))
   }
   func testPerformance() {
+    guard let game = self.game else {return}
+    for (_, move) in game {
+      print(move.word)
+    }
     measure {
-      guard var game = self.game else {return}
-      _ = game.next()
+      for _ in game {}
     }
   }
   func testRestrictedMinWordLength() {
@@ -40,6 +39,8 @@ class BegriffixTests: XCTestCase {
     XCTAssertEqual(game.find().count, 26)
   }
   func testFindPerformance() {
+    XCTAssertNil(game?.dir)
+    XCTAssertEqual(game?.find().count, 40)
     measure {
       _ = game?.find()
     }
