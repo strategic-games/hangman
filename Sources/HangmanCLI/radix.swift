@@ -18,12 +18,6 @@ let searchCommand = Command(
       longName: "dictionary",
       value: "dictionary.txt",
       description: "The file which contains the word list"
-    ),
-    Flag(
-      shortName: "m",
-      longName: "mode",
-      value: SGWordList.DataFormat.proto,
-      description: "The file format of the word list file to read"
     )
   ],
   parent: radixCommand,
@@ -32,18 +26,11 @@ let searchCommand = Command(
 
 private func search(flags: Flags, args: [String]) {
   let path = flags.getString(name: "dictionary")!
-  let mode = flags.get(name: "mode", type: SGWordList.DataFormat.self)!
   let url = URL(fileURLWithPath: path)
   do {
-    let list: SGWordList
-    switch mode {
-    case .proto: list = try SGWordList(contentsOf: url)
-    case .text:
-      let data = try String(contentsOf: url)
-      list = SGWordList(source: path, text: data)
-    }
+    let text = try String(contentsOf: url)
     let radix = Radix()
-    radix.insert(list.words)
+    radix.insert(text.words)
     let result = args.count != 0 ? radix.search(pattern: args[0]) : radix.search()
     print(result)
   } catch {
@@ -78,7 +65,10 @@ private func text2proto(flags: Flags, args: [String]) {
   let urlOut = URL(fileURLWithPath: output)
   do {
     let text = try String(contentsOf: urlIn)
-    let list = SGWordList(source: input, text: text)
+    let list = SGWordLists.Entry.with {
+      $0.key = "file"
+      $0.value = text.words
+    }
     let data = try list.serializedData()
     try data.write(to: urlOut)
   } catch {

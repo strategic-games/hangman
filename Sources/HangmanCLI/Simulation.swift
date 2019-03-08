@@ -15,14 +15,30 @@ extension SGSimulation {
     }
     static let typeDescription = "The data format of a simulation config file"
   }
+  var isValid: Bool {
+    let listKeys = Set(wordLists.dictionary.keys)
+    let conditionKeys = Set(conditions.flatMap {
+      return [
+        $0.vocabulary.key,
+        $0.starter.vocabulary.key,
+        $0.opponent.vocabulary.key
+      ]
+    })
+    return conditionKeys.isSubset(of: listKeys)
+  }
   func run(streamer: SimulationStreamer) throws {
+    guard isValid else {
+      print("conditions contain invalid word list keys")
+      return
+    }
     let firstEntry = SGSimulationResults.with {
       $0.config = self
     }
     try streamer.append(firstEntry.serializedData())
+    let lists = wordLists.dictionary
     for (conditionIndex, condition) in conditions.enumerated() {
       print("running condition \(conditionIndex)")
-      guard let game = Begriffix(condition: condition) else {
+      guard let game = Begriffix(condition: condition, wordLists: lists) else {
         print("couldn't create game")
         continue
       }
@@ -69,10 +85,10 @@ extension Begriffix.DirectionRestrictionMode {
 }
 
 extension Begriffix {
-  init?(condition: SGSimulation.Condition) {
-    guard let starter = try? Player(config: condition.starter) else {return nil}
-    let opponent = (try? Player(config: condition.opponent)) ?? starter
-    let vocabulary = try? condition.vocabulary.load()
+  init?(condition: SGSimulation.Condition, wordLists: [String: [String]]) {
+    let starter = Player(config: condition.starter, wordLists: wordLists)
+    let opponent = Player(config: condition.opponent, wordLists: wordLists)
+    let vocabulary = condition.vocabulary.selected(from: wordLists)
     guard let board = BegriffixBoard(condition: condition) else {return nil}
     let players = DyadicPlayers<Begriffix>(starter: starter.move, opponent: opponent.move)
     let minWordLength = condition.hasWordMinLength ?
@@ -101,8 +117,8 @@ extension BegriffixBoard {
 }
 
 extension Player {
-  init(config: SGSimulation.Condition.Player) throws {
-    let radix = try config.vocabulary.load()
+  init(config: SGSimulation.Condition.Player, wordLists: [String: [String]]) {
+    let radix = config.vocabulary.selected(from: wordLists)
     let begriffixStrategy: BegriffixStrategy
     switch config.begriffixStrategy {
     case .random: begriffixStrategy = randomBegriffixStrategy

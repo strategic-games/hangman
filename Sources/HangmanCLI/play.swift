@@ -38,8 +38,8 @@ let playCommand = Command(
   let url = URL(fileURLWithPath: path)
   let radix = Radix()
   do {
-    let list = try SGWordList(contentsOf: url)
-    radix.insert(list.words)
+    let text = try String(contentsOf: url)
+    radix.insert(text.words)
   } catch {
     rootCommand.fail(statusCode: 1, errorMessage: "\(error)")
   }
